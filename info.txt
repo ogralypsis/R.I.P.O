@@ -1,0 +1,1 @@
+hacer script de compilacion que la compile en la configuracion correspondiente y automatice la organizacion del proyecto(dlls...)

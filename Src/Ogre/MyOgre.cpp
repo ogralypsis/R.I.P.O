@@ -31,22 +31,39 @@ void MyOgre::CreateRoot()
 	_pluginsConfigLoc = "Ogre/plugins.cfg";
 #endif
 
+	/*Ogre::FileSystemLayer * fsl = new Ogre::FileSystemLayer("R.I.P.O");
+
+	Ogre::String pluginsPath;
+	pluginsPath = fsl->getConfigFilePath("plugins.cfg");*/
+
+	//_root = OGRE_NEW Ogre::Root(pluginsPath, fsl->getWritablePath("ogre.cfg"), fsl->getWritablePath("ogre.log"));
+
 	_root = OGRE_NEW Ogre::Root(_pluginsConfigLoc);
 
 
 	if (OneTimeConfig())
-		SetUp();
+		std::cout << "config";
+		
+	SetUp();
 
 }
 
 bool MyOgre::OneTimeConfig()
 {
+	
 
-	if (!_root->restoreConfig())
-	{
-		return _root->showConfigDialog(NULL);
+	if (!(_root->restoreConfig()) ){/*|| _root->showConfigDialog())*/
+		_root->showConfigDialog(NULL);
+		return true;
 	}
-	else return true;
+	else
+		return false;
+
+	/*if (!_root->restoreConfig())
+	{
+		 return _root->showConfigDialog(NULL);
+	}
+	else return true;*/
 }
 
 void MyOgre::SetUp()
@@ -57,6 +74,16 @@ void MyOgre::SetUp()
 
 	// create main window
 	_window = _root->createRenderWindow("R.I.P.O", 800, 640, false);
+
+	// create the scene
+	//Ogre::SceneManager * sceneMgr = root->createSceneManager(Ogre::ST_GENERIC);
+	Ogre::SceneManager * sceneMgr = _root->createSceneManager();
+
+	// add a camera
+	Ogre::Camera *mainCam = sceneMgr->createCamera("MainCam");
+
+	// add viewport
+	Ogre::Viewport *vp = _window->addViewport(mainCam);
 
 	// get the resource manager
 	Ogre::ResourceGroupManager &_resGroupMgr = Ogre::ResourceGroupManager::getSingleton();

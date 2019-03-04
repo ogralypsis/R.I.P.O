@@ -82,6 +82,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.exe
 
 # Chutzpah Test files
 _Chutzpah*
@@ -130,10 +131,13 @@ ipch/
 _Pvt_Extensions
 
 
-*.vcxproj
-*.vcxproj.filters
+*.vcxproj.user
 
 *.props
 
-# Ogre3D 
-/Dependencies/ogre-1.11.5/Build
+
+# exclude everything
+Dependencies/*
+
+# exception to the rule
+!Dependencies/.gitkeep

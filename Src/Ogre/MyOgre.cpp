@@ -88,7 +88,7 @@ void MyOgre::SetUp()
 	// get the resource manager
 	Ogre::ResourceGroupManager &_resGroupMgr = Ogre::ResourceGroupManager::getSingleton();
 	// tell it to look at this location
-	_resGroupMgr.addResourceLocation("Resources", "FileSystem", "Essential");
+	_resGroupMgr.addResourceLocation("Assets", "FileSystem", "Essential");
 
 	try {
 		Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("Essential");
@@ -112,10 +112,6 @@ void MyOgre::SetUp()
 		std::cout << "\n" << e.getFile();
 	}
 
-
-	//name: Path to resources in disk,
-	//loctype: defines what kind of location the element is (e.g. Filesystem, zip..)
-	//Ogre::String name, locType;
 
 	//We now iterate through each section in the resources.cfg.
 	//Sections are signaled as [NAME]		

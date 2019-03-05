@@ -141,3 +141,6 @@ Dependencies/*
 
 # exception to the rule
 !Dependencies/.gitkeep
+
+# Gradle ignore
+.gradle/

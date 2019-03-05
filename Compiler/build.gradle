@@ -1,0 +1,101 @@
+/*
+THIS IS A BASIC MAKE FILE THAT WILL BE FURTHER DEVELOPED IN THE FUTURE
+*/
+
+
+task compile {
+	dependsOn { tasks.findAll { task -> task.name.startsWith('cmp')}}
+}
+/*
+task cleanProject {
+	dependsOn { tasks.findAll { task -> task.name.startsWith('cln')}}
+}
+*/
+
+/*
+****** METHODS OF THE FIRST RUN: COMPILATE LIBRARIES, MOVE DLLs
+*/
+task cmpCreateBuild {
+	mkdir("../Dependencies/ogre-1.11.5/Build") // we create the dir where the library will be created
+}
+
+task cmpCMake (type: Exec) {
+	executable = '"../CMake/bin/cmake.exe"'
+	args = ['-S"../Dependencies/ogre-1.11.5"', '-B"../Dependencies/ogre-1.11.5/Build"']
+}
+
+task cmpVisualDebug (type: Exec) {
+	commandLine 'msbuild', '"../Dependencies/ogre-1.11.5/Build/OGRE.sln"', '/t:build', '/p:Configuration=Debug', '/p:Platform="Win32"'
+}
+
+task cmpVisualRelease (type: Exec) {
+	commandLine 'msbuild', '"../Dependencies/ogre-1.11.5/Build/OGRE.sln"', '/t:build', '/p:Configuration=Release', '/p:Platform="Win32"'
+}
+
+task cmpCopyRelease (type: Copy, group: "First Run", description: "Copy release dll into Exes forlder") {
+	from file("../Dependencies/ogre-1.11.5/Build/bin/release/OgreMain.dll"), file("../Dependencies/ogre-1.11.5/Build/bin/release/zlib.dll")
+    into "../Exes/"
+}
+
+task cmpCopyDebug (type: Copy, group: "First Run", description: "Copy debug dll into Exes forlder") {
+	from file("../Dependencies/ogre-1.11.5/Build/bin/debug/OgreMain_d.dll")
+    into file("../Exes/")
+}
+
+cmpCopyRelease.mustRunAfter cmpVisualRelease
+cmpCopyDebug.mustRunAfter cmpVisualDebug
+cmpVisualRelease.mustRunAfter cmpCMake
+cmpVisualDebug.mustRunAfter cmpCMake
+cmpCMake.mustRunAfter cmpCreateBuild
+
+/*
+****** METHODS OF THE CLEAN PROCESS: DELETE FOLDERS WE DONT WANT, COMPILATED LIBRARIES, DLLs
+*/
+/*
+task clnInter (type: Delete){
+	delete "../Inter"
+}
+
+task clnCMake (type: Delete){
+	delete "../CMake"
+}
+
+task clnOgre (type: Delete){
+	delete "../Dependencies/ogre-1.11.5/Build"
+}
+
+task clnExes {
+	dependsOn { tasks.findAll { task -> task.name.startsWith('exs')}}
+}
+
+task exsMakeDir {
+	mkdir("../ExesCopy")
+}
+
+task exsCopyAssets (type: Copy) {
+	from("../Exes") {
+		include "Assets/**"
+	}
+	into "../ExesCopy"
+}
+
+task exsEmptyExes (type: Delete) {
+	delete "../Exes/"
+}
+
+task exsMoveAssetsBack(type: Copy) {
+		from("../ExesCopy") {
+		include "Assets/**"
+	}
+	into "../Exes"
+}
+
+task exsDeleteTemp(type: Delete) {
+	delete "../ExesCopy"
+}
+
+exsDeleteTemp.mustRunAfter exsMoveAssetsBack
+exsMoveAssetsBack.mustRunAfter exsEmptyExes
+exsEmptyExes.mustRunAfter exsCopyAssets
+exsCopyAssets.mustRunAfter exsMakeDir
+*/

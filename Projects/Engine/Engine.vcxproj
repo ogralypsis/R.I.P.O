@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Engine\Component.cpp" />
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
-    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="..\..\Src\Engine\EntityManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\Component.h" />
     <ClInclude Include="..\..\Src\Engine\Entity.h" />
-    <ClInclude Include="Component.h" />
+    <ClInclude Include="..\..\Src\Engine\EntityManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

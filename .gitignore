@@ -144,3 +144,9 @@ Dependencies/*
 
 # Gradle ignore
 .gradle/
+
+# exclude everything from exes
+Exes/*
+
+# exception
+!Exes/Assets/

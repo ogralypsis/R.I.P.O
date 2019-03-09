@@ -2,6 +2,8 @@ WELCOME TO R.I.P.O.
 
 To compile:
 - Download CMake, transfer the "bin", "doc", "man" and "share" folders inside a new folder called CMake at the same level as "Compiler"
+- Open the CMD and cd into the folder "Compiler"
+- write "gradlew compileCmake" -> this will generate the ogre library with CMake
 - Open the "Native Tools Command Prompt" of Visual Studio
 - cd into the folder "Compiler"
-- write "gradlew compile" -> this will compile the OGRE library and move the dlls so you can work
+- write "gradlew compileLib" -> this will compile the OGRE library and move the dlls so you can work

@@ -3,7 +3,11 @@ THIS IS A BASIC MAKE FILE THAT WILL BE FURTHER DEVELOPED IN THE FUTURE
 */
 
 
-task compile {
+task compileCmake {
+	dependsOn { tasks.findAll { task -> task.name.startsWith('cmake')}}
+}
+
+task compileLib {
 	dependsOn { tasks.findAll { task -> task.name.startsWith('cmp')}}
 }
 /*
@@ -15,11 +19,11 @@ task cleanProject {
 /*
 ****** METHODS OF THE FIRST RUN: COMPILATE LIBRARIES, MOVE DLLs
 */
-task cmpCreateBuild {
+task cmakeCreateBuild {
 	mkdir("../Dependencies/ogre-1.11.5/Build") // we create the dir where the library will be created
 }
 
-task cmpCMake (type: Exec) {
+task cmakeCMake (type: Exec) {
 	executable = '"../CMake/bin/cmake.exe"'
 	args = ['-S"../Dependencies/ogre-1.11.5"', '-B"../Dependencies/ogre-1.11.5/Build"']
 }
@@ -44,9 +48,8 @@ task cmpCopyDebug (type: Copy, group: "First Run", description: "Copy debug dll 
 
 cmpCopyRelease.mustRunAfter cmpVisualRelease
 cmpCopyDebug.mustRunAfter cmpVisualDebug
-cmpVisualRelease.mustRunAfter cmpCMake
-cmpVisualDebug.mustRunAfter cmpCMake
-cmpCMake.mustRunAfter cmpCreateBuild
+
+cmakeCMake.mustRunAfter cmakeCreateBuild
 
 /*
 ****** METHODS OF THE CLEAN PROCESS: DELETE FOLDERS WE DONT WANT, COMPILATED LIBRARIES, DLLs

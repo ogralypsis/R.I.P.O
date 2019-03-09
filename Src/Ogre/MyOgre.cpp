@@ -4,7 +4,10 @@
 
 MyOgre::MyOgre()
 {
-	
+	_root = nullptr;
+	_window = nullptr;
+	_resourcesConfigLoc = "";
+	_pluginsConfigLoc = "";
 }
 
 
@@ -16,8 +19,10 @@ bool MyOgre::InitOgre()
 {
 
 	CreateRoot();
-
-	return true;
+	if (OneTimeConfig())
+		return SetUp();
+	else return false;
+	
 }
 
 void MyOgre::CreateRoot()
@@ -31,42 +36,22 @@ void MyOgre::CreateRoot()
 	_pluginsConfigLoc = "Ogre/plugins.cfg";
 #endif
 
-	/*Ogre::FileSystemLayer * fsl = new Ogre::FileSystemLayer("R.I.P.O");
-
-	Ogre::String pluginsPath;
-	pluginsPath = fsl->getConfigFilePath("plugins.cfg");*/
-
-	//_root = OGRE_NEW Ogre::Root(pluginsPath, fsl->getWritablePath("ogre.cfg"), fsl->getWritablePath("ogre.log"));
 
 	_root = OGRE_NEW Ogre::Root(_pluginsConfigLoc);
-
-
-	if (OneTimeConfig())
-		std::cout << "config";
-		
-	SetUp();
-
+	
 }
 
 bool MyOgre::OneTimeConfig()
 {
-	
 
-	if (!(_root->restoreConfig()) ){/*|| _root->showConfigDialog())*/
-		_root->showConfigDialog(NULL);
-		return true;
-	}
-	else
-		return false;
-
-	/*if (!_root->restoreConfig())
+	if (!_root->restoreConfig())
 	{
 		 return _root->showConfigDialog(NULL);
 	}
-	else return true;*/
+	else return true;
 }
 
-void MyOgre::SetUp()
+bool MyOgre::SetUp()
 {
 
 	// initialise root
@@ -77,31 +62,61 @@ void MyOgre::SetUp()
 
 	// create the scene
 	//Ogre::SceneManager * sceneMgr = root->createSceneManager(Ogre::ST_GENERIC);
-	Ogre::SceneManager * sceneMgr = _root->createSceneManager();
+/*	Ogre::SceneManager * sceneMgr = _root->createSceneManager();
 
 	// add a camera
 	Ogre::Camera *mainCam = sceneMgr->createCamera("MainCam");
 
 	// add viewport
 	Ogre::Viewport *vp = _window->addViewport(mainCam);
+	*/
+	
+	return (LocateResources() && LoadResources());
+		
+}
 
-	// get the resource manager
-	Ogre::ResourceGroupManager &_resGroupMgr = Ogre::ResourceGroupManager::getSingleton();
-	// tell it to look at this location
-	_resGroupMgr.addResourceLocation("Assets", "FileSystem", "Essential");
+void MyOgre::Shutdown()
+{
+	// Stores of the current configuration so it may be restored later in
+	if (_root != nullptr)
+	{
+		_root->saveConfig();
+	}
 
+	// Delete ogre render window object
+	if (_window != nullptr)
+	{
+		_root->destroyRenderTarget(_window);
+		_window = nullptr;
+	}
+
+	Ogre::ResourceGroupManager::getSingleton().shutdownAll();
+
+
+	// This is normally done by Ogre automatically so don't think you have to call this yourself. 
+	// However this is here for convenience, especially for dealing with unexpected errors or for systems which need to shut down Ogre on demand.
+	_root->shutdown();
+
+	// Delete root object, it has been create with "OGRE_NEW" so it must be deleted with "OGRE_DELETE"
+	OGRE_DELETE _root;
+	_root = nullptr;
+}
+
+bool MyOgre::LocateResources()
+{
+
+	// Tell the resource group manager to look at this location
+	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("Assets", "FileSystem", "Essential");
 	try {
 		Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("Essential");
 	}
 	catch (Ogre::Exception e)
 	{
 #ifdef _DEBUG
-
 		std::cout << e.what() << std::endl;
-		//return false;
+		return false;
 #endif // _DEBUG
 	}
-
 
 	Ogre::ConfigFile cf;
 
@@ -109,49 +124,56 @@ void MyOgre::SetUp()
 		cf.load(_resourcesConfigLoc);
 	}
 	catch (Ogre::Exception e) {
+#ifdef _DEBUG
 		std::cout << "\n" << e.getFile();
+		return false;
+#endif //_DEBUG	
 	}
 
 
-	//We now iterate through each section in the resources.cfg.
-	//Sections are signaled as [NAME]		
+	// We now iterate through each section in the resources.cfg.
+	// Sections are signaled as [NAME]		
 
-	//name: Path to resources in disk,
-	//locType: defines what kind of location the element is (e.g. Filesystem, zip..),
-	//sec: defines to what section the file belongs
+	// sec: defines to what section the file belongs,
+	// locType: defines what kind of location the element is (e.g. Filesystem, zip..),
+	// name: path to resources in disk.
 	Ogre::String sec, locType, name;
-	// go through all specified resource groups
+
+	// Go through all specified resource groups
 	Ogre::ConfigFile::SettingsBySection_::const_iterator seci;
 	for (seci = cf.getSettingsBySection().begin(); seci != cf.getSettingsBySection().end(); ++seci) {
 		sec = seci->first;
 		const Ogre::ConfigFile::SettingsMultiMap& settings = seci->second;
 		Ogre::ConfigFile::SettingsMultiMap::const_iterator i;
 
-		// go through all resource paths
+		// Go through all resource paths
 		for (i = settings.begin(); i != settings.end(); i++)
 		{
 			locType = i->first;
 			name = Ogre::FileSystemLayer::resolveBundlePath(i->second);
-			_resGroupMgr.addResourceLocation(name, locType, sec);
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(name, locType, sec);
 		}
 	}
 
-	//Resources Init
+	return true;
+}
+
+bool MyOgre::LoadResources()
+{
 
 	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 	//Now we init every resource previously added
 	try {
-
-		_resGroupMgr.initialiseAllResourceGroups(); // De momento "Essential" y defecto creado por ogre al no especificar.
+		Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups(); // De momento "Essential" y defecto creado por ogre al no especificar.
 	}
 	catch (Ogre::Exception e) {
-#ifdef DEBUG
+#ifdef _DEBUG
 		std::cout << e.what() << std::endl;
-
-#endif // DEBUG
+		return false;
+#endif // _DEBUG
 	}
 
-
+	return true;
 }
 
 

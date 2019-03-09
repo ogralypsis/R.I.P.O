@@ -150,3 +150,12 @@ Exes/*
 
 # exception
 !Exes/Assets/
+!Exes/Ogre/
+!Exes/OgreD/
+!Exes/ogre.cfg
+
+# exclude Libs directory
+Libs/*
+
+# exclude Inter directory
+Inter/*

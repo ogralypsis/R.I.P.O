@@ -16,22 +16,50 @@ public:
 	MyOgre();
 	~MyOgre();
 
-
-	// Initialize Ogre with plugins and resources configuration 
+	/// <summary>
+	/// Initialize Ogre with plugins and resources configuration 
+	/// </summary>
 	bool InitOgre();
+
+	/// <summary>
+	/// Release all pointers used, resources and ogre manually
+	/// </summary>
+	void Shutdown();
 
 private:
 
+	/// <summary>
+	/// Create ogre root object with the given plugins path
+	/// </summary>
 	void CreateRoot();
+
+	/// <summary>
+	/// Configure ogre application with saved video/sound/etc settings; if there isn't saved a configuration already, the first available render system with the default options will be selected
+	/// </summary>
 	bool OneTimeConfig();
-	void SetUp();
+
+	/// <summary>
+	/// Initialize ogre root object and create the render window. Also call LocateResources() and LoadResources()
+	/// </summary>
+	bool SetUp();
+
+	/// <summary>
+	/// Locate in the reources group manager all the resources within the resources.cfg and group them in resources group
+	/// </summary>
+	bool LocateResources();
+
+	/// <summary>
+	/// Initialize all resource previously added to the reources group manager
+	/// </summary>
+	bool LoadResources();
 
 
 	Ogre::Root * _root;
 	Ogre::RenderWindow * _window;
-	//Ogre::ResourceGroupManager &_resGroupMgr;
-
+	
+	// Path for resources.cfg
 	Ogre::String _resourcesConfigLoc;
+	// Path for plugins.cfg
 	Ogre::String _pluginsConfigLoc;
 };
 #endif

@@ -1,6 +1,7 @@
 #include "MyOgre.h"
 #include <iostream>
 
+MyOgre * MyOgre::_instance = nullptr;
 
 MyOgre::MyOgre()
 {
@@ -100,6 +101,23 @@ void MyOgre::Shutdown()
 	// Delete root object, it has been create with "OGRE_NEW" so it must be deleted with "OGRE_DELETE"
 	OGRE_DELETE _root;
 	_root = nullptr;
+}
+
+MyOgre & MyOgre::GetInstance()
+{
+	// If there wasn't created an instance for MyOgre create a new one
+	if (MyOgre::_instance == nullptr)
+		MyOgre::_instance = new MyOgre();
+
+	return *MyOgre::_instance;
+}
+
+void MyOgre::ResetInstance()
+{
+	
+	delete MyOgre::_instance;
+	MyOgre::_instance == nullptr;
+	
 }
 
 bool MyOgre::LocateResources()

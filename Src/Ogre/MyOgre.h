@@ -26,6 +26,13 @@ public:
 	/// </summary>
 	void Shutdown();
 
+	/// <summary>
+	/// Returns the singleton for the OGRE API
+	/// </summary>
+	static MyOgre& GetInstance();
+
+	static void ResetInstance();
+
 private:
 
 	/// <summary>
@@ -52,6 +59,9 @@ private:
 	/// Initialize all resource previously added to the reources group manager
 	/// </summary>
 	bool LoadResources();
+
+
+	static MyOgre * _instance;
 
 
 	Ogre::Root * _root;

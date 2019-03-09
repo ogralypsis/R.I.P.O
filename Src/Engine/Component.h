@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COMPONENT_H
+#define COMPONENT_H
 class Component
 {
 public:
@@ -7,3 +8,4 @@ public:
 
 	void Update();
 };
+#endif

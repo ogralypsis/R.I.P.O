@@ -1,14 +1,16 @@
 #include "Game.h"
 #include "../Ogre/MyOgre.h"
+#include "../PhysX/MyPhysX.h"
 #include <iostream>
 
 // Static variable for the singleton
 Game * Game::_instance = nullptr;
 
 Game::Game()
-{
-	
-
+{	
+	// For testing, delete later 
+	//MyPhysX mp = MyPhysX();
+	// ------------------------
 }
 
 

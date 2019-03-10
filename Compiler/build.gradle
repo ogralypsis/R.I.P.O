@@ -46,6 +46,18 @@ task cmpCopyDebug (type: Copy, group: "First Run", description: "Copy debug dll 
     into file("../Exes/")
 }
 
+task cmpCopyGlRelease(type: Copy, group: "First Run", description: "Copy release OpenGL dll into Exes forlder") {
+	from file("../Dependencies/ogre-1.11.5/Build/bin/release/RenderSystem_GL.dll")
+	into file("../Exes/Ogre/Ogre/")
+}
+
+task cmpCopyGlDebug(type: Copy, group: "First Run", description: "Copy debug OpenGL dll into Exes forlder") {
+	from file("../Dependencies/ogre-1.11.5/Build/bin/debug/RenderSystem_GL_d.dll")
+	into file("../Exes/OgreD/OgreD/")
+}
+
+cmpCopyGlRelease.mustRunAfter cmpCopyRelease
+cmpCopyGlDebug.mustRunAfter cmpCopyDebug
 cmpCopyRelease.mustRunAfter cmpVisualRelease
 cmpCopyDebug.mustRunAfter cmpVisualDebug
 

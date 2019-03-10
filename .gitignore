@@ -147,6 +147,8 @@ Dependencies/*
 
 # exclude everything from exes
 Exes/*
+Exes/Ogre/Ogre/RenderSystem_GL.dll
+Exes/OgreD/OgreD/RenderSystem_GL_d.dll
 
 # exception
 !Exes/Assets/
@@ -159,3 +161,6 @@ Libs/*
 
 # exclude Inter directory
 Inter/*
+
+# exclude CMake Directory
+CMake/*

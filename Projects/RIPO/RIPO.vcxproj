@@ -29,9 +29,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\RIPO\Game.cpp" />
     <ClCompile Include="..\..\Src\RIPO\main.cpp" />
+    <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\RIPO\Game.h" />
+    <ClInclude Include="Scene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

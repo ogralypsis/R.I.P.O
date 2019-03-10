@@ -1,1 +1,1 @@
-Aqui tiene que estar la dll rendersystem de opne gl
+Aqui tiene que estar la dll rendersystem de openGL

@@ -1,1 +1,1 @@
-la dll de render system open gl
+la dll de render system openGL

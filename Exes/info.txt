@@ -1,1 +1,1 @@
-Aqui estaran los exes en Release y Debug por lo que los recursos tambien para que ambos exes los busquen en el mismo sitio
+Aquí estarán los exes en Release y Debug, por lo que los recursos tambien tienen que estar aquí para que ambos exes los busquen en el mismo lugar

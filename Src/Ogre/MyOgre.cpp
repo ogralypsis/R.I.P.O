@@ -1,6 +1,7 @@
 #include "MyOgre.h"
 #include <iostream>
 
+// Static variable for the singleton
 MyOgre * MyOgre::_instance = nullptr;
 
 MyOgre::MyOgre()
@@ -93,14 +94,16 @@ void MyOgre::Shutdown()
 
 	Ogre::ResourceGroupManager::getSingleton().shutdownAll();
 
+	if (_root != nullptr)
+	{
+		// This is normally done by Ogre automatically so don't think you have to call this yourself. 
+		// However this is here for convenience, especially for dealing with unexpected errors or for systems which need to shut down Ogre on demand.
+		_root->shutdown();
 
-	// This is normally done by Ogre automatically so don't think you have to call this yourself. 
-	// However this is here for convenience, especially for dealing with unexpected errors or for systems which need to shut down Ogre on demand.
-	_root->shutdown();
-
-	// Delete root object, it has been create with "OGRE_NEW" so it must be deleted with "OGRE_DELETE"
-	OGRE_DELETE _root;
-	_root = nullptr;
+		// Delete root object, it has been create with "OGRE_NEW" so it must be deleted with "OGRE_DELETE"
+		OGRE_DELETE _root;
+		_root = nullptr;
+	}
 }
 
 MyOgre & MyOgre::GetInstance()
@@ -114,9 +117,10 @@ MyOgre & MyOgre::GetInstance()
 
 void MyOgre::ResetInstance()
 {
-	
-	delete MyOgre::_instance;
-	MyOgre::_instance == nullptr;
+	if (_instance != nullptr) {
+		delete MyOgre::_instance;
+		MyOgre::_instance = nullptr;
+	}
 	
 }
 

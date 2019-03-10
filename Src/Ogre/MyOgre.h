@@ -31,6 +31,9 @@ public:
 	/// </summary>
 	static MyOgre& GetInstance();
 
+	/// <summary>
+	/// Release the OGRE API instance created previously
+	/// </summary>
 	static void ResetInstance();
 
 private:

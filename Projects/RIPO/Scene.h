@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SCENE_H
+#define SCENE_H
 
 #include <Entity.h>
 #include <vector>
@@ -20,4 +21,4 @@ public:
 
 	void deleteEntity(Entity* ent);
 };
-
+#endif

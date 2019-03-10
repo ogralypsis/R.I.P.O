@@ -9,13 +9,6 @@ public:
 public:
 
 	/// <summary>
-	/// Main loop of the game where Input, Update and Render are called
-	/// </summary>
-	void Loop();
-
-private:
-
-	/// <summary>
 	/// Initialize all libraries
 	/// </summary>
 	bool Init();
@@ -24,6 +17,23 @@ private:
 	/// Shutdown all libraries previously initialized and release objects allocated
 	/// </summary>
 	void Release();
+
+	/// <summary>
+	/// Main loop of the game where Input, Update and Render are called
+	/// </summary>
+	void Loop();
+
+	/// <summary>
+	/// Returns the singleton for the Game
+	/// </summary>
+	static Game& GetInstance();
+
+	/// <summary>
+	/// Release the Game instance created previously
+	/// </summary>
+	static void ResetInstance();
+
+private:
 
 	/// <summary>
 	/// Read and process the input taken
@@ -39,6 +49,9 @@ private:
 	/// Render one frame
 	/// </summary>
 	void Render();
+
+
+	static Game * _instance;
 
 	
 };

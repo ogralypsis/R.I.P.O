@@ -1,11 +1,14 @@
 #include "Component.h"
 
-Component::Component() {}
+
+
+Component::Component(std::string id) 
+{
+	_id = id;
+
+}
 
 Component::~Component() {}
 
-void Component::Update()
-{
-}
 
 

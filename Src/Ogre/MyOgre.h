@@ -8,6 +8,7 @@
 #include <OgreConfigFile.h>
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
+#include <OgreCamera.h>
 
 
 class MyOgre
@@ -35,6 +36,16 @@ public:
 	/// Release the OGRE API instance created previously
 	/// </summary>
 	static void ResetInstance();
+
+	/// <summary>
+	/// Returns the main camera of the scenes with the viewport
+	/// </summary>
+	Ogre::Camera* create_camera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
+
+	/// <summary>
+/// Returns the main light of the scenes
+/// </summary>
+	void create_light(Ogre::SceneManager * sceneMgr);
 
 private:
 

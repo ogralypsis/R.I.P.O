@@ -64,15 +64,11 @@ bool MyOgre::SetUp()
 
 	// create the scene
 	//Ogre::SceneManager * sceneMgr = root->createSceneManager(Ogre::ST_GENERIC);
-/*	Ogre::SceneManager * sceneMgr = _root->createSceneManager();
+	Ogre::SceneManager * sceneMgr = _root->createSceneManager();
 
-	// add a camera
-	Ogre::Camera *mainCam = sceneMgr->createCamera("MainCam");
+	Ogre::Camera* mainCamera = create_camera(_window, sceneMgr);
+	create_light(sceneMgr);
 
-	// add viewport
-	Ogre::Viewport *vp = _window->addViewport(mainCam);
-	*/
-	
 	return (LocateResources() && LoadResources());
 		
 }
@@ -122,6 +118,35 @@ void MyOgre::ResetInstance()
 		MyOgre::_instance = nullptr;
 	}
 	
+}
+
+Ogre::Camera* MyOgre::create_camera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr) {
+
+	// add a camera
+	Ogre::Camera *camera = sceneMgr->createCamera("MainCam");
+
+	camera->setPosition(Ogre::Vector3(0, 160, 160));
+	camera->lookAt(Ogre::Vector3(0, 0, 0));
+	camera->setNearClipDistance(5);
+	camera->setFarClipDistance(10000);
+
+	// add viewport
+	Ogre::Viewport *vp = window->addViewport(camera);
+
+	return camera;
+
+}
+
+void MyOgre::create_light(Ogre::SceneManager * sceneMgr) {
+
+	sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+
+	sceneMgr->setAmbientLight(Ogre::ColourValue(0.25, 0.25, 0.25));
+
+	Ogre::Light* light = sceneMgr->createLight("MainLight");
+	light->setPosition(Ogre::Vector3(20, 80, 50));
+	light->setCastShadows(true);
+
 }
 
 bool MyOgre::LocateResources()

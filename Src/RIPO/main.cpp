@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 
+#include "Game.h"
+
 
 #include "../Ogre/MyOgre.h"
 
@@ -13,13 +15,15 @@ int main() {
 
 	
 	// For testing, later change for Game game->Init() where must be all libraries initialization...
-	MyOgre * ogre = new MyOgre();
+	/*MyOgre * ogre = new MyOgre();
 
 	ogre->InitOgre();
 	ogre->Shutdown();
 
 	delete ogre;
-	ogre = nullptr;
+	ogre = nullptr;*/
+
+	Game * game = new Game();
 
 
 	return 0;

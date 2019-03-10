@@ -5,6 +5,8 @@
 
 Game::Game()
 {
+	Init();
+
 }
 
 

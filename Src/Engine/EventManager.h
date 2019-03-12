@@ -3,16 +3,17 @@
 
 #include "Event.h"
 #include <vector>
-using namespace std;
+
 class EventManager
 {
 public:
 	EventManager();
 	~EventManager();
-	void AddEvent(Event e);
 
-protected:
-	vector<Event> _events;
+	void AddEvent(Event* e);
+	void DeleteEvent(Event* e);
+
+private:
+	std::vector<Event*> _events;
 };
-
 #endif

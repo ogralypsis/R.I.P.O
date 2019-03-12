@@ -1,6 +1,7 @@
 #include "MyPhysX.h"
 
 #include <PxPhysicsAPI.h>
+//#include <PxDefaultErrorCallback.h>
 //#include <PxFoundation.h>
 
 
@@ -9,12 +10,13 @@
 
 MyPhysX::MyPhysX()
 {	
+	
 	// PhysX
 	physx::PxPhysics*				gPxPhysics = NULL;
 	physx::PxFoundation*			gPxFoundation = NULL;
 	physx::PxCooking*				gPxCooking = NULL;
-	physx::PxDefaultAllocator		gAllocator;
-	physx::PxDefaultErrorCallback   gDefaultErrorCallback;
+	static physx::PxDefaultAllocator		gAllocator;
+	static physx::PxDefaultErrorCallback   gErrorCallback;
 
 	physx::PxPvd*                           gPvd = NULL;
 	//physx::PxPvdTransport*                  gTransport = NULL;
@@ -22,7 +24,7 @@ MyPhysX::MyPhysX()
 
 
 	// SDK
-	gPxFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gDefaultErrorCallback);
+	gPxFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
 
 	//gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
 
@@ -54,7 +56,6 @@ MyPhysX::MyPhysX()
 	}
 
 	PxInitExtensions(*gPxPhysics, gPvd);
-	
 }
 
 

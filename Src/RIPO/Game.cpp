@@ -9,7 +9,7 @@ Game * Game::_instance = nullptr;
 Game::Game()
 {	
 	// For testing, delete later 
-	//MyPhysX mp = MyPhysX();
+	MyPhysX mp = MyPhysX();
 	// ------------------------
 }
 
@@ -23,7 +23,7 @@ bool Game::Init()
 	// If OGRE's initialization fail return false
 	if (!MyOgre::GetInstance().InitOgre()) {
 #ifdef _DEBUG
-		std::cout << "OGRE couldn't be initialized";
+		std::cout << "OGRE couldn't be initialized" << std::endl;
 #endif
 		return false;
 	}

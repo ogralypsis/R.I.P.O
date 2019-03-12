@@ -1,0 +1,21 @@
+Download PhysX SDK from github: clone this repository https://github.com/NVIDIAGameWorks/PhysX
+Then change directory to physx/, run ./generate_projects.[bat|sh]
+This will let you select a platform specific solution to build. You can then open the generated 
+solution file with your IDE and kick off one or more configuration builds.
+*Build for vc15win32*
+
+Requirements:
+	Python 2.7.6 or later
+	CMake 3.12 or later
+
+Warning: for building the solution samples it is necessary to have installed Microsoft DirectX
+SDK (June 2010). 
+If you got Microsoft Visual c++ 2010 redistributable package already installed
+in your pc the DirectX SDK installation will fail. 
+In order to sucessfully install DirectX SDK you have to uninstall Microsoft Visual c++ 2010 
+redistributable package (x86 and x64), 
+install DirectX SDK and reinstall Microsoft Visual c++ 2010 redistributable package 
+(open Windows Update and it will automatically install 2010 redistributable).
+
+
+

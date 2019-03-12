@@ -1,7 +1,7 @@
 WELCOME TO R.I.P.O.
 
 To compile:
-- Donload ogre-1.11.15 and transfer inside Dependencies
+- Download ogre-1.11.15 and transfer inside Dependencies
 - Download CMake, transfer the "bin", "doc", "man" and "share" folders inside a new folder called CMake 
   at the same level as "Compiler".
 - Open the CMD and cd into the folder "Compiler"

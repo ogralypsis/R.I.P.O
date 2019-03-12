@@ -32,6 +32,7 @@
     <ClInclude Include="..\..\Src\Engine\EntityManager.h" />
     <ClInclude Include="..\..\Src\Engine\Event.h" />
     <ClInclude Include="..\..\Src\Engine\EventManager.h" />
+    <ClInclude Include="..\..\Src\Engine\json.hpp" />
     <ClInclude Include="..\..\Src\Engine\Observer.h" />
     <ClInclude Include="..\..\Src\Engine\Subject.h" />
   </ItemGroup>
@@ -97,7 +98,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Src\Engine;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Src\Engine\nlohmann;$(SolutionDir)Src\Engine;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

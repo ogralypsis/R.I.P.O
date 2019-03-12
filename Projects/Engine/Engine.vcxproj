@@ -22,11 +22,18 @@
     <ClCompile Include="..\..\Src\Engine\Component.cpp" />
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
     <ClCompile Include="..\..\Src\Engine\EntityManager.cpp" />
+    <ClCompile Include="..\..\Src\Engine\Event.cpp" />
+    <ClCompile Include="..\..\Src\Engine\EventManager.cpp" />
+    <ClCompile Include="..\..\Src\Engine\Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\Component.h" />
     <ClInclude Include="..\..\Src\Engine\Entity.h" />
     <ClInclude Include="..\..\Src\Engine\EntityManager.h" />
+    <ClInclude Include="..\..\Src\Engine\Event.h" />
+    <ClInclude Include="..\..\Src\Engine\EventManager.h" />
+    <ClInclude Include="..\..\Src\Engine\Observer.h" />
+    <ClInclude Include="..\..\Src\Engine\Subject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

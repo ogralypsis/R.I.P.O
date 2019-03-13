@@ -1,9 +1,8 @@
 #include "Entity.h"
 
-Entity::Entity(std::string id)
-{
-	_id = id;
-}
+Entity::Entity() {}
+
+Entity::Entity(std::string id) : _id(id) {}
 
 Entity::~Entity() 
 {

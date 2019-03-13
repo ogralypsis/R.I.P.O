@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{b5a5165f-c5a7-4a9b-b9e1-8e277a8087e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{fe6e1fff-e215-4ee4-9500-505c4182aa7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{039cc611-f328-490c-8b77-e0e36f9440a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{85b66d57-9f9f-4873-96d5-7efd40248c84}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\RIPO\main.cpp">
@@ -21,16 +33,34 @@
     <ClCompile Include="..\..\Src\RIPO\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\RIPO\DeathEvent.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\RIPO\Scene.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\RIPO\JEvent.cpp">
+      <Filter>Source Files\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\RIPO\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="..\..\Src\RIPO\DeathEvent.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RIPO\Scene.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RIPO\JEvent.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RIPO\HealthComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

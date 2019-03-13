@@ -1,5 +1,10 @@
 #include "Event.h"
+#include "EventManager.h"
 
-Event::Event() {}
+Event::Event() 
+{
+	EventManager* manager = EventManager::getInstance();
+	manager->AddEvent(this);
+}
 
 Event::~Event() {}

@@ -2,11 +2,11 @@
 #define ENTITY_H
 
 #include "Component.h"
-#include <vector>
 
 class Entity
 {
 public:
+	Entity();
 	Entity(std::string id);
 	~Entity();
 

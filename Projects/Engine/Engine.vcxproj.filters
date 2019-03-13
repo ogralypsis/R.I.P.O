@@ -56,10 +56,10 @@
     <ClInclude Include="..\..\Src\Engine\Observer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\Subject.h">
+    <ClInclude Include="..\..\Src\Engine\json.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\json.hpp">
+    <ClInclude Include="..\..\Src\Engine\Subject.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="FileReader.h">

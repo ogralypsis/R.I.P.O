@@ -2,6 +2,7 @@
 #include "../Ogre/MyOgre.h"
 #include "../PhysX/MyPhysX.h"
 #include <iostream>
+#include "JEvent.h"
 
 // Static variable for the singleton
 Game * Game::_instance = nullptr;
@@ -62,6 +63,11 @@ void Game::ResetInstance()
 
 void Game::HandleInput()
 {
+	/*
+	presiona la tecla "J" y manda un evento de input
+	Event* event = new JEvent();
+
+	*/
 }
 
 void Game::Update()

@@ -2,6 +2,10 @@
 #define ENTITY_H
 
 #include "Component.h"
+#include <string>
+#include <vector>
+
+class Component;
 
 class Entity
 {

@@ -33,9 +33,6 @@
     <ClCompile Include="..\..\Src\RIPO\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\RIPO\DeathEvent.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
@@ -44,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\RIPO\JEvent.cpp">
       <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\RIPO\HealthComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

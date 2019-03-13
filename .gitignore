@@ -131,7 +131,7 @@ ipch/
 _Pvt_Extensions
 
 
-*.vcxproj.user
+#*.vcxproj.user
 
 *.props
 

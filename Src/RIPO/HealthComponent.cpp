@@ -19,6 +19,6 @@ void HealthComponent::CheckHealth()
 {
 	if (_health <= 0) 
 	{
-		Event* event = new DeathEvent(_ownerEntity);
+		Event* event = new DeathEvent();
 	}
 }

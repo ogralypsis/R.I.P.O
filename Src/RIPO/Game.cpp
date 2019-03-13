@@ -10,7 +10,7 @@ Game * Game::_instance = nullptr;
 Game::Game()
 {	
 	// For testing, delete later 
-	MyPhysX mp = MyPhysX();
+	//MyPhysX mp = MyPhysX();
 	// ------------------------
 }
 

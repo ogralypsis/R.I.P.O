@@ -1,11 +1,11 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "Entity.h"
+//#include "Entity.h"
 #include "Observer.h"
-
 #include <string>
-#include <vector>
+
+class Entity;
 
 class Component : Observer
 {

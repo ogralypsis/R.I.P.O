@@ -11,6 +11,16 @@ EntityManager::~EntityManager()
 	_entities.clear();
 }
 
+EntityManager * EntityManager::getInstance()
+{
+	//If there is no instance, create it
+	if (_instance == nullptr) {
+		_instance = new EntityManager();
+	}
+
+	return _instance;
+}
+
 void EntityManager::AddEntity(Entity * e)
 {
 	// push a new entity into the vector

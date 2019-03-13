@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\Src\Engine\Event.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventManager.cpp" />
     <ClCompile Include="..\..\Src\Engine\Subject.cpp" />
+    <ClCompile Include="FileReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\Component.h" />
@@ -35,6 +36,7 @@
     <ClInclude Include="..\..\Src\Engine\json.hpp" />
     <ClInclude Include="..\..\Src\Engine\Observer.h" />
     <ClInclude Include="..\..\Src\Engine\Subject.h" />
+    <ClInclude Include="FileReader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

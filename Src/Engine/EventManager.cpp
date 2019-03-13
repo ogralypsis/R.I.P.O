@@ -11,6 +11,16 @@ EventManager::~EventManager()
 	_events.clear();
 }
 
+EventManager * EventManager::getInstance()
+{
+	//If there is no instance... 
+	if (_instance == nullptr) {
+		_instance = new EventManager();
+	}
+
+	return nullptr;
+}
+
 void EventManager::AddEvent(Event* e)
 {
 	_events.push_back(e);

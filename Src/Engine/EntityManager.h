@@ -6,8 +6,9 @@
 class EntityManager
 {
 public:
-	EntityManager();
 	~EntityManager();
+
+	EntityManager* getInstance();
 
 	void AddEntity(Entity* e);
 	void DeleteEntity(Entity* e);
@@ -15,6 +16,9 @@ public:
 	void Update();
 
 private:
+	EntityManager();
+
+	EntityManager* _instance;
 	std::vector<Entity*> _entities;
 };
 #endif

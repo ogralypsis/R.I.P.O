@@ -8,7 +8,7 @@ class EntityManager
 public:
 	~EntityManager();
 
-	EntityManager* getInstance();
+	static EntityManager* getInstance();
 
 	void AddEntity(Entity* e);
 	void DeleteEntity(Entity* e);
@@ -18,7 +18,7 @@ public:
 private:
 	EntityManager();
 
-	EntityManager* _instance;
+	static EntityManager* _instance;
 	std::vector<Entity*> _entities;
 };
 #endif

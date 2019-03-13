@@ -9,7 +9,7 @@ class EventManager
 public:
 	~EventManager();
 
-	EventManager* getInstance();
+	static EventManager* getInstance();
 
 	void AddEvent(Event* e);
 	void DeleteEvent(Event* e);
@@ -17,7 +17,7 @@ public:
 private:
 	EventManager();
 
-	EventManager* _instance;
+	static EventManager* _instance;
 	std::vector<Event*> _events;
 };
 #endif

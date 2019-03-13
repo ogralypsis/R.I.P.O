@@ -11,7 +11,7 @@ EntityManager::~EntityManager()
 	_entities.clear();
 }
 
-EntityManager * EntityManager::getInstance()
+ EntityManager * EntityManager::getInstance()
 {
 	//If there is no instance, create it
 	if (_instance == nullptr) {

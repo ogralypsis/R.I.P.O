@@ -8,6 +8,10 @@ MyOgre::MyOgre()
 {
 	_root = nullptr;
 	_window = nullptr;
+	_sceneMgr = nullptr;
+	_mainCamera = nullptr;
+	_light = nullptr;
+	_viewPort = nullptr;
 	_resourcesConfigLoc = "";
 	_pluginsConfigLoc = "";
 }
@@ -62,12 +66,11 @@ bool MyOgre::SetUp()
 	// create main window
 	_window = _root->createRenderWindow("R.I.P.O", 800, 640, false);
 
-	// create the scene
-	//Ogre::SceneManager * sceneMgr = root->createSceneManager(Ogre::ST_GENERIC);
-	Ogre::SceneManager * sceneMgr = _root->createSceneManager();
+	// create the scene	
+	_sceneMgr = _root->createSceneManager();
 
-	Ogre::Camera* mainCamera = create_camera(_window, sceneMgr);
-	create_light(sceneMgr);
+	//_mainCamera = CreateCamera(_window, _sceneMgr);
+	//CreateLight(_sceneMgr);
 
 	return (LocateResources() && LoadResources());
 		
@@ -116,11 +119,10 @@ void MyOgre::ResetInstance()
 	if (_instance != nullptr) {
 		delete MyOgre::_instance;
 		MyOgre::_instance = nullptr;
-	}
-	
+	}	
 }
 
-Ogre::Camera* MyOgre::create_camera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr) {
+Ogre::Camera* MyOgre::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr) {
 
 	// add a camera
 	Ogre::Camera *camera = sceneMgr->createCamera("MainCam");
@@ -131,27 +133,24 @@ Ogre::Camera* MyOgre::create_camera(Ogre::RenderWindow * window, Ogre::SceneMana
 	camera->setFarClipDistance(10000);
 
 	// add viewport
-	Ogre::Viewport *vp = window->addViewport(camera);
+	_viewPort = window->addViewport(camera);
 
 	return camera;
-
 }
 
-void MyOgre::create_light(Ogre::SceneManager * sceneMgr) {
+void MyOgre::CreateLight(Ogre::SceneManager * sceneMgr) {
 
 	sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
 	sceneMgr->setAmbientLight(Ogre::ColourValue(0.25, 0.25, 0.25));
 
-	Ogre::Light* light = sceneMgr->createLight("MainLight");
-	light->setPosition(Ogre::Vector3(20, 80, 50));
-	light->setCastShadows(true);
-
+	_light = sceneMgr->createLight("MainLight");
+	_light->setPosition(Ogre::Vector3(20, 80, 50));
+	_light->setCastShadows(true);
 }
 
 bool MyOgre::LocateResources()
 {
-
 	// Tell the resource group manager to look at this location
 	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("Assets", "FileSystem", "Essential");
 	try {

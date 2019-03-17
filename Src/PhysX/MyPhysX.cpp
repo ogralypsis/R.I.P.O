@@ -1,6 +1,6 @@
 #include "MyPhysX.h"
 
-#include <PxPhysicsAPI.h>
+//#include <PxPhysicsAPI.h>
 //#include <PxDefaultErrorCallback.h>
 //#include <PxFoundation.h>
 

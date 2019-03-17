@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "Component.h"
 
 class Component;
 

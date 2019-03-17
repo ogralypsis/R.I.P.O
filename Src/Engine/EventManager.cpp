@@ -1,4 +1,5 @@
 #include "EventManager.h"
+#include "Component.h"
 
 // Static variable for the singleton
 EventManager * EventManager::_instance = nullptr;

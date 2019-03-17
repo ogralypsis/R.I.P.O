@@ -2,7 +2,6 @@
 #define COMPONENT_H
 
 #include "Entity.h"
-#include "EventManager.h"
 
 class Entity;
 
@@ -12,7 +11,7 @@ public:
 	Component(std::string id, Entity* e);
 	~Component();
 	virtual void Update() = 0;
-	virtual void OnEvent(EventManager::Events e) = 0;
+	virtual void OnEvent(Event e) = 0;
 
 	
 protected:

@@ -4,13 +4,9 @@
 //#include <PxDefaultErrorCallback.h>
 //#include <PxFoundation.h>
 
-
-
-
-
 MyPhysX::MyPhysX()
 {	
-	
+	// TESTING PHYSX, CHANGE LATER --------------------------
 	// PhysX
 	physx::PxPhysics*				gPxPhysics = NULL;
 	physx::PxFoundation*			gPxFoundation = NULL;

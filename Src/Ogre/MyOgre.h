@@ -40,12 +40,12 @@ public:
 	/// <summary>
 	/// Returns the main camera of the scenes with the viewport
 	/// </summary>
-	Ogre::Camera* create_camera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
+	Ogre::Camera* CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
 
 	/// <summary>
-/// Returns the main light of the scenes
-/// </summary>
-	void create_light(Ogre::SceneManager * sceneMgr);
+    /// Returns the main light of the scenes
+	/// </summary>
+	void CreateLight(Ogre::SceneManager * sceneMgr);
 
 private:
 
@@ -80,6 +80,11 @@ private:
 
 	Ogre::Root * _root;
 	Ogre::RenderWindow * _window;
+	Ogre::SceneManager * _sceneMgr;
+	Ogre::Camera* _mainCamera;
+	Ogre::Viewport * _viewPort;
+	Ogre::Light* _light;
+
 	
 	// Path for resources.cfg
 	Ogre::String _resourcesConfigLoc;

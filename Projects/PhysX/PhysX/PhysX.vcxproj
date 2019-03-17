@@ -81,7 +81,7 @@
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(SolutionDir)Src\PhysX;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.mt\debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\bin\win.x86_32.vc141.mt\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,7 +91,7 @@
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Src\PhysX;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.mt\release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\bin\win.x86_32.vc141.mt\release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -110,6 +110,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

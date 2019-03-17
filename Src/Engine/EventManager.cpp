@@ -22,10 +22,8 @@ EventManager * EventManager::getInstance()
 
 void EventManager::NotifyObservers(const Event event)
 {
-	/*
 	// If that event is in the dictionary,
 	auto it = _observers.find(event);
-	
 
 	if (it != _observers.end())
 	{
@@ -35,12 +33,10 @@ void EventManager::NotifyObservers(const Event event)
 			i->OnEvent(event);
 		}
 	}
-	*/
 }
 
 void EventManager::AddObserver(Event event, Component * observer)
 {
-	/*
 	// Add new observer of a event
 	auto it = _observers.find(event);
 	if (it != _observers.end()) 
@@ -53,12 +49,10 @@ void EventManager::AddObserver(Event event, Component * observer)
 		myVector.emplace_back(observer);
 		_observers.insert(std::pair < Event, std::vector<Component*>>(event, myVector));
 	}
-	*/
 }
 
 void EventManager::RemoveObserver(Event event, Component * observer)
 {
-	/*
 	auto it = _observers.find(event);
 	if (it != _observers.end())
 	{
@@ -80,5 +74,4 @@ void EventManager::RemoveObserver(Event event, Component * observer)
 				i++;
 		}
 	}
-	*/
 }

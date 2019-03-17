@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "../Ogre/MyOgre.h"
-#include "../PhysX/MyPhysX.h"
+//#include "../PhysX/MyPhysX.h"
 #include <iostream>
 #include "../Engine/EventManager.h"
 #include "RIPOEvent.h"

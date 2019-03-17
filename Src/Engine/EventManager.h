@@ -1,7 +1,6 @@
 #ifndef _H_EVENTMANAGER_H_
 #define _H_EVENTMANAGER_H_
 
-#include "Component.h"
 #include "Events.h"
 #include <map>
 

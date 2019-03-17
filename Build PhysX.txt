@@ -1,8 +1,20 @@
 Download PhysX SDK from github: clone this repository https://github.com/NVIDIAGameWorks/PhysX
+
+Change vc15win32.xml in PhysX/physx/buildtools/presets/public param value to "False":
+<cmakeSwitch name="NV_USE_STATIC_WINCRT" value="False" comment="Use the statically linked windows CRT" />
+otherwise when compiling RIPO solution this error will appear:
+Se detectaron diferencias para 'RuntimeLibrary': el valor 'MTd_StaticDebug' no coincide con el valor 'MDd_DynamicDebug' PhysXExtensions_static lib
+
 Then change directory to physx/, run ./generate_projects.[bat|sh]
 This will let you select a platform specific solution to build. You can then open the generated 
 solution file with your IDE and kick off one or more configuration builds.
 *Build for vc15win32*
+
+When debug and release configurations are compiled copy the following dlls to folder Exes:
+PhysX_32
+PhysXCommon_32
+PhysXCooking_32
+PhysXFoundation_32
 
 Requirements:
 	Python 2.7.6 or later

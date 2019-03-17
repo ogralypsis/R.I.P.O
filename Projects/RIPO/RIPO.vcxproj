@@ -97,13 +97,13 @@
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\PhysX;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\bin\win.x86_32.vc141.mt\debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.md\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Exes</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Src\RIPO;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\bin\win.x86_32.vc141.mt\release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.md\debug;$(LibraryPath)</LibraryPath>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,7 +129,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>OgreMain_d.lib;PhysX_32.lib;PhysXCommon_32.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;PhysX_32.lib;PhysXCommon_32.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib;PhysXExtensions_static_32.lib;PhysXPvdSDK_static_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -160,7 +160,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>OgreMain.lib;%(AdditionalDependencies);PhysX_32.lib;PhysXCommon_32.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;%(AdditionalDependencies);PhysX_32.lib;PhysXCommon_32.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib;PhysXExtensions_static_32.lib;PhysXPvdSDK_static_32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

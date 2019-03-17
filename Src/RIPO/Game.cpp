@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "../Ogre/MyOgre.h"
-//#include "../PhysX/MyPhysX.h"
+#include "../PhysX/MyPhysX.h"
 #include <iostream>
 #include "../Engine/EventManager.h"
 #include "RIPOEvent.h"
@@ -11,7 +11,7 @@ Game * Game::_instance = nullptr;
 Game::Game()
 {	
 	// For testing, delete later 
-	//MyPhysX mp = MyPhysX();
+	MyPhysX * mp =  new MyPhysX();
 	// ------------------------
 }
 

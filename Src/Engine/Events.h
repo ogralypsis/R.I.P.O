@@ -7,5 +7,15 @@ struct Event
 {
 	// Base struct for the events
 	Event() {};
+
+	bool operator<(const Event &e) const
+	{
+		return typeid(this).name() <= typeid(e).name();
+	}
+
+	bool operator==(const Event &e) const
+	{
+		return typeid(this).name() == typeid(e).name();
+	}
 };
 #endif

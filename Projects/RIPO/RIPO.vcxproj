@@ -34,14 +34,12 @@
     <ClCompile Include="..\..\Src\RIPO\HealthComponent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\main.cpp" />
     <ClCompile Include="..\..\Src\RIPO\Scene.cpp" />
-    <ClCompile Include="..\..\Src\RIPO\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\RIPO\Game.h" />
     <ClInclude Include="..\..\Src\RIPO\HealthComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\RIPOEvent.h" />
     <ClInclude Include="..\..\Src\RIPO\Scene.h" />
-    <ClInclude Include="..\..\Src\RIPO\TransformComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

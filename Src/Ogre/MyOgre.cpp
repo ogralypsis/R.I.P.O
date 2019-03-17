@@ -229,20 +229,5 @@ bool MyOgre::LoadResources()
 	return true;
 }
 
-Input::Input()
-{
-
-}
-
-void Input::initInput()
-{
-	OIS::ParamList pl;
-	size_t windowHnd = 0;
-	std::ostringstream windowHndStr;
-	MyOgre::GetWindow()->getCustomAttribute("WINDOW", &windowHnd);
-	windowHndStr << windowHnd;
-	pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
-	_inputManager = OIS::InputManager::createInputSystem(pl);
-}
 
 

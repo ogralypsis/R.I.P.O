@@ -18,9 +18,15 @@
     <ClCompile Include="..\..\Src\Ogre\MyOgre.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Ogre\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Ogre\MyOgre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Ogre\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

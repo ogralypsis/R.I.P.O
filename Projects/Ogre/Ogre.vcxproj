@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Ogre\InputManager.cpp" />
     <ClCompile Include="..\..\Src\Ogre\MyOgre.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Ogre\InputManager.h" />
     <ClInclude Include="..\..\Src\Ogre\MyOgre.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

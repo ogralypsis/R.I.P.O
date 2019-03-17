@@ -9,7 +9,6 @@
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
 #include <OgreCamera.h>
-#include <../Dependencies/include/OIS/OIS.h>
 
 
 class MyOgre
@@ -89,7 +88,7 @@ private:
 
 
 	Ogre::Root * _root;
-	Ogre::RenderWindow * _window;
+	static Ogre::RenderWindow * _window;
 	Ogre::SceneManager * _sceneMgr;
 	Ogre::Camera* _mainCamera;
 	Ogre::Viewport * _viewPort;
@@ -105,21 +104,5 @@ private:
 
 };
 
-class Input
-{
-public:
-	Input();
-	~Input() {};
-
-private:
-
-	void initInput();
-
-	bool mouseDownLastFrame = false;
-	Ogre::Real toggleTimer = 0.0;
-
-	OIS::InputManager* _inputManager = nullptr;
-	
-};
 #endif
 

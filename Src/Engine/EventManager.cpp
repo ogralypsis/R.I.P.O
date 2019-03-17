@@ -7,11 +7,7 @@ EventManager::EventManager() {}
 
 EventManager::~EventManager()
 {
-	// delete each pointer
-	for (std::vector<Event*>::iterator it = _events.begin(); it != _events.end(); ++it)
-		delete (*it);
-	// clear the vector
-	_events.clear();
+	// TO DO
 }
 
 EventManager * EventManager::getInstance()
@@ -24,31 +20,57 @@ EventManager * EventManager::getInstance()
 	return nullptr;
 }
 
-void EventManager::AddEvent(Event* e)
+void EventManager::NotifyObservers(Event event)
 {
-	_events.push_back(e);
+	// If that event is in the dictionary,
+	auto it = _observers.find(event);
+	if (it != _observers.end())
+	{
+		// Notify all the observers that listen to that event
+		for (auto i : it->second)
+		{
+			i->OnEvent(event);
+		}
+	}
 }
 
-void EventManager::DeleteEvent(Event * e)
+void EventManager::AddObserver(Event event, Component * observer)
 {
-	int i = 0;
-	bool found = false;
-	// search for the event e
-	while (!found && i < _events.size())
+	// Add new observer of a event
+	auto it = _observers.find(event);
+	if (it != _observers.end()) 
 	{
-		// when it's found,
-		if (_events.at(i) == e)
+		it->second.emplace_back(observer);
+	}
+	else 
+	{
+		std::vector<Component*> myVector;
+		myVector.emplace_back(observer);
+		_observers.insert(std::pair < Event, std::vector<Component*>>(event, myVector));
+	}
+}
+
+void EventManager::RemoveObserver(Event event, Component * observer)
+{
+	auto it = _observers.find(event);
+	if (it != _observers.end())
+	{
+		int i = 0;
+		bool found = false;
+		// search for the observer
+		while (!found && i < it->second.size())
 		{
-			Event* aux = _events.at(i);
-			// delete the reference from the vector
-			_events.erase(_events.begin() + i);
-			// delete the pointer
-			delete aux;
-			// update flag
-			found = true;
+			// when it's found,
+			if (it->second[i] == observer)
+			{
+				// delete the reference from the vector
+				it->second.erase(it->second.begin() + i);
+				// update flag
+				found = true;
+			}
+			else
+				// keep searching
+				i++;
 		}
-		else
-			// keep searching
-			i++;
 	}
 }

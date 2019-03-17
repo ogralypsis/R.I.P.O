@@ -1,18 +1,19 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-//#include "Entity.h"
-#include "Observer.h"
-#include <string>
+#include "Entity.h"
+#include "EventManager.h"
 
 class Entity;
 
-class Component : Observer
+class Component
 {
 public:
 	Component(std::string id, Entity* e);
 	~Component();
 	virtual void Update() = 0;
+	virtual void OnEvent(EventManager::Events e) = 0;
+
 	
 protected:
 	std::string _id;

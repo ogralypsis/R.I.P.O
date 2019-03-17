@@ -19,12 +19,6 @@
     <Filter Include="Source Files\Components">
       <UniqueIdentifier>{fe6e1fff-e215-4ee4-9500-505c4182aa7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Events">
-      <UniqueIdentifier>{039cc611-f328-490c-8b77-e0e36f9440a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Events">
-      <UniqueIdentifier>{85b66d57-9f9f-4873-96d5-7efd40248c84}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\RIPO\main.cpp">
@@ -33,14 +27,8 @@
     <ClCompile Include="..\..\Src\RIPO\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\RIPO\DeathEvent.cpp">
-      <Filter>Source Files\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\RIPO\Scene.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\RIPO\JEvent.cpp">
-      <Filter>Source Files\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\RIPO\HealthComponent.cpp">
       <Filter>Source Files\Components</Filter>
@@ -50,17 +38,14 @@
     <ClInclude Include="..\..\Src\RIPO\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\RIPO\DeathEvent.h">
-      <Filter>Header Files\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\RIPO\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\RIPO\JEvent.h">
-      <Filter>Header Files\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\RIPO\HealthComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RIPO\RIPOEvent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

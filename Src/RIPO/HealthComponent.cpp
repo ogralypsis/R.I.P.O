@@ -1,24 +1,28 @@
 #include "HealthComponent.h"
-#include "DeathEvent.h"
+#include "../Engine/EntityManager.h"
 
 HealthComponent::HealthComponent(std::string id, Entity* e, int health) : Component(id, e), _health(health) {}
 
 HealthComponent::~HealthComponent() {}
 
-void HealthComponent::OnEvent()
+void HealthComponent::OnEvent(Event e)
 {
-	DecreaseHealth();
+	if ("JEvent" == typeid(e).name())
+	{
+		DecreaseHealth();
+	}
 }
 
 void HealthComponent::DecreaseHealth()
 {
 	_health -= 5;
+	CheckHealth();
 }
 
 void HealthComponent::CheckHealth()
 {
 	if (_health <= 0) 
 	{
-		Event* event = new DeathEvent();
+		EntityManager::getInstance()->DeleteEntity(_ownerEntity);
 	}
 }

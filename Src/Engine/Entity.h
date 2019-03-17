@@ -1,9 +1,9 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "Component.h"
 #include <string>
 #include <vector>
+#include "Component.h"
 
 class Component;
 

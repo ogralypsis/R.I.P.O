@@ -30,18 +30,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\RIPO\DeathEvent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\Game.cpp" />
     <ClCompile Include="..\..\Src\RIPO\HealthComponent.cpp" />
-    <ClCompile Include="..\..\Src\RIPO\JEvent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\main.cpp" />
     <ClCompile Include="..\..\Src\RIPO\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\RIPO\DeathEvent.h" />
     <ClInclude Include="..\..\Src\RIPO\Game.h" />
     <ClInclude Include="..\..\Src\RIPO\HealthComponent.h" />
-    <ClInclude Include="..\..\Src\RIPO\JEvent.h" />
+    <ClInclude Include="..\..\Src\RIPO\RIPOEvent.h" />
     <ClInclude Include="..\..\Src\RIPO\Scene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

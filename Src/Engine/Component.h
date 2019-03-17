@@ -2,8 +2,7 @@
 #define COMPONENT_H
 
 #include "Entity.h"
-
-class Entity;
+#include "Events.h"
 
 class Component
 {
@@ -12,7 +11,6 @@ public:
 	~Component();
 	virtual void Update() = 0;
 	virtual void OnEvent(Event e) = 0;
-
 	
 protected:
 	std::string _id;

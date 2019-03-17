@@ -9,6 +9,7 @@
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
 #include <OgreCamera.h>
+#include <../Dependencies/include/OIS/OIS.h>
 
 
 class MyOgre
@@ -16,6 +17,9 @@ class MyOgre
 public:
 	MyOgre();
 	~MyOgre();
+
+	
+
 
 	/// <summary>
 	/// Initialize Ogre with plugins and resources configuration 
@@ -46,6 +50,12 @@ public:
     /// Returns the main light of the scenes
 	/// </summary>
 	void CreateLight(Ogre::SceneManager * sceneMgr);
+
+	/// <summary>
+/// Returns the render window
+/// </summary>
+
+	static Ogre::RenderWindow* GetWindow();
 
 private:
 
@@ -90,5 +100,26 @@ private:
 	Ogre::String _resourcesConfigLoc;
 	// Path for plugins.cfg
 	Ogre::String _pluginsConfigLoc;
+
+	
+
+};
+
+class Input
+{
+public:
+	Input();
+	~Input() {};
+
+private:
+
+	void initInput();
+
+	bool mouseDownLastFrame = false;
+	Ogre::Real toggleTimer = 0.0;
+
+	OIS::InputManager* _inputManager = nullptr;
+	
 };
 #endif
+

@@ -18,7 +18,7 @@ void InputManager::InitInput()
 	windowHndStr << windowHnd; //string representation of window handle
 	_pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
 
-	// 
+	//Allows the user to use the mouse outside of the application if application is not in fullscreen mode
 #if defined OIS_WIN32_PLATFORM
 	_pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND")));
 	_pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));

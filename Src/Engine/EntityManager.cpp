@@ -52,6 +52,19 @@ void EntityManager::DeleteEntity(Entity * e)
 	}
 }
 
+void EntityManager::CreateEntity(std::string name, std::vector<Component*> components)
+{
+	// Create new entity
+	Entity* ent = new Entity(name);
+
+	// Add its components
+	for (auto c : components) {
+		ent->AddComponent(c);
+	}
+
+	AddEntity(ent);
+}
+
 void EntityManager::Update()
 {
 	// update each entity of the scene

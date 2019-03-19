@@ -23,7 +23,7 @@
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
     <ClCompile Include="..\..\Src\Engine\EntityManager.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventManager.cpp" />
-    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="..\..\Src\Engine\FileReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\Component.h" />
@@ -31,8 +31,9 @@
     <ClInclude Include="..\..\Src\Engine\EntityManager.h" />
     <ClInclude Include="..\..\Src\Engine\EventManager.h" />
     <ClInclude Include="..\..\Src\Engine\Events.h" />
+    <ClInclude Include="..\..\Src\Engine\factory.h" />
+    <ClInclude Include="..\..\Src\Engine\FileReader.h" />
     <ClInclude Include="..\..\Src\Engine\json.hpp" />
-    <ClInclude Include="FileReader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

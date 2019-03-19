@@ -1,63 +1,47 @@
 #include "Scene.h"
+#include "../Engine/FileReader.h"
 
 
 
 Scene::Scene(std::string ID)
 {
 	_sceneID = ID;
+
+	instanceEM = EntityManager::getInstance();
+	instanceFR = FileReader::getInstance();
+
+	// Read file 
+	json entities = instanceFR->readFile("Assets/" + ID + ".json");
+
+	CreateSceneEntities(entities);
 }
 
 
 Scene::~Scene()
 {
-	// delete pointers
-	for (int i = 0; i < _entities.size(); i++) 
-	{
-		delete(_entities[i]);
-	}
+	
+}
 
-	//clear vector
-	_entities.clear();
+void Scene::setComponentFactory()
+{
+	std::string comp = "HealthComponent";
+
+	REGISTER_CLASS(HealthComponent);
+}
+
+void Scene::CreateSceneEntities(nlohmann::json entities) {
+	std::vector<Component*> components;
+
+	for (int i = 0; i < entities["_numEntities"]; i++) {
+		for (int j = 0; j < entities["_entities"][i]["_numComponents"]; j++) {
+			//Component* comp = comp_factory.construct(entities["_entities"][i]["_components"][j]);
+		}
+	}
 }
 
 void Scene::Update()
 {
-	//Update all entities
-	for (int i = 0; i < _entities.size(); i++) 
-	{
-		_entities[i]->Update();
-	}
-}
-
-void Scene::addEntity(Entity * ent)
-{
-	//Push new entity
-	_entities.emplace_back(ent);
-}
-
-void Scene::deleteEntity(Entity * ent)
-{
-	int i = 0;
-	bool found = false;
-
-	//Search for the entity
-	while (!found && i < _entities.size()) 
-	{
-		if (_entities[i] == ent) 
-		{
-			//Delete pointer
-			delete(_entities[i]);
-
-			//Clear vector position
-			_entities.erase(_entities.begin() + i);
-
-			//End search
-			found = true;
-		}
-		else 
-		{
-			i++;
-		}
-	}
 
 }
+
+

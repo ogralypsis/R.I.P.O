@@ -1,0 +1,15 @@
+{
+	"_numEntities" : 1,
+    "_entities": [
+        {
+            "_entityID": "Enemy",
+            "_meshID": "ogre.mesh",
+            "_numComponents": 1,
+            "_components" : [
+            	{
+            		"_comp1" : "HealthComponent"
+            	}
+            ]
+        }
+    ]
+}

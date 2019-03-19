@@ -1,5 +1,7 @@
 #include "MyOgre.h"
 #include <iostream>
+#include <OgreSceneNode.h>
+#include <OgreMovableObject.h>
 
 // Static variable for the singleton
 MyOgre * MyOgre::_instance = nullptr;
@@ -14,6 +16,12 @@ MyOgre::MyOgre()
 	_viewPort = nullptr;
 	_resourcesConfigLoc = "";
 	_pluginsConfigLoc = "";
+
+	_lightNode = nullptr;
+	_camNode = nullptr;
+
+	_sinBad = nullptr;
+	_sinbadNode = nullptr;
 }
 
 
@@ -69,8 +77,8 @@ bool MyOgre::SetUp()
 	// create the scene	
 	_sceneMgr = _root->createSceneManager();
 
-	//_mainCamera = CreateCamera(_window, _sceneMgr);
-	//CreateLight(_sceneMgr);
+	_mainCamera = CreateCamera(_window, _sceneMgr);
+	CreateLight(_sceneMgr);
 
 	
 
@@ -128,11 +136,15 @@ Ogre::Camera* MyOgre::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManag
 
 	// add a camera
 	Ogre::Camera *camera = sceneMgr->createCamera("MainCam");
+	_camNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
 
 	camera->setPosition(Ogre::Vector3(0, 160, 160));
 	camera->lookAt(Ogre::Vector3(0, 0, 0));
 	camera->setNearClipDistance(5);
 	camera->setFarClipDistance(10000);
+
+	_camNode->attachObject(camera);
+	_camNode->setPosition(0, 0, 140);
 
 	// add viewport
 	_viewPort = window->addViewport(camera);
@@ -146,9 +158,14 @@ void MyOgre::CreateLight(Ogre::SceneManager * sceneMgr) {
 
 	sceneMgr->setAmbientLight(Ogre::ColourValue(0.25, 0.25, 0.25));
 
+	_lightNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
+	
+
 	_light = sceneMgr->createLight("MainLight");
 	_light->setPosition(Ogre::Vector3(20, 80, 50));
 	_light->setCastShadows(true);
+
+	_lightNode->attachObject(_light);
 }
 
 bool MyOgre::LocateResources()
@@ -209,6 +226,13 @@ bool MyOgre::LocateResources()
 Ogre::RenderWindow* MyOgre::GetWindow()
 {
 	return _window;
+}
+
+void MyOgre::CreateSinBad()
+{
+	_sinBad = _sceneMgr->createEntity("Sinbad.mesh");
+	_sinbadNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
+	_sinbadNode->attachObject(_sinBad);
 }
 
 bool MyOgre::LoadResources()

@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../Engine/EventManager.h"
 #include "RIPOEvent.h"
+#include <Windows.h>
 
 // Static variable for the singleton
 Game * Game::_instance = nullptr;
@@ -30,6 +31,9 @@ bool Game::Init()
 		return false;
 	}
 
+	// TESTING DELETE LATER
+	MyOgre::GetInstance().CreateSinBad();
+
 	return true;
 }
 
@@ -43,6 +47,12 @@ void Game::Release()
 
 void Game::Loop()
 {
+
+	/*while (true) {
+
+		std::cout << "loop" << std::endl;
+		Sleep(10000);
+	}*/
 }
 
 Game & Game::GetInstance()

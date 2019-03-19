@@ -13,7 +13,7 @@ void InputManager::InitInput()
 	windowHnd = 0;
 	
 	//Get window handle
-	_renderWindow = MyOgre::GetWindow();
+	_renderWindow = MyOgre::GetInstance().GetWindow();
 	_renderWindow->getCustomAttribute("WINDOW", &windowHnd);
 	windowHndStr << windowHnd; //string representation of window handle
 	_pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));

@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 
+EntityManager * EntityManager::_instance = nullptr;
 EntityManager::EntityManager() {}
 
 EntityManager::~EntityManager()

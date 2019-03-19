@@ -10,11 +10,14 @@ This will let you select a platform specific solution to build. You can then ope
 solution file with your IDE and kick off one or more configuration builds.
 *Build for vc15win32*
 
-When debug and release configurations are compiled copy the following dlls to folder Exes:
+When debug and release configurations are compiled copy the following dlls to folder Exes from R.I.P.O\Dependencies\physx\bin\win.x86_32.vc141.md\(debug or release):
 PhysX_32
 PhysXCommon_32
 PhysXCooking_32
 PhysXFoundation_32
+
+Debug and Release dlls has the same name, so if you want to compile RIPO in debug copy dlls from the path sayed before and debug folder.
+Else if you want release configuration copy them from release folder.
 
 Requirements:
 	Python 2.7.6 or later

@@ -51,10 +51,9 @@ public:
 	void CreateLight(Ogre::SceneManager * sceneMgr);
 
 	/// <summary>
-/// Returns the render window
-/// </summary>
-
-	static Ogre::RenderWindow* GetWindow();
+	/// Returns the render window
+	/// </summary>
+	Ogre::RenderWindow* GetWindow();
 
 private:
 
@@ -88,7 +87,7 @@ private:
 
 
 	Ogre::Root * _root;
-	static Ogre::RenderWindow * _window;
+	Ogre::RenderWindow * _window;
 	Ogre::SceneManager * _sceneMgr;
 	Ogre::Camera* _mainCamera;
 	Ogre::Viewport * _viewPort;

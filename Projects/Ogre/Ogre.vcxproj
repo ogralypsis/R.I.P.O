@@ -82,8 +82,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -96,8 +96,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

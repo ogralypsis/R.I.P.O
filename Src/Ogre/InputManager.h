@@ -2,8 +2,9 @@
 #define _H_INPUTMANAGER_H_
 
 #include "MyOgre.h"
-#include <../Dependencies/include/OIS/OIS.h>
+#include <OIS.h>
 #include <vector>
+
 class InputManager : public OIS::KeyListener, public OIS::MouseListener
 {
 public:

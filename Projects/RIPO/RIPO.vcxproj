@@ -102,7 +102,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Exes</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Src\RIPO;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
+    <IncludePath>$SolutionDir)Dependencies\ois-v1-3\includes;$(SolutionDir)Src\Ogre;$(SolutionDir)Src\RIPO;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.md\debug;$(LibraryPath)</LibraryPath>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>

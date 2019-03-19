@@ -9,6 +9,7 @@
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
 #include <OgreCamera.h>
+#include <Ogre.h>
 
 
 class MyOgre
@@ -55,6 +56,11 @@ public:
 	/// </summary>
 	Ogre::RenderWindow* GetWindow();
 
+
+
+	// TESTING DELETE LATER
+	void CreateSinBad();
+
 private:
 
 	/// <summary>
@@ -92,6 +98,12 @@ private:
 	Ogre::Camera* _mainCamera;
 	Ogre::Viewport * _viewPort;
 	Ogre::Light* _light;
+
+	Ogre::SceneNode* _lightNode;
+	Ogre::SceneNode* _camNode;
+	//Testing
+	Ogre::SceneNode* _sinbadNode;
+	Ogre::Entity * _sinBad;
 
 	
 	// Path for resources.cfg

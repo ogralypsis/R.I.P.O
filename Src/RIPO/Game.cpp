@@ -4,6 +4,9 @@
 #include <iostream>
 #include "../Engine/EventManager.h"
 #include "RIPOEvent.h"
+#include "HealthComponent.h"
+#include "../Engine/Component.h"
+
 #include <Windows.h>
 
 // Static variable for the singleton
@@ -85,4 +88,9 @@ void Game::Update()
 
 void Game::Render()
 {
+}
+
+void Game::RegisterComponents()
+{
+	Factory<Component, std::string>::getInstance()->Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 }

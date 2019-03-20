@@ -1,6 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "../Engine/Factory.h"
+#include "../Engine/Component.h"
+#include <string>
 
 class Game
 {
@@ -52,6 +55,10 @@ private:
 	/// </summary>
 	void Render();
 
+	/// <summary>
+	/// Register all components in the ComponentFactory
+	/// </summary>
+	void RegisterComponents();
 
 	static Game * _instance;
 

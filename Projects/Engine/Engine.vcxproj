@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
     <ClCompile Include="..\..\Src\Engine\EntityManager.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventManager.cpp" />
+    <ClCompile Include="..\..\Src\Engine\Factory.cpp" />
     <ClCompile Include="..\..\Src\Engine\FileReader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,7 +32,7 @@
     <ClInclude Include="..\..\Src\Engine\EntityManager.h" />
     <ClInclude Include="..\..\Src\Engine\EventManager.h" />
     <ClInclude Include="..\..\Src\Engine\Events.h" />
-    <ClInclude Include="..\..\Src\Engine\factory.h" />
+    <ClInclude Include="..\..\Src\Engine\Factory.h" />
     <ClInclude Include="..\..\Src\Engine\FileReader.h" />
     <ClInclude Include="..\..\Src\Engine\json.hpp" />
   </ItemGroup>

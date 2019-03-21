@@ -89,8 +89,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <LibraryPath>(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -103,8 +103,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <LibraryPath>(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

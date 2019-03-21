@@ -2,12 +2,12 @@
 
 
 
-InputManager::InputManager() : _keyboardKeys(256, false), _mouseKeys(8, false) //or 3, test pending
+InputManager::InputManager() : _keyboardKeys(256, false), _mouseButtons(3, false) //or 3, test pending
 {
 	InitInput();
 }
 
-
+//Initialisation
 void InputManager::InitInput()
 {
 	windowHnd = 0;
@@ -27,15 +27,31 @@ void InputManager::InitInput()
 #endif
 
 	//creates input manager
-	_inputManager = OIS::InputManager::createInputSystem(_pl);
+	_inputSystem = OIS::InputManager::createInputSystem(_pl);
 
-	//creates keayboard and mouse objects for the buffered input
-	_mouse = static_cast<OIS::Mouse*>(_inputManager->createInputObject(OIS::OISMouse, true));
+	//creates mouse object for the buffered input
+	_mouse = static_cast<OIS::Mouse*>(_inputSystem->createInputObject(OIS::OISMouse, true));
 	_mouse->setEventCallback(this);
 
-	_keyboard = static_cast<OIS::Keyboard*>(_inputManager->createInputObject(OIS::OISKeyboard, true));
+	//creates keayboard objects for the buffered input
+	_keyboard = static_cast<OIS::Keyboard*>(_inputSystem->createInputObject(OIS::OISKeyboard, true));
 	_keyboard->setEventCallback(this);
 	
+	
+	ResizeWindow(_renderWindow);
+
+}
+
+InputManager* InputManager::GetInstance()
+{
+	if (_instance)
+		_instance = new InputManager();
+	return _instance;
+}
+
+void InputManager::ResizeWindow(Ogre::RenderWindow* rw)
+{
+	_renderWindow = rw;
 	//Pass window metrics to OIS
 	unsigned int width, height, depth;
 	int top, left;
@@ -46,49 +62,27 @@ void InputManager::InitInput()
 
 	_mouseState.width = width;
 	_mouseState.height = height;
-
-
-	
 }
-
 
 InputManager::~InputManager()
 {
-	if (_inputManager) {
+	if (_inputSystem) {
 		if (_mouse) {
-			_inputManager->destroyInputObject(_mouse);
+			_inputSystem->destroyInputObject(_mouse);
 			_mouse = 0;
 		}
 
 		if (_keyboard) {
-			_inputManager->destroyInputObject(_keyboard);
+			_inputSystem->destroyInputObject(_keyboard);
 			_keyboard = 0;
 		}
-		_inputManager->destroyInputSystem(_inputManager);
+		_inputSystem->destroyInputSystem(_inputSystem);
+		_inputSystem = 0;
+
 	}
 }
 
-bool InputManager::KeyPressed(const OIS::KeyEvent &e)
-{
-	_keyboardKeys[e.key] = true;
-	return true;
-}
-
-
-bool InputManager::MousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
-{
-	_mouseKeys[id] = true;
-	return true;
-}
-
-bool InputManager::MouseMoved(const OIS::MouseEvent &e)
-{
-	_mouseX = e.state.X;
-	_mouseY = e.state.Y;
-	_mouseZ = e.state.Z;
-	return true;
-}
-
+//
 void InputManager::CaptureInput()
 {
 	if (_mouse)
@@ -96,3 +90,51 @@ void InputManager::CaptureInput()
 	if (_keyboard)
 		_keyboard->capture();
 }
+
+///KEYBOARD
+
+bool InputManager::keyPressed(const OIS::KeyEvent &e)
+{
+	_keyboardKeys[e.key] = true;
+	return true;
+}
+
+bool InputManager::keyReleased(const OIS::KeyEvent &e)
+{
+	_keyboardKeys[e.key] = false;
+	return true;
+}
+
+bool InputManager::GetKey(OIS::KeyCode key)
+{
+	return _keyboardKeys[key];
+}
+
+///MOUSE
+
+bool InputManager::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
+{
+	_mouseButtons[id] = true;
+	return true;
+}
+
+bool InputManager::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id)
+{
+	_mouseButtons[id] = false;
+	return true;
+}
+
+bool InputManager::GetMouseButton(OIS::MouseButtonID id)
+{
+	return _mouseButtons[id];
+}
+
+bool InputManager::mouseMoved(const OIS::MouseEvent &e)
+{
+	_mouseX = e.state.X;
+	_mouseY = e.state.Y;
+	_mouseZ = e.state.Z;
+	return true;
+}
+
+

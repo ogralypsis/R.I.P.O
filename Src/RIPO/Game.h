@@ -2,8 +2,7 @@
 #define GAME_H
 
 #include "../Engine/Factory.h"
-#include "../Engine/Component.h"
-#include <string>
+#include <iostream>
 
 class Game
 {
@@ -61,6 +60,8 @@ private:
 	void RegisterComponents();
 
 	static Game * _instance;
+
+	Factory<Component, std::string> compFactory;
 
 	
 };

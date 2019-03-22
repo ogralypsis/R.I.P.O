@@ -1,6 +1,10 @@
 #include "HealthComponent.h"
 #include "../Engine/EntityManager.h"
 
+HealthComponent::HealthComponent()
+{
+}
+
 HealthComponent::HealthComponent(std::string id, Entity* e, int health) : Component(id, e), _health(health) {}
 
 HealthComponent::~HealthComponent() {}

@@ -1,11 +1,8 @@
 #include "Game.h"
 #include "../Ogre/MyOgre.h"
 #include "../PhysX/MyPhysX.h"
-#include <iostream>
 #include "../Engine/EventManager.h"
-#include "RIPOEvent.h"
 #include "HealthComponent.h"
-#include "../Engine/Component.h"
 
 #include <Windows.h>
 
@@ -92,5 +89,7 @@ void Game::Render()
 
 void Game::RegisterComponents()
 {
-	Factory<Component, std::string>::getInstance()->Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
+	//Factory<Component, std::string>::getInstance()->Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
+
+	compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 }

@@ -7,6 +7,7 @@
 class Component
 {
 public:
+	Component();
 	Component(std::string id, Entity* e);
 	~Component();
 	virtual void Update() = 0;

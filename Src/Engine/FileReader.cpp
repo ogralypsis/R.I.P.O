@@ -1,6 +1,6 @@
 #include "FileReader.h"
 
-
+FileReader* FileReader::_instance = nullptr;
 
 FileReader::FileReader()
 {

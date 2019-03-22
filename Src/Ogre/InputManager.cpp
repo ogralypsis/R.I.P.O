@@ -1,6 +1,7 @@
 #include "InputManager.h"
 
-
+//static variable for singleton
+InputManager* _instance = nullptr;
 
 InputManager::InputManager() : _keyboardKeys(256, false), _mouseButtons(3, false) //or 3, test pending
 {
@@ -47,6 +48,15 @@ InputManager* InputManager::GetInstance()
 	if (_instance)
 		_instance = new InputManager();
 	return _instance;
+}
+
+void InputManager::ResetInstance()
+{
+	if (_instance != nullptr)
+	{
+		delete _instance;
+		_instance = nullptr;
+	}
 }
 
 void InputManager::ResizeWindow(Ogre::RenderWindow* rw)

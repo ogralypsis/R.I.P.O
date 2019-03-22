@@ -14,7 +14,6 @@
 class InputManager : public OIS::KeyListener, public OIS::MouseListener
 {
 public:
-	InputManager();
 	~InputManager();
 
 	void CaptureInput();
@@ -22,7 +21,10 @@ public:
 	static InputManager* GetInstance();
 	
 	void ResizeWindow(Ogre::RenderWindow* rw);
+
+	static void ResetInstance();
 private:
+	InputManager();
 
 	///InputSystem
 	static InputManager* _instance;

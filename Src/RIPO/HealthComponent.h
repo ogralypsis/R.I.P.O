@@ -7,10 +7,13 @@
 class HealthComponent : public Component
 {
 public:
+	HealthComponent();
 	HealthComponent(std::string id, Entity* e, int health);
 	~HealthComponent();
 
-	virtual void OnEvent(Event e);
+	void virtual OnEvent(Event e);
+
+	void virtual Update();
 
 	void DecreaseHealth();
 	void CheckHealth();

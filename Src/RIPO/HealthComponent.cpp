@@ -1,6 +1,8 @@
 #include "HealthComponent.h"
 #include "../Engine/EntityManager.h"
 
+HealthComponent::HealthComponent() : Component () { }
+
 HealthComponent::HealthComponent(std::string id, Entity* e, int health) : Component(id, e), _health(health) {}
 
 HealthComponent::~HealthComponent() {}
@@ -11,6 +13,10 @@ void HealthComponent::OnEvent(Event e)
 	{
 		DecreaseHealth();
 	}
+}
+
+void HealthComponent::Update()
+{
 }
 
 void HealthComponent::DecreaseHealth()

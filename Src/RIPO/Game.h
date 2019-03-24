@@ -60,6 +60,8 @@ private:
 	/// </summary>
 	void RegisterComponents();
 
+	Factory<Component, std::string> _compFactory;
+
 	static Game * _instance;
 
 	

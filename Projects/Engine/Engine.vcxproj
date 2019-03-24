@@ -23,7 +23,6 @@
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
     <ClCompile Include="..\..\Src\Engine\EntityManager.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventManager.cpp" />
-    <ClCompile Include="..\..\Src\Engine\Factory.cpp" />
     <ClCompile Include="..\..\Src\Engine\FileReader.cpp" />
   </ItemGroup>
   <ItemGroup>

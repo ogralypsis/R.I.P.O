@@ -2,7 +2,7 @@
 #define _H_INPUTMANAGER_H_
 
 #include "MyOgre.h"
-#include "OIS.h"
+#include <OIS.h>
 #include <vector>
 
 ///<sumary>

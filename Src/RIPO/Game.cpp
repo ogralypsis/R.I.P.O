@@ -92,5 +92,7 @@ void Game::Render()
 
 void Game::RegisterComponents()
 {
-	Factory<Component, std::string>::getInstance()->Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
+	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
+
+	HealthComponent* compHealth = _compFactory.Create("HealthComponent");
 }

@@ -2,11 +2,12 @@
 THIS IS A BASIC MAKE FILE THAT WILL BE FURTHER DEVELOPED IN THE FUTURE
 */
 
-
+// con cmd
 task compileCmake {
 	dependsOn { tasks.findAll { task -> task.name.startsWith('cmake')}}
 }
 
+// con native tools
 task compileLib {
 	dependsOn { tasks.findAll { task -> task.name.startsWith('cmp')}}
 }
@@ -27,6 +28,9 @@ task cmakeCMake (type: Exec) {
 	executable = '"../CMake/bin/cmake.exe"'
 	args = ['-S"../Dependencies/ogre-1.11.5"', '-B"../Dependencies/ogre-1.11.5/Build"']
 }
+
+
+
 
 task cmpVisualDebug (type: Exec) {
 	commandLine 'msbuild', '"../Dependencies/ogre-1.11.5/Build/OGRE.sln"', '/t:build', '/p:Configuration=Debug', '/p:Platform="Win32"'
@@ -56,10 +60,36 @@ task cmpCopyGlDebug(type: Copy, group: "First Run", description: "Copy debug Ope
 	into file("../Exes/OgreD/OgreD/")
 }
 
+task cmpCopyPhysx (type: Copy, group: "First Run", description: "Copy release Physx dll into Exes forlder") {
+	from file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysX_32.dll"), file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysXCommon_32.dll"), file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysXCooking_32.dll"), file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysXFoundation_32.dll")
+	into file("../Exes/")
+}
+
+task cmpCreateOISFolder () {
+	mkdir("../Dependencies/ogre-1.11.5/Build/Dependencies/include/OIS") // we create the dir where the header will be moved
+}
+
+task cmpCopyOISHeaders (type: Copy, group: "First Run", description: "Copy ois headers into dependencies forlder") {
+	from '../Dependencies/ois-v1-3/includes'
+	into "../Dependencies/ogre-1.11.5/Build/Dependencies/include/OIS"
+}
+
+task cmpCopyOIsLib (type: Copy, group: "First Run", description: "Copy OIS lib into ogre lib forlder") {
+	from '../Dependencies/ois-v1-3/dll/OIS.lib'
+	into "../Dependencies/ogre-1.11.5/Build/Dependencies/lib"
+}
+
+task cmpCopyOIsDlls (type: Copy, group: "First Run", description: "Copy OIS dll into ogre bin forlder") {
+	from '../Dependencies/ois-v1-3/dll/OIS.dll'
+	into "../Dependencies/ogre-1.11.5/Build/Dependencies/bin"
+}
+
 cmpCopyGlRelease.mustRunAfter cmpCopyRelease
 cmpCopyGlDebug.mustRunAfter cmpCopyDebug
 cmpCopyRelease.mustRunAfter cmpVisualRelease
 cmpCopyDebug.mustRunAfter cmpVisualDebug
+
+cmpCopyOISHeaders.mustRunAfter cmpCreateOISFolder
 
 cmakeCMake.mustRunAfter cmakeCreateBuild
 

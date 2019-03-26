@@ -97,4 +97,5 @@ void Game::RegisterComponents()
 	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 
 	Component* compHealth = _compFactory.Create("HealthComponent");
+
 }

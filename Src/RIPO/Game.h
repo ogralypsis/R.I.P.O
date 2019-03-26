@@ -63,7 +63,20 @@ private:
 	Factory<Component, std::string> _compFactory;
 
 	static Game * _instance;
+	
+	// Boolean to determine the end of the game (exit the main loop)
+	bool _exit;
 
+	// World step time simulation (60 frames per second).
+	const float _FPS_CAP = 1.0f / 60.0f;	
+
+	// Game loop variables
+	time_t _currentTime_t;
+	float _currentTime;
+	float _newTime;
+	float _frameTime;
+	float _accumulator;
+	float _inputTime;
 	
 };
 #endif

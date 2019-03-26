@@ -56,7 +56,10 @@ public:
 	/// </summary>
 	Ogre::RenderWindow* GetWindow();
 
-
+	/// <summary>
+	/// Returns if the window is closed or not, true if is closed flase if not
+	/// <summary/>
+	bool CheckWindowStatus();
 
 	// TESTING DELETE LATER
 	void CreateSinBad();

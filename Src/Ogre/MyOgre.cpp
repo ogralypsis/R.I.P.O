@@ -230,11 +230,18 @@ Ogre::RenderWindow* MyOgre::GetWindow()
 	return _window;
 }
 
+bool MyOgre::CheckWindowStatus()
+{
+	return _window->isClosed();
+}
+
 void MyOgre::CreateSinBad()
 {
 	_sinBad = _sceneMgr->createEntity("Sinbad.mesh");
 	_sinbadNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
 	_sinbadNode->attachObject(_sinBad);
+
+	_sinbadNode->scale({5,5,5});
 }
 
 void MyOgre::Render()

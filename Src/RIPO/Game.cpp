@@ -8,6 +8,7 @@
 #include "../Engine/Component.h"
 
 #include <Windows.h>
+#include <time.h>
 
 // Static variable for the singleton
 Game * Game::_instance = nullptr;
@@ -17,6 +18,8 @@ Game::Game()
 	// For testing, delete later 
 	MyPhysX * mp =  new MyPhysX();
 	// ------------------------
+
+	_exit = false;
 }
 
 
@@ -50,11 +53,40 @@ void Game::Release()
 
 void Game::Loop()
 {
+	// Continue the loop if the window is not closed and game is not exited
+	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) {
+/*
+		time(&_currentTime_t);
+		//_currentTime = (SDL_GetTicks() / 1000.0);
+		int frames = 0;*/
 
-	while (true) {
+		/*
+		.
+		.
+		.
+		Do something
+		.
+		.
+		.
 
+		*/
+		/*
+		//Refresh loop parameters
+		_newTime = (SDL_GetTicks() / 1000.0);
+		_frameTime = _newTime - _currentTime;
+		_currentTime = _newTime;
+		_accumulator += _frameTime;*/
+
+		//Loop for game logic and physic step (60 times per second)
+		/*while (_accumulator >= _FPS_CAP) {
+
+
+			_accumulator -= _FPS_CAP;
+			frames++;
+		}*/
+		
 		std::cout << "loop" << std::endl;
-		//Sleep(1000);
+		Sleep(1000);
 		Render();
 	}
 }

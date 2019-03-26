@@ -15,10 +15,11 @@ public:
 
 	void virtual Update();
 
-	void DecreaseHealth();
-	void CheckHealth();
 
 private:
 	int _health;
+
+	void DecreaseHealth();
+	void CheckHealth();
 };
 #endif

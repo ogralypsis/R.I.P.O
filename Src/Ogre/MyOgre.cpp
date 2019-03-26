@@ -270,5 +270,3 @@ bool MyOgre::LoadResources()
 	return true;
 }
 
-
-

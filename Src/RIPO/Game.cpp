@@ -1,14 +1,17 @@
 #include "Game.h"
-#include "../Ogre/MyOgre.h"
 #include "../PhysX/MyPhysX.h"
 #include <iostream>
 #include "../Engine/EventManager.h"
 #include "RIPOEvent.h"
 #include "HealthComponent.h"
 #include "../Engine/Component.h"
+#include "../Ogre/MyOgre.h"
+#include "../Ogre/InputManager.h"
 
 #include <Windows.h>
 #include <time.h>
+
+
 
 // Static variable for the singleton
 Game * Game::_instance = nullptr;
@@ -43,6 +46,11 @@ bool Game::Init()
 
 	// TESTING DELETE LATER
 	MyOgre::GetInstance().CreateSinBad();
+	
+	if (!InputManager::GetInstance().InitInput(MyOgre::GetInstance().GetWindow()))
+		std::cout << "OIS Input system could not be initialized" << std::endl;
+
+
 
 	return true;
 }
@@ -85,7 +93,8 @@ void Game::Loop()
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
 
-
+			if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_J))
+				std::cout << "PRESSING KEY J" << std::endl;
 			// INPUT
 			// PHYSCS STEP
 			// CURRENT SCENE UPDATE
@@ -93,8 +102,10 @@ void Game::Loop()
 			_accumulator -= _FPS_CAP;
 			frames++;
 		}
+
+
 		
-		std::cout << "loop" << std::endl;
+		//std::cout << "loop" << std::endl;
 		//Sleep(1000);
 		Render();
 	}

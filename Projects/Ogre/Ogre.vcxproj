@@ -26,6 +26,9 @@
     <ClInclude Include="..\..\Src\Ogre\InputManager.h" />
     <ClInclude Include="..\..\Src\Ogre\MyOgre.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{A283071A-6B58-4809-B037-70AF5DE01544}</ProjectGuid>
@@ -82,8 +85,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\OIS;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\OIS-master\Build\Debug;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -96,8 +99,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\OIS;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\OIS-master\Build\Release;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

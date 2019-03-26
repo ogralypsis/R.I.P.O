@@ -100,8 +100,8 @@
     <OutDir>$(SolutionDir)Exes</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\PhysX;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.md\debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\PhysX;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\OIS-master\Build\Debug;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.md\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Exes</OutDir>
@@ -133,7 +133,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>OgreMain_d.lib;PhysX_32.lib;PhysXCommon_32.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib;PhysXExtensions_static_32.lib;PhysXPvdSDK_static_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;PhysX_32.lib;PhysXCommon_32.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib;PhysXExtensions_static_32.lib;PhysXPvdSDK_static_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

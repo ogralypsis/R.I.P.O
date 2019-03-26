@@ -1,20 +1,20 @@
 #include "InputManager.h"
 
 //static variable for singleton
-InputManager* _instance = nullptr;
+InputManager* InputManager::_instance = nullptr;
 
-InputManager::InputManager() : _keyboardKeys(256, false), _mouseButtons(3, false) //or 3, test pending
+InputManager::InputManager() : _mouse(0), _keyboard(0), _inputSystem(0), _keyboardKeys(256, false), _mouseButtons(3, false) //or 3, test pending
 {
-	InitInput();
-}
+	//InitInput();
 
+}
 //Initialisation
-void InputManager::InitInput()
+bool InputManager::InitInput(Ogre::RenderWindow* rw)
 {
 	windowHnd = 0;
-	
+
 	//Get window handle
-	_renderWindow = MyOgre::GetInstance().GetWindow();
+	_renderWindow = rw;
 	_renderWindow->getCustomAttribute("WINDOW", &windowHnd);
 	windowHndStr << windowHnd; //string representation of window handle
 	_pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
@@ -37,17 +37,20 @@ void InputManager::InitInput()
 	//creates keayboard objects for the buffered input
 	_keyboard = static_cast<OIS::Keyboard*>(_inputSystem->createInputObject(OIS::OISKeyboard, true));
 	_keyboard->setEventCallback(this);
-	
-	
+
+
 	ResizeWindow(_renderWindow);
 
+	if(!_inputSystem || !_mouse || !_keyboard)
+		return false;
+	else return true;
 }
 
-InputManager* InputManager::GetInstance()
+InputManager& InputManager::GetInstance()
 {
-	if (_instance)
+	if (_instance == nullptr)
 		_instance = new InputManager();
-	return _instance;
+	return *InputManager::_instance;
 }
 
 void InputManager::ResetInstance()
@@ -70,6 +73,8 @@ void InputManager::ResizeWindow(Ogre::RenderWindow* rw)
 	//creates mouse state
 	const OIS::MouseState & _mouseState = _mouse->getMouseState();
 
+	//check if this works 
+	//_mouseState.width = _renderWindow->getWidth();
 	_mouseState.width = width;
 	_mouseState.height = height;
 }
@@ -77,18 +82,20 @@ void InputManager::ResizeWindow(Ogre::RenderWindow* rw)
 InputManager::~InputManager()
 {
 	if (_inputSystem) {
-		if (_mouse) {
+		/*if (_mouse != nullptr) {
 			_inputSystem->destroyInputObject(_mouse);
-			_mouse = 0;
+			_mouse = nullptr;
 		}
 
-		if (_keyboard) {
+		/*if (_keyboard) {
 			_inputSystem->destroyInputObject(_keyboard);
-			_keyboard = 0;
-		}
-		_inputSystem->destroyInputSystem(_inputSystem);
-		_inputSystem = 0;
+			_keyboard = nullptr;
+		}*/
 
+		//_inputSystem->destroyInputSystem();
+		//OIS::InputManager::destroyInputSystem(_inputSystem);
+		_inputSystem->destroyInputSystem(_inputSystem);
+		//_inputSystem = 0;
 	}
 }
 
@@ -115,7 +122,7 @@ bool InputManager::keyReleased(const OIS::KeyEvent &e)
 	return true;
 }
 
-bool InputManager::GetKey(OIS::KeyCode key)
+bool InputManager::IsKeyDown(OIS::KeyCode key)
 {
 	return _keyboardKeys[key];
 }
@@ -134,16 +141,16 @@ bool InputManager::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id
 	return true;
 }
 
-bool InputManager::GetMouseButton(OIS::MouseButtonID id)
+bool InputManager::IsMouseButtonPressed(OIS::MouseButtonID id)
 {
 	return _mouseButtons[id];
 }
 
 bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 {
-	_mouseX = e.state.X;
-	_mouseY = e.state.Y;
-	_mouseZ = e.state.Z;
+	_mouseX = e.state.X.abs;
+	_mouseY = e.state.Y.abs;
+	_mouseZ = e.state.Z.abs;
 	return true;
 }
 

@@ -62,4 +62,11 @@ struct MouseMoveEvent : Event
 
 };
 
+// PLAYER DEATH
+struct DeathEvent : Event
+{
+	DeathEvent() {};
+
+};
+
 #endif

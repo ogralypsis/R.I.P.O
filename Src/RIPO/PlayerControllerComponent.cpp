@@ -5,14 +5,28 @@
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
-PlayerControllerComponent::PlayerControllerComponent(std::string id, Entity* e) : Component(id, e) {}
+PlayerControllerComponent::PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ) : Component(id, e), 
+_velocity(vel), _player(e), _posX(posX), _posY(posY), _posZ(posZ) 
+{
+	_orPosX = _posX;
+	_orPosY = _posY;
+	_orPosZ = _posZ;
+
+}
 
 PlayerControllerComponent::~PlayerControllerComponent(){}
 
 
 void PlayerControllerComponent::OnEvent(Event e)
 {
-	if ("WEvent" == typeid(e).name())
+
+	if ("DeathEvent" == typeid(e).name()) 
+	{
+		ResetPosition();
+
+	}
+
+	else if ("WEvent" == typeid(e).name())
 	{
 		ForwardMovement();
 	}
@@ -31,9 +45,9 @@ void PlayerControllerComponent::OnEvent(Event e)
 	{
 		RightMovement();
 	}
-}
 
-//TODO 
+	
+}
 
 void PlayerControllerComponent::Update()
 {
@@ -41,16 +55,30 @@ void PlayerControllerComponent::Update()
 
 void PlayerControllerComponent::ForwardMovement()
 {
+	_posZ += _velocity;
+
 }
 
 void PlayerControllerComponent::LeftMovement()
 {
+	_posX -= _velocity;
 }
 
 void PlayerControllerComponent::BackMovement()
 {
+	_posZ -= _velocity;
 }
 
 void PlayerControllerComponent::RightMovement()
 {
+	_posX += _velocity;
 }
+
+void PlayerControllerComponent::ResetPosition()
+{
+	_posX = _orPosX;
+	_posY = _orPosY;
+	_posZ = _orPosZ;
+
+}
+

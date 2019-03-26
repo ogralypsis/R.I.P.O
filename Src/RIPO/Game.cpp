@@ -51,11 +51,12 @@ void Game::Release()
 void Game::Loop()
 {
 
-	/*while (true) {
+	while (true) {
 
 		std::cout << "loop" << std::endl;
-		Sleep(10000);
-	}*/
+		//Sleep(1000);
+		Render();
+	}
 }
 
 Game & Game::GetInstance()
@@ -88,11 +89,12 @@ void Game::Update()
 
 void Game::Render()
 {
+	MyOgre::GetInstance().Render();
 }
 
 void Game::RegisterComponents()
 {
 	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 
-	HealthComponent* compHealth = _compFactory.Create("HealthComponent");
+	Component* compHealth = _compFactory.Create("HealthComponent");
 }

@@ -61,6 +61,8 @@ public:
 	// TESTING DELETE LATER
 	void CreateSinBad();
 
+	void Render();
+
 private:
 
 	/// <summary>

@@ -3,6 +3,7 @@
 #include <OgreSceneNode.h>
 #include <OgreMovableObject.h>
 
+
 // Static variable for the singleton
 MyOgre * MyOgre::_instance = nullptr;
 
@@ -170,6 +171,7 @@ void MyOgre::CreateLight(Ogre::SceneManager * sceneMgr) {
 
 bool MyOgre::LocateResources()
 {
+	
 	// Tell the resource group manager to look at this location
 	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("Assets", "FileSystem", "Essential");
 	try {
@@ -233,6 +235,14 @@ void MyOgre::CreateSinBad()
 	_sinBad = _sceneMgr->createEntity("Sinbad.mesh");
 	_sinbadNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
 	_sinbadNode->attachObject(_sinBad);
+}
+
+void MyOgre::Render()
+{
+	//Ogre::WindowEventUtilities::messagePump();
+	if (_window->isClosed())
+		return;
+	if (!_root->renderOneFrame())return;
 }
 
 bool MyOgre::LoadResources()

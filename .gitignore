@@ -149,6 +149,8 @@ Dependencies/*
 Exes/*
 Exes/Ogre/Ogre/RenderSystem_GL.dll
 Exes/OgreD/OgreD/RenderSystem_GL_d.dll
+Exes/Ogre/Ogre/Codec_STBI.dll
+Exes/OgreD/OgreD/Codec_STBI_d.dll
 
 # exception
 !Exes/Assets/

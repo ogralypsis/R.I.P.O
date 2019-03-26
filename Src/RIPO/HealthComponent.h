@@ -12,7 +12,6 @@ public:
 	~HealthComponent();
 
 	void virtual OnEvent(Event e);
-
 	void virtual Update();
 
 private:

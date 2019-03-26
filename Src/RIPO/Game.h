@@ -71,9 +71,8 @@ private:
 	const float _FPS_CAP = 1.0f / 60.0f;	
 
 	// Game loop variables
-	time_t _currentTime_t;
-	float _currentTime;
-	float _newTime;
+	time_t _currentTime;
+	time_t _newTime;
 	float _frameTime;
 	float _accumulator;
 	float _inputTime;

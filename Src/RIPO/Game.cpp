@@ -20,6 +20,10 @@ Game::Game()
 	// ------------------------
 
 	_exit = false;
+
+	_currentTime = 0;
+	_newTime = 0;
+	_frameTime = _accumulator = _inputTime = 0.0f;
 }
 
 
@@ -55,38 +59,43 @@ void Game::Loop()
 {
 	// Continue the loop if the window is not closed and game is not exited
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) {
-/*
-		time(&_currentTime_t);
+
+		// Get the current time in seconds
+		time(&_currentTime);
 		//_currentTime = (SDL_GetTicks() / 1000.0);
-		int frames = 0;*/
+		int frames = 0;
 
 		/*
 		.
 		.
 		.
-		Do something
+		Change scenes if necessary
 		.
 		.
 		.
-
 		*/
-		/*
-		//Refresh loop parameters
-		_newTime = (SDL_GetTicks() / 1000.0);
+		
+		
+		// Update loop parameters
+		time(&_newTime);	
 		_frameTime = _newTime - _currentTime;
 		_currentTime = _newTime;
-		_accumulator += _frameTime;*/
+		_accumulator += _frameTime;
 
-		//Loop for game logic and physic step (60 times per second)
-		/*while (_accumulator >= _FPS_CAP) {
+		// Loop for game logic and physics step (60 times per second)
+		while (_accumulator >= _FPS_CAP) {
 
+
+			// INPUT
+			// PHYSCS STEP
+			// CURRENT SCENE UPDATE
 
 			_accumulator -= _FPS_CAP;
 			frames++;
-		}*/
+		}
 		
 		std::cout << "loop" << std::endl;
-		Sleep(1000);
+		//Sleep(1000);
 		Render();
 	}
 }

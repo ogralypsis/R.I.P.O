@@ -47,6 +47,11 @@ private:
 	void HandleInput();
 
 	/// <summary>
+	/// Change scene
+	/// </summary>
+	void ChangeScene(std::string name);
+
+	/// <summary>
 	/// Update the game 
 	/// </summary>
 	void Update();

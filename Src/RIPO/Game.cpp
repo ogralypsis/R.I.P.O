@@ -1,16 +1,22 @@
 #include "Game.h"
+
 #include "../PhysX/MyPhysX.h"
-#include <iostream>
-#include "../Engine/EventManager.h"
-#include "RIPOEvent.h"
-#include "HealthComponent.h"
-#include "../Engine/Component.h"
+
 #include "../Ogre/MyOgre.h"
 #include "../Ogre/InputManager.h"
 
+#include "../Engine/EventManager.h"
+#include "../Engine/Component.h"
+
+#include "RIPOEvent.h"
+#include "Scene.h"
+
+#include "HealthComponent.h"
+#include "RenderComponent.h"
+
 #include <Windows.h>
 #include <time.h>
-
+#include <iostream>
 
 
 // Static variable for the singleton
@@ -44,13 +50,17 @@ bool Game::Init()
 		return false;
 	}
 
+	/*
 	// TESTING DELETE LATER
 	MyOgre::GetInstance().CreateSinBad();
-	
+	*/
+
 	if (!InputManager::GetInstance().InitInput(MyOgre::GetInstance().GetWindow()))
 		std::cout << "OIS Input system could not be initialized" << std::endl;
 
+	RegisterComponents();
 
+	ChangeScene("data_map1");
 
 	return true;
 }
@@ -144,10 +154,13 @@ void Game::Render()
 	MyOgre::GetInstance().Render();
 }
 
+void Game::ChangeScene(std::string name)
+{
+	Scene* newScene = new Scene(name, _compFactory);
+}
+
 void Game::RegisterComponents()
 {
 	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
-
-	Component* compHealth = _compFactory.Create("HealthComponent");
-
+	_compFactory.Register("RenderComponent", new DerivedCreator<RenderComponent, Component>());
 }

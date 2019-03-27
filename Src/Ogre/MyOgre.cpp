@@ -244,6 +244,14 @@ void MyOgre::CreateSinBad()
 	_sinbadNode->scale({5,5,5});
 }
 
+void MyOgre::CreateEntity(std::string mesh) {
+	Ogre::Entity* _newEntity = _sceneMgr->createEntity(mesh);
+	Ogre::SceneNode* _newEntityNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
+
+	_newEntityNode->attachObject(_newEntity);
+	_newEntityNode->scale({ 5,5,5 });
+}
+
 void MyOgre::Render()
 {
 	//Ogre::WindowEventUtilities::messagePump();

@@ -60,7 +60,10 @@ public:
 	/// Returns if the window is closed or not, true if is closed flase if not
 	/// <summary/>
 	bool CheckWindowStatus();
-
+	
+	void CreateEntity(std::string mesh);
+	
+	
 	// TESTING DELETE LATER
 	void CreateSinBad();
 

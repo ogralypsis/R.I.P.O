@@ -7,7 +7,7 @@
             "_numComponents": 1,
             "_components" : [
             	{
-            		"_comp1" : "HealthComponent"
+            		"_compID" : "RenderComponent"
             	}
             ]
         }

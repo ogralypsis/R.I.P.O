@@ -7,6 +7,7 @@ class RenderComponent :
 {
 public:
 	RenderComponent();
+	RenderComponent(std::string mesh);
 	~RenderComponent();
 
 	void virtual OnEvent(Event e);

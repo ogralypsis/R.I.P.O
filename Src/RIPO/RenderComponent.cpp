@@ -3,16 +3,14 @@
 
 #include <iostream>
 
-RenderComponent::RenderComponent()
+RenderComponent::RenderComponent() {}
+
+RenderComponent::RenderComponent(std::string mesh)
 {
-	MyOgre::GetInstance().CreateEntity("Sinbad.mesh");
-	std::cout << "LLEGO HASTA AQUI CHATO\n";
+	MyOgre::GetInstance().CreateEntity(mesh);
 }
 
-
-RenderComponent::~RenderComponent()
-{
-}
+RenderComponent::~RenderComponent() {}
 
 void RenderComponent::OnEvent(Event e)
 {

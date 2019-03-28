@@ -3,11 +3,15 @@
     "_entities": [
         {
             "_entityID": "Enemy",
-            "_meshID": "ogre.mesh",
             "_numComponents": 1,
             "_components" : [
             	{
-            		"_compID" : "RenderComponent"
+            		"_comp" : [
+	            			{
+	            			"_compID" : "RenderComponent",
+	            			"_compArgs" : "Sinbad.mesh"
+	            		}
+            		]
             	}
             ]
         }

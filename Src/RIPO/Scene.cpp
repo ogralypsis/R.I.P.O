@@ -37,11 +37,19 @@ void Scene::CreateSceneEntities(nlohmann::json scene)
 		for (int j = 0; j < _numComponents; j++)
 		{
 			// for each component, take the name
-			std::string _nameComponent = scene["_entities"][i]["_components"][j]["_compID"];
+			std::string _nameComponent = scene["_entities"][i]["_components"][j]["_comp"][0]["_compID"];
 
-			// create component
-			Component* _newComponent = _factory.Create(_nameComponent);
-			
+			// for each component, check if it has an argument
+			std::string _argsComponent = scene["_entities"][i]["_components"][j]["_comp"][0]["_compArgs"];
+
+			Component* _newComponent;
+			if (_argsComponent == "null")
+				// create component
+				_newComponent = _factory.Create(_nameComponent);
+			else
+				// create component
+				_newComponent = _factory.Create(_nameComponent, _argsComponent);
+
 			// add component to entity
 			_newEntity->AddComponent(_newComponent);
 		}

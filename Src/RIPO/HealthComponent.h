@@ -8,6 +8,7 @@ class HealthComponent : public Component
 {
 public:
 	HealthComponent();
+	HealthComponent(std::string arg);
 	HealthComponent(std::string id, Entity* e, int health);
 	~HealthComponent();
 

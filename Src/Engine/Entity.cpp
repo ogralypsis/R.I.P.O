@@ -44,6 +44,23 @@ void Entity::DeleteComponent(Component * c)
 	}
 }
 
+//searches for a component and returns it if found
+template <class T>
+T* Entity::GetComponent(T* c)
+{
+	int i = 0;
+	while (i < _components.size())
+	{
+		if (typeid(components[i] == typeid(c))
+		{
+			return dynamic_cast<T*>(components[i]);
+		}
+		i++;
+	}
+
+	return nullptr;
+}
+
 void Entity::Update() 
 {
 	// update each component of the entity

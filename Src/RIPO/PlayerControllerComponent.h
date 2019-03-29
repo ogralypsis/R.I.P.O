@@ -8,6 +8,7 @@ class PlayerControllerComponent : public Component
 {
 public:
 	PlayerControllerComponent();
+	PlayerControllerComponent(std::string arg);
 	PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ);
 	~PlayerControllerComponent();
 

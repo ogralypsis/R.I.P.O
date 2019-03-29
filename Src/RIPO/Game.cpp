@@ -13,6 +13,7 @@
 
 #include "HealthComponent.h"
 #include "RenderComponent.h"
+#include "PlayerControllerComponent.h"
 
 #include <Windows.h>
 #include <time.h>
@@ -163,4 +164,5 @@ void Game::RegisterComponents()
 {
 	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 	_compFactory.Register("RenderComponent", new DerivedCreator<RenderComponent, Component>());
+	_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
 }

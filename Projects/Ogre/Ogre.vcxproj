@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\Ogre\InputManager.cpp" />
     <ClCompile Include="..\..\Src\Ogre\MyOgre.cpp" />
+    <ClCompile Include="..\..\Src\Ogre\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Ogre\InputManager.h" />
     <ClInclude Include="..\..\Src\Ogre\MyOgre.h" />
+    <ClInclude Include="..\..\Src\Ogre\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

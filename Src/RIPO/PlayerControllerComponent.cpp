@@ -5,6 +5,8 @@
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
+PlayerControllerComponent::PlayerControllerComponent(std::string arg){}
+
 PlayerControllerComponent::PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ) : Component(id, e), 
 _velocity(vel), _player(e), _posX(posX), _posY(posY), _posZ(posZ) 
 {

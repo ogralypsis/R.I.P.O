@@ -69,4 +69,26 @@ struct DeathEvent : Event
 
 };
 
+
+#pragma region PhysicsEvents
+
+// Physics trnasform has been updated
+struct UpdateTransformEvent : Event
+{
+	UpdateTransformEvent(int x, int y, float w, float h, float r) : _posX(x), _posY(y), _width(w), _height(h), _rotation(r) {}
+
+	int _posX;
+	int _posY;
+
+	float _width;
+	float _height;
+
+	float _rotation;
+
+
+};
+
+
+#pragma endregion
+
 #endif

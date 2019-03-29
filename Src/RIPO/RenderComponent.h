@@ -2,12 +2,14 @@
 #define RENDER_COMPONENT_H
 
 #include <Component.h>
+#include <OgreSceneManager.h>
+
 class RenderComponent :
 	public Component
 {
 public:
 	RenderComponent();
-	RenderComponent(std::string mesh);
+	RenderComponent(/*Ogre::SceneManager * sceneMgr, */std::string mesh);
 	~RenderComponent();
 
 	void virtual OnEvent(Event e);

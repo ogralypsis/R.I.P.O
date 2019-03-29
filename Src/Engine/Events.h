@@ -17,5 +17,8 @@ struct Event
 	{
 		return typeid(this).name() == typeid(e).name();
 	}
+
+	// Añadir emisor del evento?¿
+
 };
 #endif

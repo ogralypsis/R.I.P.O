@@ -18,6 +18,8 @@ public:
 
 	void Update();
 
+	std::string GetId();
+
 protected:
 	std::vector<Component*> _components;
 	std::string _id;

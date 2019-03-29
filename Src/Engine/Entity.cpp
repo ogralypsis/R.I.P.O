@@ -50,3 +50,8 @@ void Entity::Update()
 	for (int i = 0; i < _components.size(); i++)
 		_components.at(i)->Update();
 }
+
+std::string Entity::GetId()
+{
+	return _id;
+}

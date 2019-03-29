@@ -61,7 +61,7 @@ public:
 	/// <summary/>
 	bool CheckWindowStatus();
 	
-	void CreateEntity(std::string mesh);
+	void CreateEntity(/*Ogre::SceneManager * sceneMgr,*/ std::string mesh);
 	
 	
 	// TESTING DELETE LATER

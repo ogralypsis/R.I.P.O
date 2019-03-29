@@ -18,7 +18,12 @@ public:
 
 	void Update();
 
+
 	std::string GetId();
+
+	template <class T>
+	T* GetComponent(T* c);
+
 
 protected:
 	std::vector<Component*> _components;

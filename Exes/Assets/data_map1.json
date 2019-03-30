@@ -10,7 +10,8 @@
         			"_numArguments" : 1,
         			"_arguments" : [
         				{
-	        				"_name" : "mesh",
+							"_name" : "mesh",
+							"_type" : 4,
 	        				"_arg" : "Sinbad.mesh"
 	        			}
 	        		]

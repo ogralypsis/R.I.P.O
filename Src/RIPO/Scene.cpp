@@ -32,6 +32,12 @@ void Scene::CreateSceneEntities(nlohmann::json scene)
 		// for each entity, take number of its components
 		int _numComponents = scene["_entities"][i]["_numComponents"];
 
+		// temporal variables for arguments
+		int _argInt = 0;
+		float _argFloat = 0.0;
+		double _argDouble = 0.0; 
+		std::string _argument = "";
+
 		for (int j = 0; j < _numComponents; j++)
 		{
 			// for each component, take the type
@@ -46,10 +52,39 @@ void Scene::CreateSceneEntities(nlohmann::json scene)
 			for (int a = 0; a < _numArguments; a++)
 			{
 				std::string _nameArgument = scene["_entities"][i]["_components"][j]["_arguments"][a]["_name"];
-				std::string _argument = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
+				int _typeArgument = scene["_entities"][i]["_components"][j]["_arguments"][a]["_type"];
+				
+
+				//1 = int, 2 = float, 3 = double, 4 = string
+				switch (_typeArgument)
+				{
+				case 1:
+					_argInt = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
+					_argumentMap[_nameArgument] = Arguments(_argInt);
+					break;
+
+				case 2:
+					_argFloat = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
+					_argumentMap[_nameArgument] = Arguments(_argFloat);
+					break;
+
+				case 3:
+					_argDouble = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
+					_argumentMap[_nameArgument] = Arguments(_argDouble);
+					break;
+
+				case 4:
+					//_argument = (std::string)scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
+					_argumentMap[_nameArgument] = Arguments(_argument);
+					break;
+
+				default:
+					throw std::invalid_argument("This type of value is not suported");
+					break;
+				}
 				
 				// esto hay que hacerlo general para cualquier tipo
-				_argumentMap[_nameArgument] = Arguments(_argument);
+				//_argumentMap[_nameArgument] = Arguments(_argument);
 			}
 
 			// create component

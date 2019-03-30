@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\Src\Engine\FileReader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\ArgumentStruct.h" />
     <ClInclude Include="..\..\Src\Engine\Component.h" />
     <ClInclude Include="..\..\Src\Engine\Entity.h" />
     <ClInclude Include="..\..\Src\Engine\EntityManager.h" />

@@ -5,15 +5,26 @@
             "_entityID": "Enemy",
             "_numComponents": 1,
             "_components" : [
-            	{
-            		"_comp" : [
-	            			{
-	            			"_compID" : "RenderComponent",
-	            			"_compArgs" : "Sinbad.mesh"
-	            		}
-            		]
-            	}
-            ]
-        }
-    ]
+            	{	            		
+        			"_type" : "RenderComponent",
+        			"_numArguments" : 1,
+        			"_arguments" : [
+        				{
+	        				"_name" : "mesh",
+	        				"_arg" : "Sinbad.mesh"
+	        			}
+	        		]
+	       		}
+	       	]
+	    }
+	]
 }
+/*	            		{
+	            			"type" : "Camera",
+	            			"arguments" : {
+	            				"position": "3, 3, 3",
+	            				"fov": 90,
+	            				"style": "ortographic"
+	            			}
+	            		}
+          */

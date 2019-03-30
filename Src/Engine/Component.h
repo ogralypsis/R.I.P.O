@@ -3,18 +3,20 @@
 
 #include "Entity.h"
 #include "Events.h"
+#include "ArgumentStruct.h"
+#include <map>
 
 class Component
 {
 public:
 	Component();
-	Component(std::string id, Entity* e);
 	~Component();
+
+	virtual void Init(std::map<std::string, Arguments> arguments, Entity* e) = 0;
 	virtual void Update() = 0;
 	virtual void OnEvent(Event e) = 0;
 	
 protected:
-	std::string _id;
 	Entity* _ownerEntity;
 };
 #endif

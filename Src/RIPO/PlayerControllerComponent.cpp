@@ -5,8 +5,7 @@
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
-PlayerControllerComponent::PlayerControllerComponent(std::string arg){}
-
+/*
 PlayerControllerComponent::PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ) : Component(id, e), 
 _velocity(vel), _player(e), _posX(posX), _posY(posY), _posZ(posZ) 
 {
@@ -15,9 +14,14 @@ _velocity(vel), _player(e), _posX(posX), _posY(posY), _posZ(posZ)
 	_orPosZ = _posZ;
 
 }
+*/
 
 PlayerControllerComponent::~PlayerControllerComponent(){}
 
+
+void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
+{
+}
 
 void PlayerControllerComponent::OnEvent(Event e)
 {

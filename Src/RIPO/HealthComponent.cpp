@@ -3,11 +3,11 @@
 
 HealthComponent::HealthComponent() : Component () { }
 
-HealthComponent::HealthComponent(std::string arg) {}
-
-HealthComponent::HealthComponent(std::string id, Entity* e, int health) : Component(id, e), _health(health) {}
-
 HealthComponent::~HealthComponent() {}
+
+void HealthComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
+{
+}
 
 void HealthComponent::OnEvent(Event e)
 {

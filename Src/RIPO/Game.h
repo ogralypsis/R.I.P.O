@@ -3,6 +3,8 @@
 
 #include "../Engine/Factory.h"
 #include "../Engine/Component.h"
+#include "RIPOArguments.h"
+
 #include <string>
 
 
@@ -66,7 +68,7 @@ private:
 	/// </summary>
 	void RegisterComponents();
 
-	Factory<Component, std::string> _compFactory;
+	Factory<Component> _compFactory;
 
 	static Game * _instance;
 	

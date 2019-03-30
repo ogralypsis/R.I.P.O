@@ -2,6 +2,7 @@
 #define RENDER_COMPONENT_H
 
 #include <Component.h>
+#include "RIPOArguments.h"
 #include <OgreSceneManager.h>
 
 class RenderComponent :
@@ -9,12 +10,11 @@ class RenderComponent :
 {
 public:
 	RenderComponent();
-	RenderComponent(/*Ogre::SceneManager * sceneMgr, */std::string mesh);
 	~RenderComponent();
 
+	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 	void virtual OnEvent(Event e);
 	void virtual Update();
-
 };
 
 #endif RENDER_COMPONENT_H

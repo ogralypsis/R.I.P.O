@@ -1,9 +1,8 @@
 #ifndef FACTORY_H
 #define FACTORY_H
+
 #include <string>
 #include <map>
-
-#include "Component.h"
 
 template <class T>
 class Creator
@@ -12,8 +11,6 @@ public:
 	virtual ~Creator() {}
 
 	virtual T* Create() = 0;
-	
-	virtual T* Create(std::string arg) = 0;
 };
 
 template <class DerivedType, class BaseType>
@@ -23,28 +20,20 @@ public:
 	BaseType* Create() {
 		return new DerivedType;
 	}
-	
-	BaseType* Create(std::string arg) {
-		return new DerivedType(arg);
-	}
 };
 
-template <class T, class Key>
+template <class T>
 class Factory
 {
 public:
 	Factory() {}
 
-	void Register(Key id, Creator<T>* fn) {
+	void Register(std::string id, Creator<T>* fn) {
 		_functionMap[id] = fn;
 	}
 
-	T* Create(Key id) {
+	T* Create(std::string id) {
 		return _functionMap[id]->Create();
-	}
-	
-	T* Create(Key id, std::string arg) {
-		return _functionMap[id]->Create(arg);
 	}
 	
 	~Factory() {
@@ -55,6 +44,6 @@ public:
 	}
 
 private:
-	std::map<Key, Creator<T>*> _functionMap;
+	std::map<std::string, Creator<T>*> _functionMap;
 };
 #endif

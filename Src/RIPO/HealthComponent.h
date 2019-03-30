@@ -1,16 +1,16 @@
 #ifndef _H_HEALTHCOMPONENT_H_
 #define _H_HEALTHCOMPONENT_H_
 
-#include <../Engine/Component.h>
+#include <Component.h>
 #include "RIPOEvent.h"
 
 class HealthComponent : public Component
 {
 public:
 	HealthComponent();
-	HealthComponent(std::string arg);
-	HealthComponent(std::string id, Entity* e, int health);
 	~HealthComponent();
+
+	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 
 	void virtual OnEvent(Event e);
 	void virtual Update();

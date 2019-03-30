@@ -5,25 +5,19 @@
 #include "../Engine/FileReader.h"
 #include "../Engine/factory.h"
 
-
 class Scene
 {
 private: 
-
-
 	EntityManager* _instanceEM;
 	FileReader* _instanceFR;
 	std::string _sceneID;
-	Factory<Component, std::string> _factory;
+	Factory<Component> _compFactory;
 
 public:
-	Scene(std::string ID, Factory<Component, std::string> factory);
+	Scene(std::string ID, Factory<Component> compFactory);
 	~Scene();
 
 	void CreateSceneEntities(nlohmann::json scene);
-
-
 	void Update();
-
 };
 #endif

@@ -51,7 +51,7 @@ T* Entity::GetComponent(T* c)
 	int i = 0;
 	while (i < _components.size())
 	{
-		if (typeid(components[i] == typeid(c))
+		if (typeid(components[i] == typeid(c)))
 		{
 			return dynamic_cast<T*>(components[i]);
 		}

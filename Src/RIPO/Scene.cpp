@@ -1,9 +1,11 @@
 #include "Scene.h"
+#include <ArgumentStruct.h>
+#include <Component.h>
 
-Scene::Scene(std::string ID, Factory<Component, std::string> factory)
+Scene::Scene(std::string ID, Factory<Component> compFactory)
 {
 	_sceneID = ID;
-	_factory = factory;
+	_compFactory = compFactory;
 
 	_instanceEM = EntityManager::getInstance();
 	_instanceFR = FileReader::getInstance();
@@ -14,11 +16,7 @@ Scene::Scene(std::string ID, Factory<Component, std::string> factory)
 	CreateSceneEntities(entities);
 }
 
-
-Scene::~Scene()
-{
-	
-}
+Scene::~Scene() {}
 
 void Scene::CreateSceneEntities(nlohmann::json scene)
 {
@@ -36,19 +34,29 @@ void Scene::CreateSceneEntities(nlohmann::json scene)
 
 		for (int j = 0; j < _numComponents; j++)
 		{
-			// for each component, take the name
-			std::string _nameComponent = scene["_entities"][i]["_components"][j]["_comp"][0]["_compID"];
+			// for each component, take the type
+			std::string _nameComponent = scene["_entities"][i]["_components"][j]["_type"];
 
-			// for each component, check if it has an argument
-			std::string _argsComponent = scene["_entities"][i]["_components"][j]["_comp"][0]["_compArgs"];
+			// for each component, how many arguments it has
+			int _numArguments = scene["_entities"][i]["_components"][j]["_numArguments"];
 
-			Component* _newComponent;
-			if (_argsComponent == "null")
-				// create component
-				_newComponent = _factory.Create(_nameComponent);
-			else
-				// create component
-				_newComponent = _factory.Create(_nameComponent, _argsComponent);
+			// for each component, check what argument it needs
+			std::map<std::string, Arguments> _argumentMap;
+
+			for (int a = 0; a < _numArguments; a++)
+			{
+				std::string _nameArgument = scene["_entities"][i]["_components"][j]["_arguments"][a]["_name"];
+				std::string _argument = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
+				
+				// esto hay que hacerlo general para cualquier tipo
+				_argumentMap[_nameArgument] = Arguments(_argument);
+			}
+
+			// create component
+			Component* _newComponent = _compFactory.Create(_nameComponent);
+
+			// init component with arguments
+			_newComponent->Init(_argumentMap, _newEntity);
 
 			// add component to entity
 			_newEntity->AddComponent(_newComponent);

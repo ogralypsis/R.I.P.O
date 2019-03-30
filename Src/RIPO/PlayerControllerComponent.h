@@ -8,12 +8,11 @@ class PlayerControllerComponent : public Component
 {
 public:
 	PlayerControllerComponent();
-	PlayerControllerComponent(std::string arg);
-	PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ);
+	//PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ);
 	~PlayerControllerComponent();
 
+	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 	void virtual OnEvent(Event e);
-
 	void virtual Update();
 
 	//Getters

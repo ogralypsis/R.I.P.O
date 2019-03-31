@@ -39,7 +39,7 @@ public:
 	~Factory() {
 		// Just delete everything
 		for (auto i : _functionMap) {
-			delete(i).second;
+			//delete(i).second;
 		}
 	}
 

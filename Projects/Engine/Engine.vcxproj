@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\Src\Engine\EntityManager.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventManager.cpp" />
     <ClCompile Include="..\..\Src\Engine\FileReader.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SceneLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\ArgumentStruct.h" />
@@ -35,6 +36,7 @@
     <ClInclude Include="..\..\Src\Engine\Factory.h" />
     <ClInclude Include="..\..\Src\Engine\FileReader.h" />
     <ClInclude Include="..\..\Src\Engine\json.hpp" />
+    <ClInclude Include="..\..\Src\Engine\SceneLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

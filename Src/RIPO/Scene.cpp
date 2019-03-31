@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include <ArgumentStruct.h>
 #include <Component.h>
+#include <SceneLoader.h>
 
 Scene::Scene(std::string ID, Factory<Component> compFactory)
 {
@@ -13,94 +14,11 @@ Scene::Scene(std::string ID, Factory<Component> compFactory)
 	// Read file 
 	json entities = _instanceFR->readFile("Assets/" + ID + ".json");
 
-	CreateSceneEntities(entities);
+	// Call Loader
+	SceneLoader::getInstance()->LoadFromJson(entities, compFactory);
 }
 
 Scene::~Scene() {}
-
-void Scene::CreateSceneEntities(nlohmann::json scene)
-{
-	// take the number of entities from JSON
-	int _numEntities = scene["_numEntities"];
-
-	for (int i = 0; i < _numEntities; i++) 
-	{
-		// for each entity, take the name
-		std::string _name = scene["_entities"][i]["_entityID"];
-		Entity * _newEntity = new Entity(_name);
-
-		// for each entity, take number of its components
-		int _numComponents = scene["_entities"][i]["_numComponents"];
-
-		// temporal variables for arguments
-		int _argInt = 0;
-		float _argFloat = 0.0;
-		double _argDouble = 0.0; 
-		std::string _argument = "";
-
-		for (int j = 0; j < _numComponents; j++)
-		{
-			// for each component, take the type
-			std::string _nameComponent = scene["_entities"][i]["_components"][j]["_type"];
-
-			// for each component, how many arguments it has
-			int _numArguments = scene["_entities"][i]["_components"][j]["_numArguments"];
-
-			// for each component, check what argument it needs
-			std::map<std::string, Arguments> _argumentMap;
-
-			for (int a = 0; a < _numArguments; a++)
-			{
-				std::string _nameArgument = scene["_entities"][i]["_components"][j]["_arguments"][a]["_name"];
-				int _typeArgument = scene["_entities"][i]["_components"][j]["_arguments"][a]["_type"];
-				
-
-				//1 = int, 2 = float, 3 = double, 4 = string
-				switch (_typeArgument)
-				{
-				case 1:
-					_argInt = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
-					_argumentMap[_nameArgument] = Arguments(_argInt);
-					break;
-
-				case 2:
-					_argFloat = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
-					_argumentMap[_nameArgument] = Arguments(_argFloat);
-					break;
-
-				case 3:
-					_argDouble = scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
-					_argumentMap[_nameArgument] = Arguments(_argDouble);
-					break;
-
-				case 4:
-					//_argument = (std::string)scene["_entities"][i]["_components"][j]["_arguments"][a]["_arg"];
-					_argumentMap[_nameArgument] = Arguments(_argument);
-					break;
-
-				default:
-					throw std::invalid_argument("This type of value is not suported");
-					break;
-				}
-				
-				// esto hay que hacerlo general para cualquier tipo
-				//_argumentMap[_nameArgument] = Arguments(_argument);
-			}
-
-			// create component
-			Component* _newComponent = _compFactory.Create(_nameComponent);
-
-			// init component with arguments
-			_newComponent->Init(_argumentMap, _newEntity);
-
-			// add component to entity
-			_newEntity->AddComponent(_newComponent);
-		}
-
-		// Add entity to Manager
-		_instanceEM->AddEntity(_newEntity);
-	}
-}
 
 void Scene::Update()
 {

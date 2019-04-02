@@ -4,22 +4,29 @@
 
 TransformComponent::TransformComponent()
 {
-
-	t = new Transform();
-
 }
-
-TransformComponent::TransformComponent(std::string arg)
-{
-}
-
-TransformComponent::TransformComponent(std::string id, Entity * e)
-{
-}
-
 
 TransformComponent::~TransformComponent()
 {
+}
+
+void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
+{
+
+	t = new Transform();
+
+	SetPosition(_pos._x = arguments["posX"].f,
+		_pos._y = arguments["posY"].f,
+		_pos._z = arguments["posZ"].f);
+
+	SetRotation(_rot._x = arguments["rotX"].f,
+		_rot._y = arguments["rotY"].f,
+		_rot._z = arguments["rotZ"].f);
+
+	SetScale(_scale._x = arguments["scaleX"].f,
+		_scale._y = arguments["sclaeY"].f,
+		_scale._z = arguments["scaleZ"].f);
+
 }
 
 void TransformComponent::SetPosition(float x, float y, float z)
@@ -28,6 +35,11 @@ void TransformComponent::SetPosition(float x, float y, float z)
 	_pos._y = y;
 	_pos._z = z;
 	t->SetPosition(x, y, z);
+}
+
+position TransformComponent::GetPosition()
+{
+	return _pos;
 }
 
 void TransformComponent::SetRotation(float x, float y, float z)
@@ -39,6 +51,11 @@ void TransformComponent::SetRotation(float x, float y, float z)
 	t->SetRotation(x, y, z);
 }
 
+rotation TransformComponent::GetRotation()
+{
+	return _rot;
+}
+
 void TransformComponent::SetScale(float x, float y, float z)
 {
 
@@ -46,6 +63,11 @@ void TransformComponent::SetScale(float x, float y, float z)
 	_scale._y = y;
 	_scale._z = z;
 	t->SetScale(x, y, z);
+}
+
+scale TransformComponent::GetScale()
+{
+	return _scale;
 }
 
 void TransformComponent::OnEvent(Event e)

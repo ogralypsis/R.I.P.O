@@ -1,8 +1,9 @@
 #ifndef _H_PLAYERCONTROLLERCOMPONENT_H_
 #define _H_PLAYERCONTROLLERCOMPONENT_H_
 
-#include <../Engine/Component.h>
+#include <Component.h>
 #include "RIPOEvent.h"
+#include "TransformComponent.h"
 
 class PlayerControllerComponent : public Component
 {
@@ -16,9 +17,9 @@ public:
 	void virtual Update();
 
 	//Getters
-	float GetNewPositionX() { return _posX; };
-	float GetNewPositionY() { return _posY; };
-	float GetNewPositionZ() { return _posZ; };
+	/*float GetNewPositionX();
+	float GetNewPositionY();
+	float GetNewPositionZ();*/
 
 private:
 
@@ -42,6 +43,7 @@ private:
 	float _orPosZ;
 
 	Entity* _player = nullptr;
+	TransformComponent* _transform = nullptr;
 	
 };
 

@@ -1,9 +1,10 @@
 #ifndef _H_TRANSFORMCOMPONENT_H_
 #define _H_TRANSFORMCOMPONENT_H_
 
-#include <../Engine/Component.h>
+#include <Component.h>
 #include "RIPOEvent.h"
 #include "../Ogre/Transform.h"
+#include "RIPOArguments.h"
 
 struct position
 {
@@ -30,21 +31,21 @@ class TransformComponent : public Component
 {
 public:
 	TransformComponent();
-	TransformComponent(std::string arg);
-	TransformComponent(std::string id, Entity* e);
 	~TransformComponent();
+
+	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 
 	//Position
 	void SetPosition(float x, float y, float z);
-	position GetPosition() { return _pos; };
+	position GetPosition();
 
 	//Rotation
 	void SetRotation(float x, float y, float z);
-	rotation GetRotation() { return _rot; };
+	rotation GetRotation();
 
 	//Scale
 	void SetScale(float x, float y, float z);
-	scale GetScale() { return _scale; };
+	scale GetScale();
 
 	void virtual OnEvent(Event e);
 

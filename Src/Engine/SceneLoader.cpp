@@ -1,6 +1,7 @@
 #include "SceneLoader.h"
 
 #include "EntityManager.h"
+#include "EventManager.h"
 
 SceneLoader * SceneLoader::_instance = nullptr;
 
@@ -96,6 +97,7 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 
 			// add component to entity
 			_newEntity->AddComponent(_newComponent);
+	
 		}
 
 		// Add entity to Manager

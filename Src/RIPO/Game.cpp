@@ -76,14 +76,16 @@ void Game::Release()
 
 void Game::Loop()
 {
-	
+
+
+	// Get the current time in seconds
+	time(&_currentTime);
+	//_currentTime = (SDL_GetTicks() / 1000.0);
+	int frames = 0;
+
+
 	// Continue the loop if the window is not closed and game is not exited
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) {
-
-		// Get the current time in seconds
-		time(&_currentTime);
-		//_currentTime = (SDL_GetTicks() / 1000.0);
-		int frames = 0;
 
 		/*
 		.
@@ -102,16 +104,14 @@ void Game::Loop()
 		_currentTime = _newTime;
 		_accumulator += _frameTime;
 
+		HandleInput();
 
-		//std::cout << "LOOP" << std::endl;
-		
 		// Loop for game logic and physics step (60 times per second)
-		if (_accumulator >= _FPS_CAP) {
+		while (_accumulator >= _FPS_CAP) {
 
-			if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_J))
-				std::cout << "PRESSING KEY J" << std::endl;
-			else 
-				std::cout << "NO INPUT" << std::endl;
+			
+			//HandleInput();
+			
 			// INPUT
 			// PHYSCS STEP
 			// CURRENT SCENE UPDATE
@@ -148,8 +148,33 @@ void Game::ResetInstance()
 void Game::HandleInput()
 {
 	// presiona  la tecla "J" y manda un evento de input
-	JEvent myEvent(0);
-	EventManager::getInstance()->NotifyObservers(myEvent);
+	/*JEvent myEvent(0);
+	EventManager::getInstance()->NotifyObservers(myEvent);*/
+
+
+	InputManager::GetInstance().CaptureInput();
+
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
+
+		std::cout << "PRESSING KEY W" << std::endl;
+		/*WEvent myEvent(0);
+		EventManager::GetInstance()->NotifyObservers(myEvent);*/
+	}
+	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
+	{
+
+		std::cout << "PRESSING KEY S" << std::endl;
+	}
+	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
+	{
+
+		std::cout << "PRESSING KEY A" << std::endl;
+	}
+	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
+	{
+
+		std::cout << "PRESSING KEY D" << std::endl;
+	}
 }
 
 void Game::Update()

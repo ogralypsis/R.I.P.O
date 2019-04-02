@@ -30,6 +30,7 @@ bool InputManager::InitInput(Ogre::RenderWindow* rw)
 	//creates input manager
 	_inputSystem = OIS::InputManager::createInputSystem(_pl);
 
+
 	//creates mouse object for the buffered input
 	_mouse = static_cast<OIS::Mouse*>(_inputSystem->createInputObject(OIS::OISMouse, true));
 	_mouse->setEventCallback(this);
@@ -125,6 +126,19 @@ bool InputManager::keyReleased(const OIS::KeyEvent &e)
 bool InputManager::IsKeyDown(OIS::KeyCode key)
 {
 	return _keyboardKeys[key];
+}
+
+void InputManager::addKeyListener(OIS::KeyListener *keyListener, const std::string& name) {
+	if (_keyboard) {
+		// Check for duplicate items
+		itKeyListener = mKeyListeners.find(name);
+		if (itKeyListener == mKeyListeners.end()) {
+			mKeyListeners[name] = keyListener;
+		}
+		else {
+			// Duplicate Item
+		}
+	}
 }
 
 ///MOUSE

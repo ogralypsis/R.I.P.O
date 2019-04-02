@@ -36,6 +36,8 @@ public:
 
 	bool IsMouseButtonPressed(OIS::MouseButtonID);
 
+	void addKeyListener(OIS::KeyListener *keyListener, const std::string& name);
+
 private:
 	InputManager();
 
@@ -67,6 +69,19 @@ private:
 
 	//mouse cursor coordinates
 	int _mouseX, _mouseY, _mouseZ;
+
+
+	
+	std::map<std::string, OIS::KeyListener*> mKeyListeners;
+	std::map<std::string, OIS::MouseListener*> mMouseListeners;
+	
+	std::map<std::string, OIS::KeyListener*>::iterator itKeyListener;
+	std::map<std::string, OIS::MouseListener*>::iterator itMouseListener;
+
+
+	std::map<std::string, OIS::KeyListener*>::iterator itKeyListenerEnd;
+	std::map<std::string, OIS::MouseListener*>::iterator itMouseListenerEnd;
+
 };
 
 #endif

@@ -48,6 +48,9 @@
     <ClInclude Include="..\..\Src\RIPO\Scene.h" />
     <ClInclude Include="..\..\Src\RIPO\TransformComponent.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{040AF99D-1E70-421F-A2EA-FFC44D529DAB}</ProjectGuid>

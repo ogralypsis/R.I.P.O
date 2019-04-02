@@ -2,6 +2,7 @@
 #include "../Engine/EntityManager.h"
 
 
+
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
@@ -21,6 +22,16 @@ PlayerControllerComponent::~PlayerControllerComponent(){}
 
 void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
+	_velocity = arguments["vel"].f;
+
+	_transform = new TransformComponent();
+	
+	//_posX = _player->GetComponent(_transform)->GetPosition()._x;
+	_orPosX = _posX;
+	//_posY = _player->GetComponent(_transform)->GetPosition()._y;
+	_orPosY = _posY;
+	//_posZ = _player->GetComponent(_transform)->GetPosition()._z;
+	_orPosZ = _posZ;
 }
 
 void PlayerControllerComponent::OnEvent(Event e)
@@ -59,25 +70,44 @@ void PlayerControllerComponent::Update()
 {
 }
 
+/*float PlayerControllerComponent::GetNewPositionX()
+{
+	return _posX;
+}
+
+float PlayerControllerComponent::GetNewPositionY()
+{
+	return _posY;
+}
+
+float PlayerControllerComponent::GetNewPositionZ()
+{
+	return _posZ;
+}*/
+
 void PlayerControllerComponent::ForwardMovement()
 {
 	_posZ += _velocity;
+	_transform->SetPosition(_posX, _posY, _posZ);
 
 }
 
 void PlayerControllerComponent::LeftMovement()
 {
 	_posX -= _velocity;
+	_transform->SetPosition(_posX, _posY, _posZ);
 }
 
 void PlayerControllerComponent::BackMovement()
 {
 	_posZ -= _velocity;
+	_transform->SetPosition(_posX, _posY, _posZ);
 }
 
 void PlayerControllerComponent::RightMovement()
 {
 	_posX += _velocity;
+	_transform->SetPosition(_posX, _posY, _posZ);
 }
 
 void PlayerControllerComponent::ResetPosition()

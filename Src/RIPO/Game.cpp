@@ -14,6 +14,7 @@
 #include "HealthComponent.h"
 #include "RenderComponent.h"
 #include "PlayerControllerComponent.h"
+#include "TransformComponent.h"
 
 #include <Windows.h>
 #include <time.h>
@@ -162,7 +163,10 @@ void Game::ChangeScene(std::string name)
 
 void Game::RegisterComponents()
 {
-	//_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
+	_compFactory.Register("TransformComponent", new DerivedCreator<TransformComponent, Component>());
+	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 	_compFactory.Register("RenderComponent", new DerivedCreator<RenderComponent, Component>());
-	//_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
+	_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
+	
+
 }

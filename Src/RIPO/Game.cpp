@@ -76,6 +76,7 @@ void Game::Release()
 
 void Game::Loop()
 {
+	
 	// Continue the loop if the window is not closed and game is not exited
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) {
 
@@ -101,15 +102,20 @@ void Game::Loop()
 		_currentTime = _newTime;
 		_accumulator += _frameTime;
 
+
+		//std::cout << "LOOP" << std::endl;
+		
 		// Loop for game logic and physics step (60 times per second)
-		while (_accumulator >= _FPS_CAP) {
+		if (_accumulator >= _FPS_CAP) {
 
 			if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_J))
 				std::cout << "PRESSING KEY J" << std::endl;
+			else 
+				std::cout << "NO INPUT" << std::endl;
 			// INPUT
 			// PHYSCS STEP
 			// CURRENT SCENE UPDATE
-
+		
 			_accumulator -= _FPS_CAP;
 			frames++;
 		}

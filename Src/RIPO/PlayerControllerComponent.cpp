@@ -19,18 +19,19 @@ _velocity(vel), _player(e), _posX(posX), _posY(posY), _posZ(posZ)
 
 PlayerControllerComponent::~PlayerControllerComponent(){}
 
-
+//template<class TransformComponent>
 void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_velocity = arguments["vel"].f;
 
 	_transform = new TransformComponent();
 	
-	//_posX = _player->GetComponent(_transform)->GetPosition()._x;
+	
+	//_posX = _player->GetComponent<TransformComponent>(_transform)->GetPosition()._x;
 	_orPosX = _posX;
-	//_posY = _player->GetComponent(_transform)->GetPosition()._y;
+	//_posY = _player->GetComponent<TransformComponent>(_transform)->GetPosition()._y;
 	_orPosY = _posY;
-	//_posZ = _player->GetComponent(_transform)->GetPosition()._z;
+	//_posZ = _player->GetComponent<TransformComponent>(_transform)->GetPosition()._z;
 	_orPosZ = _posZ;
 }
 
@@ -61,6 +62,11 @@ void PlayerControllerComponent::OnEvent(Event e)
 	else if ("DEvent" == typeid(e).name())
 	{
 		RightMovement();
+	}
+
+	else if ("MouseMoveEvent" == typeid(e).name()) 
+	{
+		CameraMovement();
 	}
 
 	
@@ -108,6 +114,11 @@ void PlayerControllerComponent::RightMovement()
 {
 	_posX += _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
+}
+
+void PlayerControllerComponent::CameraMovement()
+{
+	//TODO
 }
 
 void PlayerControllerComponent::ResetPosition()

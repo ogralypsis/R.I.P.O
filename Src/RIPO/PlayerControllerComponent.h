@@ -12,6 +12,7 @@ public:
 	//PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ);
 	~PlayerControllerComponent();
 
+	//template<class TransformComponent>
 	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 	void virtual OnEvent(Event e);
 	void virtual Update();
@@ -27,6 +28,8 @@ private:
 	void LeftMovement();
 	void BackMovement();
 	void RightMovement();
+
+	void CameraMovement();
 
 	void ResetPosition();
 

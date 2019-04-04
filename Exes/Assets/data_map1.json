@@ -3,7 +3,7 @@
     "_entities": [
         {
             "_entityID": "Enemy",
-            "_numComponents": 1,
+            "_numComponents": 2,
             "_components" : [
             	{	            		
         			"_type" : "RenderComponent",
@@ -13,6 +13,66 @@
 							"_name" : "mesh",
 							"_type" : 4,
 	        				"_arg" : "Sinbad.mesh"
+	        			}
+	        		]
+	       		},
+
+	       		{	            		
+        			"_type" : "TransformComponent",
+        			"_numArguments" : 9,
+        			"_arguments" : [
+        				{
+							"_name" : "posX",
+							"_type" : 2,
+	        				"_arg" : "0"
+	        			},
+
+	        			{
+							"_name" : "posY",
+							"_type" : 2,
+	        				"_arg" : "0"
+	        			},
+
+	        			{
+							"_name" : "posZ",
+							"_type" : 2,
+	        				"_arg" : "0"
+	        			},
+
+	        			{
+							"_name" : "rotX",
+							"_type" : 2,
+	        				"_arg" : "0"
+	        			},
+
+	        			{
+							"_name" : "rotY",
+							"_type" : 2,
+	        				"_arg" : "0"
+	        			},
+
+	        			{
+							"_name" : "rotZ",
+							"_type" : 2,
+	        				"_arg" : "0"
+	        			},
+
+	        			{
+							"_name" : "scaleX",
+							"_type" : 2,
+	        				"_arg" : "1"
+	        			},
+
+	        			{
+							"_name" : "scaleY",
+							"_type" : 2,
+	        				"_arg" : "1"
+	        			},
+
+	        			{
+							"_name" : "scaleZ",
+							"_type" : 2,
+	        				"_arg" : "1"
 	        			}
 	        		]
 	       		}

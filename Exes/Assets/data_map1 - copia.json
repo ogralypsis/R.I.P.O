@@ -15,7 +15,13 @@
 	        				"_arg" : "Sinbad.mesh"
 	        			}
 	        		]
-	
+					/*"_numEvents": 3,
+					"_events" : [
+							"UpdateTransformEvent", 
+							"OtherEvent",
+							"OtherEvent2"
+					]*/
+					
 	       		},
 
 	       		{	            		

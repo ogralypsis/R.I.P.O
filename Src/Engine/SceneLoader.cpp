@@ -88,11 +88,11 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 					break;
 				}
 			}
+			////////////////
 
-/*
 			// for each component, how many events it has
 			int _numEvents = json["_entities"][i]["_components"][j]["_numEvents"];	
-
+			
 			std::vector<std::string> _events;
 
 			for (int b = 0; b < _numEvents; b++) {
@@ -101,16 +101,21 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 				_events.push_back(_nameEvent);
 			}
 
-*/
+			//conversion
+
+			/////////////
 
 			// create component
 			Component* _newComponent = compFactory.Create(_nameComponent);
+
+			_newEntity->AddComponent(_newComponent, _events);////
 
 			// init component with arguments
 			_newComponent->Init(_argumentMap, _newEntity);
 
 			// add component to entity
-			_newEntity->AddComponent(_newComponent);
+
+			//_newEntity->AddComponent(_newComponent);
 	
 		}
 

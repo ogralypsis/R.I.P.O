@@ -1,11 +1,11 @@
 {
-	"_numEntities" : 2,
+	"_numEntities" : 1,
     "_entities": [
         {
             "_entityID": "Enemy",
-            "_numComponents": 2,
+            "_numComponents": 1,
             "_components" : [
-            	{	            		
+            {	            		
         			"_type" : "RenderComponent",
         			"_numArguments" : 1,
         			"_arguments" : [
@@ -14,17 +14,13 @@
 							"_type" : 4,
 	        				"_arg" : "Sinbad.mesh"
 	        			}
-	        		]
-					/*"_numEvents": 3,
-					"_events" : [
-							"UpdateTransformEvent", 
-							"OtherEvent",
-							"OtherEvent2"
-					]*/
-					
-	       		},
-
-	       		{	            		
+	        		],
+					    "_numEvents": 1,
+					    "_events" : [
+							"UpdateTransformEvent"
+					    ]				
+	       		}
+	       		/*{	            		
         			"_type" : "TransformComponent",
         			"_numArguments" : 9,
         			"_arguments" : [
@@ -82,13 +78,12 @@
 	        				"_arg" : "1"
 	        			}
 	        		]
-	       		}
-	       	]
+	       		}*/
+	       	  ]
 
-	    },
-
+	      }
+/*
 	    {
-
 	       	"_entityID": "Player",
             "_numComponents": 2,
             "_components" : [
@@ -151,7 +146,7 @@
 	        			}
 	        		]
 	       		},
-
+              
             	{	            		
         			"_type" : "PlayerControllerComponent",
         			"_numArguments" : 1,
@@ -163,12 +158,10 @@
 	        			}
 	        		]
 	       		}
-
-	       		
 	       	]
 
-	    }
-	]
+	    }*/
+	  ]
 }
 /*	            		{
 	            			"type" : "Camera",

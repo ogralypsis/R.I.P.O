@@ -16,6 +16,8 @@ public:
 	void CreateEntity(std::string name, std::vector<Component*> components);
 
 	void Update();
+	
+	std::vector<Entity*> GetEntities() { return _entities; }
 
 private:
 	EntityManager();

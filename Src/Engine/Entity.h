@@ -3,6 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <map>
+#include <Events.h>
+
 
 class Component;
 
@@ -13,7 +16,9 @@ public:
 	Entity(std::string id);
 	~Entity();
 
-	void AddComponent(Component* c);
+	void AddComponent(Component* c, std::vector<std::string> v);
+
+	//void AddComponent(Component* c);
 	void DeleteComponent(Component* c);
 
 	void Update();
@@ -25,9 +30,13 @@ public:
 	T* GetComponent(T* c);
 
 
+	std::map<Component*, std::vector<std::string>> GetComponents() { return _components; }
+
 protected:
-	std::vector<Component*> _components;
-	//std::map<Component*, std::vector<Event>> _components; // Ahora cada componente va acompañado de una lista de eventos a los que quiere subscribirse
+	//std::vector<Component*> _components;
+
+	std::map<Component*, std::vector<std::string>> _components;
+	// Ahora cada componente va acompañado de una lista de eventos a los que quiere subscribirse
 	std::string _id;
 };
 #endif

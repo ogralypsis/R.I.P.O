@@ -59,7 +59,7 @@ void EntityManager::CreateEntity(std::string name, std::vector<Component*> compo
 
 	// Add its components
 	for (auto c : components) {
-		ent->AddComponent(c);
+		//ent->AddComponent(c);
 	}
 
 	AddEntity(ent);

@@ -105,13 +105,15 @@ void Game::Loop()
 		_currentTime = _newTime;
 		_accumulator += _frameTime;
 
-		HandleInput();
+		MessagePump();
+
+		/*HandleInput();*/
 
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
 
 			
-			//HandleInput();
+			HandleInput();
 			
 			// INPUT
 			// PHYSCS STEP
@@ -180,6 +182,16 @@ void Game::HandleInput()
 
 void Game::Update()
 {
+}
+
+void Game::MessagePump()
+{
+	MSG  msg;
+	while (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
 }
 
 void Game::Render()

@@ -68,6 +68,12 @@ private:
 	/// </summary>
 	void RegisterComponents();
 
+	/// <summary>
+	/// Handles window messages
+	/// </summary>
+	void MessagePump();
+
+
 	Factory<Component> _compFactory;
 
 	static Game * _instance;

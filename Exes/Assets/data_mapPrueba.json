@@ -1,174 +1,26 @@
 {
 	"_numEntities" : 1,
-    "_entities": [
-        {
-            "_entityID": "Enemy",
-            "_numComponents": 1,
-            "_components" : [
-            {	            		
-        			"_type" : "RenderComponent",
-        			"_numArguments" : 1,
-        			"_arguments" : [
-        				{
+  "_entities": [
+		{
+			"_entityID": "Enemy",
+			"_numComponents": 1,
+			"_components" : [
+				{
+					"_type" : "RenderComponent",
+        	"_numArguments" : 1,
+        	"_arguments" : [
+						{
 							"_name" : "mesh",
 							"_type" : 4,
-	        				"_arg" : "Sinbad.mesh"
-	        			}
-	        		],
-					    "_numEvents": 1,
-					    "_events" : [
-							"UpdateTransformEvent"
-					    ]				
-	       		}
-	       		/*{	            		
-        			"_type" : "TransformComponent",
-        			"_numArguments" : 9,
-        			"_arguments" : [
-        				{
-							"_name" : "posX",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "posY",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "posZ",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "rotX",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "rotY",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "rotZ",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "scaleX",
-							"_type" : 2,
-	        				"_arg" : "1"
-	        			},
-
-	        			{
-							"_name" : "scaleY",
-							"_type" : 2,
-	        				"_arg" : "1"
-	        			},
-
-	        			{
-							"_name" : "scaleZ",
-							"_type" : 2,
-	        				"_arg" : "1"
-	        			}
-	        		]
-	       		}*/
-	       	  ]
-
-	      }
-/*
-	    {
-	       	"_entityID": "Player",
-            "_numComponents": 2,
-            "_components" : [
-            	{	            		
-        			"_type" : "TransformComponent",
-        			"_numArguments" : 9,
-        			"_arguments" : [
-        				{
-							"_name" : "posX",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "posY",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "posZ",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "rotX",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "rotY",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "rotZ",
-							"_type" : 2,
-	        				"_arg" : "0"
-	        			},
-
-	        			{
-							"_name" : "scaleX",
-							"_type" : 2,
-	        				"_arg" : "1"
-	        			},
-
-	        			{
-							"_name" : "scaleY",
-							"_type" : 2,
-	        				"_arg" : "1"
-	        			},
-
-	        			{
-							"_name" : "scaleZ",
-							"_type" : 2,
-	        				"_arg" : "1"
-	        			}
-	        		]
-	       		},
-              
-            	{	            		
-        			"_type" : "PlayerControllerComponent",
-        			"_numArguments" : 1,
-        			"_arguments" : [
-        				{
-							"_name" : "vel",
-							"_type" : 2,
-	        				"_arg" : "5"
-	        			}
-	        		]
-	       		}
-	       	]
-
-	    }*/
-	  ]
-}
-/*	            		{
-	            			"type" : "Camera",
-	            			"arguments" : {
-	            				"position": "3, 3, 3",
-	            				"fov": 90,
-	            				"style": "ortographic"
-	            			}
-	            		}
-          */
+		        	"_arg" : "Sinbad.mesh"
+						}
+					],
+					"_numEvents": 1,
+					 "_events" : [
+						 "UpdateTransformEvent"
+					 ]
+				 }
+			 ]
+		 }
+	 ]
+ }

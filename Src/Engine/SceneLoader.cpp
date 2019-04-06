@@ -101,7 +101,7 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 				_events.push_back(_nameEvent);
 			}
 
-			//conversion
+			
 
 			/////////////
 
@@ -114,7 +114,6 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 			_newComponent->Init(_argumentMap, _newEntity);
 
 			// add component to entity
-
 			//_newEntity->AddComponent(_newComponent);
 	
 		}

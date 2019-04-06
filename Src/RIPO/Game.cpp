@@ -17,7 +17,7 @@
 #include "TransformComponent.h"
 
 #include <Windows.h>
-#include <time.h>
+//#include <time.h>
 #include <iostream>
 
 
@@ -105,7 +105,7 @@ void Game::Loop()
 		_currentTime = _newTime;
 		_accumulator += _frameTime;
 
-		MessagePump();
+		
 
 		/*HandleInput();*/
 
@@ -196,6 +196,7 @@ void Game::MessagePump()
 
 void Game::Render()
 {
+	MessagePump();
 	MyOgre::GetInstance().Render();
 }
 

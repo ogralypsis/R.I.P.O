@@ -23,7 +23,6 @@ void Entity::AddComponent(Component * c, std::vector<std::string> v)
 	std::pair< Component*, std::vector<std::string>> aux;
 	aux.first = c;
 	aux.second = v;
-	
 
 	_components.emplace(aux);
 

@@ -30,9 +30,10 @@ public:
 	T* GetComponent(T* c);
 
 
-	std::map<Component*, std::vector<std::string>> GetComponents() { return _components; }
+	inline std::map<Component*, std::vector<std::string>> GetComponents() { return _components; }
 
 protected:
+
 	//std::vector<Component*> _components;
 
 	std::map<Component*, std::vector<std::string>> _components;

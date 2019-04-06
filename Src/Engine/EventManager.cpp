@@ -38,6 +38,7 @@ void EventManager::NotifyObservers(const Event event)
 void EventManager::AddObserver(Event event, Component * observer)
 {
 	// Add new observer of a event
+	//if(!_observers.empty()){}
 	auto it = _observers.find(event);
 	if (it != _observers.end()) 
 	{

@@ -18,9 +18,16 @@ Scene::Scene(std::string ID, Factory<Component> compFactory)
 
 	// Call Loader
 	SceneLoader::getInstance()->LoadFromJson(entities, compFactory);
+
+	// *** PROBANDO ***
+	//AddSceneObservers();
 }
 
 Scene::~Scene() {}
+
+void Scene::CreateSceneEntities(nlohmann::json scene)
+{
+}
 
 void Scene::Update()
 {
@@ -35,9 +42,7 @@ void Scene::AddSceneObservers()
 
 		std::map<Component*, std::vector<std::string>> component = _auxEntities[i]->GetComponents();
 
-		std::map<Component*, std::vector<std::string>>::const_iterator it;
-
-		it = component.cbegin();
+		std::map<Component*, std::vector<std::string>>::const_iterator it = component.cbegin();
 
 		while (it != component.cend()) {
 

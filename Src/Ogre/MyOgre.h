@@ -58,7 +58,7 @@ public:
 
 	/// <summary>
 	/// Returns if the window is closed or not, true if is closed flase if not
-	/// <summary/>
+	/// </summary>
 	bool CheckWindowStatus();
 	
 	void CreateEntity(std::string mesh, Ogre::Vector3 vector, Ogre::Radian radian);

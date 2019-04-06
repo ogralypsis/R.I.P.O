@@ -1,6 +1,7 @@
 #include "SceneLoader.h"
 
 #include "EntityManager.h"
+#include "EventManager.h"
 
 SceneLoader * SceneLoader::_instance = nullptr;
 
@@ -88,6 +89,20 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 				}
 			}
 
+/*
+			// for each component, how many events it has
+			int _numEvents = json["_entities"][i]["_components"][j]["_numEvents"];	
+
+			std::vector<std::string> _events;
+
+			for (int b = 0; b < _numEvents; b++) {
+
+				std::string _nameEvent = json["_entities"][i]["_components"][j]["_events"][b];
+				_events.push_back(_nameEvent);
+			}
+
+*/
+
 			// create component
 			Component* _newComponent = compFactory.Create(_nameComponent);
 
@@ -96,6 +111,7 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 
 			// add component to entity
 			_newEntity->AddComponent(_newComponent);
+	
 		}
 
 		// Add entity to Manager

@@ -14,6 +14,7 @@
 #include "HealthComponent.h"
 #include "RenderComponent.h"
 #include "PlayerControllerComponent.h"
+#include "TransformComponent.h"
 
 #include <Windows.h>
 #include <time.h>
@@ -76,13 +77,16 @@ void Game::Release()
 
 void Game::Loop()
 {
+
+
+	// Get the current time in seconds
+	time(&_currentTime);
+	//_currentTime = (SDL_GetTicks() / 1000.0);
+	int frames = 0;
+
+
 	// Continue the loop if the window is not closed and game is not exited
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) {
-
-		// Get the current time in seconds
-		time(&_currentTime);
-		//_currentTime = (SDL_GetTicks() / 1000.0);
-		int frames = 0;
 
 		/*
 		.
@@ -101,15 +105,20 @@ void Game::Loop()
 		_currentTime = _newTime;
 		_accumulator += _frameTime;
 
+		MessagePump();
+
+		/*HandleInput();*/
+
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
 
-			if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_J))
-				std::cout << "PRESSING KEY J" << std::endl;
+			
+			HandleInput();
+			
 			// INPUT
 			// PHYSCS STEP
 			// CURRENT SCENE UPDATE
-
+		
 			_accumulator -= _FPS_CAP;
 			frames++;
 		}
@@ -142,12 +151,47 @@ void Game::ResetInstance()
 void Game::HandleInput()
 {
 	// presiona  la tecla "J" y manda un evento de input
-	JEvent myEvent(0);
-	EventManager::getInstance()->NotifyObservers(myEvent);
+	/*JEvent myEvent(0);
+	EventManager::getInstance()->NotifyObservers(myEvent);*/
+
+
+	InputManager::GetInstance().CaptureInput();
+
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
+
+		std::cout << "PRESSING KEY W" << std::endl;
+		/*WEvent myEvent(0);
+		EventManager::GetInstance()->NotifyObservers(myEvent);*/
+	}
+	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
+	{
+
+		std::cout << "PRESSING KEY S" << std::endl;
+	}
+	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
+	{
+
+		std::cout << "PRESSING KEY A" << std::endl;
+	}
+	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
+	{
+
+		std::cout << "PRESSING KEY D" << std::endl;
+	}
 }
 
 void Game::Update()
 {
+}
+
+void Game::MessagePump()
+{
+	MSG  msg;
+	while (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
 }
 
 void Game::Render()
@@ -162,7 +206,10 @@ void Game::ChangeScene(std::string name)
 
 void Game::RegisterComponents()
 {
-	//_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
+	_compFactory.Register("TransformComponent", new DerivedCreator<TransformComponent, Component>());
+	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 	_compFactory.Register("RenderComponent", new DerivedCreator<RenderComponent, Component>());
-	//_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
+	_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
+	
+
 }

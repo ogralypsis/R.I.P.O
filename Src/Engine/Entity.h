@@ -27,6 +27,7 @@ public:
 
 protected:
 	std::vector<Component*> _components;
+	//std::map<Component*, std::vector<Event>> _components; // Ahora cada componente va acompañado de una lista de eventos a los que quiere subscribirse
 	std::string _id;
 };
 #endif

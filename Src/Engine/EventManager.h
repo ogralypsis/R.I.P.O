@@ -12,7 +12,7 @@ public:
 	
 	~EventManager();
 
-	static EventManager* getInstance();
+	static EventManager* GetInstance();
 
 	void NotifyObservers(Event e);
 	void AddObserver(Event e, Component* observer);

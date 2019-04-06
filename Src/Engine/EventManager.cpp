@@ -10,7 +10,7 @@ EventManager::~EventManager()
 	// TO DO
 }
 
-EventManager * EventManager::getInstance()
+EventManager * EventManager::GetInstance()
 {
 	//If there is no instance... 
 	if (_instance == nullptr) {

@@ -61,7 +61,7 @@ bool Game::Init()
 
 	RegisterComponents();
 
-	ChangeScene("data_map1");
+	ChangeScene("1");
 
 	return true;
 }

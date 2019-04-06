@@ -2,6 +2,7 @@
 #include <ArgumentStruct.h>
 #include <Component.h>
 #include <SceneLoader.h>
+#include <MyOgre.h>
 
 Scene::Scene(std::string ID, Factory<Component> compFactory)
 {
@@ -12,10 +13,13 @@ Scene::Scene(std::string ID, Factory<Component> compFactory)
 	_instanceFR = FileReader::getInstance();
 
 	// Read file 
-	json entities = _instanceFR->readFile("Assets/" + ID + ".json");
+	json entities = _instanceFR->readFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
 
 	// Call Loader
 	SceneLoader::getInstance()->LoadFromJson(entities, compFactory);
+
+	// create map
+	MyOgre::GetInstance().CreateEntity("Buildings.mesh", Ogre::Vector3(2, 2, 2), Ogre::Radian(1.5708));
 }
 
 Scene::~Scene() {}

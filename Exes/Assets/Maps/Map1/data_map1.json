@@ -1,0 +1,51 @@
+{
+	"_numEntities" : 1,
+    "_entities": [
+        {
+            "_entityID": "Enemy",
+            "_numComponents": 1,
+            "_components" : [
+            	{	            		
+        			"_type" : "RenderComponent",
+        			"_numArguments" : 5,
+        			"_arguments" : [
+        				{
+							"_name" : "mesh",
+							"_type" : 4,
+	        				"_arg" : "Sinbad.mesh"
+	        			},
+	        			{
+	        				"_name" : "scaleX",
+	        				"_type" : 1,
+	        				"_arg" : "1"
+	        			},
+	        			{
+	        				"_name" : "scaleY",
+	        				"_type" : 1,
+	        				"_arg" : "1"
+	        			},
+	        			{
+	        				"_name" : "scaleZ",
+	        				"_type" : 1,
+	        				"_arg" : "1"
+	        			},
+	        			{
+	        				"_name" : "rotation",
+	        				"_type" : 1,
+	        				"_arg" : "0"
+	        			}
+	        		]
+	       		}
+	       	]
+	    }
+	]
+}
+/*	            		{
+	            			"type" : "Camera",
+	            			"arguments" : {
+	            				"position": "3, 3, 3",
+	            				"fov": 90,
+	            				"style": "ortographic"
+	            			}
+	            		}
+          */

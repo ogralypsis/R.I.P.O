@@ -81,7 +81,7 @@ bool MyOgre::SetUp()
 	_mainCamera = CreateCamera(_window, _sceneMgr);
 	CreateLight(_sceneMgr);
 
-	
+	_window->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2));
 
 	return (LocateResources() && LoadResources());
 		
@@ -157,16 +157,17 @@ void MyOgre::CreateLight(Ogre::SceneManager * sceneMgr) {
 
 	sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
-	sceneMgr->setAmbientLight(Ogre::ColourValue(0.25, 0.25, 0.25));
-
-	_lightNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
-	
+	sceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));	
 
 	_light = sceneMgr->createLight("MainLight");
-	_light->setPosition(Ogre::Vector3(20, 80, 50));
-	_light->setCastShadows(true);
+	_light->setType(Ogre::Light::LT_DIRECTIONAL);
+	_light->setDiffuseColour(Ogre::ColourValue(0.4, 0, 0));
+	_light->setSpecularColour(Ogre::ColourValue(0.5, 0.5, 0.5));
+	_light->setDirection(Ogre::Vector3::NEGATIVE_UNIT_Z);
 
+	_lightNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
 	_lightNode->attachObject(_light);
+	_lightNode->setDirection(0, -1, 1);
 }
 
 bool MyOgre::LocateResources()
@@ -244,12 +245,13 @@ void MyOgre::CreateSinBad()
 	_sinbadNode->scale({5,5,5});
 }
 
-void MyOgre::CreateEntity(/*Ogre::SceneManager * sceneMgr, */std::string mesh) {
+void MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 vector, Ogre::Radian radian) {
 	Ogre::Entity* _newEntity = _sceneMgr->createEntity(mesh);
 	Ogre::SceneNode* _newEntityNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
 
 	_newEntityNode->attachObject(_newEntity);
-	_newEntityNode->scale({ 5,5,5 });
+	_newEntityNode->scale(vector);
+	_newEntityNode->pitch(radian);
 }
 
 void MyOgre::Render()

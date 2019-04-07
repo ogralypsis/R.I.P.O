@@ -70,7 +70,7 @@ scale TransformComponent::GetScale()
 	return _scale;
 }
 
-void TransformComponent::OnEvent(Event e)
+void TransformComponent::OnEvent(int eventType, Event e)
 {
 }
 

@@ -8,7 +8,7 @@ class EntityManager
 public:
 	~EntityManager();
 
-	static EntityManager* getInstance();
+	static EntityManager & GetInstance();
 
 	void AddEntity(Entity* e);
 	void DeleteEntity(Entity* e);
@@ -19,10 +19,15 @@ public:
 	
 	std::vector<Entity*> GetEntities() { return _entities; }
 
+	void GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers);
+	std::map<std::string /*Event*/, std::vector<Component*>> GetObservers();
+
 private:
 	EntityManager();
 
 	static EntityManager* _instance;
 	std::vector<Entity*> _entities;
+
+	std::map<std::string /*Event*/, std::vector<Component*>> _observersJSON;
 };
 #endif

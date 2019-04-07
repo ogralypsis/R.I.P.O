@@ -8,11 +8,11 @@
 class Scene
 {
 private: 
-	EntityManager* _instanceEM;
-	FileReader* _instanceFR;
+	//EntityManager _instanceEM;
+	//FileReader* _instanceFR;
 	std::string _sceneID;
 	Factory<Component> _compFactory;
-	std::vector<Entity*> _auxEntities;
+	
 
 public:
 	Scene(std::string ID, Factory<Component> compFactory);

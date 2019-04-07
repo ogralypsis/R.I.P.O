@@ -1,6 +1,8 @@
 #include "EntityManager.h"
 
 EntityManager * EntityManager::_instance = nullptr;
+
+
 EntityManager::EntityManager() {}
 
 EntityManager::~EntityManager()
@@ -12,14 +14,14 @@ EntityManager::~EntityManager()
 	_entities.clear();
 }
 
- EntityManager * EntityManager::getInstance()
+ EntityManager & EntityManager::GetInstance()
 {
 	//If there is no instance, create it
-	if (_instance == nullptr) {
-		_instance = new EntityManager();
+	if (EntityManager::_instance == nullptr) {
+		EntityManager::_instance = new EntityManager();
 	}
 
-	return _instance;
+	return *EntityManager::_instance;
 }
 
 void EntityManager::AddEntity(Entity * e)
@@ -59,7 +61,7 @@ void EntityManager::CreateEntity(std::string name, std::vector<Component*> compo
 
 	// Add its components
 	for (auto c : components) {
-		//ent->AddComponent(c);
+		ent->AddComponent(c);
 	}
 
 	AddEntity(ent);
@@ -71,3 +73,14 @@ void EntityManager::Update()
 	for (int i = 0; i < _entities.size(); i++)
 		_entities.at(i)->Update();
 }
+
+void EntityManager::GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
+{
+	_observersJSON = observers;
+}
+
+std::map<std::string, std::vector<Component*>> EntityManager::GetObservers()
+{
+	return _observersJSON;
+}
+

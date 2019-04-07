@@ -16,28 +16,47 @@ public:
 	Entity(std::string id);
 	~Entity();
 
-	void AddComponent(Component* c, std::vector<std::string> v);
+	
+	///<summary>
+	/// Add a component to the entity
+	///</summary>
+	///<param name="c">The component to be added</param>
+	void AddComponent(Component* c);
 
-	//void AddComponent(Component* c);
+	///<summary>
+	/// Delete the given component from the entity
+	///</summary>
+	///<param name="c">The component to be deleted</param>  
 	void DeleteComponent(Component* c);
 
+	///<summary>
+	/// Calls the components' own Update()
+	///</summary>
 	void Update();
 
-
+	///<summary>
+	/// Get the entity id
+	///</summary>
+	///<returns> String id of the entity </returns>
 	std::string GetId();
 
+	///<summary>
+	/// Search the specified component and returns it if it's found
+	///</summary>
+	///<param name="c">The component to be returned</param>  
+	///<returns> The specified component </returns>
 	template <class T>
 	T* GetComponent(T* c);
 
-
-	inline std::map<Component*, std::vector<std::string>> GetComponents() { return _components; }
-
 protected:
 
-	//std::vector<Component*> _components;
+	// Components the entity owns and give it its funcionality
+	std::vector<Component*> _components;
 
-	std::map<Component*, std::vector<std::string>> _components;
-	// Ahora cada componente va acompañado de una lista de eventos a los que quiere subscribirse
+	// Unique identifier for each entity
 	std::string _id;
+
+	// Determine if the entity is active at the moment
+	bool _active;
 };
 #endif

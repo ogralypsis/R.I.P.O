@@ -150,11 +150,7 @@ void Game::ResetInstance()
 
 void Game::HandleInput()
 {
-	// presiona  la tecla "J" y manda un evento de input
-	/*JEvent myEvent(0);
-	EventManager::getInstance()->NotifyObservers(myEvent);*/
-
-
+	
 	InputManager::GetInstance().CaptureInput();
 
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
@@ -165,8 +161,11 @@ void Game::HandleInput()
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
-
 		std::cout << "PRESSING KEY S" << std::endl;
+
+		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
+		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Enemy", EventDestination::ENTITY); // Emmitter falseado luego ver si seria el id de la escena o game
+		EventManager::GetInstance().NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent); 
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{

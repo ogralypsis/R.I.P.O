@@ -9,12 +9,14 @@ void HealthComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 {
 }
 
-void HealthComponent::OnEvent(Event e)
+void HealthComponent::OnEvent(int eventType, Event e)
 {
+	/*
 	if ("JEvent" == typeid(e).name())
 	{
 		DecreaseHealth();
 	}
+	*/
 }
 
 void HealthComponent::Update()
@@ -31,6 +33,6 @@ void HealthComponent::CheckHealth()
 {
 	if (_health <= 0) 
 	{
-		EntityManager::getInstance()->DeleteEntity(_ownerEntity);
+		EntityManager::GetInstance().DeleteEntity(_ownerEntity);
 	}
 }

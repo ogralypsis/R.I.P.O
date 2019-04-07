@@ -12,15 +12,15 @@ class FileReader
 
 private:
 
-	static FileReader* _instance;
+	static FileReader * _instance;
 	json _file;
 	FileReader();
 
 public:
 
 	~FileReader();
-	static FileReader* getInstance();
-	json readFile(std::string fileName);
+	static FileReader & GetInstance();
+	json ReadFile(std::string fileName);
 	
 };
 

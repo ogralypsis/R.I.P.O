@@ -1,5 +1,5 @@
 {
-	"_numEntities" : 1,
+	"_numEntities" : 2,
   "_entities": [
 		{
 			"_entityID": "Enemy",
@@ -15,12 +15,36 @@
 		        	"_arg" : "Sinbad.mesh"
 						}
 					],
-					"_numEvents": 1,
+					"_numEvents": 2,
 					 "_events" : [
-						 "UpdateTransformEvent"
+						 "UpdateTransformEvent",
+						 "JEvent"
 					 ]
 				 }
 			 ]
-		 }
+		 },
+		 {
+			 "_entityID": "Enemy2",
+			 "_numComponents": 1,
+			 "_components" : [
+				 {
+					 "_type" : "RenderComponent",
+					 "_numArguments" : 1,
+					 "_arguments" : [
+						 {
+							 "_name" : "mesh",
+							 "_type" : 4,
+							 "_arg" : "Sinbad.mesh"
+						 }
+					 ],
+					 "_numEvents": 3,
+						"_events" : [
+							"UpdateTransformEvent",
+							"JEvent",
+							"SEvent"
+						]
+					}
+				]
+			}
 	 ]
  }

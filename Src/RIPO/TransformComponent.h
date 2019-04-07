@@ -47,7 +47,7 @@ public:
 	void SetScale(float x, float y, float z);
 	scale GetScale();
 
-	void virtual OnEvent(Event e);
+	void virtual OnEvent(int eventType, Event e);
 
 	void virtual Update();
 

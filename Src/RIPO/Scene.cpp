@@ -10,17 +10,17 @@ Scene::Scene(std::string ID, Factory<Component> compFactory)
 	_sceneID = ID;
 	_compFactory = compFactory;
 
-	_instanceEM = EntityManager::getInstance();
-	_instanceFR = FileReader::getInstance();
+	//_instanceEM = EntityManager::GetInstance();
+	//_instanceFR = FileReader::getInstance();
 
 	// Read file 
-	json entities = _instanceFR->readFile("Assets/" + ID + ".json");
+	json entities = FileReader::GetInstance().ReadFile("Assets/" + ID + ".json");
 
 	// Call Loader
 	SceneLoader::getInstance()->LoadFromJson(entities, compFactory);
 
 	// *** PROBANDO ***
-	//AddSceneObservers();
+	AddSceneObservers();
 }
 
 Scene::~Scene() {}
@@ -32,35 +32,34 @@ void Scene::CreateSceneEntities(nlohmann::json scene)
 void Scene::Update()
 {
 }
-				//** HAY QUE COMPROBAR ESTO **//
+				
 void Scene::AddSceneObservers()
 {
-	_auxEntities = EntityManager::getInstance()->GetEntities();
+		std::map<std::string /*Event*/, std::vector<Component*>> observers = EntityManager::GetInstance().GetObservers();
+		std::map<std::string, std::vector<Component*>>::const_iterator it = observers.cbegin();
 
-	
-	for (int i = 0; i < _auxEntities.size(); i++) {
-
-		std::map<Component*, std::vector<std::string>> component = _auxEntities[i]->GetComponents();
-
-		std::map<Component*, std::vector<std::string>>::const_iterator it = component.cbegin();
-
-		while (it != component.cend()) {
-
-			for (int j = 0; j < it->second.size(); j++) {
-				
-				if (it->second[j] == "UpdateTransformEvent") {
-					UpdateTransformEvent utEvent(0,0,0,0,0);
-					EventManager::GetInstance()->AddObserver(utEvent,it->first);
-				}
-				//....
+		while (it != observers.cend()) {
+			if (it->first == "UpdateTransformEvent") {
+				for (int i = 0; i < it->second.size(); i++) 
+					EventManager::GetInstance().AddObserver(EventType::EVENT_UPDATE_TRANSFORM, it->second[i]);
+								
 			}
-
-
+			else if (it->first == "JEvent") {
+				for (int i = 0; i < it->second.size(); i++)
+					EventManager::GetInstance().AddObserver(EventType::EVENT_J, it->second[i]);
+			}
+			else if (it->first == "SEvent") {
+				for (int i = 0; i < it->second.size(); i++)
+					EventManager::GetInstance().AddObserver(EventType::EVENT_S, it->second[i]);
+			}
+			// Other events...
+			 
+			it++;
 		}
 
 		
 
-	}
+	//}
 
 
 }

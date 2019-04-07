@@ -11,16 +11,16 @@ FileReader::~FileReader()
 {
 }
 
-FileReader* FileReader::getInstance()
+FileReader & FileReader::GetInstance()
 {
-	if (_instance == nullptr) {
-		_instance = new FileReader();
+	if (FileReader::_instance == nullptr) {
+		FileReader::_instance = new FileReader();
 	}
 
-	return _instance;
+	return *FileReader::_instance;
 }
 
-json FileReader::readFile(std::string fileName)
+json FileReader::ReadFile(std::string fileName)
 {
 	std::fstream i(fileName);
 

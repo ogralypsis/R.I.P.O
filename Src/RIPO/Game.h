@@ -17,7 +17,7 @@ public:
 public:
 
 	/// <summary>
-	/// Initialize all libraries
+	/// Initialize all libraries checking if any fail
 	/// </summary>
 	bool Init();
 

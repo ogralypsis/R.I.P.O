@@ -35,9 +35,9 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_orPosZ = _posZ;
 }
 
-void PlayerControllerComponent::OnEvent(Event e)
+void PlayerControllerComponent::OnEvent(int eventType, Event e)
 {
-
+/*
 	if ("DeathEvent" == typeid(e).name()) 
 	{
 		ResetPosition();
@@ -68,7 +68,7 @@ void PlayerControllerComponent::OnEvent(Event e)
 	{
 		CameraMovement();
 	}
-
+	*/
 	
 }
 

@@ -28,6 +28,7 @@ Game::Game()
 {	
 	// For testing, delete later 
 	MyPhysX * mp =  new MyPhysX();
+	mp->initPhysX();
 	// ------------------------
 
 	_exit = false;

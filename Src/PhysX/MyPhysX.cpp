@@ -1,40 +1,32 @@
 #include "MyPhysX.h"
 
-#include <PxPhysicsAPI.h>
-//#include <PxDefaultErrorCallback.h>
-//#include <PxFoundation.h>
 
-MyPhysX::MyPhysX()
-{	
-	// TESTING PHYSX, CHANGE LATER --------------------------
-	// PhysX
-	physx::PxPhysics*				gPxPhysics = NULL;
-	physx::PxFoundation*			gPxFoundation = NULL;
-	physx::PxCooking*				gPxCooking = NULL;
-	static physx::PxDefaultAllocator		gAllocator;
-	static physx::PxDefaultErrorCallback   gErrorCallback;
-
-	physx::PxPvd*                           gPvd = NULL;
-	//physx::PxPvdTransport*                  gTransport = NULL;
-	physx::PxPvdInstrumentationFlags        gPvdFlags = physx::PxPvdInstrumentationFlag::eDEBUG;
+MyPhysX::MyPhysX() {
+	gPxPhysics = NULL;
+	gPxFoundation = NULL;
+	gPxCooking = NULL;
+	gPvd = NULL;
+	
+}
 
 
-	// SDK
+void MyPhysX::initPhysX()
+{
+	gPvdFlags = physx::PxPvdInstrumentationFlag::eDEBUG;
+
+	//SDK
 	gPxFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
 
-	//gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
 
-	gPvd = NULL;
+	gPxPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gPxFoundation, physx::PxTolerancesScale(), false, gPvd);
+
+	//gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
 
 #if ENABLE_PVD
 	gPvd = physx::PxCreatePvd(*gPxFoundation);
 	//gPvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::eALL);
 	gPvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::ePROFILE);
 #endif
-
-	gPxPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gPxFoundation, physx::PxTolerancesScale(), false, gPvd);
-
-
 
 	if (gPxPhysics == NULL)
 	{
@@ -50,12 +42,13 @@ MyPhysX::MyPhysX()
 		printf("\nError: Unable to initialize the cooking library, exiting the sample.\n\n");
 		//return false;
 	}
-
 	PxInitExtensions(*gPxPhysics, gPvd);
+
 }
 
 
 MyPhysX::~MyPhysX()
 {
 }
+
 

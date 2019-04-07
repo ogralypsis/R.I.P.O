@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- exporter: blender2ogre 0.7.0 -->
-<!-- export_time: Sat, 06 Apr 2019 17:34:36 +0000 -->
-<!-- previous_export_time: Sat, 06 Apr 2019 15:41:27 +0000 -->
+<!-- export_time: Sun, 07 Apr 2019 13:51:50 +0000 -->
+<!-- previous_export_time: Sun, 07 Apr 2019 13:36:14 +0000 -->
 <scene author="lucia" formatVersion="1.1" >
   <nodes >
     <node name="Sun" >
-      <position x="12.633476" y="29.449539" z="23.444916" />
+      <position x="22.184103" y="17.407717" z="3.901014" />
       <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="0.000000" />
       <scale x="1.000000" y="1.000000" z="1.000000" />
       <light name="Sun" powerScale="1.0" type="directional" >
@@ -16,10 +16,10 @@
     </node>
     <node name="City" >
       <position x="0.000000" y="0.000000" z="0.000000" />
-      <rotation qw="0.707107" qx="-0.707107" qy="0.000000" qz="0.000000" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="0.000000" />
       <scale x="2.000000" y="2.000000" z="2.000000" />
       <userData >
-        <property data='&lt;bpy id prop: owner="OBCity", name="pov", address=0x00000200727334E8&gt;' name="pov" type="IDPropertyGroup" />
+        <property data='&lt;bpy id prop: owner="OBCity", name="pov", address=0x000001EC5B1F5F68&gt;' name="pov" type="IDPropertyGroup" />
       </userData>
       <entity meshFile="Buildings.mesh" name="City" >
         <userData >
@@ -43,14 +43,47 @@
           <property data="0.03999999910593033" name="damping_trans" type="float" />
           <property data="0.10000000149011612" name="damping_rot" type="float" />
           <property data="0.4000000059604645" name="inertia_tensor" type="float" />
-          <property data='&lt;bpy id prop: owner="MEBuildings", name="ms3d", address=0x000002007273ADD8&gt;' name="ms3d" type="IDPropertyGroup" />
+          <property data='&lt;bpy id prop: owner="MEBuildings", name="ms3d", address=0x000001EC5B202298&gt;' name="ms3d" type="IDPropertyGroup" />
         </userData>
       </entity>
     </node>
   </nodes>
   <externals >
     <item type="material" >
+      <file name="ground.018" />
+    </item>
+    <item type="material" >
+      <file name="glass.025" />
+    </item>
+    <item type="material" >
+      <file name="ground.019" />
+    </item>
+    <item type="material" >
+      <file name="ground.026" />
+    </item>
+    <item type="material" >
+      <file name="glass.022" />
+    </item>
+    <item type="material" >
+      <file name="ground.027" />
+    </item>
+    <item type="material" >
+      <file name="Material" />
+    </item>
+    <item type="material" >
+      <file name="glass.012" />
+    </item>
+    <item type="material" >
       <file name="ground.012" />
+    </item>
+    <item type="material" >
+      <file name="ground.024" />
+    </item>
+    <item type="material" >
+      <file name="glass.021" />
+    </item>
+    <item type="material" >
+      <file name="ground.025" />
     </item>
     <item type="material" >
       <file name="ground.028" />
@@ -59,58 +92,28 @@
       <file name="ground.021" />
     </item>
     <item type="material" >
-      <file name="glass.017" />
-    </item>
-    <item type="material" >
-      <file name="glass.021" />
-    </item>
-    <item type="material" >
-      <file name="glass.025" />
-    </item>
-    <item type="material" >
-      <file name="Material" />
-    </item>
-    <item type="material" >
-      <file name="ground.018" />
-    </item>
-    <item type="material" >
-      <file name="ground.026" />
-    </item>
-    <item type="material" >
-      <file name="ground.019" />
-    </item>
-    <item type="material" >
-      <file name="glass.012" />
-    </item>
-    <item type="material" >
-      <file name="glass.020" />
-    </item>
-    <item type="material" >
-      <file name="glass.024" />
-    </item>
-    <item type="material" >
-      <file name="ground.024" />
-    </item>
-    <item type="material" >
-      <file name="ground.020" />
-    </item>
-    <item type="material" >
-      <file name="ground.027" />
-    </item>
-    <item type="material" >
-      <file name="glass.019" />
-    </item>
-    <item type="material" >
-      <file name="ground.025" />
-    </item>
-    <item type="material" >
       <file name="glass.023" />
     </item>
     <item type="material" >
       <file name="glass.028" />
     </item>
     <item type="material" >
-      <file name="glass.026" />
+      <file name="glass.019" />
+    </item>
+    <item type="material" >
+      <file name="glass.020" />
+    </item>
+    <item type="material" >
+      <file name="ground.023" />
+    </item>
+    <item type="material" >
+      <file name="ground.020" />
+    </item>
+    <item type="material" >
+      <file name="glass.027" />
+    </item>
+    <item type="material" >
+      <file name="glass.017" />
     </item>
     <item type="material" >
       <file name="ground.029" />
@@ -119,16 +122,13 @@
       <file name="ground.022" />
     </item>
     <item type="material" >
+      <file name="glass.024" />
+    </item>
+    <item type="material" >
+      <file name="glass.026" />
+    </item>
+    <item type="material" >
       <file name="glass.018" />
-    </item>
-    <item type="material" >
-      <file name="glass.022" />
-    </item>
-    <item type="material" >
-      <file name="ground.023" />
-    </item>
-    <item type="material" >
-      <file name="glass.027" />
     </item>
   </externals>
   <environment >

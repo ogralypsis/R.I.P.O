@@ -7,13 +7,28 @@
             "_components" : [
             	{	            		
         			"_type" : "RenderComponent",
-        			"_numArguments" : 5,
+        			"_numArguments" : 8,
         			"_arguments" : [
         				{
 							"_name" : "mesh",
 							"_type" : 4,
 	        				"_arg" : "Sinbad.mesh"
 	        			},
+	        			{
+	        				"_name" : "positionX",
+	        				"_type" : 1,
+	        				"_arg" : "100"
+	        			},
+	        			{
+	        				"_name" : "positionY",
+	        				"_type" : 1,
+	        				"_arg" : "5"
+	        			},
+	        			{
+	        				"_name" : "positionZ",
+	        				"_type" : 1,
+	        				"_arg" : "0"
+	        			},	        			
 	        			{
 	        				"_name" : "scaleX",
 	        				"_type" : 1,

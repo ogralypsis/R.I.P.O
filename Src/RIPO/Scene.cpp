@@ -19,7 +19,7 @@ Scene::Scene(std::string ID, Factory<Component> compFactory)
 	SceneLoader::getInstance()->LoadFromJson(entities, compFactory);
 
 	// create map
-	MyOgre::GetInstance().CreateEntity("Buildings.mesh", Ogre::Vector3(2, 2, 2), Ogre::Radian(1.5708));
+	MyOgre::GetInstance().CreateEntity("Buildings.mesh", Ogre::Vector3(0, 0, 100), Ogre::Vector3(2, 2, 2), Ogre::Radian(-1.5708));
 }
 
 Scene::~Scene() {}

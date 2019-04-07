@@ -8,13 +8,19 @@ RenderComponent::~RenderComponent() {}
 void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	std::string _mesh = arguments["mesh"].str;
+
+	int _positionX = arguments["positionX"].i;
+	int _positionY = arguments["positionY"].i;
+	int _positionZ = arguments["positionZ"].i;
+
 	int _scaleX = arguments["scaleX"].i;
 	int _scaleY = arguments["scaleY"].i;
 	int _scaleZ = arguments["scaleZ"].i;
+
 	int _rotation = arguments["rotation"].i;
 
-	MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
-
+	MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ), 
+		Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
 }
 
 void RenderComponent::OnEvent(Event e)

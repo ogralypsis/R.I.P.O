@@ -155,9 +155,6 @@ void Game::HandleInput()
 	/*JEvent myEvent(0);
 	EventManager::getInstance()->NotifyObservers(myEvent);*/
 
-
-	InputManager::GetInstance().CaptureInput();
-
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
 		std::cout << "PRESSING KEY W" << std::endl;

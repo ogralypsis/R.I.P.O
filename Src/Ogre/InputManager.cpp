@@ -141,6 +141,12 @@ void InputManager::addKeyListener(OIS::KeyListener *keyListener, const std::stri
 	}
 }
 
+bool InputManager::frameStarted(const Ogre::FrameEvent & e)
+{
+	CaptureInput();
+	return true;
+}
+
 ///MOUSE
 
 bool InputManager::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
@@ -162,10 +168,16 @@ bool InputManager::IsMouseButtonPressed(OIS::MouseButtonID id)
 
 bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 {
-	_mouseX = e.state.X.abs;
-	_mouseY = e.state.Y.abs;
-	_mouseZ = e.state.Z.abs;
+	_mousePosition.mouseX = e.state.X.abs;
+	_mousePosition.mouseY = e.state.Y.abs;
+	_mousePosition.mouseZ = e.state.Z.abs;
 	return true;
 }
+
+mouseCoordinates InputManager::GetMouseCoords()
+{
+	return _mousePosition;
+}
+
 
 

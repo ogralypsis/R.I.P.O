@@ -2,6 +2,7 @@
 #include <iostream>
 #include <OgreSceneNode.h>
 #include <OgreMovableObject.h>
+#include "InputManager.h"
 
 
 // Static variable for the singleton
@@ -82,6 +83,9 @@ bool MyOgre::SetUp()
 	CreateLight(_sceneMgr);
 
 	_window->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2));
+
+	//add the input
+	_root->addFrameListener(&InputManager::GetInstance());
 
 	return (LocateResources() && LoadResources());
 		

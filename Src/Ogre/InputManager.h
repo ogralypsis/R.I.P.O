@@ -5,7 +5,7 @@
 #include <OISMouse.h>
 #include <OISKeyboard.h>
 #include <OISInputManager.h>
-
+#include <OgreFrameListener.h>
 #include <OgreRenderWindow.h>
 
 #include <vector>
@@ -17,7 +17,15 @@
 //InputManager::GetInstance()->GetMouseButton(OIS::MouseButtonID::MB_Right);
 ///<sumary>
 
-class InputManager : public OIS::KeyListener, public OIS::MouseListener
+
+	//mouse cursor coordinates
+struct mouseCoordinates
+{
+	float mouseX, mouseY, mouseZ;
+
+};
+
+class InputManager : public OIS::KeyListener, public OIS::MouseListener, public Ogre::FrameListener
 {
 public:
 	~InputManager();
@@ -37,6 +45,10 @@ public:
 	bool IsMouseButtonPressed(OIS::MouseButtonID);
 
 	void addKeyListener(OIS::KeyListener *keyListener, const std::string& name);
+
+	virtual bool frameStarted(const Ogre::FrameEvent& e);
+
+	mouseCoordinates GetMouseCoords();
 
 private:
 	InputManager();
@@ -68,7 +80,7 @@ private:
 	bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
 	//mouse cursor coordinates
-	int _mouseX, _mouseY, _mouseZ;
+	mouseCoordinates _mousePosition;
 
 
 	

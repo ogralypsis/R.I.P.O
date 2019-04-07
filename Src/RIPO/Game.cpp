@@ -106,9 +106,6 @@ void Game::Loop()
 		_accumulator += _frameTime;
 
 		
-
-		/*HandleInput();*/
-
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
 
@@ -123,10 +120,8 @@ void Game::Loop()
 			frames++;
 		}
 
-
+		frames = 0;
 		
-		//std::cout << "loop" << std::endl;
-		//Sleep(1000);
 		Render();
 	}
 }

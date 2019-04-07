@@ -17,8 +17,9 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 void RenderComponent::OnEvent(int eventType, Event e)
 {
-	// ¿Hay que comprobar que el emisor del evento es el mismo que el que lo recibe?
+	// ---------------------------- TESTING -------------------------------
 	if (_ownerEntity->GetId() == e.GetEmmitter()) {
+
 		// Physics transform has been updated so update render properties in order to syncrhonize render and collider
 		if (EventType::EVENT_UPDATE_TRANSFORM == eventType)
 		{

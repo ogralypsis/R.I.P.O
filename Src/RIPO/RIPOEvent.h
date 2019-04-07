@@ -13,12 +13,12 @@ typedef enum EventType {
 	EVENT_UPDATE_TRANSFORM
 };
 
-// the new Events specific for the game:
+// New Events specific for the game:
 
 // Key J has been pressed
 struct JEvent : Event
 {
-	JEvent(int k, std::string emmiter) : Event(emmiter, EventType::EVENT_J), _key(k) {}
+	JEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_J, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
 };
@@ -26,7 +26,7 @@ struct JEvent : Event
 // Key W has been pressed -> Player's FORWARD MOVEMENT 
 struct WEvent : Event
 {
-	WEvent(int k, std::string emmiter) : Event(emmiter, EventType::EVENT_W), _key(k) {}
+	WEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_W, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
 };
@@ -34,7 +34,7 @@ struct WEvent : Event
 // Key A has been pressed -> Player's LEFT MOVEMENT 
 struct AEvent : Event
 {
-	AEvent(int k, std::string emmiter) : Event(emmiter, EventType::EVENT_A),  _key(k) {}
+	AEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_A, destination),  _key(k) {}
 
 	int _key; // this is for trying with parameters
 };
@@ -42,7 +42,7 @@ struct AEvent : Event
 // Key s has been pressed -> Player's BACK MOVEMENT 
 struct SEvent : Event
 {
-	SEvent(int k, std::string emmiter) : Event(emmiter, EventType::EVENT_S), _key(k) {}
+	SEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_S, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
 };
@@ -50,7 +50,7 @@ struct SEvent : Event
 // Key D has been pressed -> Player's RIGHT MOVEMENT
 struct DEvent : Event
 {
-	DEvent(int k, std::string emmiter) : Event(emmiter, EventType::EVENT_D), _key(k) {}
+	DEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_D, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
 };
@@ -58,7 +58,7 @@ struct DEvent : Event
 // Left mouse's buttom has been pressed -> SHOT
 struct L_MouseEvent : Event
 {
-	L_MouseEvent(int k, std::string emmiter) : Event(emmiter, EventType::EVENT_L_MOUSE), _key(k) {}
+	L_MouseEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_L_MOUSE, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
 };
@@ -66,7 +66,7 @@ struct L_MouseEvent : Event
 // Mouse's movement-> CAMERA MOVEMENT (shooting pointer)
 struct MouseMoveEvent : Event
 {
-	MouseMoveEvent(int x, int y, std::string emmiter) : Event(emmiter, EventType::EVENT_MOVE_MOUSE), _posX(x), _posY(y) {}
+	MouseMoveEvent(int x, int y, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_MOVE_MOUSE, destination), _posX(x), _posY(y) {}
 
 	int _posX;
 	int _posY;
@@ -76,7 +76,7 @@ struct MouseMoveEvent : Event
 // PLAYER DEATH
 struct DeathEvent : Event
 {
-	DeathEvent(std::string emmiter) : Event(emmiter, EventType::EVENT_DEATH) {};
+	DeathEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_DEATH, destination) {};
 
 };
 

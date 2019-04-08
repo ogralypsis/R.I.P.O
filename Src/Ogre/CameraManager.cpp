@@ -2,15 +2,19 @@
 
 CameraManager* CameraManager::_instance = nullptr;
 
+CameraManager::CameraManager()
+{
+
+}
 
 CameraManager::~CameraManager()
 {
-	if (_mainCamera)
+	if (_mainCamera )
 	{
 		delete _mainCamera;
 		_mainCamera = nullptr;
 	}
-	if (_camNode)
+	if (_camNode != nullptr)
 	{
 		delete _camNode;
 		_camNode = nullptr;

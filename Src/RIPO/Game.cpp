@@ -60,6 +60,7 @@ bool Game::Init()
 
 	if (!InputManager::GetInstance().InitInput(MyOgre::GetInstance().GetWindow()))
 		std::cout << "OIS Input system could not be initialized" << std::endl;
+	
 
 	RegisterComponents();
 

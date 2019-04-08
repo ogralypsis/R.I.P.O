@@ -2,6 +2,7 @@
 #define _H_CAMERAMANAGER_H_
 
 #include <OgreCamera.h>
+#include <OgreSceneNode.h>
 #include <Ogre.h>
 #include <OgreRenderWindow.h>
 
@@ -21,9 +22,9 @@ private:
 
 	static CameraManager* _instance;
 
-	Ogre::Camera* _mainCamera;
-	Ogre::SceneNode* _camNode;
-	Ogre::Viewport * _viewPort;
+	Ogre::Camera* _mainCamera = nullptr;
+	Ogre::SceneNode* _camNode = nullptr;
+	Ogre::Viewport * _viewPort = nullptr;
 
 	
 };

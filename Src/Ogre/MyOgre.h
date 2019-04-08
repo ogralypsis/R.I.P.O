@@ -10,7 +10,7 @@
 #include <OgreFileSystemLayer.h>
 #include "CameraManager.h"
 
-#include <OgreCamera.h>
+//#include <OgreCamera.h>
 #include <Ogre.h>
 
 

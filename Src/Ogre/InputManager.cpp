@@ -5,7 +5,6 @@ InputManager* InputManager::_instance = nullptr;
 
 InputManager::InputManager() : _mouse(0), _keyboard(0), _inputSystem(0), _keyboardKeys(256, false), _mouseButtons(3, false) //or 3, test pending
 {
-	//InitInput();
 
 }
 //Initialisation

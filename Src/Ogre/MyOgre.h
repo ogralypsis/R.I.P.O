@@ -8,6 +8,8 @@
 #include <OgreConfigFile.h>
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
+#include "CameraManager.h"
+
 #include <OgreCamera.h>
 #include <Ogre.h>
 
@@ -44,7 +46,7 @@ public:
 	/// <summary>
 	/// Returns the main camera of the scenes with the viewport
 	/// </summary>
-	Ogre::Camera* CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
+	//Ogre::Camera* CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
 
 	/// <summary>
     /// Returns the main light of the scenes
@@ -105,8 +107,8 @@ private:
 	Ogre::Root * _root;
 	Ogre::RenderWindow * _window;
 	Ogre::SceneManager * _sceneMgr;
-	Ogre::Camera* _mainCamera;
-	Ogre::Viewport * _viewPort;
+	/*Ogre::Camera* _mainCamera;
+	Ogre::Viewport * _viewPort;*/
 	Ogre::Light* _light;
 
 	Ogre::SceneNode* _lightNode;

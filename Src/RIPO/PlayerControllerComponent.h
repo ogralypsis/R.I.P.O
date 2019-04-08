@@ -14,7 +14,7 @@ public:
 
 	//template<class TransformComponent>
 	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
-	void virtual OnEvent(Event e);
+	void virtual OnEvent(int eventType, Event e);
 	void virtual Update();
 
 	//Getters

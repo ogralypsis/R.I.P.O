@@ -12,6 +12,7 @@ TransformComponent::~TransformComponent()
 
 void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
+	_ownerEntity = e;
 
 	t = new Transform();
 
@@ -70,7 +71,7 @@ scale TransformComponent::GetScale()
 	return _scale;
 }
 
-void TransformComponent::OnEvent(Event e)
+void TransformComponent::OnEvent(int eventType, Event e)
 {
 }
 

@@ -22,6 +22,9 @@ PlayerControllerComponent::~PlayerControllerComponent(){}
 //template<class TransformComponent>
 void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
+
+	_ownerEntity = e;
+
 	_velocity = arguments["vel"].f;
 
 	_transform = new TransformComponent();
@@ -35,7 +38,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_orPosZ = _posZ;
 }
 
-void PlayerControllerComponent::OnEvent(Event e)
+void PlayerControllerComponent::OnEvent(int eventType, Event e)
 {
 
 	if ("DeathEvent" == typeid(e).name()) 

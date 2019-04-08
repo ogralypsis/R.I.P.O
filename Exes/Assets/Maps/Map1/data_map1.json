@@ -5,7 +5,7 @@
             "_entityID": "Enemy",
             "_numComponents": 2,
             "_components" : [
-            	{	            		
+            	{
         			"_type" : "RenderComponent",
         			"_numArguments" : 8,
         			"_arguments" : [
@@ -28,7 +28,7 @@
 	        				"_name" : "positionZ",
 	        				"_type" : 1,
 	        				"_arg" : "0"
-	        			},	        			
+	        			},
 	        			{
 	        				"_name" : "scaleX",
 	        				"_type" : 1,
@@ -49,11 +49,15 @@
 	        				"_type" : 1,
 	        				"_arg" : "0"
 	        			}
-	        		]
-	
+	        		],
+							"_numEvents": 2,
+							"_events" : [
+								 "UpdateTransformEvent",
+								 "JEvent"
+							 ]
 	       		},
 
-	       		{	            		
+	       		{
         			"_type" : "TransformComponent",
         			"_numArguments" : 9,
         			"_arguments" : [
@@ -110,7 +114,11 @@
 							"_type" : 2,
 	        				"_arg" : "1"
 	        			}
-	        		]
+	        		],
+							"_numEvents": 1,
+							"_events" : [
+								 "JEvent"
+							 ]
 	       		}
 	       	]
 
@@ -121,7 +129,7 @@
 	       	"_entityID": "Player",
             "_numComponents": 2,
             "_components" : [
-            	{	            		
+            	{
         			"_type" : "TransformComponent",
         			"_numArguments" : 9,
         			"_arguments" : [
@@ -178,10 +186,15 @@
 							"_type" : 2,
 	        				"_arg" : "1"
 	        			}
-	        		]
+	        		],
+							"_numEvents": 2,
+							"_events" : [
+								 "UpdateTransformEvent",
+								 "JEvent"
+							 ]
 	       		},
 
-            	{	            		
+            	{
         			"_type" : "PlayerControllerComponent",
         			"_numArguments" : 1,
         			"_arguments" : [
@@ -190,10 +203,14 @@
 							"_type" : 2,
 	        				"_arg" : "5"
 	        			}
-	        		]
+	        		],
+							"_numEvents": 0,
+							"_events" : [
+
+							 ]
 	       		}
 
-	       		
+
 	       	]
 
 	    }

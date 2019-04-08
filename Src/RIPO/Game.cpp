@@ -53,17 +53,16 @@ bool Game::Init()
 		return false;
 	}
 
-	/*
-	// TESTING DELETE LATER
-	MyOgre::GetInstance().CreateSinBad();
-	*/
-
-	if (!InputManager::GetInstance().InitInput(MyOgre::GetInstance().GetWindow()))
+	if (!InputManager::GetInstance().InitInput(MyOgre::GetInstance().GetWindow())) {
+#ifdef _DEBUG		
 		std::cout << "OIS Input system could not be initialized" << std::endl;
+#endif	
+	}
 
 	RegisterComponents();
 
 	ChangeScene("1");
+	//ChangeScene("Prueba");
 
 	return true;
 }
@@ -82,7 +81,7 @@ void Game::Loop()
 
 	// Get the current time in seconds
 	time(&_currentTime);
-	//_currentTime = (SDL_GetTicks() / 1000.0);
+
 	int frames = 0;
 
 
@@ -108,8 +107,6 @@ void Game::Loop()
 
 		MessagePump();
 
-		/*HandleInput();*/
-
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
 
@@ -123,11 +120,9 @@ void Game::Loop()
 			_accumulator -= _FPS_CAP;
 			frames++;
 		}
-
-
 		
-		//std::cout << "loop" << std::endl;
-		//Sleep(1000);
+		frames = 0;
+
 		Render();
 	}
 }
@@ -151,20 +146,21 @@ void Game::ResetInstance()
 
 void Game::HandleInput()
 {
-	// presiona  la tecla "J" y manda un evento de input
-	/*JEvent myEvent(0);
-	EventManager::getInstance()->NotifyObservers(myEvent);*/
+
+	InputManager::GetInstance().CaptureInput();
 
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
 		std::cout << "PRESSING KEY W" << std::endl;
-		/*WEvent myEvent(0);
-		EventManager::GetInstance()->NotifyObservers(myEvent);*/
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
-
 		std::cout << "PRESSING KEY S" << std::endl;
+
+		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
+		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Enemy", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
+		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent);
+		// -----------------------------------------------------------------------------------------------------------
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
@@ -177,6 +173,7 @@ void Game::HandleInput()
 		std::cout << "PRESSING KEY D" << std::endl;
 	}
 }
+
 
 void Game::Update()
 {

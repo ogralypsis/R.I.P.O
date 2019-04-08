@@ -71,3 +71,13 @@ void EntityManager::Update()
 	for (int i = 0; i < _entities.size(); i++)
 		_entities.at(i)->Update();
 }
+
+void EntityManager::GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
+{
+	_observersJSON = observers;
+}
+
+std::map<std::string, std::vector<Component*>> EntityManager::GetObservers()
+{
+	return _observersJSON;
+}

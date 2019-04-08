@@ -26,6 +26,9 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 	// take the number of entities from JSON
 	int _numEntities = json["_numEntities"];
 
+	// Used for saving events' observers read from the JSON
+	std::map<std::string /*Event*/, std::vector<Component*>> observers;
+
 	for (int i = 0; i < _numEntities; i++)
 	{
 		// for each entity, take the name
@@ -88,21 +91,6 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 					break;
 				}
 			}
-
-/*
-			// for each component, how many events it has
-			int _numEvents = json["_entities"][i]["_components"][j]["_numEvents"];	
-
-			std::vector<std::string> _events;
-
-			for (int b = 0; b < _numEvents; b++) {
-
-				std::string _nameEvent = json["_entities"][i]["_components"][j]["_events"][b];
-				_events.push_back(_nameEvent);
-			}
-
-*/
-
 			// create component
 			Component* _newComponent = compFactory.Create(_nameComponent);
 
@@ -111,10 +99,42 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 
 			// add component to entity
 			_newEntity->AddComponent(_newComponent);
+			//_newEntity->AddComponent(_newComponent, _events);////
+
+			////////////////
+
+
+			// for each component, how many events it has
+			int _numEvents = json["_entities"][i]["_components"][j]["_numEvents"];
+
+			//std::vector<std::string> _events;
+
+			for (int b = 0; b < _numEvents; b++) {
+
+				std::string _nameEvent = json["_entities"][i]["_components"][j]["_events"][b];
+				//_events.push_back(_nameEvent);
+
+
+				// Add new observer of a event	
+				auto it = observers.find(_nameEvent);
+				if (it != observers.end())
+				{
+					it->second.emplace_back(_newComponent);
+				}
+				else
+				{
+					std::vector<Component*> myVector;
+					myVector.emplace_back(_newComponent);
+					observers.insert(std::pair < std::string, std::vector<Component*>>(_nameEvent, myVector));
+				}
+			}
+
 	
 		}
 
 		// Add entity to Manager
 		EntityManager::getInstance()->AddEntity(_newEntity);
 	}
+
+	EntityManager::getInstance()->GetJsonObservers(observers);
 }

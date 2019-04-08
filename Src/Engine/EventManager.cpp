@@ -17,43 +17,43 @@ EventManager * EventManager::GetInstance()
 		_instance = new EventManager();
 	}
 
-	return nullptr;
+	return _instance;
 }
 
-void EventManager::NotifyObservers(const Event event)
+void EventManager::NotifyObservers(int eventType, const Event e)
 {
 	// If that event is in the dictionary,
-	auto it = _observers.find(event);
+	auto it = _observers.find(eventType);
 
 	if (it != _observers.end())
 	{
 		// Notify all the observers that listen to that event
 		for (auto i : it->second)
 		{
-			i->OnEvent(event);
+			i->OnEvent(eventType, e);
 		}
 	}
 }
 
-void EventManager::AddObserver(Event event, Component * observer)
+void EventManager::AddObserver(int eventType, Component * observer)
 {
-	// Add new observer of a event
-	auto it = _observers.find(event);
-	if (it != _observers.end()) 
+	// Add new observer of a event	
+	auto it = _observers.find(eventType);
+	if (it != _observers.end())
 	{
 		it->second.emplace_back(observer);
 	}
-	else 
+	else
 	{
 		std::vector<Component*> myVector;
 		myVector.emplace_back(observer);
-		_observers.insert(std::pair < Event, std::vector<Component*>>(event, myVector));
+		_observers.insert(std::pair <int, std::vector<Component*>>(eventType, myVector));
 	}
 }
 
-void EventManager::RemoveObserver(Event event, Component * observer)
+void EventManager::RemoveObserver(int eventType, Component * observer)
 {
-	auto it = _observers.find(event);
+	auto it = _observers.find(eventType);
 	if (it != _observers.end())
 	{
 		int i = 0;

@@ -1,7 +1,8 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
-
+#include <map>
 #include "Entity.h"
+
 
 class EntityManager
 {
@@ -17,10 +18,17 @@ public:
 
 	void Update();
 
+	void GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers);
+	
+	std::map<std::string /*Event*/, std::vector<Component*>> GetObservers();
+
+
 private:
 	EntityManager();
 
 	static EntityManager* _instance;
 	std::vector<Entity*> _entities;
+
+	std::map<std::string /*Event*/, std::vector<Component*>> _observersJSON;
 };
 #endif

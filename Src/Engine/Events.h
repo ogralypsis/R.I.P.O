@@ -3,10 +3,22 @@
 
 #include <typeinfo>
 
-struct Event 
+
+// NO 100% SEGURO SI HACE FALTA
+typedef enum EventDestination {
+	// Event only meant to reach the components of the entity in which the event was created
+	ENTITY,
+	// Event meant to reach every other entity in the scene and the scene itself, but not the entity in which it is created
+	SCENE,
+	// Event which is read only by the scene class
+	SCENE_ONLY
+};
+
+
+struct Event
 {
 	// Base struct for the events
-	Event() {};
+	Event(std::string emmitter, int type, EventDestination destination) : _type(type), _emmitter(emmitter), _destination(destination) {};
 
 	bool operator<(const Event &e) const
 	{
@@ -18,7 +30,18 @@ struct Event
 		return typeid(this).name() == typeid(e).name();
 	}
 
-	// Añadir emisor del evento?¿
+	int GetType() { return _type; };
 
+	std::string GetEmmitter() { return _emmitter; };
+
+	EventDestination GetDestination() { return _destination; };
+
+protected:
+
+	int _type;
+	std::string _emmitter;
+
+	// NO 100% SEGURO SI HACE FALTA
+	EventDestination _destination;
 };
 #endif

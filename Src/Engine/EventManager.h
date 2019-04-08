@@ -14,15 +14,17 @@ public:
 
 	static EventManager* GetInstance();
 
-	void NotifyObservers(Event e);
-	void AddObserver(Event e, Component* observer);
-	void RemoveObserver(Event e, Component* observer);
+	void NotifyObservers(int eventType, const Event e);
+	void AddObserver(int eventType, Component* observer);
+	void RemoveObserver(int eventType, Component* observer);
+
+
 
 private:
 	EventManager();
 
 	static EventManager* _instance;
 
-	std::map<Event, std::vector<Component*>> _observers;
+	std::map<int, std::vector<Component*>> _observers;
 };
 #endif

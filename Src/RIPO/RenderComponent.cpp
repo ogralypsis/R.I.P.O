@@ -1,12 +1,15 @@
 #include "RenderComponent.h"
 #include <MyOgre.h>
+#include "RIPOEvent.h"
+#include <iostream>
 
 RenderComponent::RenderComponent() : Component () {}
 
 RenderComponent::~RenderComponent() {}
 
-void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
+void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * e) 
 {
+	_ownerEntity = e;
 	std::string _mesh = arguments["mesh"].str;
 
 	int _positionX = arguments["positionX"].i;
@@ -23,14 +26,16 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 		Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
 }
 
-void RenderComponent::OnEvent(Event e)
+void RenderComponent::OnEvent(int eventType, Event e)
 {
-	// Hay que comprobar que el emisor del evento es el mismo que el que lo recibe?�?�
-	//if(_ownerEntity->GetId() == e.emitter.GetId())
-	// Physics transform has been updated so update render properties in order to syncrhonize render and collider
-	if ("UpdateTransformEvent" == typeid(e).name())
-	{
+	// ---------------------------- TESTING -------------------------------
+	if (_ownerEntity->GetId() == e.GetEmmitter()) {
 
+		// Physics transform has been updated so update render properties in order to syncrhonize render and collider
+		if (EventType::EVENT_UPDATE_TRANSFORM == eventType)
+		{
+			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
+		}
 	}
 }
 

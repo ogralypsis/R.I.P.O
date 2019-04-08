@@ -19,17 +19,7 @@ public:
 
 	void CreateSceneEntities(nlohmann::json scene);
 	void Update();
+	void AddSceneObservers();
 
-/*	void AddSceneObservers(vector entities)
-
-		// Añadir en el json un vestor de strings eventos a la altura del vector de componentes que ya existe
-		// para aqui leer ese vector de eventos y añadir el componente correspondiente como observador de es evento.
-		if (entities[i].tipo == Enemy) {
-
-			// Si la entidad tiene el componente tipo en map<string tipo, Component>componentes añadirlo como observador al evento que sea
-			EventaManager.addObeserver(evento.updateTransform,)
-		}
-		
-*/
 };
 #endif

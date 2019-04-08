@@ -4,7 +4,7 @@
 #include "Entity.h"
 #include "Events.h"
 #include "ArgumentStruct.h"
-#include <map>
+
 
 class Component
 {
@@ -17,6 +17,8 @@ public:
 	virtual void OnEvent(int eventType, Event e) = 0;
 	
 protected:
+
 	Entity* _ownerEntity;
+	
 };
 #endif

@@ -150,17 +150,16 @@ void Game::HandleInput()
 
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
-		std::cout << "PRESSING KEY W" << std::endl;
-		/*WEvent myEvent(0);
-		EventManager::GetInstance()->NotifyObservers(myEvent);*/
+		std::cout << "PRESSING KEY W" << std::endl;		
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
 		std::cout << "PRESSING KEY S" << std::endl;
 
 		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
-		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Enemy", EventDestination::ENTITY); // Emmitter falseado luego ver si seria el id de la escena o game
+		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Enemy", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
 		EventManager::GetInstance().NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent); 
+		// -----------------------------------------------------------------------------------------------------------
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{

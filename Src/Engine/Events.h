@@ -3,15 +3,15 @@
 
 #include <typeinfo>
 
+
+// NO 100% SEGURO SI HACE FALTA
 typedef enum EventDestination {
 	// Event only meant to reach the components of the entity in which the event was created
 	ENTITY,
 	// Event meant to reach every other entity in the scene and the scene itself, but not the entity in which it is created
 	SCENE,
 	// Event which is read only by the scene class  
-	SCENE_ONLY,
-	//This event will reach everyone in the scene. The entity in which it was created and other entities in the scene
-	BROADCAST
+	SCENE_ONLY	
 };
 
 
@@ -40,7 +40,9 @@ protected:
 
 	int _type;
 	std::string _emmitter;
-	EventDestination _destination;
+
+	// NO 100% SEGURO SI HACE FALTA
+	 EventDestination _destination;
 };
 #endif
                          

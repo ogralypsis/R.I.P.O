@@ -30,4 +30,6 @@ void RenderComponent::OnEvent(int eventType, Event e)
 
 void RenderComponent::Update()
 {
+
+
 }

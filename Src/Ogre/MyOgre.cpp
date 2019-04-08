@@ -3,6 +3,7 @@
 #include <OgreSceneNode.h>
 #include <OgreMovableObject.h>
 #include "InputManager.h"
+#include "CameraManager.h"
 
 // Static variable for the singleton
 MyOgre * MyOgre::_instance = nullptr;
@@ -84,8 +85,10 @@ bool MyOgre::SetUp()
 
 	_window->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2));
 
-	//add the input
+	//add frameListeners
 	_root->addFrameListener(&InputManager::GetInstance());
+
+	_root->addFrameListener(&CameraManager::GetInstance());
 
 	return (LocateResources() && LoadResources());
 		

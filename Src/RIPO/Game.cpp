@@ -109,14 +109,16 @@ void Game::Loop()
 
 		MessagePump();
 
-		/*HandleInput();*/
-
+		HandleInput();
+		
+		//std::cout << "GAME HAS STARTED" << std::endl;
+			
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
 
 			
-			HandleInput();
-			
+		/*	HandleInput();*/
+
 			// INPUT
 			// PHYSCS STEP
 			// CURRENT SCENE UPDATE

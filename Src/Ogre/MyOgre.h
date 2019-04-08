@@ -8,7 +8,7 @@
 #include <OgreConfigFile.h>
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
-#include "CameraManager.h"
+
 
 //#include <OgreCamera.h>
 #include <Ogre.h>

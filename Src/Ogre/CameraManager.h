@@ -5,8 +5,10 @@
 #include <OgreSceneNode.h>
 #include <Ogre.h>
 #include <OgreRenderWindow.h>
+#include <OgreFrameListener.h>
+#include "InputManager.h"
 
-class CameraManager
+class CameraManager : public Ogre::FrameListener
 {
 public:
 	~CameraManager();
@@ -17,6 +19,10 @@ public:
 	static void ResetInstance();
 
 
+	void CameraMovement(Ogre::Real time);
+
+	virtual bool frameStarted(const Ogre::FrameEvent& e);
+
 private:
 	CameraManager();
 
@@ -24,9 +30,18 @@ private:
 
 	Ogre::Camera* _mainCamera = nullptr;
 	Ogre::SceneNode* _camNode = nullptr;
+	Ogre::SceneNode* _camYawNode = nullptr;
+	Ogre::SceneNode* _camPitchNode = nullptr;
+	Ogre::Camera* _camera = nullptr;
 	Ogre::Viewport * _viewPort = nullptr;
 
-	
+	mouseCoordinates oldMouseCoords;
+	mouseCoordinates newMouseCoords;
+
+	Ogre::Real _rotate;
+	Ogre::Real _move;
+	Ogre::Vector3 _direction;
+
 };
 
 

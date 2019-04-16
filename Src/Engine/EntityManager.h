@@ -13,6 +13,7 @@ public:
 
 	void AddEntity(Entity* e);
 	void DeleteEntity(Entity* e);
+	void ClearEntities();
 
 	void CreateEntity(std::string name, std::vector<Component*> components);
 

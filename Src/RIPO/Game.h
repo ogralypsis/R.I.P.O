@@ -5,8 +5,10 @@
 #include "../Engine/Component.h"
 #include "RIPOArguments.h"
 
-#include <string>
+#include "Scene.h"
 
+#include <string>
+#include <stack>
 
 class Game
 {
@@ -77,6 +79,9 @@ private:
 	Factory<Component> _compFactory;
 
 	static Game * _instance;
+
+	// game state's stack
+	std::stack<Scene*> _states;
 	
 	// Boolean to determine the end of the game (exit the main loop)
 	bool _exit;

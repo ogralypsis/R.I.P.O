@@ -1,35 +1,34 @@
 #include "Scene.h"
-#include <ArgumentStruct.h>
-#include <Component.h>
+
+// singletons
+#include <EntityManager.h>
+#include <EventManager.h>
+#include <FileReader.h>
 #include <SceneLoader.h>
 #include <MyOgre.h>
-#include <EventManager.h>
+
+// events from RIPO
 #include "RIPOEvent.h"
 
 Scene::Scene(std::string ID, Factory<Component> compFactory)
 {
-	_sceneID = ID;
-	_compFactory = compFactory;
-
-	_instanceEM = EntityManager::getInstance();
-	_instanceFR = FileReader::getInstance();
-
 	// Read file 
-	json entities = _instanceFR->readFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
+	json entities = FileReader::getInstance()->readFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
 
-	// Call Loader
+	// Call Loader to create scene
 	SceneLoader::getInstance()->LoadFromJson(entities, compFactory);
 
-	// create map
-	MyOgre::GetInstance().CreateEntity("Buildings.mesh", Ogre::Vector3(0, 0, 100), Ogre::Vector3(2, 2, 2), Ogre::Radian(-1.5708));
-
+	// add events to scene
 	AddSceneObservers();
 }
 
-Scene::~Scene() {}
-
-void Scene::CreateSceneEntities(nlohmann::json scene)
+Scene::~Scene() 
 {
+	// empty scene from entities
+	EntityManager::getInstance()->ClearEntities();
+
+	// empty OGRE scene
+	MyOgre::GetInstance().ClearScene();
 }
 
 void Scene::Update()

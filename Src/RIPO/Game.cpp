@@ -9,7 +9,6 @@
 #include "../Engine/Component.h"
 
 #include "RIPOEvent.h"
-#include "Scene.h"
 
 #include "HealthComponent.h"
 #include "RenderComponent.h"
@@ -172,6 +171,12 @@ void Game::HandleInput()
 
 		std::cout << "PRESSING KEY D" << std::endl;
 	}
+
+	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_C))
+	{
+		std::cout << "CHANGING SCENE" << std::endl;
+		ChangeScene("2");
+	}
 }
 
 
@@ -196,7 +201,22 @@ void Game::Render()
 
 void Game::ChangeScene(std::string name)
 {
+	// if the stack is not empty (i.e., already has an scene)
+	if (!_states.empty()) 
+	{
+		// save the scene in a temp variable
+		Scene* aux = _states.top();
+		// delete that scene from the stack
+		_states.pop();
+		// delete pointer to the scene
+		delete aux;
+	}
+
+	// create new scene
 	Scene* newScene = new Scene(name, _compFactory);
+
+	// push it to the stack
+	_states.push(newScene);
 }
 
 void Game::RegisterComponents()

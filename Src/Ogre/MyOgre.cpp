@@ -174,10 +174,6 @@ void MyOgre::CreateLight(Ogre::SceneManager * sceneMgr) {
 	_lightNode->setDirection(0, -1, 1);
 }
 
-void MyOgre::CreateGround() {
-
-
-}
 
 bool MyOgre::LocateResources()
 {
@@ -245,15 +241,6 @@ bool MyOgre::CheckWindowStatus()
 	return _window->isClosed();
 }
 
-void MyOgre::CreateSinBad()
-{
-	_sinBad = _sceneMgr->createEntity("Sinbad.mesh");
-	_sinbadNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
-	_sinbadNode->attachObject(_sinBad);
-
-	_sinbadNode->scale({5,5,5});
-}
-
 void MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian) {
 	Ogre::Entity* _newEntity = _sceneMgr->createEntity(mesh);
 	Ogre::SceneNode* _newEntityNode = _sceneMgr->getRootSceneNode()->createChildSceneNode(position);
@@ -262,6 +249,12 @@ void MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector
 	
 	_newEntityNode->scale(vector);
 	_newEntityNode->pitch(radian);
+}
+
+void MyOgre::ClearScene()
+{
+	// empty the scene from all the entities
+	_sceneMgr->clearScene();
 }
 
 void MyOgre::Render()

@@ -1,15 +1,11 @@
 #include "EntityManager.h"
-
+#include <iostream>
 EntityManager * EntityManager::_instance = nullptr;
 EntityManager::EntityManager() {}
 
 EntityManager::~EntityManager()
 {
-	// delete each pointer
-	for (std::vector<Entity *>::iterator it = _entities.begin(); it != _entities.end(); ++it)
-		delete (*it);
-	// clear the vector
-	_entities.clear();
+	ClearEntities();
 }
 
  EntityManager * EntityManager::getInstance()
@@ -50,6 +46,15 @@ void EntityManager::DeleteEntity(Entity * e)
 			// keep searching
 			i++;
 	}
+}
+
+void EntityManager::ClearEntities()
+{
+	// delete each pointer
+	for (std::vector<Entity *>::iterator it = _entities.begin(); it != _entities.end(); ++it)
+		delete (*it);
+	// clear the vector
+	_entities.clear();
 }
 
 void EntityManager::CreateEntity(std::string name, std::vector<Component*> components)

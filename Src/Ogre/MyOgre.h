@@ -51,8 +51,6 @@ public:
 	/// </summary>
 	void CreateLight(Ogre::SceneManager * sceneMgr);
 
-
-	void CreateGround();
 	/// <summary>
 	/// Returns the render window
 	/// </summary>
@@ -65,9 +63,8 @@ public:
 	
 	void CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian);
 	
+	void ClearScene();
 	
-	// TESTING DELETE LATER
-	void CreateSinBad();
 
 	void Render();
 

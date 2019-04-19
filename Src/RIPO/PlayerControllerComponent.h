@@ -9,7 +9,6 @@ class PlayerControllerComponent : public Component
 {
 public:
 	PlayerControllerComponent();
-	//PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ);
 	~PlayerControllerComponent();
 
 	//template<class TransformComponent>
@@ -17,10 +16,6 @@ public:
 	void virtual OnEvent(int eventType, Event e);
 	void virtual Update();
 
-	//Getters
-	/*float GetNewPositionX();
-	float GetNewPositionY();
-	float GetNewPositionZ();*/
 
 private:
 

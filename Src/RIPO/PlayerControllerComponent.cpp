@@ -6,17 +6,6 @@
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
-/*
-PlayerControllerComponent::PlayerControllerComponent(std::string id, Entity* e, float vel, float posX, float posY, float posZ) : Component(id, e), 
-_velocity(vel), _player(e), _posX(posX), _posY(posY), _posZ(posZ) 
-{
-	_orPosX = _posX;
-	_orPosY = _posY;
-	_orPosZ = _posZ;
-
-}
-*/
-
 PlayerControllerComponent::~PlayerControllerComponent(){}
 
 //template<class TransformComponent>
@@ -28,13 +17,14 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_velocity = arguments["vel"].f;
 
 	_transform = new TransformComponent();
+	//_transform = _player->GetComponent<TransformComponent>(_transform);
 	
 	
-	//_posX = _player->GetComponent<TransformComponent>(_transform)->GetPosition()._x;
+	_posX = _transform->GetPosition()._x;
 	_orPosX = _posX;
-	//_posY = _player->GetComponent<TransformComponent>(_transform)->GetPosition()._y;
+	_posY = _transform->GetPosition()._y;
 	_orPosY = _posY;
-	//_posZ = _player->GetComponent<TransformComponent>(_transform)->GetPosition()._z;
+	_posZ = _transform->GetPosition()._z;
 	_orPosZ = _posZ;
 }
 
@@ -71,7 +61,6 @@ void PlayerControllerComponent::OnEvent(int eventType, Event e)
 	{
 		CameraMovement();
 	}
-
 	
 }
 
@@ -79,20 +68,6 @@ void PlayerControllerComponent::Update()
 {
 }
 
-/*float PlayerControllerComponent::GetNewPositionX()
-{
-	return _posX;
-}
-
-float PlayerControllerComponent::GetNewPositionY()
-{
-	return _posY;
-}
-
-float PlayerControllerComponent::GetNewPositionZ()
-{
-	return _posZ;
-}*/
 
 void PlayerControllerComponent::ForwardMovement()
 {
@@ -130,5 +105,6 @@ void PlayerControllerComponent::ResetPosition()
 	_posY = _orPosY;
 	_posZ = _orPosZ;
 
+	_transform->SetPosition(_posX, _posY, _posZ);
 }
 

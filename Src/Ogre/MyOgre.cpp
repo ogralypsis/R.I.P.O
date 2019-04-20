@@ -3,7 +3,7 @@
 #include <OgreSceneNode.h>
 #include <OgreMovableObject.h>
 #include "InputManager.h"
-
+#include "CameraManager.h"
 
 // Static variable for the singleton
 MyOgre * MyOgre::_instance = nullptr;
@@ -13,9 +13,9 @@ MyOgre::MyOgre()
 	_root = nullptr;
 	_window = nullptr;
 	_sceneMgr = nullptr;
-	_mainCamera = nullptr;
+	//_mainCamera = nullptr;
 	_light = nullptr;
-	_viewPort = nullptr;
+	//_viewPort = nullptr;
 	_resourcesConfigLoc = "";
 	_pluginsConfigLoc = "";
 
@@ -79,13 +79,16 @@ bool MyOgre::SetUp()
 	// create the scene	
 	_sceneMgr = _root->createSceneManager();
 
-	_mainCamera = CreateCamera(_window, _sceneMgr);
+	CameraManager::GetInstance().CreateFPSCamera(_window, _sceneMgr);
+
 	CreateLight(_sceneMgr);
 
 	_window->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2));
 
 	//add the input
 	_root->addFrameListener(&InputManager::GetInstance());
+
+	_root->addFrameListener(&CameraManager::GetInstance());
 
 	return (LocateResources() && LoadResources());
 		
@@ -135,26 +138,6 @@ void MyOgre::ResetInstance()
 		delete MyOgre::_instance;
 		MyOgre::_instance = nullptr;
 	}	
-}
-
-Ogre::Camera* MyOgre::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr) {
-
-	// add a camera
-	Ogre::Camera *camera = sceneMgr->createCamera("MainCam");
-	_camNode = _sceneMgr->getRootSceneNode()->createChildSceneNode();
-
-	camera->setPosition(Ogre::Vector3(0, 160, 160));
-	camera->lookAt(Ogre::Vector3(0, 0, 0));
-	camera->setNearClipDistance(5);
-	camera->setFarClipDistance(10000);
-
-	_camNode->attachObject(camera);
-	_camNode->setPosition(0, 0, 140);
-
-	// add viewport
-	_viewPort = window->addViewport(camera);
-
-	return camera;
 }
 
 void MyOgre::CreateLight(Ogre::SceneManager * sceneMgr) {

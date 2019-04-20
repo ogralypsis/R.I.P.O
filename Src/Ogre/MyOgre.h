@@ -40,11 +40,6 @@ public:
 	static void ResetInstance();
 
 	/// <summary>
-	/// Returns the main camera of the scenes with the viewport
-	/// </summary>
-	Ogre::Camera* CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
-
-	/// <summary>
     /// Returns the main light of the scenes
 	/// </summary>
 	void CreateLight(Ogre::SceneManager * sceneMgr);
@@ -99,8 +94,8 @@ private:
 	Ogre::Root * _root;
 	Ogre::RenderWindow * _window;
 	Ogre::SceneManager * _sceneMgr;
-	Ogre::Camera* _mainCamera;
-	Ogre::Viewport * _viewPort;
+	//Ogre::Camera* _mainCamera;
+	//Ogre::Viewport * _viewPort;
 	Ogre::Light* _light;
 
 	Ogre::SceneNode* _lightNode;

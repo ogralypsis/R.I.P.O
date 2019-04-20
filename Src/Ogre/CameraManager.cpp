@@ -54,6 +54,27 @@ void CameraManager::FPSrotation(Ogre::Real time)
 bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 {
 	newMouseCoords = InputManager::GetInstance().GetMouseCoords();
+
+	//TESTING. Later the _player node will be created and modified in other place
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
+
+		MoveForward(e.timeSinceLastFrame);
+	}
+
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S)) {
+
+		MoveBack(e.timeSinceLastFrame);
+	}
+
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D)) {
+
+		MoveRight(e.timeSinceLastFrame);
+	}
+
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A)) {
+
+		MoveLeft(e.timeSinceLastFrame);
+	}
 	
 	//CameraMovement(e.timeSinceLastFrame);
 	return true;
@@ -74,5 +95,32 @@ void CameraManager::ResetInstance()
 		delete _instance;
 		_instance = nullptr;
 	}
+}
+
+void CameraManager::MoveForward(Ogre::Real time)
+{
+
+	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(0, 0, -1);	_player->translate(vt * time * _speed);
+}
+
+void CameraManager::MoveBack(Ogre::Real time)
+{
+
+	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(0, 0, 1);	_player->translate(vt * time * _speed);
+
+}
+
+void CameraManager::MoveRight(Ogre::Real time)
+{
+
+	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(1, 0, 0);	_player->translate(vt * time * _speed);
+
+}
+
+void CameraManager::MoveLeft(Ogre::Real time)
+{
+
+	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(-1, 0, 0);	_player->translate(vt * time * _speed);
+
 }
 

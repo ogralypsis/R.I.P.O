@@ -19,6 +19,11 @@ public:
 
 	static void ResetInstance();
 
+	void MoveForward(Ogre::Real time);
+	void MoveBack(Ogre::Real time);
+	void MoveRight(Ogre::Real time);
+	void MoveLeft(Ogre::Real time);
+
 	void FPSrotation(Ogre::Real time);
 
 	virtual bool frameStarted(const Ogre::FrameEvent& e);
@@ -43,6 +48,8 @@ private:
 	Ogre::Real _rotate;
 	Ogre::Real _move;
 	Ogre::Vector3 _direction;
+
+	Ogre::Real _speed = 20.0;
 
 };
 

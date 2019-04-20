@@ -14,10 +14,13 @@ public:
 	~CameraManager();
 	void CreateMainCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
 
+	void CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
+
 	static CameraManager& GetInstance();
 
 	static void ResetInstance();
 
+	void FPSrotation(Ogre::Real time);
 
 	void CameraMovement(Ogre::Real time);
 
@@ -27,6 +30,8 @@ private:
 	CameraManager();
 
 	static CameraManager* _instance;
+
+	Ogre::SceneNode* _player = nullptr;
 
 	Ogre::Camera* _mainCamera = nullptr;
 	Ogre::SceneNode* _camNode = nullptr;

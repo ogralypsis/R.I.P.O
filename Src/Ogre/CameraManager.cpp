@@ -24,6 +24,34 @@ CameraManager::~CameraManager()
 	}
 }
 
+void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr)
+{
+	//TESTING creates a node for player
+	_player = sceneMgr->getRootSceneNode()->createChildSceneNode();
+	_player->setPosition(Ogre::Vector3(30, 10, 200));
+
+	//add a camera
+	_camera = sceneMgr->createCamera("FPScam");
+	_camNode = _player->createChildSceneNode();
+
+	_camera->lookAt(Ogre::Vector3(0, 0, 0));
+	_camera->setNearClipDistance(5);
+	_camera->setFarClipDistance(10000);
+
+	_camNode->attachObject(_camera);
+
+	// add viewport
+	_viewPort = window->addViewport(_camera);
+	_viewPort->setAutoUpdated(true);
+}
+
+void CameraManager::FPSrotation(Ogre::Real time)
+{
+
+	//if(oldMouseCoords.mouseX < newMouseCoords.mouseX)
+}
+
+
 void CameraManager::CreateMainCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr)
 {
 	 //add a camera
@@ -134,7 +162,7 @@ bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 {
 	newMouseCoords = InputManager::GetInstance().GetMouseCoords();
 	
-	CameraMovement(e.timeSinceLastFrame);
+	//CameraMovement(e.timeSinceLastFrame);
 	return true;
 }
 
@@ -154,3 +182,4 @@ void CameraManager::ResetInstance()
 		_instance = nullptr;
 	}
 }
+

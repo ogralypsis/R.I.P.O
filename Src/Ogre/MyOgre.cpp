@@ -79,8 +79,8 @@ bool MyOgre::SetUp()
 	// create the scene	
 	_sceneMgr = _root->createSceneManager();
 
-	CameraManager::GetInstance().CreateMainCamera(_window, _sceneMgr);
-	//_mainCamera = CreateCamera(_window, _sceneMgr);
+	CameraManager::GetInstance().CreateFPSCamera(_window, _sceneMgr);
+
 	CreateLight(_sceneMgr);
 
 	_window->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2));

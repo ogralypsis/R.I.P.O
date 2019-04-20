@@ -6,27 +6,6 @@
 #include "../Ogre/Transform.h"
 #include "RIPOArguments.h"
 
-struct position
-{
-	float _x;
-	float _y;
-	float _z;
-};
-
-struct rotation
-{
-	float _x;
-	float _y;
-	float _z;
-};
-
-struct scale
-{
-	float _x;
-	float _y;
-	float _z;
-};
-
 class TransformComponent : public Component
 {
 public:
@@ -37,15 +16,21 @@ public:
 
 	//Position
 	void SetPosition(float x, float y, float z);
-	position GetPosition();
+	float GetPosX();
+	float GetPosY();
+	float GetPosZ();
 
 	//Rotation
 	void SetRotation(float x, float y, float z);
-	rotation GetRotation();
+	float GetRotX();
+	float GetRotY();
+	float GetRotZ();
 
 	//Scale
 	void SetScale(float x, float y, float z);
-	scale GetScale();
+	float GetScaleX();
+	float GetScaleY();
+	float GetScaleZ();
 
 	void virtual OnEvent(int eventType, Event e);
 
@@ -56,11 +41,10 @@ public:
 
 private:
 
-	position _pos;
-	rotation _rot;
-	scale _scale;
+	Ogre::Vector3 _pos;
+	Ogre::Vector3 _rot;
+	Ogre::Vector3 _scale;
 
-	Transform* t = nullptr;
 };
 
 #endif

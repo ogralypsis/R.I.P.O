@@ -61,7 +61,6 @@ T* Entity::GetComponent(T* c)
 	return nullptr;
 }*/
 
-//Prueba devolviendo component en vez de T, pero en el if no lo detecta como igual y devuelve un puntero nullptr
 Component* Entity::GetComponent(Component* c)
 {
 	int i = 0;

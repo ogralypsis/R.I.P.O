@@ -14,61 +14,88 @@ void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity
 {
 	_ownerEntity = e;
 
-	t = new Transform();
+	//t = new Transform();
 
-	SetPosition(_pos._x = arguments["posX"].f,
-		_pos._y = arguments["posY"].f,
-		_pos._z = arguments["posZ"].f);
+	SetPosition(arguments["posX"].f,
+		arguments["posY"].f,
+		arguments["posZ"].f);
 
-	SetRotation(_rot._x = arguments["rotX"].f,
-		_rot._y = arguments["rotY"].f,
-		_rot._z = arguments["rotZ"].f);
+	SetRotation(arguments["rotX"].f,
+		arguments["rotY"].f,
+		arguments["rotZ"].f);
 
-	SetScale(_scale._x = arguments["scaleX"].f,
-		_scale._y = arguments["sclaeY"].f,
-		_scale._z = arguments["scaleZ"].f);
+	SetScale(arguments["scaleX"].f,
+		arguments["sclaeY"].f,
+		arguments["scaleZ"].f);
 
 }
 
 void TransformComponent::SetPosition(float x, float y, float z)
 {
-	_pos._x = x;
-	_pos._y = y;
-	_pos._z = z;
-	t->SetPosition(x, y, z);
+	_pos.x = x;
+	_pos.y = y;
+	_pos.z = z;
 }
 
-position TransformComponent::GetPosition()
+float TransformComponent::GetPosX()
 {
-	return _pos;
+	return _pos.x;
+}
+
+float TransformComponent::GetPosY()
+{
+	return _pos.y;
+}
+
+float TransformComponent::GetPosZ()
+{
+	return _pos.z;
 }
 
 void TransformComponent::SetRotation(float x, float y, float z)
 {
 
-	_rot._x = x;
-	_rot._y = y;
-	_rot._z = z;
-	t->SetRotation(x, y, z);
+	_rot.x = x;
+	_rot.y = y;
+	_rot.z = z;
 }
 
-rotation TransformComponent::GetRotation()
+float TransformComponent::GetRotX()
 {
-	return _rot;
+	return _rot.x;
+}
+
+float TransformComponent::GetRotY()
+{
+	return _rot.y;
+}
+
+float TransformComponent::GetRotZ()
+{
+	return _rot.z;
 }
 
 void TransformComponent::SetScale(float x, float y, float z)
 {
 
-	_scale._x = x;
-	_scale._y = y;
-	_scale._z = z;
-	t->SetScale(x, y, z);
+	_scale.x = x;
+	_scale.y = y;
+	_scale.z = z;
 }
 
-scale TransformComponent::GetScale()
+float TransformComponent::GetScaleX()
 {
-	return _scale;
+	return _scale.x;
+}
+
+float TransformComponent::GetScaleY()
+{
+	return _scale.y;
+}
+
+float TransformComponent::GetScaleZ()
+{
+	return _scale.z;
 }
 
 void TransformComponent::OnEvent(int eventType, Event e)

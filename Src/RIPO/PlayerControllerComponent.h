@@ -43,7 +43,6 @@ private:
 
 	//Entity* _player = nullptr;
 	TransformComponent* _transform = nullptr;
-	HealthComponent* _health = nullptr;
 	
 };
 

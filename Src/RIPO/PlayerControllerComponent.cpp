@@ -18,11 +18,11 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	//_transform = _ownerEntity->GetComponent(_transform);
 	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
 	
-	_posX = _transform->GetPosition()._x;
+	_posX = _transform->GetPosX();
 	_orPosX = _posX;
-	_posY = _transform->GetPosition()._y;
+	_posY = _transform->GetPosY();
 	_orPosY = _posY;
-	_posZ = _transform->GetPosition()._z;
+	_posZ = _transform->GetPosZ();
 	_orPosZ = _posZ;
 }
 

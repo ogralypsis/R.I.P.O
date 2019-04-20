@@ -1,5 +1,7 @@
 #include "MyPhysX.h"
 
+MyPhysX * MyPhysX::_instance = nullptr;
+
 
 MyPhysX::MyPhysX() {
 	gPxPhysics = NULL;
@@ -9,14 +11,12 @@ MyPhysX::MyPhysX() {
 	
 }
 
-
 void MyPhysX::initPhysX()
 {
 	gPvdFlags = physx::PxPvdInstrumentationFlag::eDEBUG;
 
 	//SDK
 	gPxFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
-
 
 	gPxPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gPxFoundation, physx::PxTolerancesScale(), false, gPvd);
 
@@ -46,9 +46,30 @@ void MyPhysX::initPhysX()
 
 }
 
+MyPhysX & MyPhysX::GetInstance()
+{	
+	if (MyPhysX::_instance == nullptr)
+		MyPhysX::_instance = new MyPhysX();
+
+	return *MyPhysX::_instance;
+}
+
+void MyPhysX::ResetInstance()
+{
+	if (_instance != nullptr) {
+		delete MyPhysX::_instance;
+		MyPhysX::_instance = nullptr;
+	}
+}
+
+void MyPhysX::Shutdown()
+{
+
+
+}
 
 MyPhysX::~MyPhysX()
 {
+
+
 }
-
-

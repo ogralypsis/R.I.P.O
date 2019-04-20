@@ -3,13 +3,13 @@
 
 #include <PxPhysicsAPI.h>
 
+// Static variable for the singleton
+
 
 
 class MyPhysX
 {
 private:
-
-	//
 	physx::PxPhysics*				gPxPhysics;
 	physx::PxFoundation*			gPxFoundation;
 	physx::PxCooking*				gPxCooking;
@@ -17,9 +17,11 @@ private:
 	physx::PxDefaultErrorCallback   gErrorCallback;
 
 	physx::PxPvd*                           gPvd;
-	//physx::PxPvdTransport*                  gTransport = NULL;
+	//physx::PxPvdTransport*				gTransport = NULL;
 	physx::PxPvdInstrumentationFlags        gPvdFlags;
 
+
+	static MyPhysX * _instance;
 
 public:
 	MyPhysX();
@@ -27,6 +29,10 @@ public:
 
 	void initPhysX();
 
+	static MyPhysX& GetInstance();
 
+	static void ResetInstance();
+
+	void Shutdown();
 };
 #endif

@@ -19,8 +19,6 @@ public:
 	~MyOgre();
 
 	
-
-
 	/// <summary>
 	/// Initialize Ogre with plugins and resources configuration 
 	/// </summary>
@@ -65,7 +63,6 @@ public:
 	
 	void ClearScene();
 	
-
 	void Render();
 
 private:

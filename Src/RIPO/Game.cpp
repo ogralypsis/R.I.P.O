@@ -26,8 +26,11 @@ Game * Game::_instance = nullptr;
 Game::Game()
 {	
 	// For testing, delete later 
-	MyPhysX * mp =  new MyPhysX();
-	mp->initPhysX();
+	//MyPhysX * mp =  new MyPhysX();
+	//mp->initPhysX();
+
+	MyPhysX::GetInstance().initPhysX();
+
 	// ------------------------
 
 	_exit = false;

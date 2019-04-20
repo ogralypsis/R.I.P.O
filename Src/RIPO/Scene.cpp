@@ -44,7 +44,6 @@ void Scene::AddSceneObservers()
 		if (it->first == "UpdateTransformEvent") {
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_UPDATE_TRANSFORM, it->second[i]);
-
 		}
 		else if (it->first == "JEvent") {
 			for (int i = 0; i < it->second.size(); i++)

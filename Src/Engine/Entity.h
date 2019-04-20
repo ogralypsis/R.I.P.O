@@ -42,8 +42,12 @@ public:
 	///</summary>
 	///<param name="c">The component to be returned</param>  
 	///<returns> The specified component </returns>
-	template <class T>
-	T* GetComponent(T* c);
+	/*template <class T>
+	T* GetComponent(T* c);*/
+
+	Component* GetComponent(Component* c);
+
+
 
 protected:
 

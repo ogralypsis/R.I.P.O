@@ -45,15 +45,31 @@ void Entity::DeleteComponent(Component * c)
 }
 
 //searches for a component and returns it if found
-template <class T>
+/*template <class T>
 T* Entity::GetComponent(T* c)
 {
 	int i = 0;
 	while (i < _components.size())
 	{
-		if (typeid(_components[i] == typeid(c)))
+		if (typeid(_components[i]) == typeid(c))
 		{
 			return dynamic_cast<T*>(_components[i]);
+		}
+		i++;
+	}
+
+	return nullptr;
+}*/
+
+//Prueba devolviendo component en vez de T, pero en el if no lo detecta como igual y devuelve un puntero nullptr
+Component* Entity::GetComponent(Component* c)
+{
+	int i = 0;
+	while (i < _components.size())
+	{
+		if (typeid(_components[i]) == typeid(c))
+		{
+			return dynamic_cast<Component*>(_components[i]);
 		}
 		i++;
 	}

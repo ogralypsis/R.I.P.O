@@ -8,7 +8,6 @@ PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
 PlayerControllerComponent::~PlayerControllerComponent(){}
 
-//template<class TransformComponent>
 void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 
@@ -16,9 +15,8 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 
 	_velocity = arguments["vel"].f;
 
-	_transform = new TransformComponent();
-	//_transform = _player->GetComponent<TransformComponent>(_transform);
-	
+	//_transform = _ownerEntity->GetComponent(_transform);
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
 	
 	_posX = _transform->GetPosition()._x;
 	_orPosX = _posX;

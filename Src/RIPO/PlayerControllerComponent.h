@@ -4,6 +4,7 @@
 #include <Component.h>
 #include "RIPOEvent.h"
 #include "TransformComponent.h"
+#include "HealthComponent.h"
 
 class PlayerControllerComponent : public Component
 {
@@ -40,8 +41,9 @@ private:
 	float _orPosY;
 	float _orPosZ;
 
-	Entity* _player = nullptr;
+	//Entity* _player = nullptr;
 	TransformComponent* _transform = nullptr;
+	HealthComponent* _health = nullptr;
 	
 };
 

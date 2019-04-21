@@ -1,5 +1,7 @@
 #include "CameraManager.h"
 #include <iostream>
+#include <math.h>
+
 CameraManager* CameraManager::_instance = nullptr;
 
 CameraManager::CameraManager()
@@ -9,6 +11,7 @@ CameraManager::CameraManager()
 	_move = 250;
 	_direction = Ogre::Vector3::ZERO;
 }
+
 
 CameraManager::~CameraManager()
 {
@@ -45,10 +48,35 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 	_viewPort->setAutoUpdated(true);
 }
 
+
 void CameraManager::FPSrotation(Ogre::Real time)
 {
 
-	//if(oldMouseCoords.mouseX < newMouseCoords.mouseX)
+	//_rotX = GetAngle(oldMouseCoords.mouseX, newMouseCoords.mouseX);
+ 
+	float speed = 2;
+	if (newMouseCoords.mouseX < oldMouseCoords.mouseX - 3 )
+	{
+		_rotX = -25;
+		_player->yaw(_rotX * time * speed);
+	}
+	else if(newMouseCoords.mouseX > oldMouseCoords.mouseX + 3 )
+	{
+		_rotX = 25;
+		_player->yaw(_rotX * time * speed);
+	}
+	
+	if (newMouseCoords.mouseY < oldMouseCoords.mouseY - 3)
+	{
+		_rotY = -25;
+		_camNode->pitch(_rotY * time);
+	}
+	else if (newMouseCoords.mouseY > oldMouseCoords.mouseY + 3)
+	{
+		_rotY = 25;
+		_camNode->pitch(_rotY * time);
+	}
+
 }
 
 
@@ -162,6 +190,8 @@ bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 {
 	newMouseCoords = InputManager::GetInstance().GetMouseCoords();
 	
+	FPSrotation(e.timeSinceLastFrame);
+
 	//CameraMovement(e.timeSinceLastFrame);
 	return true;
 }

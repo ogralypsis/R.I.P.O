@@ -31,7 +31,7 @@ MyOgre::~MyOgre()
 {
 }
 
-bool MyOgre::InitOgre()
+bool MyOgre::Init()
 {
 
 	CreateRoot();

@@ -1,48 +1,69 @@
 #include "MyPhysX.h"
+#include <iostream>
 
 MyPhysX * MyPhysX::_instance = nullptr;
 
-
 MyPhysX::MyPhysX() {
-	gPxPhysics = NULL;
-	gPxFoundation = NULL;
-	gPxCooking = NULL;
-	gPvd = NULL;
+
+	_PxPhysics = nullptr;
+	_PxFoundation = nullptr;
+	_PxCooking = nullptr;
+	_Pvd = nullptr;
+	_scene = nullptr;
 	
 }
 
-void MyPhysX::initPhysX()
+MyPhysX::~MyPhysX()
 {
-	gPvdFlags = physx::PxPvdInstrumentationFlag::eDEBUG;
 
-	//SDK
-	gPxFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
 
-	gPxPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gPxFoundation, physx::PxTolerancesScale(), false, gPvd);
+}
+
+bool MyPhysX::Init()
+{
+	_PvdFlags = physx::PxPvdInstrumentationFlag::eDEBUG;
+
+	//SDK	
+	_PxFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, _Allocator, _ErrorCallback);
+	if (_PxFoundation == NULL)	{	
+#ifdef _DEBUG
+		std::cout << "PxCreateFoundation failed!" << std::endl;
+#endif
+		return false;
+	}
+
 
 	//gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
-
-#if ENABLE_PVD
-	gPvd = physx::PxCreatePvd(*gPxFoundation);
-	//gPvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::eALL);
-	gPvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::ePROFILE);
+	/*
+	#if ENABLE_PVD
+	_Pvd = physx::PxCreatePvd(*gPxFoundation);
+	//_Pvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::eALL);
+	_Pvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::ePROFILE);
+	#endif
+	*/
+	
+	_PxPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *_PxFoundation, physx::PxTolerancesScale(), false, _Pvd);
+	if (_PxPhysics == NULL) {
+#ifdef _DEBUG
+		std::cout << "PxCreatePhysics failed!" << std::endl;
 #endif
-
-	if (gPxPhysics == NULL)
-	{
-		printf("\nPhysXSDK create error.\nUnable to initialize the PhysX SDK, exiting the sample.\n\n");
-		//return false;
+		return false;
 	}
-	physx::PxCookingParams params(gPxPhysics->getTolerancesScale());
+
+	physx::PxCookingParams params(_PxPhysics->getTolerancesScale());
 	params.buildGPUData = true;
-	gPxCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gPxFoundation, params);
+	_PxCooking = PxCreateCooking(PX_PHYSICS_VERSION, *_PxFoundation, params);
 
-	if (gPxCooking == NULL)
-	{
-		printf("\nError: Unable to initialize the cooking library, exiting the sample.\n\n");
-		//return false;
-	}
-	PxInitExtensions(*gPxPhysics, gPvd);
+	if (_PxCooking == NULL) {
+#ifdef _DEBUG
+		std::cout << "PxCreateCooking failed!" << std::endl;
+#endif
+	return false;
+}
+
+	PxInitExtensions(*_PxPhysics, _Pvd);
+
+	return true;
 
 }
 
@@ -62,14 +83,48 @@ void MyPhysX::ResetInstance()
 	}
 }
 
+
 void MyPhysX::Shutdown()
 {
+	PxCloseExtensions();
 
-
+	_PxPhysics->release();	
+	_PxCooking->release();
+	_Pvd->release();
+	_PxFoundation->release();
 }
 
-MyPhysX::~MyPhysX()
+void MyPhysX::CreateScene()
 {
 
+	physx::PxSceneDesc sceneDesc = physx::PxSceneDesc(_PxPhysics->getTolerancesScale());
+	sceneDesc.gravity = physx::PxVec3(0.0f, -9.8f, 0.0f);
+	_dispatcher = physx::PxDefaultCpuDispatcherCreate(4);
+	sceneDesc.cpuDispatcher = _dispatcher;
+	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
+
+	_scene = _PxPhysics->createScene(sceneDesc);
 
 }
+
+void MyPhysX::ClearScene()
+{
+	_dispatcher->release();
+	_scene->release();
+}
+
+void MyPhysX::StepPhysics(float t)
+{
+
+	//... pre - simulation work(update controllers, etc) ...
+	_scene->simulate(t);
+	_scene->fetchResults(true);
+	//... post simulation work(process physics events, etc) ...	
+
+	//std::cout << "SIMULATING PHYSX..." << std::endl;
+}
+
+
+
+
+

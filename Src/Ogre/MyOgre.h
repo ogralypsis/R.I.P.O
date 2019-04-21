@@ -22,7 +22,7 @@ public:
 	/// <summary>
 	/// Initialize Ogre with plugins and resources configuration 
 	/// </summary>
-	bool InitOgre();
+	bool Init();
 
 	/// <summary>
 	/// Release all pointers used, resources and ogre manually

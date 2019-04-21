@@ -3,36 +3,50 @@
 
 #include <PxPhysicsAPI.h>
 
-// Static variable for the singleton
-
-
-
 class MyPhysX
 {
 private:
-	physx::PxPhysics*				gPxPhysics;
-	physx::PxFoundation*			gPxFoundation;
-	physx::PxCooking*				gPxCooking;
-	physx::PxDefaultAllocator		gAllocator;
-	physx::PxDefaultErrorCallback   gErrorCallback;
 
-	physx::PxPvd*                           gPvd;
+	physx::PxPhysics * _PxPhysics;
+	physx::PxFoundation * _PxFoundation;
+	physx::PxCooking * _PxCooking;
+	physx::PxDefaultAllocator _Allocator;
+	physx::PxDefaultErrorCallback _ErrorCallback;
+
+	physx::PxPvd *  _Pvd;
+	physx::PxPvdInstrumentationFlags _PvdFlags;
 	//physx::PxPvdTransport*				gTransport = NULL;
-	physx::PxPvdInstrumentationFlags        gPvdFlags;
 
 
 	static MyPhysX * _instance;
+	
+	physx::PxScene * _scene;
+	physx::PxDefaultCpuDispatcher * _dispatcher;
 
 public:
+
 	MyPhysX();
 	~MyPhysX();
 
-	void initPhysX();
 
 	static MyPhysX& GetInstance();
 
 	static void ResetInstance();
 
+	/// <summary>
+	/// Initialize PhysX and all necesary resources
+	/// </summary>
+	bool Init();
+
+	/// <summary>
+	/// Release all PhysX objects and resources
+	/// </summary>
 	void Shutdown();
+
+	void CreateScene();
+
+	void ClearScene();
+
+	void StepPhysics(float t);
 };
 #endif

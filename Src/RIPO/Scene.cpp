@@ -7,11 +7,15 @@
 #include <SceneLoader.h>
 #include <MyOgre.h>
 
+
 // events from RIPO
 #include "RIPOEvent.h"
 
 Scene::Scene(std::string ID, Factory<Component> compFactory)
 {
+	// Create PhysX scene for physics simulation
+	MyPhysX::GetInstance().CreateScene();
+
 	// Read file 
 	json entities = FileReader::getInstance()->readFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
 
@@ -27,12 +31,20 @@ Scene::~Scene()
 	// empty scene from entities
 	EntityManager::getInstance()->ClearEntities();
 
+	// empty PhysX scene
+	MyPhysX::GetInstance().ClearScene();
+
 	// empty OGRE scene
 	MyOgre::GetInstance().ClearScene();
+
 }
 
-void Scene::Update()
+void Scene::Update(float t)
 {
+	// Makes one step in physics simulation
+	MyPhysX::GetInstance().StepPhysics(t);
+
+	// Update entities...
 }
 
 void Scene::AddSceneObservers()

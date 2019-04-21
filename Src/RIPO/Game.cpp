@@ -25,14 +25,6 @@ Game * Game::_instance = nullptr;
 
 Game::Game()
 {	
-	// For testing, delete later 
-	//MyPhysX * mp =  new MyPhysX();
-	//mp->initPhysX();
-
-	MyPhysX::GetInstance().initPhysX();
-
-	// ------------------------
-
 	_exit = false;
 
 	_currentTime = 0;
@@ -48,9 +40,16 @@ Game::~Game()
 bool Game::Init()
 {
 	// If OGRE's initialization fail return false
-	if (!MyOgre::GetInstance().InitOgre()) {
+	if (!MyOgre::GetInstance().Init()) {
 #ifdef _DEBUG
 		std::cout << "OGRE couldn't be initialized" << std::endl;
+#endif
+		return false;
+	}
+
+	if (!MyPhysX::GetInstance().Init()) {
+#ifdef _DEBUG
+		std::cout << "PhysX couldn't be initialized" << std::endl;
 #endif
 		return false;
 	}
@@ -118,7 +117,11 @@ void Game::Loop()
 			// INPUT
 			// PHYSCS STEP
 			// CURRENT SCENE UPDATE
-		
+
+			// ESCENA->UPDATE: physxScene->simulate
+
+			_states.top()->Update(_FPS_CAP);
+
 			_accumulator -= _FPS_CAP;
 			frames++;
 		}

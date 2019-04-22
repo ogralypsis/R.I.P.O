@@ -4,7 +4,7 @@
 #include <factory.h>
 #include <Component.h>
 
-#include <MyPhysX.h>
+
 
 class Scene
 {
@@ -17,8 +17,7 @@ public:
 private:
 
 	void AddSceneObservers();
-	
-	physx::PxRigidStatic* suelo = nullptr;
+		
 
 };
 #endif

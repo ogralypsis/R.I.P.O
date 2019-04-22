@@ -6,7 +6,7 @@
 #include <FileReader.h>
 #include <SceneLoader.h>
 #include <MyOgre.h>
-
+#include <MyPhysX.h>
 
 // events from RIPO
 #include "RIPOEvent.h"

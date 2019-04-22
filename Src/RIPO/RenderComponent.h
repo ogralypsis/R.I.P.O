@@ -2,8 +2,6 @@
 #define RENDER_COMPONENT_H
 
 #include <Component.h>
-#include "RIPOArguments.h"
-#include <OgreSceneManager.h>
 
 class RenderComponent :
 	public Component

@@ -1,7 +1,10 @@
 #include "PlayerControllerComponent.h"
-#include "../Engine/EntityManager.h"
 
+// singleton
+#include <EntityManager.h>
 
+// events from ripo
+#include "RIPOEvent.h"
 
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }

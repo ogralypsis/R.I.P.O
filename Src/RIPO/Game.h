@@ -1,13 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "../Engine/Factory.h"
-#include "../Engine/Component.h"
-#include "RIPOArguments.h"
+#include <Factory.h>
+#include <Component.h>
 
 #include "Scene.h"
 
-#include <string>
 #include <stack>
 
 class Game

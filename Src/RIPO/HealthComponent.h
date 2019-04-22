@@ -2,7 +2,6 @@
 #define _H_HEALTHCOMPONENT_H_
 
 #include <Component.h>
-#include "RIPOEvent.h"
 
 class HealthComponent : public Component
 {

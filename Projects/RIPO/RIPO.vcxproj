@@ -43,7 +43,6 @@
     <ClInclude Include="..\..\Src\RIPO\HealthComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\PlayerControllerComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\RenderComponent.h" />
-    <ClInclude Include="..\..\Src\RIPO\RIPOArguments.h" />
     <ClInclude Include="..\..\Src\RIPO\RIPOEvent.h" />
     <ClInclude Include="..\..\Src\RIPO\Scene.h" />
     <ClInclude Include="..\..\Src\RIPO\TransformComponent.h" />

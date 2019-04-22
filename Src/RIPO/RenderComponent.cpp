@@ -1,6 +1,12 @@
 #include "RenderComponent.h"
+
+// singleton
 #include <MyOgre.h>
+
+// events from RIPO
 #include "RIPOEvent.h"
+
+// other tools
 #include <iostream>
 
 RenderComponent::RenderComponent() : Component () {}

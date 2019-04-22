@@ -1,20 +1,22 @@
 #include "Game.h"
 
-#include "../PhysX/MyPhysX.h"
+// physx
+#include <MyPhysX.h>
+// ogre
+#include <MyOgre.h>
+#include <InputManager.h>
+// engine
+#include <EventManager.h>
 
-#include "../Ogre/MyOgre.h"
-#include "../Ogre/InputManager.h"
-
-#include "../Engine/EventManager.h"
-#include "../Engine/Component.h"
-
+// Event
 #include "RIPOEvent.h"
-
+// Components
 #include "HealthComponent.h"
 #include "RenderComponent.h"
 #include "PlayerControllerComponent.h"
 #include "TransformComponent.h"
 
+// other tools
 #include <Windows.h>
 #include <time.h>
 #include <iostream>

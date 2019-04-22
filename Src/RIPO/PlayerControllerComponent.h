@@ -2,7 +2,6 @@
 #define _H_PLAYERCONTROLLERCOMPONENT_H_
 
 #include <Component.h>
-#include "RIPOEvent.h"
 #include "TransformComponent.h"
 #include "HealthComponent.h"
 

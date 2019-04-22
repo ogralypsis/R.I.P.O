@@ -1,5 +1,11 @@
 #include "HealthComponent.h"
-#include "../Engine/EntityManager.h"
+
+// singleston
+#include <EntityManager.h>
+
+// events from ripo
+#include "RIPOEvent.h"
+
 
 HealthComponent::HealthComponent() : Component () { }
 

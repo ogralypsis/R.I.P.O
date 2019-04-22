@@ -2,9 +2,7 @@
 #define _H_TRANSFORMCOMPONENT_H_
 
 #include <Component.h>
-#include "RIPOEvent.h"
-#include "../Ogre/Transform.h"
-#include "RIPOArguments.h"
+#include <Transform.h>
 
 class TransformComponent : public Component
 {
@@ -35,9 +33,6 @@ public:
 	void virtual OnEvent(int eventType, Event e);
 
 	void virtual Update();
-
-
-
 
 private:
 

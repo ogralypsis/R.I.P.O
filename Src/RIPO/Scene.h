@@ -1,10 +1,8 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <factory.h>
+#include <Factory.h>
 #include <Component.h>
-
-
 
 class Scene
 {

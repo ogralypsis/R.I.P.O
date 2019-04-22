@@ -1,6 +1,7 @@
 #include "TransformComponent.h"
 
-
+// events from ripo
+#include "RIPOEvent.h"
 
 TransformComponent::TransformComponent()
 {

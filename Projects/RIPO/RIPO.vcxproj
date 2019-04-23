@@ -35,6 +35,7 @@
     <ClCompile Include="..\..\Src\RIPO\main.cpp" />
     <ClCompile Include="..\..\Src\RIPO\PlayerControllerComponent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\RenderComponent.cpp" />
+    <ClCompile Include="..\..\Src\RIPO\RigidBodyComponent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\Scene.cpp" />
     <ClCompile Include="..\..\Src\RIPO\TransformComponent.cpp" />
   </ItemGroup>
@@ -43,6 +44,7 @@
     <ClInclude Include="..\..\Src\RIPO\HealthComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\PlayerControllerComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\RenderComponent.h" />
+    <ClInclude Include="..\..\Src\RIPO\RigidBodyComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\RIPOEvent.h" />
     <ClInclude Include="..\..\Src\RIPO\Scene.h" />
     <ClInclude Include="..\..\Src\RIPO\TransformComponent.h" />

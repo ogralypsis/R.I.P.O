@@ -124,6 +124,11 @@ void MyPhysX::StepPhysics(float t)
 	//std::cout << "SIMULATING PHYSX..." << std::endl;
 }
 
+physx::PxPhysics * MyPhysX::GetPhysics()
+{
+	return _PxPhysics;
+}
+
 
 
 

@@ -232,6 +232,7 @@ void MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector
 	
 	_newEntityNode->scale(vector);
 	_newEntityNode->pitch(radian);
+	
 }
 
 void MyOgre::ClearScene()

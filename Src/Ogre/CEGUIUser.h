@@ -16,6 +16,7 @@ public:
 private:
 	CEGUIUser();
 
+	// Instance for singleton
 	static CEGUIUser* _instance;
 
 	CEGUI::OgreRenderer& _myRenderer;

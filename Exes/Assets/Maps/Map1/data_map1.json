@@ -166,6 +166,37 @@
                "_events":[  
                   "JEvent"
                ]
+            },
+			{  
+			
+			   "_type":"RigidBodyComponent",
+               "_numArguments": 3,
+               "_arguments":[  
+                  {  
+                     "_name":"geometry",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"tam1",
+                     "_type":2,
+                     "_arg":"5"
+                  },
+				   {  
+                     "_name":"tam2",
+                     "_type":2,
+                     "_arg":"0"
+                  },
+				   {  
+                     "_name":"tam3",
+                     "_type":2,
+                     "_arg":"0"
+                  }
+               ],
+               "_numEvents":0,
+               "_events":[  
+                  
+               ]
             }
          ]
       },

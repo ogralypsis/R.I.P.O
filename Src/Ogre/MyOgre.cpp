@@ -245,7 +245,10 @@ void MyOgre::Render()
 	//Ogre::WindowEventUtilities::messagePump();
 	if (_window->isClosed())
 		return;
-	if (!_root->renderOneFrame())return;
+	if (!_root->renderOneFrame()) { 
+
+		return;
+	}
 }
 
 bool MyOgre::LoadResources()

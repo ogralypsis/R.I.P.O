@@ -5,6 +5,7 @@
 // ogre
 #include <MyOgre.h>
 #include <InputManager.h>
+#include <CEGUIUser.h>
 // engine
 #include <EventManager.h>
 
@@ -205,6 +206,7 @@ void Game::MessagePump()
 void Game::Render()
 {
 	MyOgre::GetInstance().Render();
+	/*CEGUIUser::GetInstance()->Render();*/
 }
 
 void Game::ChangeScene(std::string name)

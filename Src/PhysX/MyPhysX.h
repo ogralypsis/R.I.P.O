@@ -48,5 +48,7 @@ public:
 	void ClearScene();
 
 	void StepPhysics(float t);
+
+	physx::PxPhysics * GetPhysics();
 };
 #endif

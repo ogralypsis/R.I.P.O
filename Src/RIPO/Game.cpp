@@ -15,6 +15,8 @@
 #include "RenderComponent.h"
 #include "PlayerControllerComponent.h"
 #include "TransformComponent.h"
+#include "RigidBodyComponent.h"
+
 
 // other tools
 #include <Windows.h>
@@ -233,6 +235,7 @@ void Game::RegisterComponents()
 	_compFactory.Register("HealthComponent", new DerivedCreator<HealthComponent, Component>());
 	_compFactory.Register("RenderComponent", new DerivedCreator<RenderComponent, Component>());
 	_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
+	_compFactory.Register("RigidBodyComponent", new DerivedCreator<RigidBodyComponent, Component>());
 	
 
 }

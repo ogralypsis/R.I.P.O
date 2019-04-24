@@ -1,5 +1,5 @@
 {  
-   "_numEntities":3,
+   "_numEntities":1,
    "_entities":[  
       {  
          "_entityID":"GameButton",
@@ -7,42 +7,52 @@
          "_components":[  
             {  
                "_type":"ButtonComponent",
-               "_numArguments":7,
+               "_numArguments":9,
                "_arguments":[  
                   {  
-                     "_name":"image",
+                     "_name":"name",
                      "_type":4,
-                     "_arg":"GameButtonImage.png"
+                     "_arg":"Play"
                   },
                   {  
-                     "_name":"positionX",
+                     "_name":"posX",
                      "_type":1,
-                     "_arg":"100"
+                     "_arg":"0.75"
                   },
                   {  
-                     "_name":"positionY",
+                     "_name":"posOffsetX",
                      "_type":1,
-                     "_arg":"5"
+                     "_arg":"0"
                   },
                   {  
-                     "_name":"positionZ",
+                     "_name":"posY",
+                     "_type":1,
+                     "_arg":"0.50"
+                  },
+                  {  
+                     "_name":"posOffsetY",
                      "_type":1,
                      "_arg":"0"
                   },
                   {  
                      "_name":"scaleX",
                      "_type":1,
-                     "_arg":"1"
+                     "_arg":"0"
+                  },
+                  {  
+                     "_name":"scaleOffsetX",
+                     "_type":1,
+                     "_arg":"50"
                   },
                   {  
                      "_name":"scaleY",
                      "_type":1,
-                     "_arg":"1"
+                     "_arg":"0"
                   },
                   {  
-                     "_name":"scaleZ",
+                     "_name":"scaleOffsetY",
                      "_type":1,
-                     "_arg":"1"
+                     "_arg":"50"
                   }
                ],
                "_numEvents":0,

@@ -8,11 +8,14 @@
 class CEGUIUser
 {
 public:
-	void Render();
-
+	~CEGUIUser();
 	static CEGUIUser* GetInstance();
 
-	~CEGUIUser();
+	void Render();
+
+	void CreateButton(std::string name, CEGUI::UVector2 pos, CEGUI::USize size);
+
+
 
 private:
 	CEGUIUser();

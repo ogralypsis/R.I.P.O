@@ -67,7 +67,6 @@ bool Game::Init()
 	RegisterComponents();
 
 	ChangeScene("1");
-	//ChangeScene("Prueba");
 
 	return true;
 }

@@ -6,3 +6,10 @@ PhysX_32.dll
 PhysXCommon_32.dll
 PhysXCooking_32.dll
 PhysXFoundation_32.dll
+
+Tienen que estar las siguientes dlls de CEGui:
+pcre.dll
+freetype.dll
+CEGUIOgreRenderer-0.dll
+CEGUIBase-0.dll
+CEGUIOpenGLRenderer-0.dll

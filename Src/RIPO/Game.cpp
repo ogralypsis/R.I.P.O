@@ -5,6 +5,7 @@
 // ogre
 #include <MyOgre.h>
 #include <InputManager.h>
+#include <CEGUIUser.h>
 // engine
 #include <EventManager.h>
 
@@ -61,6 +62,13 @@ bool Game::Init()
 	if (!InputManager::GetInstance().InitInput(MyOgre::GetInstance().GetWindow())) {
 #ifdef _DEBUG		
 		std::cout << "OIS Input system could not be initialized" << std::endl;
+#endif	
+	}
+
+	// initialize GUI
+	if (!CEGUIUser::GetInstance()->Init("Assets/CEGUI")) {
+#ifdef _DEBUG		
+		std::cout << "CEGUI system could not be initialized" << std::endl;
 #endif	
 	}
 

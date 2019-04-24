@@ -129,6 +129,10 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;CEGUIOpenGLRenderer-0_d.lib;OgreMain_d.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\OIS-master\Build\Debug</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -163,6 +167,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;CEGUIOpenGLRenderer-0.lib;OgreMain.lib;OIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\OIS-master\Build\Release;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

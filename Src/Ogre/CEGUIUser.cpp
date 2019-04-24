@@ -1,17 +1,69 @@
 #include "CEGUIUser.h"
 
 CEGUIUser * CEGUIUser::_instance = nullptr;
+CEGUI::OpenGL3Renderer* CEGUIUser::_renderer = nullptr;
 
-CEGUIUser::CEGUIUser() : _myRenderer(CEGUI::OgreRenderer::bootstrapSystem())
+CEGUIUser::CEGUIUser() 
 {
-
+	_context = nullptr;
 }
 
+CEGUIUser::~CEGUIUser() {}
 
-CEGUIUser::~CEGUIUser()
+
+bool CEGUIUser::Init(const std::string dir)
 {
-	CEGUI::System::destroy();
-	CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>(_myRenderer));
+	try {
+		// check if renderer and system were already initialized
+		if (_renderer == nullptr) {
+			_renderer = &CEGUI::OpenGL3Renderer::bootstrapSystem();
+
+			// set up resource directories
+			CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
+			rp->setResourceGroupDirectory("imagesets", dir + "/imagesets/");
+			rp->setResourceGroupDirectory("schemes", dir + "/schemes/");
+			rp->setResourceGroupDirectory("fonts", dir + "/fonts/");
+			rp->setResourceGroupDirectory("layouts", dir + "/layouts/");
+			rp->setResourceGroupDirectory("looknfeels", dir + "/looknfeels/");
+			rp->setResourceGroupDirectory("lua_scripts", dir + "/lua_scripts/");
+
+			// tell them where they find their resources
+			CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
+			CEGUI::Scheme::setDefaultResourceGroup("schemes");
+			CEGUI::Font::setDefaultResourceGroup("fonts");
+			CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeels");
+			CEGUI::WindowManager::setDefaultResourceGroup("layouts");
+			CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
+
+		}
+
+		_context = &CEGUI::System::getSingleton().createGUIContext(_renderer->getDefaultRenderTarget());
+
+		return true;
+	}
+	catch (CEGUI::Exception& e) {
+		return false;
+	}
+}
+
+void CEGUIUser::Destroy()
+{
+}
+
+void CEGUIUser::Draw()
+{
+}
+
+void CEGUIUser::LoadScheme(const std::string & schemeFile)
+{
+	// scheme has the "how the widget will look"
+	CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile);
+}
+
+void CEGUIUser::SetFont(const std::string & fontFile)
+{
+	// set font for all widgets of _context
+	_context->setDefaultFont(fontFile);
 }
 
 void CEGUIUser::CreateButton(std::string name, CEGUI::UVector2 pos, CEGUI::USize size)
@@ -31,11 +83,20 @@ void CEGUIUser::CreateButton(std::string name, CEGUI::UVector2 pos, CEGUI::USize
 }
 
 
+
+CEGUI::OpenGL3Renderer* CEGUIUser::GetRenderer()
+{
+	return _renderer;
+}
+
+CEGUI::GUIContext * CEGUIUser::GetContext()
+{
+	return _context;
+}
+
 void CEGUIUser::Render()
 {
-	_myRenderer.beginRendering();
 
-	CEGUI::System::getSingleton().renderAllGUIContexts();
 }
 
 CEGUIUser * CEGUIUser::GetInstance()

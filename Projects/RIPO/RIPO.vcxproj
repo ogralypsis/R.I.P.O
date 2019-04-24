@@ -109,14 +109,14 @@
     <OutDir>$(SolutionDir)Exes</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\PhysX;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\OIS-master\Build\Debug;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.md\debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Src\PhysX;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\Engine\Debug;$(SolutionDir)Libs\PhysX\Debug;$(SolutionDir)Libs\Ogre\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Exes</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <IncludePath>$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Src\Ogre;$(SolutionDir)Src\RIPO;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\Engine;$(SolutionDir)Dependencies\physx\install\vc15win32\PhysX\include;$(SolutionDir)Dependencies\physx\install\vc15win32\PxShared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx\bin\win.x86_32.vc141.md\release;$(SolutionDir)Dependencies\OIS-master\Build\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Libs\Ogre\Release;$(SolutionDir)Libs\PhysX\Release;$(SolutionDir)Libs\Engine\Release;$(LibraryPath)</LibraryPath>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,7 +142,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;PhysX_32.lib;PhysXCommon_32.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;CEGUIOpenGLRenderer-0_d.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib;PhysXExtensions_static_32.lib;PhysXPvdSDK_static_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Ogre.lib;Engine.lib;PhysX.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -173,7 +173,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>OgreMain.lib;%(AdditionalDependencies);PhysX_32.lib;PhysXCommon_32.lib;CEGUIBase-0.lib;CEGUIOpenGLRenderer-0.lib;CEGUIOgreRenderer-0.lib;PhysXCooking_32.lib;PhysXFoundation_32.lib;PhysXExtensions_static_32.lib;PhysXPvdSDK_static_32.lib;OIS.lib</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);PhysX.lib;Ogre.lib;Engine.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

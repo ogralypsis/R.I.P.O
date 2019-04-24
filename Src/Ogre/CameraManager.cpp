@@ -28,17 +28,20 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 {
 	//TESTING creates a node for player
 	_player = sceneMgr->getRootSceneNode()->createChildSceneNode();
-	_player->setPosition(Ogre::Vector3(25, 60, 185));
+	_player->setPosition(Ogre::Vector3(25, 100, 110));
 
 	//add a camera
 	_camera = sceneMgr->createCamera("FPScam");
 	_camNode = _player->createChildSceneNode();
 
-	_camera->lookAt(Ogre::Vector3(0, -0.001, 0));
+	_camera->lookAt(Ogre::Vector3(0, 0, 0));
 	_camera->setNearClipDistance(5);
 	_camera->setFarClipDistance(10000);
 
 	_camNode->attachObject(_camera);
+
+	_player->pitch(Ogre::Radian(-1.573f));
+	_player->roll(Ogre::Radian(3.14f));
 
 	// add viewport
 	_viewPort = window->addViewport(_camera);
@@ -100,27 +103,44 @@ void CameraManager::ResetInstance()
 void CameraManager::MoveForward(Ogre::Real time)
 {
 
-	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(0, 0, -1);	_player->translate(vt * time * _speed);
+	Ogre::Vector3 vt(0, 0, 0);
+
+	vt += Ogre::Vector3(0, -1, 0);
+
+	_player->translate(vt * time * _speed);
+
 }
 
 void CameraManager::MoveBack(Ogre::Real time)
 {
 
-	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(0, 0, 1);	_player->translate(vt * time * _speed);
+	Ogre::Vector3 vt(0, 0, 0);
+
+	vt += Ogre::Vector3(0, 1, 0);
+
+	_player->translate(vt * time * _speed);
 
 }
 
 void CameraManager::MoveRight(Ogre::Real time)
 {
 
-	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(1, 0, 0);	_player->translate(vt * time * _speed);
+	Ogre::Vector3 vt(0, 0, 0);
+
+	vt += Ogre::Vector3(-1, 0, 0);
+
+	_player->translate(vt * time * _speed);
 
 }
 
 void CameraManager::MoveLeft(Ogre::Real time)
 {
 
-	Ogre::Vector3 vt(0, 0, 0);	vt += Ogre::Vector3(-1, 0, 0);	_player->translate(vt * time * _speed);
+	Ogre::Vector3 vt(0, 0, 0);
+
+	vt += Ogre::Vector3(1, 0, 0);
+
+	_player->translate(vt * time * _speed);
 
 }
 

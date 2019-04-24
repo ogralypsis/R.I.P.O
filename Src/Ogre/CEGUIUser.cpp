@@ -1,8 +1,8 @@
 #include "CEGUIUser.h"
 
-/*CEGUIUser::CEGUIUser() : _myRenderer(CEGUI::OgreRenderer::bootstrapSystem())
+CEGUIUser::CEGUIUser() : _myRenderer(CEGUI::OgreRenderer::bootstrapSystem())
 {
-	
+
 }
 
 
@@ -27,4 +27,4 @@ CEGUIUser * CEGUIUser::GetInstance()
 		_instance = new CEGUIUser();
 
 	return _instance;
-}*/
+}

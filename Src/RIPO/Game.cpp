@@ -5,7 +5,6 @@
 // ogre
 #include <MyOgre.h>
 #include <InputManager.h>
-#include <CEGUIUser.h>
 // engine
 #include <EventManager.h>
 
@@ -17,7 +16,7 @@
 #include "PlayerControllerComponent.h"
 #include "TransformComponent.h"
 #include "RigidBodyComponent.h"
-
+#include "ButtonComponent.h"
 
 // other tools
 #include <Windows.h>
@@ -238,6 +237,6 @@ void Game::RegisterComponents()
 	_compFactory.Register("RenderComponent", new DerivedCreator<RenderComponent, Component>());
 	_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
 	_compFactory.Register("RigidBodyComponent", new DerivedCreator<RigidBodyComponent, Component>());
-	
+	_compFactory.Register("ButtonComponent", new DerivedCreator<ButtonComponent, Component>());
 
 }

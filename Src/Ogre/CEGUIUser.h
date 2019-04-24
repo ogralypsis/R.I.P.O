@@ -1,6 +1,7 @@
-#pragma once
+#ifndef _H_CEGUIUSER_H_
+#define _H_CEGUIUSER_H_
 
-/*#include <CEGUI/CEGUI.h>
+#include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
@@ -10,7 +11,7 @@ public:
 	void Render();
 
 	static CEGUIUser* GetInstance();
-	
+
 	~CEGUIUser();
 
 private:
@@ -20,5 +21,5 @@ private:
 	static CEGUIUser* _instance;
 
 	CEGUI::OgreRenderer& _myRenderer;
-};*/
-
+};
+#endif

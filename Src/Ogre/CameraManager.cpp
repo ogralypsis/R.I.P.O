@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 
+
 CameraManager* CameraManager::_instance = nullptr;
 
 CameraManager::CameraManager()
@@ -48,34 +49,23 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 	_viewPort->setAutoUpdated(true);
 }
 
+const float speed = 5;
+const float maxPitch = 30;
 
+//TO BE CALLED ON MOUSE MOVED
 void CameraManager::FPSrotation(Ogre::Real time)
-{
+{ 	
+	//Y axis rotation on player
+	_rotY = -newMouseCoords.mouseX;
+	_player->yaw(Ogre::Degree(_rotY) * speed * time);
 
-	//_rotX = GetAngle(oldMouseCoords.mouseX, newMouseCoords.mouseX);
- 
-	float speed = 2;
-	if (newMouseCoords.mouseX < oldMouseCoords.mouseX - 3 )
-	{
-		_rotX = -25;
-		_player->yaw(_rotX * time * speed);
-	}
-	else if(newMouseCoords.mouseX > oldMouseCoords.mouseX + 3 )
-	{
-		_rotX = 25;
-		_player->yaw(_rotX * time * speed);
-	}
+	//X axis rotation on player
+	_rotX = -newMouseCoords.mouseY;
+	Ogre::Real nextPitch = _camNode->getOrientation().getPitch().valueDegrees() + _rotX;
 	
-	if (newMouseCoords.mouseY < oldMouseCoords.mouseY - 3)
-	{
-		_rotY = -25;
-		_camNode->pitch(_rotY * time);
-	}
-	else if (newMouseCoords.mouseY > oldMouseCoords.mouseY + 3)
-	{
-		_rotY = 25;
-		_camNode->pitch(_rotY * time);
-	}
+	//check if max camera height has been reached
+	if(nextPitch > -maxPitch && nextPitch < maxPitch )
+		_camNode->pitch(Ogre::Degree(_rotX) * speed * time);
 
 }
 
@@ -91,11 +81,6 @@ void CameraManager::CreateMainCamera(Ogre::RenderWindow * window, Ogre::SceneMan
 	_camera->setNearClipDistance(5);
 	_camera->setFarClipDistance(10000);
 	
-	//camera yaw node
-	//_camYawNode = _camNode->createChildSceneNode();
-
-	//camera pitch node
-	//_camPitchNode = _camYawNode->createChildSceneNode();
 
 
 	_camNode->attachObject(_camera);

@@ -30,9 +30,10 @@ private:
 	CameraManager();
 
 	static CameraManager* _instance;
-
-	Ogre::Degree _rotX;
-	Ogre::Degree _rotY;
+ 	
+	Ogre::Real _rotX;
+	Ogre::Real _rotY;
+	
 	Ogre::SceneNode* _player = nullptr;
 
 	Ogre::Camera* _mainCamera = nullptr;

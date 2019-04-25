@@ -8,28 +8,27 @@ ButtonComponent::~ButtonComponent() {}
 void ButtonComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
-	std::string _nameButton = arguments["name"].str;
-	
-	// arguments for position of button
-	float _posX = arguments["posX"].f;
-	float _posOffsetX = arguments["posOffsetX"].f;
 
-	float _posY = arguments["posY"].f;
-	float _posOffsetY = arguments["posOffsetY"].f;
+	// type and name
+	std::string type = arguments["type"].str;
+	std::string name = arguments["name"].str;
+	std::string text = arguments["text"].str;
+
+	// arguments for position of button
+	float destRectPercX = arguments["destRectPercX"].f;
+	float destRectPercY = arguments["destRectPercY"].f;
+	float destRectPercZ = arguments["destRectPercZ"].f;
+	float destRectPercW = arguments["destRectPercW"].f;
 
 	// arguments for size of button
-	float _scaleX = arguments["scaleX"].f;
-	float _scaleOffsetX = arguments["scaleOffsetX"].f;
+	float destRectPix = arguments["destRectPix"].f;
 
-	float _scaleY = arguments["scaleY"].f;
-	float _scaleOffsetY = arguments["scaleOffsetY"].f;
-
-	//CEGUIUser::GetInstance();
 	// call function to create button
-	/*CEGUIUser::GetInstance()->CreateButton(_nameButton, 
-		CEGUI::UVector2(CEGUI::UDim(_posX, _posOffsetX), CEGUI::UDim(_posY, _posOffsetY)),
-		CEGUI::USize(CEGUI::UDim(_scaleX, _scaleOffsetX), CEGUI::UDim(_scaleY, _scaleOffsetY)));
-		*/
+	//CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(CEGUIUser::GetInstance()->CreateWidget(type, 
+		//glm::vec4(destRectPercX, destRectPercY, destRectPercZ, destRectPercW), glm::vec4(destRectPix), name));
+
+	// add text
+	//button->setText(text);
 }
 
 void ButtonComponent::OnEvent(int eventType, Event e)

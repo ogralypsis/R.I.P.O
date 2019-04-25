@@ -64,14 +64,19 @@ bool Game::Init()
 		std::cout << "OIS Input system could not be initialized" << std::endl;
 #endif	
 	}
-
+	/*
 	// initialize GUI
 	if (!CEGUIUser::GetInstance()->Init("Assets/CEGUI")) {
 #ifdef _DEBUG		
 		std::cout << "CEGUI system could not be initialized" << std::endl;
 #endif	
 	}
-
+	else {
+		CEGUIUser::GetInstance()->LoadScheme("AlfiskoSkin.scheme");
+		CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
+		CEGUIUser::GetInstance()->SetMouseCursor("TaharezLook");
+	}
+	*/
 	RegisterComponents();
 
 	ChangeScene("1");
@@ -214,7 +219,9 @@ void Game::MessagePump()
 void Game::Render()
 {
 	MyOgre::GetInstance().Render();
-	/*CEGUIUser::GetInstance()->Render();*/
+
+	// render gui
+	//CEGUIUser::GetInstance()->Draw();
 }
 
 void Game::ChangeScene(std::string name)

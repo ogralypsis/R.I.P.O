@@ -7,52 +7,47 @@
          "_components":[  
             {  
                "_type":"ButtonComponent",
-               "_numArguments":9,
+               "_numArguments":8,
                "_arguments":[  
+                  {  
+                     "_name":"type",
+                     "_type":4,
+                     "_arg":"TaharezLook/Button"
+                  },
+                  {  
+                     "_name":"destRectPercX",
+                     "_type":1,
+                     "_arg":"0.5"
+                  },
+                  {  
+                     "_name":"destRectPercY",
+                     "_type":1,
+                     "_arg":"0.5"
+                  },
+                  {  
+                     "_name":"destRectPercZ",
+                     "_type":1,
+                     "_arg":"0.1"
+                  },
+                  {  
+                     "_name":"destRectPercW",
+                     "_type":1,
+                     "_arg":"0.5"
+                  },
+                  {  
+                     "_name":"destRectPix",
+                     "_type":1,
+                     "_arg":"0.0"
+                  },
                   {  
                      "_name":"name",
                      "_type":4,
+                     "_arg":"GameButton"
+                  },
+                  {  
+                     "_name":"text",
+                     "_type":4,
                      "_arg":"Play"
-                  },
-                  {  
-                     "_name":"posX",
-                     "_type":1,
-                     "_arg":"0.75"
-                  },
-                  {  
-                     "_name":"posOffsetX",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"posY",
-                     "_type":1,
-                     "_arg":"0.50"
-                  },
-                  {  
-                     "_name":"posOffsetY",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleX",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleOffsetX",
-                     "_type":1,
-                     "_arg":"50"
-                  },
-                  {  
-                     "_name":"scaleY",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleOffsetY",
-                     "_type":1,
-                     "_arg":"50"
                   }
                ],
                "_numEvents":0,

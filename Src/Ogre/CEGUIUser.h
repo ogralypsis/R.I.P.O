@@ -3,14 +3,14 @@
 
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/OpenGL/GL3Renderer.h>
-//#include <CEGUI/RendererModules/Ogre/Renderer.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+#include <glm/glm.hpp>
 
 class CEGUIUser
 {
 public:
 	~CEGUIUser();
 	static CEGUIUser* GetInstance();
-
 
 	bool Init(const std::string dir);
 	void Destroy();
@@ -19,15 +19,13 @@ public:
 
 	void LoadScheme(const std::string& schemeFile);
 	void SetFont(const std::string& fontFile);
+	void SetMouseCursor(const std::string& mouseFile);
+	CEGUI::Window* CreateWidget(const std::string& type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, const std::string& name = "");
+	static void SetWidgetDestRect(CEGUI::Window* widget, const glm::vec4& destRectPerc, const glm::vec4& destRectPix);
+
 	// Getters
-	static CEGUI::OpenGL3Renderer* GetRenderer();
+	static CEGUI::OgreRenderer* GetRenderer();
 	CEGUI::GUIContext* GetContext();
-
-	void Render();
-
-	void CreateButton(std::string name, CEGUI::UVector2 pos, CEGUI::USize size);
-
-
 
 private:
 	CEGUIUser();
@@ -35,8 +33,8 @@ private:
 	// Instance for singleton
 	static CEGUIUser* _instance;
 
-	static CEGUI::OpenGL3Renderer* _renderer;
-
+	static CEGUI::OgreRenderer* _renderer;
 	CEGUI::GUIContext* _context;
+	CEGUI::Window* _window;
 };
 #endif

@@ -4,10 +4,6 @@ CameraManager* CameraManager::_instance = nullptr;
 
 CameraManager::CameraManager()
 {
-	oldMouseCoords = InputManager::GetInstance().GetMouseCoords();
-	_rotate = 0.13;
-	_move = 250;
-	_direction = Ogre::Vector3::ZERO;
 }
 
 CameraManager::~CameraManager()
@@ -48,17 +44,33 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 	_viewPort->setAutoUpdated(true);
 }
 
+
+
+//TO BE CALLED ON MOUSE MOVED
 void CameraManager::FPSrotation(Ogre::Real time)
 {
+	//Y axis rotation on player
+	_rotY = -newMouseCoords.mouseX;
+	_player->yaw(Ogre::Degree(_rotY) * _rotSpeed * time);
 
-	//if(oldMouseCoords.mouseX < newMouseCoords.mouseX)
+	//X axis rotation on player
+	_rotX = -newMouseCoords.mouseY;
+	Ogre::Real nextPitch = _camNode->getOrientation().getPitch().valueDegrees() + _rotX;
+
+	//check if max camera height has been reached
+	if (nextPitch > -_maxPitch && nextPitch < _maxPitch)
+		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed* time);
+
 }
+
 
 bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 {
 	newMouseCoords = InputManager::GetInstance().GetMouseCoords();
 
-	//TESTING. Later the _player node will be created and modified in other place
+	//TESTING. Later the _player node will be created and modified in another place
+	FPSrotation(e.timeSinceLastFrame);
+
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
 		MoveForward(e.timeSinceLastFrame);
@@ -105,9 +117,9 @@ void CameraManager::MoveForward(Ogre::Real time)
 
 	Ogre::Vector3 vt(0, 0, 0);
 
-	vt += Ogre::Vector3(0, -1, 0);
+	vt += Ogre::Vector3(0, 0, -1);
 
-	_player->translate(vt * time * _speed);
+	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
 
 }
 
@@ -116,9 +128,9 @@ void CameraManager::MoveBack(Ogre::Real time)
 
 	Ogre::Vector3 vt(0, 0, 0);
 
-	vt += Ogre::Vector3(0, 1, 0);
+	vt += Ogre::Vector3(0, 0, 1);
 
-	_player->translate(vt * time * _speed);
+	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
 
 }
 
@@ -127,9 +139,9 @@ void CameraManager::MoveRight(Ogre::Real time)
 
 	Ogre::Vector3 vt(0, 0, 0);
 
-	vt += Ogre::Vector3(-1, 0, 0);
+	vt += Ogre::Vector3(1, 0, 0);
 
-	_player->translate(vt * time * _speed);
+	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
 
 }
 
@@ -138,9 +150,9 @@ void CameraManager::MoveLeft(Ogre::Real time)
 
 	Ogre::Vector3 vt(0, 0, 0);
 
-	vt += Ogre::Vector3(1, 0, 0);
+	vt += Ogre::Vector3(-1, 0, 0);
 
-	_player->translate(vt * time * _speed);
+	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
 
 }
 

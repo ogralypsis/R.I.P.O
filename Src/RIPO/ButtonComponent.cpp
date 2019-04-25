@@ -24,11 +24,8 @@ void ButtonComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	float destRectPix = arguments["destRectPix"].f;
 
 	// call function to create button
-	//CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(CEGUIUser::GetInstance()->CreateWidget(type, 
-		//glm::vec4(destRectPercX, destRectPercY, destRectPercZ, destRectPercW), glm::vec4(destRectPix), name));
-
-	// add text
-	//button->setText(text);
+	CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(CEGUIUser::GetInstance()->CreateWidget(type, 
+		glm::vec4(destRectPercX, destRectPercY, destRectPercZ, destRectPercW), glm::vec4(destRectPix), text, name));
 }
 
 void ButtonComponent::OnEvent(int eventType, Event e)

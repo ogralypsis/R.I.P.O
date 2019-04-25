@@ -20,7 +20,8 @@ public:
 	void LoadScheme(const std::string& schemeFile);
 	void SetFont(const std::string& fontFile);
 	void SetMouseCursor(const std::string& mouseFile);
-	CEGUI::Window* CreateWidget(const std::string& type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, const std::string& name = "");
+	CEGUI::Window* CreateWidget(const std::string& type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, 
+		const std::string & text, const std::string& name = "");
 	static void SetWidgetDestRect(CEGUI::Window* widget, const glm::vec4& destRectPerc, const glm::vec4& destRectPix);
 
 	// Getters

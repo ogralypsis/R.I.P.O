@@ -19,32 +19,21 @@ bool CEGUIUser::Init(const std::string dir)
 		if (_renderer == nullptr) {
 			_renderer = &CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(MyOgre::GetInstance().GetWindow()));
 
-			// set up resource directories
-			CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
-			rp->setResourceGroupDirectory("imagesets", dir + "/imagesets/");
-			rp->setResourceGroupDirectory("schemes", dir + "/schemes/");
-			rp->setResourceGroupDirectory("fonts", dir + "/fonts/");
-			rp->setResourceGroupDirectory("layouts", dir + "/layouts/");
-			rp->setResourceGroupDirectory("looknfeels", dir + "/looknfeel/");
-			rp->setResourceGroupDirectory("lua_scripts", dir + "/lua_scripts/");
-
 			// tell them where they find their resources
-			CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
-			CEGUI::Scheme::setDefaultResourceGroup("schemes");
-			CEGUI::Font::setDefaultResourceGroup("fonts");
-			CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeels");
-			CEGUI::WindowManager::setDefaultResourceGroup("layouts");
-			CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
+			CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
+			CEGUI::Scheme::setDefaultResourceGroup("Schemes");
+			CEGUI::Font::setDefaultResourceGroup("Fonts");
+			CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeels");
+			CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
+			CEGUI::ScriptModule::setDefaultResourceGroup("Lua_Scripts");
 
+			// the context renders using our renderer
+			_context = &CEGUI::System::getSingleton().createGUIContext(_renderer->getDefaultRenderTarget());
+			// create the window
+			_window = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "window");
+			// set the window for that context
+			_context->setRootWindow(_window);
 		}
-
-		// the context renders using our renderer
-		_context = &CEGUI::System::getSingleton().createGUIContext(_renderer->getDefaultRenderTarget());
-		// create the window
-		_window = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "window");
-		// set the window for that context
-		_context->setRootWindow(_window);
-
 		return true;
 	}
 	catch (CEGUI::Exception& e) {
@@ -71,36 +60,63 @@ void CEGUIUser::Draw()
 
 void CEGUIUser::LoadScheme(const std::string & schemeFile)
 {
-	// scheme has the "how the widget will look"
-	CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile);
+	try {
+		// scheme has the "how the widget will look"
+		CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile + ".scheme");
+	}
+	catch (Ogre::Exception& e) {
+		e.getFullDescription();
+	}
 }
 
 void CEGUIUser::SetFont(const std::string & fontFile)
 {
-	// load font
-	CEGUI::FontManager::getSingleton().createFromFile(fontFile + ".font");
-	// set font for all widgets of _context
-	_context->setDefaultFont(fontFile);
+	try {
+		// load font
+		CEGUI::FontManager::getSingleton().createFromFile(fontFile + ".font");
+		// set font for all widgets of _context
+		_context->setDefaultFont(fontFile);
+	}
+	catch (Ogre::Exception& e) {
+		e.getFullDescription();
+	}
 }
 
 void CEGUIUser::SetMouseCursor(const std::string & mouseFile)
 {
-	CEGUI::SchemeManager::getSingleton().createFromFile(mouseFile + ".scheme");
-	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage(mouseFile + "/MouseArrow");
+	try {
+		// load scheme
+		CEGUI::SchemeManager::getSingleton().createFromFile(mouseFile + ".scheme");
+		// set mouse cursor
+		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage(mouseFile + "/MouseArrow");
+	}
+	catch (Ogre::Exception& e) {
+		e.getFullDescription();
+	}
 }
 
-CEGUI::Window * CEGUIUser::CreateWidget(const std::string & type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, const std::string & name)
+CEGUI::Window * CEGUIUser::CreateWidget(const std::string & type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, const std::string & text, const std::string & name)
 {
 	// type -> type of widget (i.e., "Push Button")
 
-	// create the widget but doesn't render it
-	CEGUI::Window* newWidget = CEGUI::WindowManager::getSingleton().createWindow(type, name); 
-	// now it will get rendered
-	_window->addChild(newWidget);
+	CEGUI::Window* newWidget = nullptr;
 
-	// set position and size of widget
-	SetWidgetDestRect(newWidget, destRectPerc, destRectPix);
+	try {
+		// create the widget but doesn't render it
+		newWidget = CEGUI::WindowManager::getSingleton().createWindow(type, name);
 
+		// set position and size of widget
+		SetWidgetDestRect(newWidget, destRectPerc, destRectPix);
+
+		// add text
+		newWidget->setText(text);
+
+		// now it will get rendered
+		_window->addChild(newWidget);
+	}
+	catch (CEGUI::Exception& e) {
+		e.getMessage();
+	}
 	return newWidget;
 }
 

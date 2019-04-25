@@ -32,17 +32,17 @@
                   {  
                      "_name":"scaleX",
                      "_type":1,
-                     "_arg":"2"
+                     "_arg":"7"
                   },
                   {  
                      "_name":"scaleY",
                      "_type":1,
-                     "_arg":"2"
+                     "_arg":"7"
                   },
                   {  
                      "_name":"scaleZ",
                      "_type":1,
-                     "_arg":"2"
+                     "_arg":"7"
                   },
                   {  
                      "_name":"rotation",

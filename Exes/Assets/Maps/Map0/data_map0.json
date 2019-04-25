@@ -12,31 +12,31 @@
                   {  
                      "_name":"type",
                      "_type":4,
-                     "_arg":"TaharezLook/Button"
+                     "_arg":"AlfiskoSkin/Button"
                   },
                   {  
                      "_name":"destRectPercX",
-                     "_type":1,
+                     "_type":2,
                      "_arg":"0.5"
                   },
                   {  
                      "_name":"destRectPercY",
-                     "_type":1,
+                     "_type":2,
                      "_arg":"0.5"
                   },
                   {  
                      "_name":"destRectPercZ",
-                     "_type":1,
+                     "_type":2,
                      "_arg":"0.1"
                   },
                   {  
                      "_name":"destRectPercW",
-                     "_type":1,
-                     "_arg":"0.5"
+                     "_type":2,
+                     "_arg":"0.05"
                   },
                   {  
                      "_name":"destRectPix",
-                     "_type":1,
+                     "_type":2,
                      "_arg":"0.0"
                   },
                   {  

@@ -168,9 +168,9 @@ bool InputManager::IsMouseButtonPressed(OIS::MouseButtonID id)
 
 bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 {
-	_mousePosition.mouseX = e.state.X.abs;
-	_mousePosition.mouseY = e.state.Y.abs;
-	_mousePosition.mouseZ = e.state.Z.abs;
+	_mousePosition.mouseX = e.state.X.rel;
+	_mousePosition.mouseY = e.state.Y.rel;
+	_mousePosition.mouseZ = e.state.Z.rel;
 	return true;
 }
 

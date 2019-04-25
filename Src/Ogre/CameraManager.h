@@ -35,6 +35,11 @@ private:
 
 	Ogre::SceneNode* _player = nullptr;
 
+	Ogre::Real _rotX;
+	Ogre::Real _rotY;
+	Ogre::Real _rotSpeed = 5;
+	Ogre::Real _maxPitch = 30;
+
 	Ogre::Camera* _mainCamera = nullptr;
 	Ogre::SceneNode* _camNode = nullptr;
 	Ogre::SceneNode* _camYawNode = nullptr;
@@ -42,12 +47,8 @@ private:
 	Ogre::Camera* _camera = nullptr;
 	Ogre::Viewport * _viewPort = nullptr;
 
-	mouseCoordinates oldMouseCoords;
 	mouseCoordinates newMouseCoords;
 
-	Ogre::Real _rotate;
-	Ogre::Real _move;
-	Ogre::Vector3 _direction;
 
 	Ogre::Real _speed = 20.0;
 

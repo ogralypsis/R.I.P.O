@@ -11,6 +11,7 @@ Tienen que estar las siguientes dlls de CEGui:
 glew.dll
 pcre.dll
 freetype.dll
+libexpat.dll
 CEGUIOgreRenderer-0.dll
 CEGUIBase-0.dll
 CEGUIOpenGLRenderer-0.dll

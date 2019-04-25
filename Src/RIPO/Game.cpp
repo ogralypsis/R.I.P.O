@@ -66,7 +66,7 @@ bool Game::Init()
 	}
 	/*
 	// initialize GUI
-	if (!CEGUIUser::GetInstance()->Init("Assets/CEGUI")) {
+	if (!CEGUIUser::GetInstance()->Init("/Assets/CEGUI")) {
 #ifdef _DEBUG		
 		std::cout << "CEGUI system could not be initialized" << std::endl;
 #endif	

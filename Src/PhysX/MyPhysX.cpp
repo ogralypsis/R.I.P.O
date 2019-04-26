@@ -113,6 +113,11 @@ void MyPhysX::ClearScene()
 	_scene->release();
 }
 
+physx::PxScene * MyPhysX::GetScene()
+{
+	return _scene;
+}
+
 void MyPhysX::StepPhysics(float t)
 {
 
@@ -126,6 +131,8 @@ void MyPhysX::StepPhysics(float t)
 
 physx::PxPhysics * MyPhysX::GetPhysics()
 {
+	
+
 	return _PxPhysics;
 }
 

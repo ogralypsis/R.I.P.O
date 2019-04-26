@@ -64,7 +64,7 @@ bool Game::Init()
 		std::cout << "OIS Input system could not be initialized" << std::endl;
 #endif	
 	}
-	
+	/*
 	// initialize GUI
 	if (!CEGUIUser::GetInstance()->Init("Assets/CEGUI")) {
 #ifdef _DEBUG		
@@ -75,7 +75,7 @@ bool Game::Init()
 		CEGUIUser::GetInstance()->LoadScheme("AlfiskoSkin");
 		CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
 		CEGUIUser::GetInstance()->SetMouseCursor("AlfiskoSkin");
-	}
+	}*/
 	
 	RegisterComponents();
 
@@ -221,7 +221,7 @@ void Game::Render()
 	MyOgre::GetInstance().Render();
 
 	// render gui
-	CEGUIUser::GetInstance()->Draw();
+	//CEGUIUser::GetInstance()->Draw();
 }
 
 void Game::ChangeScene(std::string name)

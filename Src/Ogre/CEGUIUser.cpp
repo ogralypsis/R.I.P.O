@@ -51,9 +51,9 @@ void CEGUIUser::Destroy()
 // render our GUI
 void CEGUIUser::Draw()
 {
-	_renderer->beginRendering();
-	_context->draw();
-	_renderer->endRendering();
+	//_renderer->beginRendering();
+//	_context->draw();
+	//_renderer->endRendering();
 
 	//glDisable(GL_SCISSOR_TEST); // so it doesn't flicker
 }

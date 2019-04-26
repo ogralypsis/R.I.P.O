@@ -158,6 +158,7 @@ bool InputManager::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 bool InputManager::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
 	_mouseButtons[id] = false;
+
 	return true;
 }
 

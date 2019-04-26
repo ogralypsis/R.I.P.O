@@ -41,6 +41,11 @@ public:
 	/// </summary>
 	static void ResetInstance();
 
+	/// <summary>
+	/// Change scene
+	/// </summary>
+	void ChangeScene(std::string name);
+
 private:
 
 	/// <summary>
@@ -48,10 +53,7 @@ private:
 	/// </summary>
 	void HandleInput();
 
-	/// <summary>
-	/// Change scene
-	/// </summary>
-	void ChangeScene(std::string name);
+
 
 	/// <summary>
 	/// Update the game 

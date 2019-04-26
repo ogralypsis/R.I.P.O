@@ -10,10 +10,18 @@ typedef enum EventType {
 	EVENT_J, EVENT_W, EVENT_A, EVENT_S, EVENT_D,
 	EVENT_L_MOUSE, EVENT_MOVE_MOUSE,
 	EVENT_DEATH,
-	EVENT_UPDATE_TRANSFORM
+	EVENT_UPDATE_TRANSFORM,
+	EVENT_CHANGE_SCENE
 };
 
 // New Events specific for the game:
+
+struct ChangeSceneEvent : Event
+{
+	ChangeSceneEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_CHANGE_SCENE, destination), _key(k) {}
+
+	int _key; // number of scene
+};
 
 // Key J has been pressed
 struct JEvent : Event

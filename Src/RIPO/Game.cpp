@@ -74,7 +74,7 @@ bool Game::Init()
 	else {
 		CEGUIUser::GetInstance()->LoadScheme("AlfiskoSkin");
 		CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
-		CEGUIUser::GetInstance()->SetMouseCursor("AlfiskoSkin");
+		CEGUIUser::GetInstance()->SetCursor("AlfiskoSkin");
 	}
 	
 	RegisterComponents();
@@ -103,19 +103,8 @@ void Game::Loop()
 
 
 	// Continue the loop if the window is not closed and game is not exited
-	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) {
-
-		/*
-		.
-		.
-		.
-		Change scenes if necessary
-		.
-		.
-		.
-		*/
-		
-		
+	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
+	{		
 		// Update loop parameters
 		time(&_newTime);	
 		_frameTime = _newTime - _currentTime;
@@ -199,6 +188,14 @@ void Game::HandleInput()
 		std::cout << "CHANGING SCENE" << std::endl;
 		ChangeScene("2");
 	}
+
+	else if (InputManager::GetInstance().IsMouseButtonPressed(OIS::MB_Left))
+	{
+		std::cout << "MOUSE CLICKED" << std::endl;
+		// tell the gui
+		CEGUIUser::GetInstance()->OnMouseReleased(OIS::MB_Left);
+	}
+
 }
 
 

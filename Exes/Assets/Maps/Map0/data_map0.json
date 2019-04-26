@@ -7,7 +7,7 @@
          "_components":[  
             {  
                "_type":"ButtonComponent",
-               "_numArguments":8,
+               "_numArguments":9,
                "_arguments":[  
                   {  
                      "_name":"type",
@@ -48,6 +48,11 @@
                      "_name":"text",
                      "_type":4,
                      "_arg":"Play"
+                  },
+                  {  
+                     "_name":"scene",
+                     "_type":4,
+                     "_arg":"1"
                   }
                ],
                "_numEvents":0,

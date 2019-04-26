@@ -2,9 +2,10 @@
 #define _H_CEGUIUSER_H_
 
 #include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/OpenGL/GL3Renderer.h>
+//#include <CEGUI/RendererModules/OpenGL/GL3Renderer.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 #include <glm/glm.hpp>
+#include <OISMouse.h>
 
 class CEGUIUser
 {
@@ -19,10 +20,17 @@ public:
 
 	void LoadScheme(const std::string& schemeFile);
 	void SetFont(const std::string& fontFile);
-	void SetMouseCursor(const std::string& mouseFile);
+	void SetCursor(const std::string& mouseFile);
+	void SetLayout(const std::string& layoutFile);
+
+	void OnMouseReleased(OIS::MouseButtonID id);
+	CEGUI::MouseButton ConvertButton(OIS::MouseButtonID buttonID);
+
 	CEGUI::Window* CreateWidget(const std::string& type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, 
 		const std::string & text, const std::string& name = "");
 	static void SetWidgetDestRect(CEGUI::Window* widget, const glm::vec4& destRectPerc, const glm::vec4& destRectPix);
+
+	// Input
 
 	// Getters
 	static CEGUI::OgreRenderer* GetRenderer();

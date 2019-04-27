@@ -47,14 +47,17 @@ void CEGUIUser::Destroy()
 {
 	// destroy our context
 	CEGUI::System::getSingleton().destroyGUIContext(*_context);
+	_context = nullptr;
 }
 
 // render our GUI
 void CEGUIUser::Draw()
 {
-	_renderer->beginRendering();
-	_context->draw();
-	_renderer->endRendering();
+	if (_context != nullptr) {
+		_renderer->beginRendering();
+		_context->draw();
+		_renderer->endRendering();
+	}
 }
 
 void CEGUIUser::LoadScheme(const std::string & schemeFile)
@@ -95,8 +98,9 @@ void CEGUIUser::SetCursor(const std::string & mouseFile)
 void CEGUIUser::OnMouseReleased(OIS::MouseButtonID id)
 {
 	// the button has been clicked
-	if (_context->injectMouseButtonDown(ConvertButton(id)) && _context->injectMouseButtonUp(ConvertButton(id)))
-		printf("%s \n", "OVER WINDOW");
+	if (_context != nullptr)
+		if (_context->injectMouseButtonDown(ConvertButton(id)) && _context->injectMouseButtonUp(ConvertButton(id)))
+			printf("%s \n", "OVER WINDOW");
 }
 
 CEGUI::MouseButton CEGUIUser::ConvertButton(OIS::MouseButtonID buttonID)

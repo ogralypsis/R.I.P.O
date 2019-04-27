@@ -64,7 +64,7 @@ bool Game::Init()
 		std::cout << "OIS Input system could not be initialized" << std::endl;
 #endif	
 	}
-	
+
 	// initialize GUI
 	if (!CEGUIUser::GetInstance()->Init("Assets/CEGUI")) {
 #ifdef _DEBUG		
@@ -104,7 +104,11 @@ void Game::Loop()
 
 	// Continue the loop if the window is not closed and game is not exited
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
-	{		
+	{
+		// do we need to change scene?
+		if (_change)
+			ChangeScene(_nextScene);
+
 		// Update loop parameters
 		time(&_newTime);	
 		_frameTime = _newTime - _currentTime;
@@ -218,7 +222,7 @@ void Game::Render()
 	MyOgre::GetInstance().Render();
 
 	// render gui
-	//CEGUIUser::GetInstance()->Draw();
+	CEGUIUser::GetInstance()->Draw();
 }
 
 void Game::ChangeScene(std::string name)
@@ -226,6 +230,9 @@ void Game::ChangeScene(std::string name)
 	// if the stack is not empty (i.e., already has an scene)
 	if (!_states.empty()) 
 	{
+		// delete the current GUI
+		CEGUIUser::GetInstance()->Destroy();
+
 		// save the scene in a temp variable
 		Scene* aux = _states.top();
 		// delete that scene from the stack
@@ -239,6 +246,18 @@ void Game::ChangeScene(std::string name)
 
 	// push it to the stack
 	_states.push(newScene);
+
+	// set the scene with ogre
+	//MyOgre::GetInstance().SetUpScene();
+
+	// set flag to false
+	_change = false;;
+}
+
+void Game::QueueScene(std::string scene)
+{
+	_change = true;
+	_nextScene = scene;
 }
 
 void Game::RegisterComponents()

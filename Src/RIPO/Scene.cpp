@@ -16,6 +16,9 @@ Scene::Scene(std::string ID, Factory<Component> compFactory)
 	// Create PhysX scene for physics simulation
 	MyPhysX::GetInstance().CreateScene();
 
+	//SetUp ogre scene
+	MyOgre::GetInstance().SetUpScene();
+
 	// Read file 
 	json entities = FileReader::getInstance()->readFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
 

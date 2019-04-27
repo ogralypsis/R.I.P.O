@@ -1,6 +1,7 @@
 #ifndef _H_CEGUIUSER_H_
 #define _H_CEGUIUSER_H_
 
+//#include <CEGUI/CEGUI.h>
 #include <CEGUI/CEGUI.h>
 //#include <CEGUI/RendererModules/OpenGL/GL3Renderer.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>

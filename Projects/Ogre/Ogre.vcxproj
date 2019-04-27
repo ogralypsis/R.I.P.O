@@ -40,7 +40,7 @@
     <ProjectGuid>{A283071A-6B58-4809-B037-70AF5DE01544}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Ogre</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -91,29 +91,29 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\OIS-master\Build\Debug;$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\lib\static;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\OIS-master\Build\Debug;$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\lib\static;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
-    <LibraryPath>(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\lib;(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\OIS-master\Build\Release;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\OIS-master\includes;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencies\OIS-master\Build\Release;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
-    <LibraryPath>(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\OIS;$(SolutionDir)Src\Ogre;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\cegui-0.8.7\Build\lib;(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

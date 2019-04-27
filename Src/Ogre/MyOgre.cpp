@@ -235,6 +235,12 @@ void MyOgre::ClearScene()
 {
 	// empty the scene from all the entities
 	_sceneMgr->clearScene();
+
+	// clear the camera
+	_sceneMgr->destroyCamera("FPScam");
+
+	// clear viewport for name conflicts
+	_window->removeAllViewports();
 }
 
 void MyOgre::SetUpScene()

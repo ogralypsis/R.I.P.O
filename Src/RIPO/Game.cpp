@@ -79,7 +79,7 @@ bool Game::Init()
 	
 	RegisterComponents();
 
-	ChangeScene("1");
+	ChangeScene("0");
 
 	return true;
 }
@@ -235,11 +235,16 @@ void Game::ChangeScene(std::string name)
 
 		// save the scene in a temp variable
 		Scene* aux = _states.top();
+
 		// delete that scene from the stack
 		_states.pop();
+
 		// delete pointer to the scene
 		delete aux;
 	}
+
+	// clear the scene in order to create a new one
+	MyOgre::GetInstance().ClearScene();
 
 	// create new scene
 	Scene* newScene = new Scene(name, _compFactory);
@@ -248,10 +253,9 @@ void Game::ChangeScene(std::string name)
 	_states.push(newScene);
 
 	// set the scene with ogre
-	//MyOgre::GetInstance().SetUpScene();
 
 	// set flag to false
-	_change = false;;
+	_change = false;
 }
 
 void Game::QueueScene(std::string scene)

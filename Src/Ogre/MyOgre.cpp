@@ -220,7 +220,7 @@ bool MyOgre::CheckWindowStatus()
 	return _window->isClosed();
 }
 
-void MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian) {
+Ogre::Entity* MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian) {
 	Ogre::Entity* _newEntity = _sceneMgr->createEntity(mesh);
 	Ogre::SceneNode* _newEntityNode = _sceneMgr->getRootSceneNode()->createChildSceneNode(position);
 
@@ -228,6 +228,8 @@ void MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector
 	
 	_newEntityNode->scale(vector);
 	_newEntityNode->pitch(radian);
+
+	return _newEntity;
 	
 }
 

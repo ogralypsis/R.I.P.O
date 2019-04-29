@@ -16,6 +16,9 @@ RenderComponent::~RenderComponent() {}
 void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * e) 
 {
 	_ownerEntity = e;
+	//_transform = new TransformComponent();
+	//_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
+
 	std::string _mesh = arguments["mesh"].str;
 
 	int _positionX = arguments["positionX"].i;
@@ -28,13 +31,15 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	int _rotation = arguments["rotation"].i;
 
-	MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ), 
+	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ), 
 		Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
 }
 
 void RenderComponent::OnEvent(int eventType, Event e)
 {
-	// ---------------------------- TESTING -------------------------------
+
+	// Doing without events, both Render and Rigidbody components have a transform object to update positions
+	/*// ---------------------------- TESTING -------------------------------
 	if (_ownerEntity->GetId() == e.GetEmmitter()) {
 
 		// Physics transform has been updated so update render properties in order to syncrhonize render and collider
@@ -42,9 +47,15 @@ void RenderComponent::OnEvent(int eventType, Event e)
 		{
 			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
 		}
-	}
+	}*/
 }
 
 void RenderComponent::Update(float deltaTime)
 {
+	if (_transform != nullptr) {
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_transform->GetPosX(), _transform->GetPosY(), _transform->GetPosZ()));
+		std::cout << "POS Z RENDER : " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
+	}
+	
 }
+	

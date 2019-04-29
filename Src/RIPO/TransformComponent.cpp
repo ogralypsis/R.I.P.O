@@ -55,7 +55,6 @@ float TransformComponent::GetPosZ()
 
 void TransformComponent::SetRotation(float x, float y, float z)
 {
-
 	_rot.x = x;
 	_rot.y = y;
 	_rot.z = z;

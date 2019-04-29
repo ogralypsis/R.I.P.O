@@ -73,12 +73,12 @@
                   {  
                      "_name":"positionX",
                      "_type":1,
-                     "_arg":"100"
+                     "_arg":"0"
                   },
                   {  
                      "_name":"positionY",
                      "_type":1,
-                     "_arg":"5"
+                     "_arg":"0"
                   },
                   {  
                      "_name":"positionZ",
@@ -202,7 +202,7 @@
       },
       {  
          "_entityID":"Player",
-         "_numComponents":2,
+         "_numComponents":3,
          "_components":[  
             {  
                "_type":"TransformComponent",
@@ -260,23 +260,54 @@
                   "JEvent"
                ]
             },
-            {  
-               "_type":"PlayerControllerComponent",
-               "_numArguments":1,
+            {
+                "_type": "PlayerControllerComponent",
+                "_numArguments": 1,
+                "_arguments": [
+                    {
+                        "_name": "vel",
+                        "_type": 2,
+                        "_arg": "5"
+                    }
+                ],
+                "_numEvents": 4,
+                "_events": [
+                    "WEvent",
+                    "SEvent",
+                    "AEvent",
+                    "DEvent"
+
+                ]
+            },
+            	{  
+			
+			   "_type":"RigidBodyComponent",
+               "_numArguments": 3,
                "_arguments":[  
                   {  
-                     "_name":"vel",
+                     "_name":"geometry",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"tam1",
                      "_type":2,
                      "_arg":"5"
+                  },
+				   {  
+                     "_name":"tam2",
+                     "_type":2,
+                     "_arg":"0"
+                  },
+				   {  
+                     "_name":"tam3",
+                     "_type":2,
+                     "_arg":"0"
                   }
                ],
-               "_numEvents":4,
+               "_numEvents":0,
                "_events":[  
-                  "WEvent",
-                  "SEvent",
-                  "AEvent",
-                  "DEvent"
-
+                  
                ]
             }
          ]

@@ -55,7 +55,7 @@ public:
 	/// </summary>
 	bool CheckWindowStatus();
 	
-	void CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian);
+	Ogre::Entity* CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian);
 	
 	void ClearScene();
 

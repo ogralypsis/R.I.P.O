@@ -21,6 +21,6 @@ private:
 	physx::PxShape * _shape;
 	physx::PxRigidActor *_actor;
 
-	TransformComponent* _transform = nullptr;
+	TransformComponent * _transform = nullptr;
 };
 

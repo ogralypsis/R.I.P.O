@@ -19,7 +19,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_velocity = arguments["vel"].f;
 
 	//_transform = _ownerEntity->GetComponent(_transform);
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform)); // Esto esta mal¿?
 	
 	_posX = _transform->GetPosX();
 	_orPosX = _posX;

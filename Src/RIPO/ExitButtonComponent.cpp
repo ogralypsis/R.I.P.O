@@ -47,6 +47,6 @@ void ExitButtonComponent::OnEvent(int eventType, Event e)
 {
 }
 
-void ExitButtonComponent::Update()
+void ExitButtonComponent::Update(float deltaTime)
 {
 }

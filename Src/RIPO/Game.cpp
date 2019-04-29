@@ -18,6 +18,7 @@
 #include "TransformComponent.h"
 #include "RigidBodyComponent.h"
 #include "ButtonComponent.h"
+#include "ExitButtonComponent.h"
 
 // other tools
 #include <Windows.h>
@@ -270,6 +271,11 @@ void Game::QueueScene(std::string scene)
 	_nextScene = scene;
 }
 
+void Game::ExitGame()
+{
+	_exit = true;
+}
+
 void Game::RegisterComponents()
 {
 	_compFactory.Register("TransformComponent", new DerivedCreator<TransformComponent, Component>());
@@ -278,5 +284,6 @@ void Game::RegisterComponents()
 	_compFactory.Register("PlayerControllerComponent", new DerivedCreator<PlayerControllerComponent, Component>());
 	_compFactory.Register("RigidBodyComponent", new DerivedCreator<RigidBodyComponent, Component>());
 	_compFactory.Register("ButtonComponent", new DerivedCreator<ButtonComponent, Component>());
+	_compFactory.Register("ExitButtonComponent", new DerivedCreator<ExitButtonComponent, Component>());
 
 }

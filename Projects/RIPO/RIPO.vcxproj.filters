@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\Src\RIPO\ButtonComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\RIPO\ExitButtonComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\RIPO\Game.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\RIPO\ButtonComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RIPO\ExitButtonComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

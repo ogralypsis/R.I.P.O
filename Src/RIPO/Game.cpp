@@ -160,8 +160,13 @@ void Game::ResetInstance()
 
 void Game::HandleInput()
 {
+	CEGUIUser::GetInstance()->UpdateTime(InputManager::GetInstance().GetTimeSinceLastFrame());
 
 	InputManager::GetInstance().CaptureInput();
+
+	// update mouse position for cegui
+	CEGUIUser::GetInstance()->UpdateMouseCoords(InputManager::GetInstance().GetMouseCoords().mouseX, InputManager::GetInstance().GetMouseCoords().mouseY);
+
 
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 

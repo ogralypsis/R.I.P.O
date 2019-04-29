@@ -26,6 +26,8 @@ public:
 
 	void OnMouseReleased(OIS::MouseButtonID id);
 	CEGUI::MouseButton ConvertButton(OIS::MouseButtonID buttonID);
+	void UpdateMouseCoords(float x, float y);
+	void UpdateTime(float t);
 
 	CEGUI::Window* CreateWidget(const std::string& type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, 
 		const std::string & text, const std::string& name = "");

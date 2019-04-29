@@ -122,6 +122,21 @@ CEGUI::MouseButton CEGUIUser::ConvertButton(OIS::MouseButtonID buttonID)
 	}
 }
 
+void CEGUIUser::UpdateMouseCoords(float x, float y)
+{
+	if (_context != nullptr) {
+		_context->injectMouseMove(x, y);
+	}
+}
+
+void CEGUIUser::UpdateTime(float t)
+{
+	if (_context != nullptr) {
+		//Need to inject timestamps to CEGUI System.
+		_context->injectTimePulse(t);
+	}
+}
+
 CEGUI::Window * CEGUIUser::CreateWidget(const std::string & type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, const std::string & text, const std::string & name)
 {
 	// type -> type of widget (i.e., "Push Button")

@@ -50,6 +50,8 @@ public:
 
 	mouseCoordinates GetMouseCoords();
 
+	float GetTimeSinceLastFrame();
+
 private:
 	InputManager();
 
@@ -82,6 +84,7 @@ private:
 	//mouse cursor coordinates
 	mouseCoordinates _mousePosition;
 
+	float _timeSinceLastFrame;
 
 	
 	std::map<std::string, OIS::KeyListener*> mKeyListeners;

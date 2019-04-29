@@ -105,4 +105,5 @@ void TransformComponent::OnEvent(int eventType, Event e)
 
 void TransformComponent::Update(float deltaTime)
 {
+
 }

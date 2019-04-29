@@ -59,7 +59,7 @@
       },
       {  
          "_entityID":"Enemy",
-         "_numComponents":2,
+         "_numComponents":3,
          "_components":[  
             {  
                "_type":"RenderComponent",

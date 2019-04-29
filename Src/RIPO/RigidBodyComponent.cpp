@@ -14,6 +14,10 @@ RigidBodyComponent::~RigidBodyComponent()
 
 void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
+	_ownerEntity = e;
+
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
+
 	// 1: sphere, 2: box, 3: capsule, 4: plane
 	int geometry = arguments["geometry"].i;
 
@@ -27,6 +31,8 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 #ifdef _DEBUG
 		std::cout << "createMaterial failed!" << std::endl;
 #endif
+
+	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(0, 0, 0));//aqui iria la posicion de la entidad 
 
 	switch (geometry)
 	{
@@ -60,9 +66,21 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 
 void RigidBodyComponent::OnEvent(int eventType, Event e)
 {
+	//Para el player:
+
+
+
 
 }
 
 void RigidBodyComponent::Update(float deltaTime)
 {
+	
+	_actor->setGlobalPose(PxTransform(_transform->GetPosX(),
+										_transform->GetPosY(), 
+											_transform->GetPosZ(),
+		PxQuat(_transform->GetRotX(),_transform->GetRotY(),_transform->GetRotZ(),0.0f)));
+
+
+
 }

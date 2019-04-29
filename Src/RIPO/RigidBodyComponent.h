@@ -1,6 +1,7 @@
 #pragma once
 #include <Component.h>
 #include <MyPhysX.h>
+#include "TransformComponent.h"
 
 class RigidBodyComponent :
 	public Component
@@ -19,5 +20,7 @@ private:
 
 	physx::PxShape * _shape;
 	physx::PxRigidActor *_actor;
+
+	TransformComponent* _transform = nullptr;
 };
 

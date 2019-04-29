@@ -79,11 +79,7 @@ bool MyOgre::SetUp()
 	// create the scene	
 	_sceneMgr = _root->createSceneManager();
 
-	CameraManager::GetInstance().CreateFPSCamera(_window, _sceneMgr);
-
-	CreateLight(_sceneMgr);
-
-	_window->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2));
+	SetUpScene();
 
 	//add the input
 	_root->addFrameListener(&InputManager::GetInstance());
@@ -239,6 +235,21 @@ void MyOgre::ClearScene()
 {
 	// empty the scene from all the entities
 	_sceneMgr->clearScene();
+
+	// clear the camera
+	_sceneMgr->destroyCamera("FPScam");
+
+	// clear viewport for name conflicts
+	_window->removeAllViewports();
+}
+
+void MyOgre::SetUpScene()
+{
+	CameraManager::GetInstance().CreateFPSCamera(_window, _sceneMgr);
+
+	CreateLight(_sceneMgr);
+
+	_window->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2));
 }
 
 void MyOgre::Render()

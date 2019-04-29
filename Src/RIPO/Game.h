@@ -41,6 +41,13 @@ public:
 	/// </summary>
 	static void ResetInstance();
 
+	/// <summary>
+	/// Change scene
+	/// </summary>
+	void ChangeScene(std::string name);
+
+	void QueueScene(std::string scene);
+
 private:
 
 	/// <summary>
@@ -48,10 +55,7 @@ private:
 	/// </summary>
 	void HandleInput();
 
-	/// <summary>
-	/// Change scene
-	/// </summary>
-	void ChangeScene(std::string name);
+
 
 	/// <summary>
 	/// Update the game 
@@ -93,6 +97,9 @@ private:
 	float _frameTime;
 	float _accumulator;
 	float _inputTime;
+
+	bool _change;
+	std::string _nextScene;
 	
 };
 #endif

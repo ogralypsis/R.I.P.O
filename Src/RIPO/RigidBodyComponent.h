@@ -18,6 +18,6 @@ public:
 private:
 
 	physx::PxShape * _shape;
-	physx::PxActor *_actor;
+	physx::PxRigidActor *_actor;
 };
 

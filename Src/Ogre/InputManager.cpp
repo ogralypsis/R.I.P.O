@@ -143,7 +143,12 @@ void InputManager::addKeyListener(OIS::KeyListener *keyListener, const std::stri
 
 bool InputManager::frameStarted(const Ogre::FrameEvent & e)
 {
+	// input
 	CaptureInput();
+
+	// time
+	_timeSinceLastFrame = (float)e.timeSinceLastFrame;
+
 	return true;
 }
 
@@ -158,6 +163,7 @@ bool InputManager::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 bool InputManager::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
 	_mouseButtons[id] = false;
+
 	return true;
 }
 
@@ -177,6 +183,11 @@ bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 mouseCoordinates InputManager::GetMouseCoords()
 {
 	return _mousePosition;
+}
+
+float InputManager::GetTimeSinceLastFrame()
+{
+	return _timeSinceLastFrame;
 }
 
 

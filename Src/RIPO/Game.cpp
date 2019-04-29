@@ -64,7 +64,7 @@ bool Game::Init()
 		std::cout << "OIS Input system could not be initialized" << std::endl;
 #endif	
 	}
-	/*
+
 	// initialize GUI
 	if (!CEGUIUser::GetInstance()->Init("Assets/CEGUI")) {
 #ifdef _DEBUG		
@@ -74,12 +74,12 @@ bool Game::Init()
 	else {
 		CEGUIUser::GetInstance()->LoadScheme("AlfiskoSkin");
 		CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
-		CEGUIUser::GetInstance()->SetMouseCursor("AlfiskoSkin");
+		CEGUIUser::GetInstance()->SetCursor("AlfiskoSkin");
 	}
 	*/
 	RegisterComponents();
 
-	ChangeScene("1");
+	ChangeScene("0");
 
 	return true;
 }
@@ -103,19 +103,12 @@ void Game::Loop()
 
 
 	// Continue the loop if the window is not closed and game is not exited
-	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) {
+	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
+	{
+		// do we need to change scene?
+		if (_change)
+			ChangeScene(_nextScene);
 
-		/*
-		.
-		.
-		.
-		Change scenes if necessary
-		.
-		.
-		.
-		*/
-		
-		
 		// Update loop parameters
 		time(&_newTime);	
 		_frameTime = _newTime - _currentTime;
@@ -167,8 +160,13 @@ void Game::ResetInstance()
 
 void Game::HandleInput()
 {
+	CEGUIUser::GetInstance()->UpdateTime(InputManager::GetInstance().GetTimeSinceLastFrame());
 
 	InputManager::GetInstance().CaptureInput();
+
+	// update mouse position for cegui
+	CEGUIUser::GetInstance()->UpdateMouseCoords(InputManager::GetInstance().GetMouseCoords().mouseX, InputManager::GetInstance().GetMouseCoords().mouseY);
+
 
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
@@ -199,6 +197,14 @@ void Game::HandleInput()
 		std::cout << "CHANGING SCENE" << std::endl;
 		ChangeScene("2");
 	}
+
+	else if (InputManager::GetInstance().IsMouseButtonPressed(OIS::MB_Left))
+	{
+		std::cout << "MOUSE CLICKED" << std::endl;
+		// tell the gui
+		CEGUIUser::GetInstance()->OnMouseReleased(OIS::MB_Left);
+	}
+
 }
 
 
@@ -229,19 +235,38 @@ void Game::ChangeScene(std::string name)
 	// if the stack is not empty (i.e., already has an scene)
 	if (!_states.empty()) 
 	{
+		// delete the current GUI
+		CEGUIUser::GetInstance()->Destroy();
+
 		// save the scene in a temp variable
 		Scene* aux = _states.top();
+
 		// delete that scene from the stack
 		_states.pop();
+
 		// delete pointer to the scene
 		delete aux;
 	}
+
+	// clear the scene in order to create a new one
+	MyOgre::GetInstance().ClearScene();
 
 	// create new scene
 	Scene* newScene = new Scene(name, _compFactory);
 
 	// push it to the stack
 	_states.push(newScene);
+
+	// set the scene with ogre
+
+	// set flag to false
+	_change = false;
+}
+
+void Game::QueueScene(std::string scene)
+{
+	_change = true;
+	_nextScene = scene;
 }
 
 void Game::RegisterComponents()

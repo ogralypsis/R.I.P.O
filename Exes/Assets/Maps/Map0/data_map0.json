@@ -1,5 +1,5 @@
 {  
-   "_numEntities":1,
+   "_numEntities":2,
    "_entities":[  
       {  
          "_entityID":"GameButton",
@@ -7,7 +7,7 @@
          "_components":[  
             {  
                "_type":"ButtonComponent",
-               "_numArguments":8,
+               "_numArguments":9,
                "_arguments":[  
                   {  
                      "_name":"type",
@@ -17,12 +17,12 @@
                   {  
                      "_name":"destRectPercX",
                      "_type":2,
-                     "_arg":"0.5"
+                     "_arg":"0.45"
                   },
                   {  
                      "_name":"destRectPercY",
                      "_type":2,
-                     "_arg":"0.5"
+                     "_arg":"0.45"
                   },
                   {  
                      "_name":"destRectPercZ",
@@ -48,6 +48,71 @@
                      "_name":"text",
                      "_type":4,
                      "_arg":"Play"
+                  },
+                  {  
+                     "_name":"scene",
+                     "_type":4,
+                     "_arg":"1"
+                  }
+               ],
+               "_numEvents":0,
+               "_events":[
+               ]
+            }
+         ]
+      },
+      {  
+         "_entityID":"ExitButton",
+         "_numComponents":1,
+         "_components":[  
+            {  
+               "_type":"ButtonComponent",
+               "_numArguments":9,
+               "_arguments":[  
+                  {  
+                     "_name":"type",
+                     "_type":4,
+                     "_arg":"AlfiskoSkin/Button"
+                  },
+                  {  
+                     "_name":"destRectPercX",
+                     "_type":2,
+                     "_arg":"0.45"
+                  },
+                  {  
+                     "_name":"destRectPercY",
+                     "_type":2,
+                     "_arg":"0.65"
+                  },
+                  {  
+                     "_name":"destRectPercZ",
+                     "_type":2,
+                     "_arg":"0.1"
+                  },
+                  {  
+                     "_name":"destRectPercW",
+                     "_type":2,
+                     "_arg":"0.05"
+                  },
+                  {  
+                     "_name":"destRectPix",
+                     "_type":2,
+                     "_arg":"0.0"
+                  },
+                  {  
+                     "_name":"name",
+                     "_type":4,
+                     "_arg":"ExitButton"
+                  },
+                  {  
+                     "_name":"text",
+                     "_type":4,
+                     "_arg":"Exit"
+                  },
+                  {  
+                     "_name":"scene",
+                     "_type":4,
+                     "_arg":"2"
                   }
                ],
                "_numEvents":0,

@@ -29,7 +29,7 @@
     <ProjectGuid>{5806A1F3-0A3A-4D8D-83D5-810BB7E22870}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>PhysX</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

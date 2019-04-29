@@ -26,14 +26,15 @@ bool CEGUIUser::Init(const std::string dir)
 			CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeels");
 			CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
 			CEGUI::ScriptModule::setDefaultResourceGroup("Lua_Scripts");
-
-			// the context renders using our renderer
-			_context = &CEGUI::System::getSingleton().createGUIContext(_renderer->getDefaultRenderTarget());
-			// create the window
-			_window = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "window");
-			// set the window for that context
-			_context->setRootWindow(_window);
 		}
+
+		// the context renders using our renderer
+		_context = &CEGUI::System::getSingleton().createGUIContext(_renderer->getDefaultRenderTarget());
+		// create the window
+		_window = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "window");
+		// set the window for that context
+		_context->setRootWindow(_window);
+
 		return true;
 	}
 	catch (CEGUI::Exception& e) {
@@ -46,16 +47,17 @@ void CEGUIUser::Destroy()
 {
 	// destroy our context
 	CEGUI::System::getSingleton().destroyGUIContext(*_context);
+	_context = nullptr;
 }
 
 // render our GUI
 void CEGUIUser::Draw()
 {
-	_renderer->beginRendering();
-	_context->draw();
-	_renderer->endRendering();
-
-	//glDisable(GL_SCISSOR_TEST); // so it doesn't flicker
+	if (_context != nullptr) {
+		_renderer->beginRendering();
+		_context->draw();
+		_renderer->endRendering();
+	}
 }
 
 void CEGUIUser::LoadScheme(const std::string & schemeFile)
@@ -82,16 +84,56 @@ void CEGUIUser::SetFont(const std::string & fontFile)
 	}
 }
 
-void CEGUIUser::SetMouseCursor(const std::string & mouseFile)
+void CEGUIUser::SetCursor(const std::string & mouseFile)
 {
 	try {
-		// load scheme
-		CEGUI::SchemeManager::getSingleton().createFromFile(mouseFile + ".scheme");
-		// set mouse cursor
-		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage(mouseFile + "/MouseArrow");
+		// set font for all widgets of _context
+		_context->getMouseCursor().setDefaultImage(mouseFile + "/MouseArrow");
 	}
 	catch (Ogre::Exception& e) {
 		e.getFullDescription();
+	}
+}
+
+void CEGUIUser::OnMouseReleased(OIS::MouseButtonID id)
+{
+	// the button has been clicked
+	if (_context != nullptr)
+		if (_context->injectMouseButtonDown(ConvertButton(id)) && _context->injectMouseButtonUp(ConvertButton(id)))
+			printf("%s \n", "OVER WINDOW");
+}
+
+CEGUI::MouseButton CEGUIUser::ConvertButton(OIS::MouseButtonID buttonID)
+{
+	// convert from OIS type to CEGUI type
+	switch (buttonID)
+	{
+	case OIS::MB_Left:
+		return CEGUI::LeftButton;
+
+	case OIS::MB_Right:
+		return CEGUI::RightButton;
+
+	case OIS::MB_Middle:
+		return CEGUI::MiddleButton;
+
+	default:
+		return CEGUI::RightButton;
+	}
+}
+
+void CEGUIUser::UpdateMouseCoords(float x, float y)
+{
+	if (_context != nullptr) {
+		_context->injectMouseMove(x, y);
+	}
+}
+
+void CEGUIUser::UpdateTime(float t)
+{
+	if (_context != nullptr) {
+		//Need to inject timestamps to CEGUI System.
+		_context->injectTimePulse(t);
 	}
 }
 
@@ -104,15 +146,15 @@ CEGUI::Window * CEGUIUser::CreateWidget(const std::string & type, const glm::vec
 	try {
 		// create the widget but doesn't render it
 		newWidget = CEGUI::WindowManager::getSingleton().createWindow(type, name);
-
+		
+		// now it will get rendered
+		_window->addChild(newWidget);
+		
 		// set position and size of widget
 		SetWidgetDestRect(newWidget, destRectPerc, destRectPix);
 
 		// add text
 		newWidget->setText(text);
-
-		// now it will get rendered
-		_window->addChild(newWidget);
 	}
 	catch (CEGUI::Exception& e) {
 		e.getMessage();

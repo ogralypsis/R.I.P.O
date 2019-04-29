@@ -46,6 +46,6 @@ void ButtonComponent::OnEvent(int eventType, Event e)
 {
 }
 
-void ButtonComponent::Update()
+void ButtonComponent::Update(float deltaTime)
 {
 }

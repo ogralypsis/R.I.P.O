@@ -63,6 +63,6 @@ void RigidBodyComponent::OnEvent(int eventType, Event e)
 
 }
 
-void RigidBodyComponent::Update()
+void RigidBodyComponent::Update(float deltaTime)
 {
 }

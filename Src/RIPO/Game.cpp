@@ -65,6 +65,7 @@ bool Game::Init()
 #endif	
 	}
 
+	
 	// initialize GUI
 	if (!CEGUIUser::GetInstance()->Init("Assets/CEGUI")) {
 #ifdef _DEBUG		
@@ -76,7 +77,7 @@ bool Game::Init()
 		CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
 		CEGUIUser::GetInstance()->SetCursor("AlfiskoSkin");
 	}
-	*/
+	
 	RegisterComponents();
 
 	ChangeScene("0");

@@ -24,7 +24,7 @@ void HealthComponent::OnEvent(int eventType, Event e)
 	}
 }
 
-void HealthComponent::Update()
+void HealthComponent::Update(float deltaTime)
 {
 }
 

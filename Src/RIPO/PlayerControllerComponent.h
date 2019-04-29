@@ -14,15 +14,15 @@ public:
 	//template<class TransformComponent>
 	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 	void virtual OnEvent(int eventType, Event e);
-	void virtual Update();
+	void virtual Update(float deltaTime);
 
 
 private:
 
-	void ForwardMovement();
-	void LeftMovement();
-	void BackMovement();
-	void RightMovement();
+	void ForwardMovement(float deltaTime);
+	void LeftMovement(float deltaTime);
+	void BackMovement(float deltaTime);
+	void RightMovement(float deltaTime);
 
 	void CameraMovement();
 
@@ -39,6 +39,13 @@ private:
 	float _orPosX;
 	float _orPosY;
 	float _orPosZ;
+
+	//Booleans to activate the different directions
+	bool _forward = false;
+	bool _back = false;
+	bool _right = false;
+	bool _left = false;
+	bool _death = false;
 
 	//Entity* _player = nullptr;
 	TransformComponent* _transform = nullptr;

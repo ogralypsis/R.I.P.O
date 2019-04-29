@@ -119,11 +119,12 @@ void Game::Loop()
 
 		MessagePump();
 
+
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
 
-			
 			HandleInput();
+			
 			
 			// INPUT
 			// PHYSCS STEP
@@ -173,25 +174,37 @@ void Game::HandleInput()
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
 		std::cout << "PRESSING KEY W" << std::endl;
+		
+		WEvent wEvent(0, "Input", EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_W, wEvent);
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
 		std::cout << "PRESSING KEY S" << std::endl;
 
 		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
-		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Enemy", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
+		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Player", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent);
 		// -----------------------------------------------------------------------------------------------------------
+
+		SEvent sEvent(0, "Input", EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_S, sEvent);
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
 
 		std::cout << "PRESSING KEY A" << std::endl;
+
+		AEvent aEvent(0, "Input", EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_A, aEvent);
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
 	{
 
 		std::cout << "PRESSING KEY D" << std::endl;
+
+		DEvent dEvent(0, "Input", EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_D, dEvent);
 	}
 
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_C))

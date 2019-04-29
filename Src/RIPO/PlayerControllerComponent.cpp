@@ -39,25 +39,25 @@ void PlayerControllerComponent::OnEvent(int eventType, Event e)
 
 	}
 
-	else if ("WEvent" == typeid(e).name())
+	else if (EventType::EVENT_W == eventType)
 	{
 		//ForwardMovement();
 		_forward = true;
 	}
 
-	else if ("AEvent" == typeid(e).name())
+	else if (EventType::EVENT_A == eventType)
 	{
 		//LeftMovement();
 		_left = true;
 	}
 
-	else if ("SEvent" == typeid(e).name())
+	else if (EventType::EVENT_S == eventType)
 	{
 		//BackMovement();
 		_back = true;
 	}
 
-	else if ("DEvent" == typeid(e).name())
+	else if (EventType::EVENT_D == eventType)
 	{
 		//RightMovement();
 		_right = true;
@@ -85,6 +85,7 @@ void PlayerControllerComponent::ForwardMovement(float deltaTime)
 {
 	_posZ += _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
+	CameraManager::GetInstance().MoveBack(deltaTime);
 
 }
 
@@ -92,19 +93,21 @@ void PlayerControllerComponent::LeftMovement(float deltaTime)
 {
 	_posX -= _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
+	CameraManager::GetInstance().MoveBack(deltaTime);
 }
 
 void PlayerControllerComponent::BackMovement(float deltaTime)
 {
 	_posZ -= _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
-	//CameraManager::GetInstance().MoveBack();
+	CameraManager::GetInstance().MoveBack(deltaTime);
 }
 
 void PlayerControllerComponent::RightMovement(float deltaTime)
 {
 	_posX += _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
+	CameraManager::GetInstance().MoveBack(deltaTime);
 }
 
 void PlayerControllerComponent::CameraMovement()

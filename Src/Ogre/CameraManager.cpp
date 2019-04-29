@@ -66,6 +66,7 @@ void CameraManager::FPSrotation(Ogre::Real time)
 
 bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 {
+	/*
 	newMouseCoords = InputManager::GetInstance().GetMouseCoords();
 
 	//TESTING. Later the _player node will be created and modified in another place
@@ -90,10 +91,11 @@ bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 
 		MoveLeft(e.timeSinceLastFrame);
 	}
+	*/
 	
-	//CameraMovement(e.timeSinceLastFrame);
 	return true;
 }
+
 
 CameraManager & CameraManager::GetInstance()
 {

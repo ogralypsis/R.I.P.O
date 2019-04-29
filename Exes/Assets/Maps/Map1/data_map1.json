@@ -270,8 +270,12 @@
                      "_arg":"5"
                   }
                ],
-               "_numEvents":0,
+               "_numEvents":4,
                "_events":[  
+                  "WEvent",
+                  "SEvent",
+                  "AEvent",
+                  "DEvent"
 
                ]
             }

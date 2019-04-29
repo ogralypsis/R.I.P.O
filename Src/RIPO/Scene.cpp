@@ -48,6 +48,7 @@ void Scene::Update(float t)
 	MyPhysX::GetInstance().StepPhysics(t);
 
 	// Update entities...
+	EntityManager::getInstance()->Update(t);
 }
 
 void Scene::AddSceneObservers()
@@ -67,6 +68,18 @@ void Scene::AddSceneObservers()
 		else if (it->first == "SEvent") {
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_S, it->second[i]);
+		}
+		else if (it->first == "WEvent") {
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_W, it->second[i]);
+		}
+		else if (it->first == "AEvent") {
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_A, it->second[i]);
+		}
+		else if (it->first == "DEvent") {
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_D, it->second[i]);
 		}
 		// Other events...
 

@@ -70,11 +70,11 @@ void EntityManager::CreateEntity(std::string name, std::vector<Component*> compo
 	AddEntity(ent);
 }
 
-void EntityManager::Update()
+void EntityManager::Update(float deltaTime)
 {
 	// update each entity of the scene
 	for (int i = 0; i < _entities.size(); i++)
-		_entities.at(i)->Update();
+		_entities.at(i)->Update(deltaTime);
 }
 
 void EntityManager::GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)

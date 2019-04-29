@@ -29,7 +29,7 @@ public:
 	///<summary>
 	/// Calls the components' own Update()
 	///</summary>
-	void Update();
+	void Update(float deltaTime);
 
 	///<summary>
 	/// Get the entity id

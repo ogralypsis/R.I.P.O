@@ -5,7 +5,7 @@
 
 // events from ripo
 #include "RIPOEvent.h"
-
+#include "../Ogre/CameraManager.h"
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
@@ -35,27 +35,32 @@ void PlayerControllerComponent::OnEvent(int eventType, Event e)
 	if ("DeathEvent" == typeid(e).name()) 
 	{
 		ResetPosition();
+		_death = true;
 
 	}
 
 	else if ("WEvent" == typeid(e).name())
 	{
-		ForwardMovement();
+		//ForwardMovement();
+		_forward = true;
 	}
 
 	else if ("AEvent" == typeid(e).name())
 	{
-		LeftMovement();
+		//LeftMovement();
+		_left = true;
 	}
 
 	else if ("SEvent" == typeid(e).name())
 	{
-		BackMovement();
+		//BackMovement();
+		_back = true;
 	}
 
 	else if ("DEvent" == typeid(e).name())
 	{
-		RightMovement();
+		//RightMovement();
+		_right = true;
 	}
 
 	else if ("MouseMoveEvent" == typeid(e).name()) 
@@ -65,31 +70,38 @@ void PlayerControllerComponent::OnEvent(int eventType, Event e)
 	
 }
 
-void PlayerControllerComponent::Update()
+void PlayerControllerComponent::Update(float deltaTime)
 {
+
+	if (_forward) ForwardMovement(deltaTime);
+	if (_forward) ForwardMovement(deltaTime);
+	if (_forward) ForwardMovement(deltaTime);
+	if (_forward) ForwardMovement(deltaTime);
+
 }
 
 
-void PlayerControllerComponent::ForwardMovement()
+void PlayerControllerComponent::ForwardMovement(float deltaTime)
 {
 	_posZ += _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
 
 }
 
-void PlayerControllerComponent::LeftMovement()
+void PlayerControllerComponent::LeftMovement(float deltaTime)
 {
 	_posX -= _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
 }
 
-void PlayerControllerComponent::BackMovement()
+void PlayerControllerComponent::BackMovement(float deltaTime)
 {
 	_posZ -= _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
+	//CameraManager::GetInstance().MoveBack();
 }
 
-void PlayerControllerComponent::RightMovement()
+void PlayerControllerComponent::RightMovement(float deltaTime)
 {
 	_posX += _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);

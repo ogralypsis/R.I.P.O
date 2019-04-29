@@ -32,7 +32,7 @@ public:
 
 	void virtual OnEvent(int eventType, Event e);
 
-	void virtual Update();
+	void virtual Update(float deltaTime);
 
 private:
 

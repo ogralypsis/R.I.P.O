@@ -77,7 +77,7 @@ bool Game::Init()
 		CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
 		CEGUIUser::GetInstance()->SetCursor("AlfiskoSkin");
 	}
-	
+	*/
 	RegisterComponents();
 
 	ChangeScene("0");
@@ -228,7 +228,7 @@ void Game::Render()
 	MyOgre::GetInstance().Render();
 
 	// render gui
-	CEGUIUser::GetInstance()->Draw();
+	//CEGUIUser::GetInstance()->Draw();
 }
 
 void Game::ChangeScene(std::string name)

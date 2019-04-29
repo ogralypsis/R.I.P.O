@@ -17,7 +17,7 @@ public:
 
 	void CreateEntity(std::string name, std::vector<Component*> components);
 
-	void Update();
+	void Update(float deltaTime);
 
 	void GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers);
 	

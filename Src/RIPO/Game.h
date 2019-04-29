@@ -48,6 +48,8 @@ public:
 
 	void QueueScene(std::string scene);
 
+	void ExitGame();
+
 private:
 
 	/// <summary>

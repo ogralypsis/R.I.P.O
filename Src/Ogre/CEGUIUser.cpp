@@ -117,8 +117,6 @@ CEGUI::MouseButton CEGUIUser::ConvertButton(OIS::MouseButtonID buttonID)
 	case OIS::MB_Middle:
 		return CEGUI::MiddleButton;
 
-	default:
-		return CEGUI::RightButton;
 	}
 }
 

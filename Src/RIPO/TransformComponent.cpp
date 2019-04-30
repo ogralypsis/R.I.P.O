@@ -14,8 +14,7 @@ TransformComponent::~TransformComponent()
 void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
-
-	//t = new Transform();
+	_id = "Transform";
 
 	SetPosition(arguments["posX"].f,
 		arguments["posY"].f,

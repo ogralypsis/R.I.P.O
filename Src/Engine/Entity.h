@@ -45,7 +45,7 @@ public:
 	/*template <class T>
 	T* GetComponent(T* c);*/
 
-	Component* GetComponent(Component* c);
+	Component* GetComponent(std::string id);
 
 
 

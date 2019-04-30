@@ -15,11 +15,11 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 {
 
 	_ownerEntity = e;
+	_id = "PlayerController";
 
 	_velocity = arguments["vel"].f;
 
-	//_transform = _ownerEntity->GetComponent(_transform);
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform)); // Esto esta mal¿?
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform")); 
 	
 	_posX = _transform->GetPosX();
 	_orPosX = _posX;
@@ -74,9 +74,9 @@ void PlayerControllerComponent::Update(float deltaTime)
 {
 
 	if (_forward) ForwardMovement(deltaTime);
+	/*if (_forward) ForwardMovement(deltaTime);
 	if (_forward) ForwardMovement(deltaTime);
-	if (_forward) ForwardMovement(deltaTime);
-	if (_forward) ForwardMovement(deltaTime);
+	if (_forward) ForwardMovement(deltaTime);*/
 
 }
 

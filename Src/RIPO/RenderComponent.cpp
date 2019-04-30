@@ -16,8 +16,9 @@ RenderComponent::~RenderComponent() {}
 void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * e) 
 {
 	_ownerEntity = e;
-	//_transform = new TransformComponent();
-	//_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
+	_id = "Render";
+
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
 
 	std::string _mesh = arguments["mesh"].str;
 
@@ -51,9 +52,9 @@ void RenderComponent::OnEvent(int eventType, Event e)
 }
 
 void RenderComponent::Update(float deltaTime)
-{
+{	
 	if (_transform != nullptr) {
-		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_transform->GetPosX(), _transform->GetPosY(), _transform->GetPosZ()));
+		_entityOgre->getParentSceneNode()->translate(Ogre::Vector3(_transform->GetPosX(), _transform->GetPosY(), _transform->GetPosZ()));
 		std::cout << "POS Z RENDER : " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
 	}
 	

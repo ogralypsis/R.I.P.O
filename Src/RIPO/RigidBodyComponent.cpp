@@ -5,6 +5,10 @@
 using namespace physx;
 RigidBodyComponent::RigidBodyComponent()
 {
+	_shape = nullptr;
+	_actor = nullptr;
+	_material = nullptr;
+	_transform = nullptr;
 }
 
 
@@ -15,8 +19,9 @@ RigidBodyComponent::~RigidBodyComponent()
 void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
+	_id = "RigidBody";
 
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
 
 	// 1: sphere, 2: box, 3: capsule, 4: plane
 	int geometry = arguments["geometry"].i;
@@ -25,9 +30,9 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	float tam2 = arguments["tam2"].f;
 	float tam3 = arguments["tam3"].f;
 
-	const physx::PxMaterial * material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
+	_material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
 
-	if (!material)
+	if (!_material)
 #ifdef _DEBUG
 		std::cout << "createMaterial failed!" << std::endl;
 #endif
@@ -38,23 +43,23 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	{
 	// 1: sphere
 	case 1:		
-		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxSphereGeometry(tam1), *material, true); // TODO: mirar flags para colisiones...
+		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxSphereGeometry(tam1), *_material, true); // TODO: mirar flags para colisiones...
 		_actor->attachShape(*_shape);
 
 		break;
 	// 2: box
 	case 2:
-		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxBoxGeometry(tam1/2, tam2/2, tam3/2), *material, true); // TODO: mirar flags para colisiones...
+		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxBoxGeometry(tam1/2, tam2/2, tam3/2), *_material, true); // TODO: mirar flags para colisiones...
 		_actor->attachShape(*_shape); 
 		break;
 	// 3: capsule
 	case 3:
-		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxCapsuleGeometry(tam1, tam2/2), *material, true); // TODO: mirar flags para colisiones...
+		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxCapsuleGeometry(tam1, tam2/2), *_material, true); // TODO: mirar flags para colisiones...
 		_actor->attachShape(*_shape); 
 		break;
 	// 4: plane
 	case 4:
-		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxPlaneGeometry(), *material, true); // TODO: mirar flags para colisiones...
+		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxPlaneGeometry(), *_material, true); // TODO: mirar flags para colisiones...
 		_actor->attachShape(*_shape); 
 		break;
 	default:
@@ -77,7 +82,7 @@ void RigidBodyComponent::Update(float deltaTime)
 			_transform->GetPosZ()/*,
 			PxQuat(_transform->GetRotX(), _transform->GetRotY(), _transform->GetRotZ(), 0.0f)*/));
 
-		//std::cout << "POS Z: " << _transform->GetPosZ() << std::endl;
+		std::cout << "POS Z: " << _transform->GetPosZ() << std::endl;
 		//std::cout << "POS Y: " << _transform->GetPosY() << std::endl;
 	}
 }

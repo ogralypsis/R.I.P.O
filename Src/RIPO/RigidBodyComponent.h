@@ -20,7 +20,8 @@ private:
 
 	physx::PxShape * _shape;
 	physx::PxRigidActor *_actor;
+	const physx::PxMaterial * _material;
 
-	TransformComponent * _transform = nullptr;
+	TransformComponent * _transform;
 };
 

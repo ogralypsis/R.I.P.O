@@ -126,13 +126,11 @@ void MyPhysX::StepPhysics(float t)
 	_scene->fetchResults(true);
 	//... post simulation work(process physics events, etc) ...	
 
-	//std::cout << "SIMULATING PHYSX..." << std::endl;
+	std::cout << "SIMULATING PHYSX..." << std::endl;
 }
 
 physx::PxPhysics * MyPhysX::GetPhysics()
 {
-	
-
 	return _PxPhysics;
 }
 

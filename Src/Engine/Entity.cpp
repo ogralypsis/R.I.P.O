@@ -45,14 +45,15 @@ void Entity::DeleteComponent(Component * c)
 }
 
 //searches for a component and returns it if found
-Component* Entity::GetComponent(Component* c)// Habría que pasar el tipo?¿
-{
+Component* Entity::GetComponent(std::string id)
+{	
 	int i = 0;
+	
 	while (i < _components.size())
-	{
-		if (typeid(_components[i]) == typeid(c)) // Esto estaria mal porque la comprobacion de tipos tiene en cuenta la clase base (Component) y al comprobar, por ejemplo, RenderComponent con TransformComponent dice que son iguales.
+	{		
+		if (_components[i]->GetId() == id) 
 		{
-			return dynamic_cast<Component*>(_components[i]);
+			return _components[i];
 		}
 		i++;
 	}

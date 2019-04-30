@@ -61,57 +61,7 @@
          "_entityID":"Enemy",
          "_numComponents":3,
          "_components":[  
-            {  
-               "_type":"RenderComponent",
-               "_numArguments":8,
-               "_arguments":[  
-                  {  
-                     "_name":"mesh",
-                     "_type":4,
-                     "_arg":"Sinbad.mesh"
-                  },
-                  {  
-                     "_name":"positionX",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionY",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionZ",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleX",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleY",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleZ",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"rotation",
-                     "_type":1,
-                     "_arg":"0"
-                  }
-               ],
-               "_numEvents":2,
-               "_events":[  
-                  "UpdateTransformEvent",
-                  "JEvent"
-               ]
-            },
+            
             {  
                "_type":"TransformComponent",
                "_numArguments":9,
@@ -168,6 +118,57 @@
                ]
             },
 			{  
+               "_type":"RenderComponent",
+               "_numArguments":8,
+               "_arguments":[  
+                  {  
+                     "_name":"mesh",
+                     "_type":4,
+                     "_arg":"Sinbad.mesh"
+                  },
+                  {  
+                     "_name":"positionX",
+                     "_type":1,
+                     "_arg":"0"
+                  },
+                  {  
+                     "_name":"positionY",
+                     "_type":1,
+                     "_arg":"0"
+                  },
+                  {  
+                     "_name":"positionZ",
+                     "_type":1,
+                     "_arg":"0"
+                  },
+                  {  
+                     "_name":"scaleX",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"scaleY",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"scaleZ",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"rotation",
+                     "_type":1,
+                     "_arg":"0"
+                  }
+               ],
+               "_numEvents":2,
+               "_events":[  
+                  "UpdateTransformEvent",
+                  "JEvent"
+               ]
+            },
+			{  
 			
 			   "_type":"RigidBodyComponent",
                "_numArguments": 3,
@@ -202,7 +203,7 @@
       },
       {  
          "_entityID":"Player",
-         "_numComponents":3,
+         "_numComponents":4,
          "_components":[  
             {  
                "_type":"TransformComponent",
@@ -278,6 +279,57 @@
                     "DEvent"
 
                 ]
+            },
+			{  
+               "_type":"RenderComponent",
+               "_numArguments":8,
+               "_arguments":[  
+                  {  
+                     "_name":"mesh",
+                     "_type":4,
+                     "_arg":"Sinbad.mesh"
+                  },
+                  {  
+                     "_name":"positionX",
+                     "_type":1,
+                     "_arg":"0"
+                  },
+                  {  
+                     "_name":"positionY",
+                     "_type":1,
+                     "_arg":"0"
+                  },
+                  {  
+                     "_name":"positionZ",
+                     "_type":1,
+                     "_arg":"0"
+                  },
+                  {  
+                     "_name":"scaleX",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"scaleY",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"scaleZ",
+                     "_type":1,
+                     "_arg":"1"
+                  },
+                  {  
+                     "_name":"rotation",
+                     "_type":1,
+                     "_arg":"0"
+                  }
+               ],
+               "_numEvents":2,
+               "_events":[  
+                  "UpdateTransformEvent",
+                  "JEvent"
+               ]
             },
             	{  
 			

@@ -92,6 +92,8 @@ void Game::Release()
 	MyOgre::GetInstance().Shutdown();
 	// Delete MyOgre instance
 	MyOgre::ResetInstance();
+
+	// Liberar demas librerias
 }
 
 void Game::Loop()

@@ -3,7 +3,7 @@
 
 #include <Factory.h>
 #include <Component.h>
-
+#include <OgreTimer.h>
 #include "Scene.h"
 
 #include <stack>
@@ -98,7 +98,8 @@ private:
 	time_t _newTime;
 	float _frameTime;
 	float _accumulator;
-	float _inputTime;
+
+	Ogre::Timer _deltaTime;
 
 	bool _change;
 	std::string _nextScene;

@@ -35,7 +35,7 @@ Game::Game()
 
 	_currentTime = 0;
 	_newTime = 0;
-	_frameTime = _accumulator = _inputTime = 0.0f;
+	_frameTime = _accumulator = 0.0f;
 }
 
 
@@ -117,22 +117,23 @@ void Game::Loop()
 		_currentTime = _newTime;
 		_accumulator += _frameTime;
 
-		MessagePump();
+		
 
+		MessagePump();
 
 		// Loop for game logic and physics step (60 times per second)
 		while (_accumulator >= _FPS_CAP) {
-
+		
+			// INPUT
 			HandleInput();
 			
-			
-			// INPUT
 			// PHYSCS STEP
-			// CURRENT SCENE UPDATE
-
 			// ESCENA->UPDATE: physxScene->simulate
-
-			_states.top()->Update(_FPS_CAP);
+			
+			// CURRENT SCENE UPDATE
+			_states.top()->Update(_accumulator);
+			
+			Render();
 
 			_accumulator -= _FPS_CAP;
 			frames++;
@@ -140,7 +141,7 @@ void Game::Loop()
 		
 		frames = 0;
 
-		Render();
+		
 	}
 }
 

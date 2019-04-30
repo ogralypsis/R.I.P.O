@@ -8,13 +8,15 @@ PhysXCooking_32.dll
 PhysXFoundation_32.dll
 
 Tienen que estar las siguientes dlls de CEGui:
-glew.dll
-pcre.dll
-freetype.dll
-libexpat.dll
+pcre_d.dll / pcre.dll
+freetype_d.dll / freetype.dll
+libexpat_d.dll / libexpat.dll
 CEGUIOgreRenderer-0.dll
 CEGUIBase-0.dll
-CEGUIOpenGLRenderer-0.dll
-CEGUICoreWindowRendererSet.dll
-CEGUIExpatParser.dll
-CEGUISILLYImageCodec.dll
+
+Tienen que estar las siguientes dlls de Ogre:
+MainOgre_d.dll / MainOgre.dll
+Zlib.dll
+
+Tienes que estas las siguientes dlls de OIS:
+OIS_d.dll / OIS.dll

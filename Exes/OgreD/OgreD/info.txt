@@ -1,1 +1,3 @@
-Aqui tiene que estar la dll rendersystem de openGL
+Aqui tiene que estar la dll de:
+RenderSystem_GL_d.dll
+Codec_STBI_d.dll

@@ -50,7 +50,7 @@ private:
 	mouseCoordinates newMouseCoords;
 
 
-	Ogre::Real _speed = 10.0;
+	Ogre::Real _speed = 20.0;
 
 };
 

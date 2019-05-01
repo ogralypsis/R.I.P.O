@@ -34,8 +34,10 @@ Game::Game()
 	_exit = false;
 
 	_currentTime = 0;
-	_newTime = 0;
-	_frameTime = _accumulator = 0.0f;
+	_deltaTime = 0; 
+	_timeSinceLastFrame = 0;
+	_timer = new Ogre::Timer();
+
 }
 
 
@@ -81,7 +83,8 @@ bool Game::Init()
 	
 	RegisterComponents();
 
-	ChangeScene("1");
+	ChangeScene("0");
+
 
 	return true;
 }
@@ -98,52 +101,31 @@ void Game::Release()
 
 void Game::Loop()
 {
-
-
-	// Get the current time in seconds
-	time(&_currentTime);
-
-	int frames = 0;
-
-
 	// Continue the loop if the window is not closed and game is not exited
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
 	{
+		_currentTime = _timer->getMilliseconds();
+		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100;
+
 		// do we need to change scene?
 		if (_change)
 			ChangeScene(_nextScene);
 
-		// Update loop parameters
-		time(&_newTime);	
-		_frameTime = _newTime - _currentTime;
-		_currentTime = _newTime;
-		_accumulator += _frameTime;
-
-		
-
 		MessagePump();
 
-		// Loop for game logic and physics step (60 times per second)
-		while (_accumulator >= _FPS_CAP) {
-		
-			// INPUT
-			HandleInput();
+		// INPUT
+		HandleInput();
 			
-			// PHYSCS STEP
-			// ESCENA->UPDATE: physxScene->simulate
+		// PHYSCS STEP
+		// ESCENA->UPDATE: physxScene->simulate
 			
-			// CURRENT SCENE UPDATE
-			_states.top()->Update(_accumulator);
+		// CURRENT SCENE UPDATE
+		_states.top()->Update(_deltaTime);
 			
-			Render();
+		Render();
 
-			_accumulator -= _FPS_CAP;
-			frames++;
-		}
-		
-		frames = 0;
 
-		
+		_timeSinceLastFrame = _currentTime;
 	}
 }
 
@@ -168,7 +150,7 @@ void Game::HandleInput()
 {
 	CEGUIUser::GetInstance()->UpdateTime(InputManager::GetInstance().GetTimeSinceLastFrame());
 
-	InputManager::GetInstance().CaptureInput();
+	//InputManager::GetInstance().CaptureInput();
 
 	// update mouse position for cegui
 	CEGUIUser::GetInstance()->UpdateMouseCoords(InputManager::GetInstance().GetMouseCoords().mouseX, InputManager::GetInstance().GetMouseCoords().mouseY);
@@ -176,7 +158,7 @@ void Game::HandleInput()
 
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
-		//std::cout << "PRESSING KEY W" << std::endl;
+		std::cout << "PRESSING KEY W" << std::endl;
 		
 		WEvent wEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_W, wEvent);

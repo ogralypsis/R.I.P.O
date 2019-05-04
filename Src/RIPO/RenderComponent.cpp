@@ -54,7 +54,7 @@ void RenderComponent::OnEvent(int eventType, Event e)
 void RenderComponent::Update(float deltaTime)
 {	
 	if (_transform != nullptr) {
-		_entityOgre->getParentSceneNode()->translate(Ogre::Vector3(_transform->GetPosX(), _transform->GetPosY(), _transform->GetPosZ()));
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_transform->GetPosX(), _transform->GetPosY(), _transform->GetPosZ()));
 		std::cout << "POS Z RENDER : " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
 	}
 	

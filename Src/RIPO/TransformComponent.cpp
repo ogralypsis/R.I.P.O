@@ -25,7 +25,7 @@ void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity
 		arguments["rotZ"].f);
 
 	SetScale(arguments["scaleX"].f,
-		arguments["sclaeY"].f,
+		arguments["scaleY"].f,
 		arguments["scaleZ"].f);
 
 }

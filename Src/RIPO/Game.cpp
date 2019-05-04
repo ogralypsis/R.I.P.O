@@ -83,7 +83,7 @@ bool Game::Init()
 	
 	RegisterComponents();
 
-	ChangeScene("0");
+	ChangeScene("1");
 
 
 	return true;

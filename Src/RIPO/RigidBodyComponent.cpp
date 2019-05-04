@@ -83,6 +83,7 @@ void RigidBodyComponent::Update(float deltaTime)
 			PxQuat(_transform->GetRotX(), _transform->GetRotY(), _transform->GetRotZ(), 0.0f)*/));
 
 		std::cout << "POS Z: " << _transform->GetPosZ() << std::endl;
-		//std::cout << "POS Y: " << _transform->GetPosY() << std::endl;
+
+		std::cout << "POS Y: " << _transform->GetPosY() << std::endl;
 	}
 }

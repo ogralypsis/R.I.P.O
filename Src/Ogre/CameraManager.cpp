@@ -24,7 +24,7 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 {
 	//TESTING creates a node for player
 	_player = sceneMgr->getRootSceneNode()->createChildSceneNode();
-	_player->setPosition(Ogre::Vector3(25, 100, 110));
+	_player->setPosition(Ogre::Vector3(-80, 50, -10));
 
 	//add a camera
 	_camera = sceneMgr->createCamera("FPScam");

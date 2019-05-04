@@ -1,368 +1,367 @@
 {  
    "_numEntities":3,
-   "_entities":[  
-      {  
-         "_entityID":"Map",
-         "_numComponents":1,
-         "_components":[  
-            {  
-               "_type":"RenderComponent",
-               "_numArguments":8,
-               "_arguments":[  
-                  {  
-                     "_name":"mesh",
-                     "_type":4,
-                     "_arg":"Buildings.mesh"
-                  },
-                  {  
-                     "_name":"positionX",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionY",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionZ",
-                     "_type":1,
-                     "_arg":"100"
-                  },
-                  {  
-                     "_name":"scaleX",
-                     "_type":1,
-                     "_arg":"7"
-                  },
-                  {  
-                     "_name":"scaleY",
-                     "_type":1,
-                     "_arg":"7"
-                  },
-                  {  
-                     "_name":"scaleZ",
-                     "_type":1,
-                     "_arg":"7"
-                  },
-                  {  
-                     "_name":"rotation",
-                     "_type":1,
-                     "_arg":"0"
-                  }
-               ],
-               "_numEvents":0,
-               "_events":[  
+  "_entities": [
+    {
+      "_entityID": "Enemy",
+      "_numComponents": 3,
+      "_components": [
 
-               ]
-            }
-         ]
-      },
-      {  
-         "_entityID":"Enemy",
-         "_numComponents":3,
-         "_components":[  
-            
-            {  
-               "_type":"TransformComponent",
-               "_numArguments":9,
-               "_arguments":[  
-                  {  
-                     "_name":"posX",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"posY",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"posZ",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"rotX",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"rotY",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"rotZ",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleX",
-                     "_type":2,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleY",
-                     "_type":2,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleZ",
-                     "_type":2,
-                     "_arg":"1"
-                  }
-               ],
-               "_numEvents":1,
-               "_events":[  
-                  "JEvent"
-               ]
-            },
-			{  
-               "_type":"RenderComponent",
-               "_numArguments":8,
-               "_arguments":[  
-                  {  
-                     "_name":"mesh",
-                     "_type":4,
-                     "_arg":"Sinbad.mesh"
-                  },
-                  {  
-                     "_name":"positionX",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionY",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionZ",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleX",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleY",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleZ",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"rotation",
-                     "_type":1,
-                     "_arg":"0"
-                  }
-               ],
-               "_numEvents":2,
-               "_events":[  
-                  "UpdateTransformEvent",
-                  "JEvent"
-               ]
-            },
-			{  
-			
-			   "_type":"RigidBodyComponent",
-               "_numArguments": 3,
-               "_arguments":[  
-                  {  
-                     "_name":"geometry",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"tam1",
-                     "_type":2,
-                     "_arg":"5"
-                  },
-				   {  
-                     "_name":"tam2",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-				   {  
-                     "_name":"tam3",
-                     "_type":2,
-                     "_arg":"0"
-                  }
-               ],
-               "_numEvents":0,
-               "_events":[  
-                  
-               ]
-            }
-         ]
-      },
-      {  
-         "_entityID":"Player",
-         "_numComponents":4,
-         "_components":[  
-            {  
-               "_type":"TransformComponent",
-               "_numArguments":9,
-               "_arguments":[  
-                  {  
-                     "_name":"posX",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"posY",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"posZ",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"rotX",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"rotY",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"rotZ",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleX",
-                     "_type":2,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleY",
-                     "_type":2,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleZ",
-                     "_type":2,
-                     "_arg":"1"
-                  }
-               ],
-               "_numEvents":2,
-               "_events":[  
-                  "UpdateTransformEvent",
-                  "JEvent"
-               ]
+        {
+          "_type": "TransformComponent",
+          "_numArguments": 9,
+          "_arguments": [
+            {
+              "_name": "posX",
+              "_type": 2,
+              "_arg": "50"
             },
             {
-                "_type": "PlayerControllerComponent",
-                "_numArguments": 1,
-                "_arguments": [
-                    {
-                        "_name": "vel",
-                        "_type": 2,
-                        "_arg": "5"
-                    }
-                ],
-                "_numEvents": 4,
-                "_events": [
-                    "WEvent",
-                    "SEvent",
-                    "AEvent",
-                    "DEvent"
-
-                ]
+              "_name": "posY",
+              "_type": 2,
+              "_arg": "10"
             },
-			{  
-               "_type":"RenderComponent",
-               "_numArguments":8,
-               "_arguments":[  
-                  {  
-                     "_name":"mesh",
-                     "_type":4,
-                     "_arg":"Sinbad.mesh"
-                  },
-                  {  
-                     "_name":"positionX",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionY",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"positionZ",
-                     "_type":1,
-                     "_arg":"0"
-                  },
-                  {  
-                     "_name":"scaleX",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleY",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"scaleZ",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"rotation",
-                     "_type":1,
-                     "_arg":"0"
-                  }
-               ],
-               "_numEvents":2,
-               "_events":[  
-                  "UpdateTransformEvent",
-                  "JEvent"
-               ]
+            {
+              "_name": "posZ",
+              "_type": 2,
+              "_arg": "0"
             },
-            	{  
-			
-			   "_type":"RigidBodyComponent",
-               "_numArguments": 3,
-               "_arguments":[  
-                  {  
-                     "_name":"geometry",
-                     "_type":1,
-                     "_arg":"1"
-                  },
-                  {  
-                     "_name":"tam1",
-                     "_type":2,
-                     "_arg":"5"
-                  },
-				   {  
-                     "_name":"tam2",
-                     "_type":2,
-                     "_arg":"0"
-                  },
-				   {  
-                     "_name":"tam3",
-                     "_type":2,
-                     "_arg":"0"
-                  }
-               ],
-               "_numEvents":0,
-               "_events":[  
-                  
-               ]
+            {
+              "_name": "rotX",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotZ",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "scaleX",
+              "_type": 2,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleY",
+              "_type": 2,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleZ",
+              "_type": 2,
+              "_arg": "1"
             }
-         ]
-      }
-   ]
+          ],
+          "_numEvents": 1,
+          "_events": [
+            "JEvent"
+          ]
+        },
+        {
+          "_type": "RenderComponent",
+          "_numArguments": 8,
+          "_arguments": [
+            {
+              "_name": "mesh",
+              "_type": 4,
+              "_arg": "Sinbad.mesh"
+            },
+            {
+              "_name": "positionX",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "positionY",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "positionZ",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "scaleX",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleY",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleZ",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "rotation",
+              "_type": 1,
+              "_arg": "0"
+            }
+          ],
+          "_numEvents": 2,
+          "_events": [
+            "UpdateTransformEvent",
+            "JEvent"
+          ]
+        },
+        {
+
+          "_type": "RigidBodyComponent",
+          "_numArguments": 3,
+          "_arguments": [
+            {
+              "_name": "geometry",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "tam1",
+              "_type": 2,
+              "_arg": "5"
+            },
+            {
+              "_name": "tam2",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "tam3",
+              "_type": 2,
+              "_arg": "0"
+            }
+          ],
+          "_numEvents": 0,
+          "_events": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "_entityID": "Map",
+      "_numComponents": 1,
+      "_components": [
+        {
+          "_type": "RenderComponent",
+          "_numArguments": 8,
+          "_arguments": [
+            {
+              "_name": "mesh",
+              "_type": 4,
+              "_arg": "Buildings.mesh"
+            },
+            {
+              "_name": "positionX",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "positionY",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "positionZ",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "scaleX",
+              "_type": 1,
+              "_arg": "7"
+            },
+            {
+              "_name": "scaleY",
+              "_type": 1,
+              "_arg": "7"
+            },
+            {
+              "_name": "scaleZ",
+              "_type": 1,
+              "_arg": "7"
+            },
+            {
+              "_name": "rotation",
+              "_type": 1,
+              "_arg": "0"
+            }
+          ],
+          "_numEvents": 0,
+          "_events": [
+
+          ]
+        }
+      ]
+    },{
+      "_entityID": "Player",
+      "_numComponents": 4,
+      "_components": [
+        {
+          "_type": "TransformComponent",
+          "_numArguments": 9,
+          "_arguments": [
+            {
+              "_name": "posX",
+              "_type": 2,
+              "_arg": "-80"
+            },
+            {
+              "_name": "posY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "posZ",
+              "_type": 2,
+              "_arg": "10"
+            },
+            {
+              "_name": "rotX",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotZ",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "scaleX",
+              "_type": 2,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleY",
+              "_type": 2,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleZ",
+              "_type": 2,
+              "_arg": "1"
+            }
+          ],
+          "_numEvents": 2,
+          "_events": [
+            "UpdateTransformEvent",
+            "JEvent"
+          ]
+        },
+        {
+          "_type": "PlayerControllerComponent",
+          "_numArguments": 1,
+          "_arguments": [
+            {
+              "_name": "vel",
+              "_type": 2,
+              "_arg": "5"
+            }
+          ],
+          "_numEvents": 4,
+          "_events": [
+            "WEvent",
+            "SEvent",
+            "AEvent",
+            "DEvent"
+
+          ]
+        },
+        {
+          "_type": "RenderComponent",
+          "_numArguments": 8,
+          "_arguments": [
+            {
+              "_name": "mesh",
+              "_type": 4,
+              "_arg": "Sinbad.mesh"
+            },
+            {
+              "_name": "positionX",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "positionY",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "positionZ",
+              "_type": 1,
+              "_arg": "0"
+            },
+            {
+              "_name": "scaleX",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleY",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "scaleZ",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "rotation",
+              "_type": 1,
+              "_arg": "0"
+            }
+          ],
+          "_numEvents": 2,
+          "_events": [
+            "UpdateTransformEvent",
+            "JEvent"
+          ]
+        },
+        {
+
+          "_type": "RigidBodyComponent",
+          "_numArguments": 3,
+          "_arguments": [
+            {
+              "_name": "geometry",
+              "_type": 1,
+              "_arg": "1"
+            },
+            {
+              "_name": "tam1",
+              "_type": 2,
+              "_arg": "5"
+            },
+            {
+              "_name": "tam2",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "tam3",
+              "_type": 2,
+              "_arg": "0"
+            }
+          ],
+          "_numEvents": 0,
+          "_events": [
+
+          ]
+        }
+      ]
+    }
+  ]
 }

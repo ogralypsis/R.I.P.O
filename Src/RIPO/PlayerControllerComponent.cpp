@@ -82,7 +82,8 @@ void PlayerControllerComponent::Update(float deltaTime)
 
 void PlayerControllerComponent::ForwardMovement(float deltaTime)
 {
-	_posZ -= _velocity;
+	//_posZ -= _velocity;
+	_posZ -= deltaTime * _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
 	CameraManager::GetInstance().MoveForward(deltaTime);
 	_forward = false;
@@ -91,7 +92,8 @@ void PlayerControllerComponent::ForwardMovement(float deltaTime)
 
 void PlayerControllerComponent::LeftMovement(float deltaTime)
 {
-	_posX += _velocity;
+	//_posX += _velocity;
+	_posX += deltaTime * _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
 	CameraManager::GetInstance().MoveLeft(deltaTime);
 	_left = false;
@@ -99,7 +101,8 @@ void PlayerControllerComponent::LeftMovement(float deltaTime)
 
 void PlayerControllerComponent::BackMovement(float deltaTime)
 {
-	_posZ += _velocity;
+	//_posZ += _velocity;
+	_posZ += deltaTime * _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
 	CameraManager::GetInstance().MoveBack(deltaTime);
 	_back = false;
@@ -107,7 +110,8 @@ void PlayerControllerComponent::BackMovement(float deltaTime)
 
 void PlayerControllerComponent::RightMovement(float deltaTime)
 {
-	_posX -= _velocity;
+	//_posX -= _velocity;
+	_posX -= deltaTime * _velocity;
 	_transform->SetPosition(_posX, _posY, _posZ);
 	CameraManager::GetInstance().MoveRight(deltaTime);
 	_right = false;

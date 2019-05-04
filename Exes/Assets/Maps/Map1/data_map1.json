@@ -1,4 +1,4 @@
-{  
+{
    "_numEntities":3,
   "_entities": [
     {
@@ -216,12 +216,12 @@
             {
               "_name": "posY",
               "_type": 2,
-              "_arg": "0"
+              "_arg": "5"
             },
             {
               "_name": "posZ",
               "_type": 2,
-              "_arg": "10"
+              "_arg": "0"
             },
             {
               "_name": "rotX",
@@ -321,7 +321,7 @@
             {
               "_name": "rotation",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "90"
             }
           ],
           "_numEvents": 2,

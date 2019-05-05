@@ -43,7 +43,7 @@ bool ExitButtonComponent::onGUIEvent(const CEGUI::EventArgs & arg)
 	return false;
 }
 
-void ExitButtonComponent::OnEvent(int eventType, Event e)
+void ExitButtonComponent::OnEvent(int eventType, Event * e)
 {
 }
 

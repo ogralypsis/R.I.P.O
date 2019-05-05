@@ -12,7 +12,7 @@ public:
 
 	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 
-	void virtual OnEvent(int eventType, Event e);
+	void virtual OnEvent(int eventType, Event * e);
 
 	void virtual Update(float deltaTime);
 
@@ -23,5 +23,12 @@ private:
 	const physx::PxMaterial * _material;
 
 	TransformComponent * _transform;
+
+	// Determine if the rigidbody must be updated
+	bool _mustMove;
+
+	float _auxPosX;
+	float _auxPosY;
+	float _auxPosZ;
 };
 

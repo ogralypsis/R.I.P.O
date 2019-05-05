@@ -14,7 +14,7 @@ public:
 
 	virtual void Init(std::map<std::string, Arguments> arguments, Entity* e) = 0;
 	virtual void Update(float deltaTime) = 0;
-	virtual void OnEvent(int eventType, Event e) = 0;
+	virtual void OnEvent(int eventType, Event * e) = 0;
 	inline std::string GetId() { return _id; };
 	
 protected:

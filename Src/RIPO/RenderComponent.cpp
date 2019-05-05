@@ -21,6 +21,8 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
 
+	_mustMove = false;
+
 	std::string _mesh = arguments["mesh"].str;
 
 	int _positionX = arguments["positionX"].i;
@@ -44,7 +46,7 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 }
 
-void RenderComponent::OnEvent(int eventType, Event e)
+void RenderComponent::OnEvent(int eventType, Event * e)
 {
 
 	// Doing without events, both Render and Rigidbody components have a transform object to update positions
@@ -57,15 +59,26 @@ void RenderComponent::OnEvent(int eventType, Event e)
 			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
 		}
 	}*/
+	if (_ownerEntity->GetId() == e->GetEmmitter()) {
+		if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
+		{
+			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
+			_mustMove = true;
+			_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
+			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
+			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
+		}
+	}
 }
 
 void RenderComponent::Update(float deltaTime)
 {	
-	if (_transform != nullptr) {
-		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_transform->GetPosX(), _transform->GetPosZ(), _transform->GetPosY()));
+	if (_transform != nullptr && _mustMove) {
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));
+		_mustMove = false;
+
 		std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
 		std::cout << "POS Z RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().y << std::endl;
-
 
 	}
 	

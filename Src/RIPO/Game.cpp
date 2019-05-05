@@ -43,6 +43,8 @@ Game::Game()
 
 Game::~Game()
 {
+	_timer = nullptr;
+	delete _timer;
 }
 
 bool Game::Init()
@@ -96,6 +98,11 @@ void Game::Release()
 	// Delete MyOgre instance
 	MyOgre::ResetInstance();
 
+	// Release MyPhysX
+	MyPhysX::GetInstance().Shutdown();
+	// Delete MyPhysX instance
+	MyPhysX::GetInstance().ResetInstance();
+
 	// Liberar demas librerias
 }
 
@@ -105,7 +112,7 @@ void Game::Loop()
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
 	{
 		_currentTime = _timer->getMilliseconds();
-		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100;
+		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100; // 1000 ¿?¿?¿?¿?
 
 		// do we need to change scene?
 		if (_change)
@@ -160,27 +167,28 @@ void Game::HandleInput()
 
 		std::cout << "PRESSING KEY W" << std::endl;
 		
-		WEvent wEvent(0, "Input", EventDestination::SCENE);
+		WEvent * wEvent = new WEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_W, wEvent);
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
 		std::cout << "PRESSING KEY S" << std::endl;
 
-		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
-		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Player", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
-		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent);
-		// -----------------------------------------------------------------------------------------------------------
-
-		SEvent sEvent(0, "Input", EventDestination::SCENE);
+		SEvent * sEvent = new SEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_S, sEvent);
+
+		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
+		//UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Player", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
+		//EventManager::GetInstance()->NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent);
+		// -----------------------------------------------------------------------------------------------------------
+	
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
 
 		std::cout << "PRESSING KEY A" << std::endl;
 
-		AEvent aEvent(0, "Input", EventDestination::SCENE);
+		AEvent * aEvent = new AEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_A, aEvent);
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
@@ -188,7 +196,7 @@ void Game::HandleInput()
 
 		std::cout << "PRESSING KEY D" << std::endl;
 
-		DEvent dEvent(0, "Input", EventDestination::SCENE);
+		DEvent * dEvent = new DEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_D, dEvent);
 	}
 

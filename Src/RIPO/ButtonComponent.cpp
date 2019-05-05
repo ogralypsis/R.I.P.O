@@ -42,7 +42,7 @@ bool ButtonComponent::onGUIEvent(const CEGUI::EventArgs & arg)
 	return true;
 }
 
-void ButtonComponent::OnEvent(int eventType, Event e)
+void ButtonComponent::OnEvent(int eventType, Event * e)
 {
 }
 

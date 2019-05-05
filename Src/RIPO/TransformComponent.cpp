@@ -3,6 +3,8 @@
 // events from ripo
 #include "RIPOEvent.h"
 
+#include <EventManager.h>
+
 TransformComponent::TransformComponent()
 {
 }
@@ -15,6 +17,8 @@ void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity
 {
 	_ownerEntity = e;
 	_id = "Transform";
+
+	_mustMove = false;
 
 	SetPosition(arguments["posX"].f,
 		arguments["posY"].f,
@@ -97,11 +101,26 @@ float TransformComponent::GetScaleZ()
 	return _scale.z;
 }
 
-void TransformComponent::OnEvent(int eventType, Event e)
+void TransformComponent::OnEvent(int eventType, Event * e)
 {
+	if (_ownerEntity->GetId() == e->GetEmmitter()) {
+		if (eventType == EventType::EVENT_PHYSICS_MOVE) {
+
+			_mustMove = true;
+			_auxPosX = static_cast<PhysicsMoveEvent*>(e)->_posX;
+			_auxPosY = static_cast<PhysicsMoveEvent*>(e)->_posY;
+			_auxPosZ = static_cast<PhysicsMoveEvent*>(e)->_posZ;
+			// se tiene que actualizar las posiciones en el update segun lo que le llega del evento
+
+			UpdateTransformEvent * utEvent = new UpdateTransformEvent(_auxPosX, _auxPosY, _auxPosZ, 0, _ownerEntity->GetId(), EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
+			EventManager::GetInstance()->NotifyObservers(utEvent->GetType(), utEvent);
+		}
+	}
 }
 
 void TransformComponent::Update(float deltaTime)
 {
-
+	if (_mustMove) {
+		SetPosition(_auxPosX, _auxPosY, _auxPosZ);
+	}
 }

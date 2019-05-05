@@ -15,7 +15,7 @@ public:
 
 	bool onGUIEvent(const CEGUI::EventArgs & arg);
 
-	void virtual OnEvent(int eventType, Event e);
+	void virtual OnEvent(int eventType, Event * e);
 	void virtual Update(float deltaTime);
 private:
 

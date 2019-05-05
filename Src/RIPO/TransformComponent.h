@@ -30,7 +30,7 @@ public:
 	float GetScaleY();
 	float GetScaleZ();
 
-	void virtual OnEvent(int eventType, Event e);
+	void virtual OnEvent(int eventType, Event * e);
 
 	void virtual Update(float deltaTime);
 
@@ -39,6 +39,13 @@ private:
 	Ogre::Vector3 _pos;
 	Ogre::Vector3 _rot;
 	Ogre::Vector3 _scale;
+
+	bool _mustMove;
+
+	float _auxPosX;
+	float _auxPosY;
+	float _auxPosZ;
+
 
 };
 

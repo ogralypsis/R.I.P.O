@@ -13,8 +13,12 @@
 
 Scene::Scene(std::string ID, Factory<Component> compFactory)
 {
-	// Create PhysX scene for physics simulation
-	MyPhysX::GetInstance().CreateScene();
+	_id = ID;
+
+	if (_id != "0") { // The first scene, the menu, doesn't have physics
+		// Create PhysX scene for physics simulation
+		MyPhysX::GetInstance().CreateScene();
+	}
 
 	//SetUp ogre scene
 	MyOgre::GetInstance().SetUpScene();
@@ -34,8 +38,10 @@ Scene::~Scene()
 	// empty scene from entities
 	EntityManager::getInstance()->ClearEntities();
 
-	// empty PhysX scene
-	MyPhysX::GetInstance().ClearScene();
+	if (_id != "0") {
+		// empty PhysX scene
+		MyPhysX::GetInstance().ClearScene();
+	}
 
 	// empty OGRE scene
 	MyOgre::GetInstance().ClearScene();
@@ -44,8 +50,10 @@ Scene::~Scene()
 
 void Scene::Update(float t)
 {
-	// Makes one step in physics simulation
-	MyPhysX::GetInstance().StepPhysics(t);
+	if (_id != "0") {
+		// Makes one step in physics simulation
+		MyPhysX::GetInstance().StepPhysics(t);
+	}
 
 	// Update entities...
 	EntityManager::getInstance()->Update(t);
@@ -80,6 +88,10 @@ void Scene::AddSceneObservers()
 		else if (it->first == "DEvent") {
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_D, it->second[i]);
+		}
+		else if (it->first == "PhysicsMoveEvent") {
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_PHYSICS_MOVE, it->second[i]);
 		}
 		// Other events...
 

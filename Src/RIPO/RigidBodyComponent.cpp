@@ -1,6 +1,6 @@
 #include "RigidBodyComponent.h"
 #include <iostream>
-
+#include "RIPOEvent.h"
 
 using namespace physx;
 RigidBodyComponent::RigidBodyComponent()
@@ -22,6 +22,8 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	_id = "RigidBody";
 
 	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
+
+	_mustMove = false;
 
 	// 1: sphere, 2: box, 3: capsule, 4: plane
 	int geometry = arguments["geometry"].i;
@@ -69,18 +71,28 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	MyPhysX::GetInstance().GetScene()->addActor(*_actor);
 }
 
-void RigidBodyComponent::OnEvent(int eventType, Event e)
+void RigidBodyComponent::OnEvent(int eventType, Event * e)
 {
+	if (_ownerEntity->GetId() == e->GetEmmitter()) {
+		if (eventType == EventType::EVENT_UPDATE_TRANSFORM) {
+			_mustMove = true;
+			_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
+			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
+			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
+		}
+	}
 
 }
 
 void RigidBodyComponent::Update(float deltaTime)
 {
-	if (_transform != nullptr) {
-		_actor->setGlobalPose(PxTransform(_transform->GetPosX(),
-			_transform->GetPosY(),
-			_transform->GetPosZ()/*,
+	if (_transform != nullptr && _mustMove == true) {
+		_actor->setGlobalPose(PxTransform(_auxPosX,
+			_auxPosY,
+			_auxPosZ/*,
 			PxQuat(_transform->GetRotX(), _transform->GetRotY(), _transform->GetRotZ(), 0.0f)*/));
+
+		_mustMove = false;
 
 		std::cout << "POS Z: " << _transform->GetPosZ() << std::endl;
 

@@ -58,7 +58,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "JEvent"
+            "PhysicsMoveEvent"
           ]
         },
         {
@@ -106,14 +106,12 @@
               "_arg": "0"
             }
           ],
-          "_numEvents": 2,
+          "_numEvents": 1,
           "_events": [
-            "UpdateTransformEvent",
-            "JEvent"
+            "UpdateTransformEvent"
           ]
         },
         {
-
           "_type": "RigidBodyComponent",
           "_numArguments": 3,
           "_arguments": [
@@ -138,9 +136,9 @@
               "_arg": "0"
             }
           ],
-          "_numEvents": 0,
+          "_numEvents": 1,
           "_events": [
-
+            "UpdateTransformEvent"
           ]
         }
       ]
@@ -200,7 +198,8 @@
           ]
         }
       ]
-    },{
+    },
+    {
       "_entityID": "Player",
       "_numComponents": 4,
       "_components": [
@@ -254,10 +253,9 @@
               "_arg": "1"
             }
           ],
-          "_numEvents": 2,
+          "_numEvents": 1,
           "_events": [
-            "UpdateTransformEvent",
-            "JEvent"
+            "PhysicsMoveEvent"
           ]
         },
         {
@@ -276,7 +274,6 @@
             "SEvent",
             "AEvent",
             "DEvent"
-
           ]
         },
         {
@@ -324,10 +321,9 @@
               "_arg": "90"
             }
           ],
-          "_numEvents": 2,
+          "_numEvents": 1,
           "_events": [
-            "UpdateTransformEvent",
-            "JEvent"
+            "UpdateTransformEvent"
           ]
         },
         {
@@ -356,9 +352,9 @@
               "_arg": "0"
             }
           ],
-          "_numEvents": 0,
+          "_numEvents": 1,
           "_events": [
-
+            "UpdateTransformEvent"
           ]
         }
       ]

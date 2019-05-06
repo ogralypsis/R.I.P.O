@@ -14,7 +14,7 @@ public:
 
 	static EventManager* GetInstance();
 
-	void NotifyObservers(int eventType, const Event e);
+	void NotifyObservers(int eventType, Event * e);
 	void AddObserver(int eventType, Component* observer);
 	void RemoveObserver(int eventType, Component* observer);
 

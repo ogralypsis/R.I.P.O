@@ -24,7 +24,7 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 {
 	//TESTING creates a node for player
 	_player = sceneMgr->getRootSceneNode()->createChildSceneNode();
-	_player->setPosition(Ogre::Vector3(25, 100, 110));
+	_player->setPosition(Ogre::Vector3(-80, 10, 5));
 
 	//add a camera
 	_camera = sceneMgr->createCamera("FPScam");
@@ -64,9 +64,9 @@ void CameraManager::FPSrotation(Ogre::Real time)
 }
 
 
-bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
+/*bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 {
-	/*
+	
 	newMouseCoords = InputManager::GetInstance().GetMouseCoords();
 
 	//TESTING. Later the _player node will be created and modified in another place
@@ -91,10 +91,10 @@ bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
 
 		MoveLeft(e.timeSinceLastFrame);
 	}
-	*/
+	
 	
 	return true;
-}
+}*/
 
 
 CameraManager & CameraManager::GetInstance()

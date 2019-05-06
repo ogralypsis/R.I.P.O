@@ -16,6 +16,8 @@ private:
 
 	void AddSceneObservers();
 		
+	// Identifier for the scene created
+	std::string _id;
 
 };
 #endif

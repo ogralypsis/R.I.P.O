@@ -10,7 +10,7 @@ MyPhysX::MyPhysX() {
 	_PxCooking = nullptr;
 	_Pvd = nullptr;
 	_scene = nullptr;
-	
+	_dispatcher = nullptr;	
 }
 
 MyPhysX::~MyPhysX()
@@ -99,7 +99,7 @@ void MyPhysX::CreateScene()
 
 	physx::PxSceneDesc sceneDesc = physx::PxSceneDesc(_PxPhysics->getTolerancesScale());
 	sceneDesc.gravity = physx::PxVec3(0.0f, -9.8f, 0.0f);
-	_dispatcher = physx::PxDefaultCpuDispatcherCreate(4);
+	_dispatcher = physx::PxDefaultCpuDispatcherCreate(0);
 	sceneDesc.cpuDispatcher = _dispatcher;
 	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
 
@@ -126,13 +126,11 @@ void MyPhysX::StepPhysics(float t)
 	_scene->fetchResults(true);
 	//... post simulation work(process physics events, etc) ...	
 
-	//std::cout << "SIMULATING PHYSX..." << std::endl;
+	std::cout << "SIMULATING PHYSX..." << std::endl;
 }
 
 physx::PxPhysics * MyPhysX::GetPhysics()
 {
-	
-
 	return _PxPhysics;
 }
 

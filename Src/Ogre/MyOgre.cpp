@@ -256,7 +256,6 @@ void MyOgre::SetUpScene()
 
 void MyOgre::Render()
 {
-	//Ogre::WindowEventUtilities::messagePump();
 	if (_window->isClosed())
 		return;
 	if (!_root->renderOneFrame()) { 

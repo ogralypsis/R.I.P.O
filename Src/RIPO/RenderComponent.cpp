@@ -16,8 +16,12 @@ RenderComponent::~RenderComponent() {}
 void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * e) 
 {
 	_ownerEntity = e;
-	//_transform = new TransformComponent();
-	//_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform));
+	_id = "Render";
+
+
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
+
+	_mustMove = false;
 
 	std::string _mesh = arguments["mesh"].str;
 
@@ -31,11 +35,18 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	int _rotation = arguments["rotation"].i;
 
-	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ), 
-		Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
+	if (_transform != nullptr) {
+		_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_transform->GetPosX(),_transform->GetPosZ(), _transform->GetPosY()),
+			Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
+	}
+	else {
+		_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ),
+			Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
+	}
+
 }
 
-void RenderComponent::OnEvent(int eventType, Event e)
+void RenderComponent::OnEvent(int eventType, Event * e)
 {
 
 	// Doing without events, both Render and Rigidbody components have a transform object to update positions
@@ -48,13 +59,27 @@ void RenderComponent::OnEvent(int eventType, Event e)
 			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
 		}
 	}*/
+	if (_ownerEntity->GetId() == e->GetEmmitter()) {
+		if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
+		{
+			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
+			_mustMove = true;
+			_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
+			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
+			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
+		}
+	}
 }
 
 void RenderComponent::Update(float deltaTime)
-{
-	if (_transform != nullptr) {
-		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_transform->GetPosX(), _transform->GetPosY(), _transform->GetPosZ()));
-		std::cout << "POS Z RENDER : " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
+{	
+	if (_transform != nullptr && _mustMove) {
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));
+		_mustMove = false;
+
+		std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
+		std::cout << "POS Z RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().y << std::endl;
+
 	}
 	
 }

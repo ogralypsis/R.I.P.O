@@ -34,13 +34,17 @@ Game::Game()
 	_exit = false;
 
 	_currentTime = 0;
-	_newTime = 0;
-	_frameTime = _accumulator = _inputTime = 0.0f;
+	_deltaTime = 0; 
+	_timeSinceLastFrame = 0;
+	_timer = new Ogre::Timer();
+
 }
 
 
 Game::~Game()
 {
+	_timer = nullptr;
+	delete _timer;
 }
 
 bool Game::Init()
@@ -83,6 +87,7 @@ bool Game::Init()
 
 	ChangeScene("1");
 
+
 	return true;
 }
 
@@ -92,55 +97,42 @@ void Game::Release()
 	MyOgre::GetInstance().Shutdown();
 	// Delete MyOgre instance
 	MyOgre::ResetInstance();
+
+	// Release MyPhysX
+	MyPhysX::GetInstance().Shutdown();
+	// Delete MyPhysX instance
+	MyPhysX::GetInstance().ResetInstance();
+
+	// Liberar demas librerias
 }
 
 void Game::Loop()
 {
-
-
-	// Get the current time in seconds
-	time(&_currentTime);
-
-	int frames = 0;
-
-
 	// Continue the loop if the window is not closed and game is not exited
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
 	{
+		_currentTime = _timer->getMilliseconds();
+		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100; // 1000 ¿?¿?¿?¿?
+
 		// do we need to change scene?
 		if (_change)
 			ChangeScene(_nextScene);
 
-		// Update loop parameters
-		time(&_newTime);	
-		_frameTime = _newTime - _currentTime;
-		_currentTime = _newTime;
-		_accumulator += _frameTime;
-
 		MessagePump();
 
-
-		// Loop for game logic and physics step (60 times per second)
-		while (_accumulator >= _FPS_CAP) {
-
-			HandleInput();
+		// INPUT
+		HandleInput();
 			
+		// PHYSCS STEP
+		// ESCENA->UPDATE: physxScene->simulate
 			
-			// INPUT
-			// PHYSCS STEP
-			// CURRENT SCENE UPDATE
-
-			// ESCENA->UPDATE: physxScene->simulate
-
-			_states.top()->Update(_FPS_CAP);
-
-			_accumulator -= _FPS_CAP;
-			frames++;
-		}
-		
-		frames = 0;
-
+		// CURRENT SCENE UPDATE
+		_states.top()->Update(_deltaTime);
+			
 		Render();
+
+
+		_timeSinceLastFrame = _currentTime;
 	}
 }
 
@@ -165,7 +157,7 @@ void Game::HandleInput()
 {
 	CEGUIUser::GetInstance()->UpdateTime(InputManager::GetInstance().GetTimeSinceLastFrame());
 
-	InputManager::GetInstance().CaptureInput();
+	//InputManager::GetInstance().CaptureInput();
 
 	// update mouse position for cegui
 	CEGUIUser::GetInstance()->UpdateMouseCoords(InputManager::GetInstance().GetMouseCoords().mouseX, InputManager::GetInstance().GetMouseCoords().mouseY);
@@ -173,29 +165,30 @@ void Game::HandleInput()
 
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
 
-		//std::cout << "PRESSING KEY W" << std::endl;
+		std::cout << "PRESSING KEY W" << std::endl;
 		
-		WEvent wEvent(0, "Input", EventDestination::SCENE);
+		WEvent * wEvent = new WEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_W, wEvent);
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
 		std::cout << "PRESSING KEY S" << std::endl;
 
-		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
-		UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Player", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
-		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent);
-		// -----------------------------------------------------------------------------------------------------------
-
-		SEvent sEvent(0, "Input", EventDestination::SCENE);
+		SEvent * sEvent = new SEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_S, sEvent);
+
+		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
+		//UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Player", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
+		//EventManager::GetInstance()->NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent);
+		// -----------------------------------------------------------------------------------------------------------
+	
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
 
 		std::cout << "PRESSING KEY A" << std::endl;
 
-		AEvent aEvent(0, "Input", EventDestination::SCENE);
+		AEvent * aEvent = new AEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_A, aEvent);
 	}
 	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
@@ -203,7 +196,7 @@ void Game::HandleInput()
 
 		std::cout << "PRESSING KEY D" << std::endl;
 
-		DEvent dEvent(0, "Input", EventDestination::SCENE);
+		DEvent * dEvent = new DEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_D, dEvent);
 	}
 

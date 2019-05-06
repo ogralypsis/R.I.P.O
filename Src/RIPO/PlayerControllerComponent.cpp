@@ -2,6 +2,7 @@
 
 // singleton
 #include <EntityManager.h>
+#include <EventManager.h>
 
 // events from ripo
 #include "RIPOEvent.h"
@@ -15,11 +16,11 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 {
 
 	_ownerEntity = e;
+	_id = "PlayerController";
 
 	_velocity = arguments["vel"].f;
 
-	//_transform = _ownerEntity->GetComponent(_transform);
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent(_transform)); // Esto esta mal¿?
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform")); 
 	
 	_posX = _transform->GetPosX();
 	_orPosX = _posX;
@@ -29,7 +30,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_orPosZ = _posZ;
 }
 
-void PlayerControllerComponent::OnEvent(int eventType, Event e)
+void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 {
 
 	if ("DeathEvent" == typeid(e).name()) 
@@ -74,40 +75,64 @@ void PlayerControllerComponent::Update(float deltaTime)
 {
 
 	if (_forward) ForwardMovement(deltaTime);
-	if (_forward) ForwardMovement(deltaTime);
-	if (_forward) ForwardMovement(deltaTime);
-	if (_forward) ForwardMovement(deltaTime);
-
+	if (_back) BackMovement(deltaTime);
+	if (_right) RightMovement(deltaTime);
+	if (_left) LeftMovement(deltaTime);
 }
 
 
 void PlayerControllerComponent::ForwardMovement(float deltaTime)
 {
-	_posZ += _velocity;
-	_transform->SetPosition(_posX, _posY, _posZ);
-	CameraManager::GetInstance().MoveBack(deltaTime);
+	//_posZ -= _velocity;
+	_posZ -= deltaTime * _velocity;
+	//_transform->SetPosition(_posX, _posY, _posZ);
+
+	PhysicsMoveEvent * physicsMoveEvent = new PhysicsMoveEvent(_posX, _posY, _posZ, _ownerEntity->GetId(), EventDestination::SCENE);
+	EventManager::GetInstance()->NotifyObservers(physicsMoveEvent->GetType(), physicsMoveEvent);
+
+	CameraManager::GetInstance().MoveForward(deltaTime);
+	_forward = false;
 
 }
 
 void PlayerControllerComponent::LeftMovement(float deltaTime)
 {
-	_posX -= _velocity;
-	_transform->SetPosition(_posX, _posY, _posZ);
-	CameraManager::GetInstance().MoveBack(deltaTime);
+	//_posX += _velocity;
+	_posX += deltaTime * _velocity;
+	//_transform->SetPosition(_posX, _posY, _posZ);
+
+	PhysicsMoveEvent * physicsMoveEvent = new PhysicsMoveEvent(_posX, _posY, _posZ, _ownerEntity->GetId(), EventDestination::SCENE);
+	EventManager::GetInstance()->NotifyObservers(physicsMoveEvent->GetType(), physicsMoveEvent);
+
+	
+	CameraManager::GetInstance().MoveLeft(deltaTime);
+	_left = false;
 }
 
 void PlayerControllerComponent::BackMovement(float deltaTime)
 {
-	_posZ -= _velocity;
-	_transform->SetPosition(_posX, _posY, _posZ);
+	//_posZ += _velocity;
+	_posZ += deltaTime * _velocity;
+	//_transform->SetPosition(_posX, _posY, _posZ);
+
+	PhysicsMoveEvent * physicsMoveEvent = new PhysicsMoveEvent(_posX, _posY, _posZ, _ownerEntity->GetId(), EventDestination::SCENE);
+	EventManager::GetInstance()->NotifyObservers(physicsMoveEvent->GetType(), physicsMoveEvent);
+
 	CameraManager::GetInstance().MoveBack(deltaTime);
+	_back = false;
 }
 
 void PlayerControllerComponent::RightMovement(float deltaTime)
 {
-	_posX += _velocity;
-	_transform->SetPosition(_posX, _posY, _posZ);
-	CameraManager::GetInstance().MoveBack(deltaTime);
+	//_posX -= _velocity;
+	_posX -= deltaTime * _velocity;
+	//_transform->SetPosition(_posX, _posY, _posZ);
+
+	PhysicsMoveEvent * physicsMoveEvent = new PhysicsMoveEvent(_posX, _posY, _posZ, _ownerEntity->GetId(), EventDestination::SCENE);
+	EventManager::GetInstance()->NotifyObservers(physicsMoveEvent->GetType(), physicsMoveEvent);
+
+	CameraManager::GetInstance().MoveRight(deltaTime);
+	_right = false;
 }
 
 void PlayerControllerComponent::CameraMovement()

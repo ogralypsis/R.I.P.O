@@ -12,13 +12,21 @@ public:
 	~RenderComponent();
 
 	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
-	void virtual OnEvent(int eventType, Event e);
+	void virtual OnEvent(int eventType, Event * e);
 	void virtual Update(float deltaTime);
 
 private:
 
 	TransformComponent * _transform = nullptr;
 	Ogre::Entity * _entityOgre;
+
+	bool _mustMove;
+
+	float _auxPosX;
+	float _auxPosY;
+	float _auxPosZ;
+
+
 };
 
 #endif RENDER_COMPONENT_H

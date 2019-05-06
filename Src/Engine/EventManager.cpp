@@ -20,7 +20,7 @@ EventManager * EventManager::GetInstance()
 	return _instance;
 }
 
-void EventManager::NotifyObservers(int eventType, const Event e)
+void EventManager::NotifyObservers(int eventType, Event * e)
 {
 	// If that event is in the dictionary,
 	auto it = _observers.find(eventType);

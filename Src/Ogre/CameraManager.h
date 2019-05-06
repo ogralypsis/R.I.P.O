@@ -26,7 +26,7 @@ public:
 
 	void FPSrotation(Ogre::Real time);
 
-	virtual bool frameStarted(const Ogre::FrameEvent& e);
+	//virtual bool frameStarted(const Ogre::FrameEvent& e);
 
 private:
 	CameraManager();
@@ -50,7 +50,7 @@ private:
 	mouseCoordinates newMouseCoords;
 
 
-	Ogre::Real _speed = 20.0;
+	Ogre::Real _speed = 5.0;
 
 };
 

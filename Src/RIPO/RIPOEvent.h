@@ -10,7 +10,7 @@ typedef enum EventType {
 	EVENT_J, EVENT_W, EVENT_A, EVENT_S, EVENT_D,
 	EVENT_L_MOUSE, EVENT_MOVE_MOUSE,
 	EVENT_DEATH,
-	EVENT_UPDATE_TRANSFORM,
+	EVENT_UPDATE_TRANSFORM, EVENT_PHYSICS_MOVE,
 	EVENT_CHANGE_SCENE
 };
 
@@ -91,20 +91,29 @@ struct DeathEvent : Event
 
 #pragma region PhysicsEvents
 
-// Physics trnasform has been updated
+// Physics transform has been updated
 struct UpdateTransformEvent : Event
 {
-	UpdateTransformEvent(int x, int y, float w, float h, float r, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_UPDATE_TRANSFORM, destination), _posX(x), _posY(y), _width(w), _height(h), _rotation(r) {}
+	UpdateTransformEvent(float x, float y, float z, float r, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_UPDATE_TRANSFORM, destination), _posX(x), _posY(y), _posZ(z), _rotation(r) {}
 
-	int _posX;
-	int _posY;
-
-	float _width;
-	float _height;
+	float _posX;
+	float _posY;
+	float _posZ;
 
 	float _rotation;
 
 
+};
+
+// A physics movement has occured
+
+struct PhysicsMoveEvent : Event
+{
+	PhysicsMoveEvent(float x, float y, float z, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_PHYSICS_MOVE, destination), _posX(x), _posY(y), _posZ(z) {}
+
+	float _posX;
+	float _posY;
+	float _posZ;
 };
 
 

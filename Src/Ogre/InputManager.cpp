@@ -83,20 +83,17 @@ void InputManager::ResizeWindow(Ogre::RenderWindow* rw)
 InputManager::~InputManager()
 {
 	if (_inputSystem) {
-		/*if (_mouse != nullptr) {
+		if (_mouse != nullptr) {
 			_inputSystem->destroyInputObject(_mouse);
 			_mouse = nullptr;
 		}
 
-		/*if (_keyboard) {
+		if (_keyboard) {
 			_inputSystem->destroyInputObject(_keyboard);
 			_keyboard = nullptr;
-		}*/
+		}
 
-		//_inputSystem->destroyInputSystem();
-		//OIS::InputManager::destroyInputSystem(_inputSystem);
 		_inputSystem->destroyInputSystem(_inputSystem);
-		//_inputSystem = 0;
 	}
 }
 

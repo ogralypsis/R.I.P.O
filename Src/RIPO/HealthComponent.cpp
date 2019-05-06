@@ -16,7 +16,7 @@ void HealthComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	_ownerEntity = e;
 }
 
-void HealthComponent::OnEvent(int eventType, Event e)
+void HealthComponent::OnEvent(int eventType, Event * e)
 {
 	if ("JEvent" == typeid(e).name())
 	{

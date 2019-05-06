@@ -11,136 +11,108 @@ task compileCmake {
 task compileLib {
 	dependsOn { tasks.findAll { task -> task.name.startsWith('cmp')}}
 }
-/*
-task cleanProject {
-	dependsOn { tasks.findAll { task -> task.name.startsWith('cln')}}
-}
-*/
 
 /*
-****** METHODS OF THE FIRST RUN: COMPILATE LIBRARIES, MOVE DLLs
+##### OGRE
 */
-task cmakeCreateBuild {
-	mkdir("../Dependencies/ogre-1.11.5/Build") // we create the dir where the library will be created
+ // CREATE FOLDER WHERE LIB WILL BE COMPILED
+task cmakeOgreFolder {
+	mkdir("../Dependencies/ogre-1.11.5/Build")
 }
 
-task cmakeCMake (type: Exec) {
+// CALL CMAKE TO COMPILE OGRE LIB
+task cmakeOgre (type: Exec) {
 	executable = '"../CMake/bin/cmake.exe"'
 	args = ['-S"../Dependencies/ogre-1.11.5"', '-B"../Dependencies/ogre-1.11.5/Build"']
 }
 
+// ORDER
+cmakeOgre.mustRunAfter cmakeOgreFolder
 
+/*
+##### OIS
+*/
+ // CREATE FOLDER WHERE LIB WILL BE COMPILED
+task cmakeOISFolder () {
+	mkdir("../Dependencies/OIS-master/Build")
+}
 
+// CALL CMAKE TO COMPILE OIS LIB
+task cmakeOIS (type: Exec) {
+	executable = '"../CMake/bin/cmake.exe"'
+	args = ['-S"../Dependencies/OIS-master"', '-B"../Dependencies/OIS-master/Build"']
+}
 
-task cmpVisualDebug (type: Exec) {
+// ORDER
+cmakeOIS.mustRunAfter cmakeOISFolder
+
+/*
+##### OGRE
+*/
+// COMPILE IN VISUAL RELEASE/DEBUG
+task cmpOgreVS_r (type: Exec) {
+	commandLine 'msbuild', '"../Dependencies/ogre-1.11.5/Build/OGRE.sln"', '/t:build', '/p:Configuration=Release', '/p:Platform="Win32"'
+}
+task cmpOgreVS_d (type: Exec) {
 	commandLine 'msbuild', '"../Dependencies/ogre-1.11.5/Build/OGRE.sln"', '/t:build', '/p:Configuration=Debug', '/p:Platform="Win32"'
 }
 
-task cmpVisualRelease (type: Exec) {
-	commandLine 'msbuild', '"../Dependencies/ogre-1.11.5/Build/OGRE.sln"', '/t:build', '/p:Configuration=Release', '/p:Platform="Win32"'
-}
-
-task cmpCopyRelease (type: Copy, group: "First Run", description: "Copy release dll into Exes forlder") {
+// COPY OGRE DLLS RELEASE/DEBUG INTO FOLDER
+task cmpOgreDll_r (type: Copy) {
 	from file("../Dependencies/ogre-1.11.5/Build/bin/release/OgreMain.dll"), file("../Dependencies/ogre-1.11.5/Build/bin/release/zlib.dll")
     into "../Exes/"
 }
-
-task cmpCopyDebug (type: Copy, group: "First Run", description: "Copy debug dll into Exes forlder") {
+task cmpOgreDll_d (type: Copy) {
 	from file("../Dependencies/ogre-1.11.5/Build/bin/debug/OgreMain_d.dll")
     into file("../Exes/")
 }
 
-task cmpCopyGlRelease(type: Copy, group: "First Run", description: "Copy release OpenGL dll into Exes forlder") {
-	from file("../Dependencies/ogre-1.11.5/Build/bin/release/RenderSystem_GL.dll")
+// COPY GL DLLS RELEASE/DEBUG INTO FOLDER
+task cmpOgreGl_r(type: Copy) {
+	from file("../Dependencies/ogre-1.11.5/Build/bin/release/RenderSystem_GL.dll"), file("../Dependencies/ogre-1.11.5/Build/bin/release/Codec_STBI.dll")
 	into file("../Exes/Ogre/Ogre/")
 }
-
-task cmpCopyGlDebug(type: Copy, group: "First Run", description: "Copy debug OpenGL dll into Exes forlder") {
-	from file("../Dependencies/ogre-1.11.5/Build/bin/debug/RenderSystem_GL_d.dll")
+task cmpOgreGl_d(type: Copy) {
+	from file("../Dependencies/ogre-1.11.5/Build/bin/debug/RenderSystem_GL_d.dll"), file("../Dependencies/ogre-1.11.5/Build/bin/debug/Codec_STBI_d.dll")
 	into file("../Exes/OgreD/OgreD/")
 }
 
-task cmpCopyPhysx (type: Copy, group: "First Run", description: "Copy release Physx dll into Exes forlder") {
+// ORDER OF COMPILING
+cmpOgreGl_r.mustRunAfter cmpOgreDll_r
+cmpOgreGl_d.mustRunAfter cmpOgreDll_d
+cmpOgreDll_r.mustRunAfter cmpOgreVS_r
+cmpOgreDll_d.mustRunAfter cmpOgreVS_d
+
+
+/*
+##### PHYSX
+*/
+// COPY DLLS INTO FOLDER
+task cmpPhysxDll (type: Copy) {
 	from file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysX_32.dll"), file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysXCommon_32.dll"), file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysXCooking_32.dll"), file("../Dependencies/physx/bin/win.x86_32.vc141.md/debug/PhysXFoundation_32.dll")
 	into file("../Exes/")
 }
 
-task cmpCreateOISFolder () {
-	mkdir("../Dependencies/ogre-1.11.5/Build/Dependencies/include/OIS") // we create the dir where the header will be moved
-}
-
-task cmpCopyOISHeaders (type: Copy, group: "First Run", description: "Copy ois headers into dependencies forlder") {
-	from '../Dependencies/ois-v1-3/includes'
-	into "../Dependencies/ogre-1.11.5/Build/Dependencies/include/OIS"
-}
-
-task cmpCopyOIsLib (type: Copy, group: "First Run", description: "Copy OIS lib into ogre lib forlder") {
-	from '../Dependencies/ois-v1-3/dll/OIS.lib'
-	into "../Dependencies/ogre-1.11.5/Build/Dependencies/lib"
-}
-
-task cmpCopyOIsDlls (type: Copy, group: "First Run", description: "Copy OIS dll into ogre bin forlder") {
-	from '../Dependencies/ois-v1-3/dll/OIS.dll'
-	into "../Dependencies/ogre-1.11.5/Build/Dependencies/bin"
-}
-
-cmpCopyGlRelease.mustRunAfter cmpCopyRelease
-cmpCopyGlDebug.mustRunAfter cmpCopyDebug
-cmpCopyRelease.mustRunAfter cmpVisualRelease
-cmpCopyDebug.mustRunAfter cmpVisualDebug
-
-cmpCopyOISHeaders.mustRunAfter cmpCreateOISFolder
-
-cmakeCMake.mustRunAfter cmakeCreateBuild
-
 /*
-****** METHODS OF THE CLEAN PROCESS: DELETE FOLDERS WE DONT WANT, COMPILATED LIBRARIES, DLLs
+##### OIS
 */
-/*
-task clnInter (type: Delete){
-	delete "../Inter"
+// COPY OIS DLLS RELEASE INTO FOLDER
+task cmpOISVS_r (type: Exec) {
+	commandLine 'msbuild', '"../Dependencies/OIS-master/Build/OIS.sln"', '/t:build', '/p:Configuration=Release', '/p:Platform="Win32"'
+}
+task cmpOISVS_d (type: Exec) {
+	commandLine 'msbuild', '"../Dependencies/OIS-master/Build/OIS.sln"', '/t:build', '/p:Configuration=Debug', '/p:Platform="Win32"'
 }
 
-task clnCMake (type: Delete){
-	delete "../CMake"
+// COPY GL DLLS RELEASE/DEBUG INTO FOLDER
+task cmpOIsDlls_r (type: Copy) {
+	from '../Dependencies/OIS-master/Build/Release/OIS.dll'
+	into "../Exes/"
 }
-
-task clnOgre (type: Delete){
-	delete "../Dependencies/ogre-1.11.5/Build"
+task cmpOIsDlls_d (type: Copy) {
+	from '../Dependencies/OIS-master/Build/Release/OIS_d.dll'
+	into "../Exes/"
 }
-
-task clnExes {
-	dependsOn { tasks.findAll { task -> task.name.startsWith('exs')}}
-}
-
-task exsMakeDir {
-	mkdir("../ExesCopy")
-}
-
-task exsCopyAssets (type: Copy) {
-	from("../Exes") {
-		include "Assets/**"
-	}
-	into "../ExesCopy"
-}
-
-task exsEmptyExes (type: Delete) {
-	delete "../Exes/"
-}
-
-task exsMoveAssetsBack(type: Copy) {
-		from("../ExesCopy") {
-		include "Assets/**"
-	}
-	into "../Exes"
-}
-
-task exsDeleteTemp(type: Delete) {
-	delete "../ExesCopy"
-}
-
-exsDeleteTemp.mustRunAfter exsMoveAssetsBack
-exsMoveAssetsBack.mustRunAfter exsEmptyExes
-exsEmptyExes.mustRunAfter exsCopyAssets
-exsCopyAssets.mustRunAfter exsMakeDir
-*/
+// ORDER OF COMPILING
+cmpOIsDlls_r.mustRunAfter cmpOISVS_r
+cmpOIsDlls_d.mustRunAfter cmpOISVS_d

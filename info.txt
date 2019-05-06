@@ -4,35 +4,54 @@ Requirements:
 	Python 2.7.6 or later
 	CMake 3.12 or later
 
+1- DOWNLOAD EVREYTHING YOU NEED:
+- Download CMake
+	- Transfer the "bin", "doc", "man" and "share" folders inside a new folder called CMake 
+ 		at the same level as "Compiler"
 
-TO COMPILE:
-1- PHYSX:
-- Download PhysX SDK from github: clone this repository https://github.com/NVIDIAGameWorks/PhysX
+- Download ogre-1.11.15
+	- Transfer it inside Dependencies
 
-- Change vc15win32.xml in PhysX/physx/buildtools/presets/public param value to "False":
-<cmakeSwitch name="NV_USE_STATIC_WINCRT" value="False" comment="Use the statically linked windows CRT" />
+- Download PhysX from github: clone this repository https://github.com/NVIDIAGameWorks/PhysX
+	- Transfer folder "physx" to Dependencies
+	- Open file physx/buildtools/presets/public/vc15win32.xml
+		- Make sure param NV_USE_STATIC_WINCRT (line 8) equals "False":
+			<cmakeSwitch name="NV_USE_STATIC_WINCRT" value="False" comment="Use the statically linked windows CRT" />
+	- Change directory to physx/, run ./generate_projects.[bat|sh]
+		This will let you select a platform specific solution to build. You can then open the generated 
+		solution file with your IDE and kick off one or more configuration builds.
+		*Build for vc15win32*
 
-- Change directory to physx/, run ./generate_projects.[bat|sh]
-	This will let you select a platform specific solution to build. You can then open the generated 
-	solution file with your IDE and kick off one or more configuration builds.
-	*Build for vc15win32*
+- Download OIS from: https://sourceforge.net/projects/wgois/
+	- Paste it to Dependencies folder
 
-2- OIS -> INPUT
-1. Download OIS from: https://sourceforge.net/projects/wgois/
-2. Paste it to Dependencies folder
-3. Open OIS solution
-4. Change SDK in each project's properties 
-5. Build solution in Release and Debug and also selecting OIS_DebugDLL and OIS_RealeaseDLL
+- Download CEGUI-0.8.7
+	- Transfer it to Dependencies
+- Download its dependencies:
+	- cegui-cegui-dependencies-0ecdf3a9e49b
+	- Transfer them to Dependencies
+	- CMake them
+	- Transfer the floder dependencies that has been created in Build to Dependencies/cegui-0.8.7
+	- CMake CEGUI (you will have to set the paths for OGRE_HOME and OIS_HOME)
+		- What is important is that you check the OgreRenderer box, you need that project later
+	- Compile the Visual Studio Solution in Release and Debug
+	- Transfer the dlls that are required into the folder Exes
+		pcre_d.dll / pcre.dll
+		freetype_d.dll / freetype.dll
+		libexpat_d.dll / libexpat.dll
+		CEGUIOgreRenderer-0.dll
+		CEGUIBase-0.dll
 
-3- OGRE:
-- Download ogre-1.11.15 and transfer inside Dependencies
-- Download CMake, transfer the "bin", "doc", "man" and "share" folders inside a new folder called CMake 
-  at the same level as "Compiler".
-
-- Open the CMD and cd into the folder "Compiler"
-- write "gradlew compileCmake" -> this will generate the ogre library with CMake
-
-4- DLLS
-- Open the "Native Tools Command Prompt" of Visual Studio
+2- OPEN THE "Native Tools Command Prompt" of Visual Studio
 - cd into the folder "Compiler"
-- write "gradlew compileLib" -> this will compile the OGRE library and move the dlls so you can work
+
+- write "gradlew compileCmake" -> this will generate the libraries with CMake
+	IF FOR ANY REASON CMAKE DOESN'T WORK, IT'S BECAUSE IT'S NOT FINDING THE PATHS IN YOUR COMPUTER.
+	YOU WILL HAVE TO SET THEM MANUALLY, SORRY.
+
+- write "gradlew compileLib" -> this will compile the libraries and move the dlls to their folders
+
+
+
+
+

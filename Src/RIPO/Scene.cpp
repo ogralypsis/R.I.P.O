@@ -1,20 +1,19 @@
 #include "Scene.h"
 
 // singletons
-#include <EntityManager.h>
+/*#include <EntityManager.h>
 #include <EventManager.h>
 #include <FileReader.h>
-#include <SceneLoader.h>
+#include <SceneLoader.h>*/
 #include <MyOgre.h>
 #include <MyPhysX.h>
 
 // events from RIPO
 #include "RIPOEvent.h"
 
-Scene::Scene(std::string ID, Factory<Component> compFactory)
+Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, compFactory)
 {
-	_id = ID;
-
+	
 	if (_id != "0") { // The first scene, the menu, doesn't have physics
 		// Create PhysX scene for physics simulation
 		MyPhysX::GetInstance().CreateScene();
@@ -22,12 +21,6 @@ Scene::Scene(std::string ID, Factory<Component> compFactory)
 
 	//SetUp ogre scene
 	MyOgre::GetInstance().SetUpScene();
-
-	// Read file 
-	json entities = FileReader::getInstance()->readFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
-
-	// Call Loader to create scene
-	SceneLoader::getInstance()->LoadFromJson(entities, compFactory);
 
 	// add events to scene
 	AddSceneObservers();

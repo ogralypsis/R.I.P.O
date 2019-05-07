@@ -268,12 +268,13 @@
               "_arg": "5"
             }
           ],
-          "_numEvents": 4,
+          "_numEvents": 5,
           "_events": [
             "WEvent",
             "SEvent",
             "AEvent",
-            "DEvent"
+            "DEvent",
+            "MouseMoveEvent"
           ]
         },
         {

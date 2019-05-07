@@ -93,6 +93,10 @@ void Scene::AddSceneObservers()
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_PHYSICS_MOVE, it->second[i]);
 		}
+		else if (it->first == "MouseMoveEvent") {
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_MOVE_MOUSE, it->second[i]);
+		}
 		// Other events...
 
 		it++;

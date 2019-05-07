@@ -8,7 +8,7 @@
 #include <OgreFrameListener.h>
 #include "InputManager.h"
 
-class CameraManager : public Ogre::FrameListener
+class CameraManager 
 {
 public:
 	~CameraManager();
@@ -24,7 +24,7 @@ public:
 	void MoveRight(Ogre::Real time);
 	void MoveLeft(Ogre::Real time);
 
-	void FPSrotation(Ogre::Real time);
+	void FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY);
 
 	//virtual bool frameStarted(const Ogre::FrameEvent& e);
 

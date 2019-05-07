@@ -25,7 +25,7 @@ struct mouseCoordinates
 
 };
 
-class InputManager : public OIS::KeyListener, public OIS::MouseListener, public Ogre::FrameListener
+class InputManager : public OIS::KeyListener, public OIS::MouseListener
 {
 public:
 	~InputManager();
@@ -46,11 +46,11 @@ public:
 
 	void addKeyListener(OIS::KeyListener *keyListener, const std::string& name);
 
-	virtual bool frameStarted(const Ogre::FrameEvent& e);
-
 	mouseCoordinates GetMouseCoords();
 
 	float GetTimeSinceLastFrame();
+
+	bool GetMouseMove();
 
 private:
 	InputManager();
@@ -80,6 +80,8 @@ private:
 	bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	bool mouseMoved(const OIS::MouseEvent &e);
 	bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+
+	bool _mouseMove = false;
 
 	//mouse cursor coordinates
 	mouseCoordinates _mousePosition;

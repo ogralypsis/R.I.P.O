@@ -47,14 +47,14 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 
 
 //TO BE CALLED ON MOUSE MOVED
-void CameraManager::FPSrotation(Ogre::Real time)
+void CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY)
 {
 	//Y axis rotation on player
-	_rotY = -newMouseCoords.mouseX;
+	_rotY = -mouseX;
 	_player->yaw(Ogre::Degree(_rotY) * _rotSpeed * time);
 
 	//X axis rotation on player
-	_rotX = -newMouseCoords.mouseY;
+	_rotX = -mouseY;
 	Ogre::Real nextPitch = _camNode->getOrientation().getPitch().valueDegrees() + _rotX;
 
 	//check if max camera height has been reached

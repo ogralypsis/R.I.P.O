@@ -81,11 +81,6 @@ bool MyOgre::SetUp()
 
 	SetUpScene();
 
-	//add the input
-	_root->addFrameListener(&InputManager::GetInstance());
-
-	_root->addFrameListener(&CameraManager::GetInstance());
-
 	return (LocateResources() && LoadResources());
 		
 }

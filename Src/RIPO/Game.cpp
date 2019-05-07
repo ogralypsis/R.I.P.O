@@ -155,33 +155,33 @@ void Game::ResetInstance()
 
 void Game::HandleInput()
 {
-	CEGUIUser::GetInstance()->UpdateTime(InputManager::GetInstance().GetTimeSinceLastFrame());
+	UpdateInput();
+	//CEGUIUser::GetInstance()->UpdateTime(_deltaTime);
 
 	// update mouse position for cegui
-	CEGUIUser::GetInstance()->UpdateMouseCoords(InputManager::GetInstance().GetMouseCoords().mouseX, InputManager::GetInstance().GetMouseCoords().mouseY);
-
+	
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) 
 	{
 		std::cout << "PRESSING KEY W" << std::endl;
-		WEvent * wEvent = new WEvent(0, "Input", EventDestination::SCENE);
+		WEvent * wEvent = new WEvent("Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_W, wEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
 		std::cout << "PRESSING KEY S" << std::endl;
-		SEvent * sEvent = new SEvent(0, "Input", EventDestination::SCENE);
+		SEvent * sEvent = new SEvent("Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_S, sEvent);	
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
 		std::cout << "PRESSING KEY A" << std::endl;
-		AEvent * aEvent = new AEvent(0, "Input", EventDestination::SCENE);
+		AEvent * aEvent = new AEvent("Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_A, aEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
 	{
 		std::cout << "PRESSING KEY D" << std::endl;
-		DEvent * dEvent = new DEvent(0, "Input", EventDestination::SCENE);
+		DEvent * dEvent = new DEvent("Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_D, dEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_C))
@@ -195,6 +195,18 @@ void Game::HandleInput()
 		// tell the gui
 		CEGUIUser::GetInstance()->OnMouseReleased(OIS::MB_Left);
 	}
+	if (InputManager::GetInstance().GetMouseMove()) {
+
+		Ogre::Real mouseX = InputManager::GetInstance().GetMouseCoords().mouseX;
+		Ogre::Real mouseY = InputManager::GetInstance().GetMouseCoords().mouseY;
+
+		MouseMoveEvent * mMove = new MouseMoveEvent(mouseX, mouseY, "MouseMove", EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_MOVE_MOUSE, mMove);
+	
+		CEGUIUser::GetInstance()->UpdateMouseCoords(mouseX, mouseY);
+
+	}
+
 }
 
 
@@ -210,6 +222,12 @@ void Game::MessagePump()
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
+}
+
+void Game::UpdateInput()
+{
+	InputManager::GetInstance().CaptureInput();
+	CEGUIUser::GetInstance()->UpdateTime(_deltaTime);
 }
 
 void Game::Render()

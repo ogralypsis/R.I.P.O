@@ -100,6 +100,7 @@ InputManager::~InputManager()
 //
 void InputManager::CaptureInput()
 {
+	_mouseMove = false;
 	if (_mouse)
 		_mouse->capture();
 	if (_keyboard)
@@ -138,17 +139,6 @@ void InputManager::addKeyListener(OIS::KeyListener *keyListener, const std::stri
 	}
 }
 
-bool InputManager::frameStarted(const Ogre::FrameEvent & e)
-{
-	// input
-	CaptureInput();
-
-	// time
-	_timeSinceLastFrame = (float)e.timeSinceLastFrame;
-
-	return true;
-}
-
 ///MOUSE
 
 bool InputManager::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
@@ -174,6 +164,9 @@ bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 	_mousePosition.mouseX = e.state.X.rel;
 	_mousePosition.mouseY = e.state.Y.rel;
 	_mousePosition.mouseZ = e.state.Z.rel;
+
+	_mouseMove = true;
+
 	return true;
 }
 
@@ -185,6 +178,11 @@ mouseCoordinates InputManager::GetMouseCoords()
 float InputManager::GetTimeSinceLastFrame()
 {
 	return _timeSinceLastFrame;
+}
+
+bool InputManager::GetMouseMove()
+{
+	return _mouseMove;
 }
 
 

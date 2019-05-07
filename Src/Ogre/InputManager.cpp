@@ -75,7 +75,6 @@ void InputManager::ResizeWindow(Ogre::RenderWindow* rw)
 	const OIS::MouseState & _mouseState = _mouse->getMouseState();
 
 	//check if this works 
-	//_mouseState.width = _renderWindow->getWidth();
 	_mouseState.width = width;
 	_mouseState.height = height;
 }
@@ -126,18 +125,6 @@ bool InputManager::IsKeyDown(OIS::KeyCode key)
 	return _keyboardKeys[key];
 }
 
-void InputManager::addKeyListener(OIS::KeyListener *keyListener, const std::string& name) {
-	if (_keyboard) {
-		// Check for duplicate items
-		itKeyListener = mKeyListeners.find(name);
-		if (itKeyListener == mKeyListeners.end()) {
-			mKeyListeners[name] = keyListener;
-		}
-		else {
-			// Duplicate Item
-		}
-	}
-}
 
 ///MOUSE
 
@@ -173,11 +160,6 @@ bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 mouseCoordinates InputManager::GetMouseCoords()
 {
 	return _mousePosition;
-}
-
-float InputManager::GetTimeSinceLastFrame()
-{
-	return _timeSinceLastFrame;
 }
 
 bool InputManager::GetMouseMove()

@@ -5,7 +5,6 @@
 #include <OISMouse.h>
 #include <OISKeyboard.h>
 #include <OISInputManager.h>
-#include <OgreFrameListener.h>
 #include <OgreRenderWindow.h>
 
 #include <vector>
@@ -44,11 +43,7 @@ public:
 
 	bool IsMouseButtonPressed(OIS::MouseButtonID);
 
-	void addKeyListener(OIS::KeyListener *keyListener, const std::string& name);
-
 	mouseCoordinates GetMouseCoords();
-
-	float GetTimeSinceLastFrame();
 
 	bool GetMouseMove();
 
@@ -85,20 +80,6 @@ private:
 
 	//mouse cursor coordinates
 	mouseCoordinates _mousePosition;
-
-	float _timeSinceLastFrame;
-
-	
-	std::map<std::string, OIS::KeyListener*> mKeyListeners;
-	std::map<std::string, OIS::MouseListener*> mMouseListeners;
-	
-	std::map<std::string, OIS::KeyListener*>::iterator itKeyListener;
-	std::map<std::string, OIS::MouseListener*>::iterator itMouseListener;
-
-
-	std::map<std::string, OIS::KeyListener*>::iterator itKeyListenerEnd;
-	std::map<std::string, OIS::MouseListener*>::iterator itMouseListenerEnd;
-
 };
 
 #endif

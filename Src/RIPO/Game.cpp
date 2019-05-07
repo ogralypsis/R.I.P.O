@@ -85,7 +85,7 @@ bool Game::Init()
 	
 	RegisterComponents();
 
-	ChangeScene("1");
+	ChangeScene("0");
 
 
 	return true;
@@ -156,11 +156,10 @@ void Game::ResetInstance()
 
 void Game::HandleInput()
 {
+	//capture Input
 	UpdateInput();
-	//CEGUIUser::GetInstance()->UpdateTime(_deltaTime);
-
-	// update mouse position for cegui
 	
+	//Once input is captures, check input
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) 
 	{
 		std::cout << "PRESSING KEY W" << std::endl;

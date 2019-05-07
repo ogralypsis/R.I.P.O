@@ -20,7 +20,7 @@ CameraManager::~CameraManager()
 	}
 }
 
-void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr)
+void CameraManager::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr)
 {
 	//TESTING creates a node for player
 	_player = sceneMgr->getRootSceneNode()->createChildSceneNode();
@@ -46,7 +46,6 @@ void CameraManager::CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneMana
 
 
 
-//TO BE CALLED ON MOUSE MOVED
 void CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY)
 {
 	//Y axis rotation on player
@@ -62,40 +61,6 @@ void CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY
 		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed* time);
 
 }
-
-
-/*bool CameraManager::frameStarted(const Ogre::FrameEvent & e)
-{
-	
-	newMouseCoords = InputManager::GetInstance().GetMouseCoords();
-
-	//TESTING. Later the _player node will be created and modified in another place
-	FPSrotation(e.timeSinceLastFrame);
-
-	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
-
-		MoveForward(e.timeSinceLastFrame);
-	}
-
-	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S)) {
-
-		MoveBack(e.timeSinceLastFrame);
-	}
-
-	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D)) {
-
-		MoveRight(e.timeSinceLastFrame);
-	}
-
-	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A)) {
-
-		MoveLeft(e.timeSinceLastFrame);
-	}
-	
-	
-	return true;
-}*/
-
 
 CameraManager & CameraManager::GetInstance()
 {

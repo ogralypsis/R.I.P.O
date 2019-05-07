@@ -112,7 +112,7 @@ void TransformComponent::OnEvent(int eventType, Event * e)
 			_auxPosZ = static_cast<PhysicsMoveEvent*>(e)->_posZ;
 			// se tiene que actualizar las posiciones en el update segun lo que le llega del evento
 
-			UpdateTransformEvent * utEvent = new UpdateTransformEvent(_auxPosX, _auxPosY, _auxPosZ, 0, _ownerEntity->GetId(), EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
+			UpdateTransformEvent * utEvent = new UpdateTransformEvent(_auxPosX, _auxPosY, _auxPosZ, 0, _ownerEntity->GetId(), EventDestination::ENTITY);
 			EventManager::GetInstance()->NotifyObservers(utEvent->GetType(), utEvent);
 		}
 	}

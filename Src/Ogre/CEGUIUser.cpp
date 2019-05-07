@@ -50,6 +50,16 @@ void CEGUIUser::Destroy()
 	_context = nullptr;
 }
 
+void CEGUIUser::Release()
+{
+	// destroy context
+	Destroy();
+	// destroy renderer
+	_renderer = nullptr;
+	// destroy window
+	_window = nullptr;
+}
+
 // render our GUI
 void CEGUIUser::Draw()
 {
@@ -177,4 +187,12 @@ CEGUIUser * CEGUIUser::GetInstance()
 		_instance = new CEGUIUser();
 
 	return _instance;
+}
+
+void CEGUIUser::ResetInstance()
+{
+	if (CEGUIUser::_instance != nullptr) {
+		delete CEGUIUser::_instance;
+		CEGUIUser::_instance = nullptr;
+	}
 }

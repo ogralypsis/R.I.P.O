@@ -14,8 +14,8 @@
 Scene::Scene(std::string ID, Factory<Component> compFactory)
 {
 	_id = ID;
-
-	if (_id != "0") { // The first scene, the menu, doesn't have physics
+	// The first scene, the menu, doesn't have physics
+	if (_id != "0") { 
 		// Create PhysX scene for physics simulation
 		MyPhysX::GetInstance().CreateScene();
 	}
@@ -38,6 +38,7 @@ Scene::~Scene()
 	// empty scene from entities
 	EntityManager::getInstance()->ClearEntities();
 
+	// The first scene, the menu, doesn't have physics
 	if (_id != "0") {
 		// empty PhysX scene
 		MyPhysX::GetInstance().ClearScene();
@@ -50,6 +51,7 @@ Scene::~Scene()
 
 void Scene::Update(float t)
 {
+	// The first scene, the menu, doesn't have physics
 	if (_id != "0") {
 		// Makes one step in physics simulation
 		MyPhysX::GetInstance().StepPhysics(t);

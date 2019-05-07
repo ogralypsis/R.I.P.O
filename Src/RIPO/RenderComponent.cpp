@@ -47,19 +47,9 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 }
 
 void RenderComponent::OnEvent(int eventType, Event * e)
-{
-
-	// Doing without events, both Render and Rigidbody components have a transform object to update positions
-	/*// ---------------------------- TESTING -------------------------------
-	if (_ownerEntity->GetId() == e.GetEmmitter()) {
-
+{	
 		// Physics transform has been updated so update render properties in order to syncrhonize render and collider
-		if (EventType::EVENT_UPDATE_TRANSFORM == eventType)
-		{
-			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
-		}
-	}*/
-	if (_ownerEntity->GetId() == e->GetEmmitter()) {
+	//if (_ownerEntity->GetId() == e->GetEmmitter()) {
 		if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
 		{
 			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
@@ -68,12 +58,12 @@ void RenderComponent::OnEvent(int eventType, Event * e)
 			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
 			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
 		}
-	}
+	//}
 }
 
 void RenderComponent::Update(float deltaTime)
 {	
-	if (_transform != nullptr && _mustMove) {
+	if (_mustMove) {
 		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));
 		_mustMove = false;
 

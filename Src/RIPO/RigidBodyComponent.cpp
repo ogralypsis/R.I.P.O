@@ -21,7 +21,7 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	_ownerEntity = e;
 	_id = "RigidBody";
 
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
+	//_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
 
 	_mustMove = false;
 
@@ -73,20 +73,21 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 
 void RigidBodyComponent::OnEvent(int eventType, Event * e)
 {
-	if (_ownerEntity->GetId() == e->GetEmmitter()) {
+	//if (_ownerEntity->GetId() == e->GetEmmitter()) {
 		if (eventType == EventType::EVENT_UPDATE_TRANSFORM) {
 			_mustMove = true;
 			_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
 			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
 			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
 		}
-	}
+	//}
 
 }
 
 void RigidBodyComponent::Update(float deltaTime)
 {
-	if (_transform != nullptr && _mustMove == true) {
+	if (_mustMove == true) { 
+		// HAY QUE MOVER CON LA VELOCIDAD DE PHYSX
 		_actor->setGlobalPose(PxTransform(_auxPosX,
 			_auxPosY,
 			_auxPosZ/*,
@@ -94,8 +95,8 @@ void RigidBodyComponent::Update(float deltaTime)
 
 		_mustMove = false;
 
-		std::cout << "POS Z: " << _transform->GetPosZ() << std::endl;
+		std::cout << "POS Z: " + _ownerEntity->GetId() + " " << _auxPosZ << std::endl;
 
-		std::cout << "POS Y: " << _transform->GetPosY() << std::endl;
+		std::cout << "POS Y: " + _ownerEntity->GetId() + " " << _auxPosY << std::endl;
 	}
 }

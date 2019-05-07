@@ -4,7 +4,6 @@
 #include <typeinfo>
 
 
-// NO 100% SEGURO SI HACE FALTA
 typedef enum EventDestination {
 	// Event only meant to reach the components of the entity in which the event was created
 	ENTITY,
@@ -40,8 +39,6 @@ protected:
 
 	int _type;
 	std::string _emmitter;
-
-	// NO 100% SEGURO SI HACE FALTA
 	EventDestination _destination;
 };
 #endif

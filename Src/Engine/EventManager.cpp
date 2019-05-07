@@ -30,7 +30,16 @@ void EventManager::NotifyObservers(int eventType, Event * e)
 		// Notify all the observers that listen to that event
 		for (auto i : it->second)
 		{
-			i->OnEvent(eventType, e);
+			// MiRAR SI DESTINO ES ENTIDAD 
+			// COGER EL EMISOR DEL MENSAJE Y COMPROBARLO CON LA ENTIDAD PROPIETARIA DEL COMPONENTE
+			if (e->GetDestination() == EventDestination::ENTITY) {
+				if(i->GetOwnerEntId() == e->GetEmmitter())
+					i->OnEvent(eventType, e);
+			}
+			else if(e->GetDestination() == EventDestination::SCENE)
+
+				i->OnEvent(eventType, e);
+
 		}
 	}
 }

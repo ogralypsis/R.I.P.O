@@ -85,7 +85,7 @@ bool Game::Init()
 	
 	RegisterComponents();
 
-	ChangeScene("0");
+	ChangeScene("1");
 
 
 	return true;
@@ -103,7 +103,8 @@ void Game::Release()
 	// Delete MyPhysX instance
 	MyPhysX::GetInstance().ResetInstance();
 
-	// Liberar demas librerias
+	// Delete CeGUI
+	CEGUIUser::GetInstance()->Release();
 }
 
 void Game::Loop()
@@ -112,7 +113,7 @@ void Game::Loop()
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
 	{
 		_currentTime = _timer->getMilliseconds();
-		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100; // 1000 ¿?¿?¿?¿?
+		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100; // 1000 ï¿½?ï¿½?ï¿½?ï¿½?
 
 		// do we need to change scene?
 		if (_change)
@@ -235,7 +236,7 @@ void Game::Render()
 	MyOgre::GetInstance().Render();
 
 	// render gui
-	//CEGUIUser::GetInstance()->Draw();
+	CEGUIUser::GetInstance()->Draw();
 }
 
 void Game::ChangeScene(std::string name)

@@ -103,7 +103,8 @@ void Game::Release()
 	// Delete MyPhysX instance
 	MyPhysX::GetInstance().ResetInstance();
 
-	// Liberar demas librerias
+	// Delete CeGUI
+	CEGUIUser::GetInstance()->Release();
 }
 
 void Game::Loop()
@@ -217,7 +218,7 @@ void Game::Render()
 	MyOgre::GetInstance().Render();
 
 	// render gui
-	//CEGUIUser::GetInstance()->Draw();
+	CEGUIUser::GetInstance()->Draw();
 }
 
 void Game::ChangeScene(std::string name)

@@ -48,8 +48,7 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 void RenderComponent::OnEvent(int eventType, Event * e)
 {	
-		// Physics transform has been updated so update render properties in order to syncrhonize render and collider
-	//if (_ownerEntity->GetId() == e->GetEmmitter()) {
+		// Physics transform has been updated so update render properties in order to syncrhonize render and collider	
 		if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
 		{
 			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
@@ -58,7 +57,7 @@ void RenderComponent::OnEvent(int eventType, Event * e)
 			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
 			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
 		}
-	//}
+
 }
 
 void RenderComponent::Update(float deltaTime)

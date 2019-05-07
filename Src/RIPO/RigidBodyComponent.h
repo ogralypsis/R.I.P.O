@@ -19,7 +19,7 @@ public:
 private:
 
 	physx::PxShape * _shape;
-	physx::PxRigidActor *_actor;
+	physx::PxRigidDynamic *_actor;
 	const physx::PxMaterial * _material;
 
 	TransformComponent * _transform;
@@ -27,8 +27,12 @@ private:
 	// Determine if the rigidbody must be updated
 	bool _mustMove;
 
-	float _auxPosX;
-	float _auxPosY;
-	float _auxPosZ;
+	physx::PxVec3 _dir;
+
+	float _velocity;
+
+	float _tam1;
+	float _tam2;
+	float _tam3;
 };
 

@@ -58,7 +58,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "PhysicsMoveEvent"
+			"UpdateTransformEvent"
           ]
         },
         {
@@ -138,7 +138,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "UpdateTransformEvent"
+            "PhysicsMoveEvent"
           ]
         }
       ]
@@ -255,7 +255,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "PhysicsMoveEvent"
+            "UpdateTransformEvent"
           ]
         },
         {
@@ -354,7 +354,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "UpdateTransformEvent"
+            "PhysicsMoveEvent"
           ]
         }
       ]

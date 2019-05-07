@@ -89,10 +89,10 @@ void MyPhysX::Shutdown()
 	PxCloseExtensions();
 
 	_PxPhysics->release();	
-	_PxCooking->release();
-//#if ENABLE_PVD
+	_PxCooking->release();//#if ENABLE_PVD
 	//_Pvd->release();
 //#endif
+
 	_PxFoundation->release();
 }
 
@@ -100,7 +100,7 @@ void MyPhysX::CreateScene()
 {
 
 	physx::PxSceneDesc sceneDesc = physx::PxSceneDesc(_PxPhysics->getTolerancesScale());
-	sceneDesc.gravity = physx::PxVec3(0.0f, -9.8f, 0.0f);
+	sceneDesc.gravity = physx::PxVec3(0.0f, 0.0f, 0.0f);
 	_dispatcher = physx::PxDefaultCpuDispatcherCreate(0);
 	sceneDesc.cpuDispatcher = _dispatcher;
 	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;

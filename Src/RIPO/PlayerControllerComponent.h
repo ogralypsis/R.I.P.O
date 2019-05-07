@@ -4,6 +4,8 @@
 #include <Component.h>
 #include "TransformComponent.h"
 #include "HealthComponent.h"
+// events from ripo
+#include "RIPOEvent.h"
 
 class PlayerControllerComponent : public Component
 {
@@ -46,6 +48,8 @@ private:
 	bool _right = false;
 	bool _left = false;
 	bool _death = false;
+
+	Dir _dir;
 
 	//Entity* _player = nullptr;
 	TransformComponent* _transform = nullptr;

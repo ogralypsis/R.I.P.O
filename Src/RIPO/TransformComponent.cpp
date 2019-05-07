@@ -103,19 +103,16 @@ float TransformComponent::GetScaleZ()
 
 void TransformComponent::OnEvent(int eventType, Event * e)
 {
-	if (_ownerEntity->GetId() == e->GetEmmitter()) {
-		if (eventType == EventType::EVENT_PHYSICS_MOVE) {
+	
+	if (eventType == EventType::EVENT_UPDATE_TRANSFORM) {
 
-			_mustMove = true;
-			_auxPosX = static_cast<PhysicsMoveEvent*>(e)->_posX;
-			_auxPosY = static_cast<PhysicsMoveEvent*>(e)->_posY;
-			_auxPosZ = static_cast<PhysicsMoveEvent*>(e)->_posZ;
-			// se tiene que actualizar las posiciones en el update segun lo que le llega del evento
+		_mustMove = true;
 
-			UpdateTransformEvent * utEvent = new UpdateTransformEvent(_auxPosX, _auxPosY, _auxPosZ, 0, _ownerEntity->GetId(), EventDestination::ENTITY);
-			EventManager::GetInstance()->NotifyObservers(utEvent->GetType(), utEvent);
-		}
+		_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
+		_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
+		_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;		
 	}
+	
 }
 
 void TransformComponent::Update(float deltaTime)

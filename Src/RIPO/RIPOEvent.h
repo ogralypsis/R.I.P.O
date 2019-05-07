@@ -14,6 +14,12 @@ typedef enum EventType {
 	EVENT_CHANGE_SCENE
 };
 
+struct Dir {
+	int x;
+	int y;
+	int z;
+};
+
 // New Events specific for the game:
 
 struct ChangeSceneEvent : Event
@@ -37,6 +43,9 @@ struct WEvent : Event
 	WEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_W, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
+
+	// Direction to move the entity
+	Dir _dir; 
 };
 
 // Key A has been pressed -> Player's LEFT MOVEMENT 
@@ -45,6 +54,9 @@ struct AEvent : Event
 	AEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_A, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
+	
+	// Direction to move the entity
+	Dir _dir;
 };
 
 // Key s has been pressed -> Player's BACK MOVEMENT 
@@ -53,6 +65,9 @@ struct SEvent : Event
 	SEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_S, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
+
+	// Direction to move the entity
+	Dir _dir;
 };
 
 // Key D has been pressed -> Player's RIGHT MOVEMENT
@@ -61,6 +76,9 @@ struct DEvent : Event
 	DEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_D, destination), _key(k) {}
 
 	int _key; // this is for trying with parameters
+
+	// Direction to move the entity
+	Dir _dir;
 };
 
 // Left mouse's buttom has been pressed -> SHOT
@@ -109,11 +127,9 @@ struct UpdateTransformEvent : Event
 
 struct PhysicsMoveEvent : Event
 {
-	PhysicsMoveEvent(float x, float y, float z, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_PHYSICS_MOVE, destination), _posX(x), _posY(y), _posZ(z) {}
+	PhysicsMoveEvent(Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_PHYSICS_MOVE, destination) {}
 
-	float _posX;
-	float _posY;
-	float _posZ;
+	Dir _dir;
 };
 
 

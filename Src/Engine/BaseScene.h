@@ -17,6 +17,7 @@ public:
 	~BaseScene();
 
 	virtual void Update(float t) = 0;
+	inline std::string GetId() { return _id; };
 
 private:
 

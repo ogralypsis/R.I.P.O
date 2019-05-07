@@ -85,7 +85,7 @@ bool Game::Init()
 	
 	RegisterComponents();
 
-	ChangeScene("1");
+	ChangeScene("0");
 
 
 	return true;
@@ -157,62 +157,44 @@ void Game::HandleInput()
 {
 	CEGUIUser::GetInstance()->UpdateTime(InputManager::GetInstance().GetTimeSinceLastFrame());
 
-	//InputManager::GetInstance().CaptureInput();
-
 	// update mouse position for cegui
 	CEGUIUser::GetInstance()->UpdateMouseCoords(InputManager::GetInstance().GetMouseCoords().mouseX, InputManager::GetInstance().GetMouseCoords().mouseY);
 
-
-	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) {
-
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) 
+	{
 		std::cout << "PRESSING KEY W" << std::endl;
-		
 		WEvent * wEvent = new WEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_W, wEvent);
 	}
-	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
 		std::cout << "PRESSING KEY S" << std::endl;
-
 		SEvent * sEvent = new SEvent(0, "Input", EventDestination::SCENE);
-		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_S, sEvent);
-
-		// --------------------------------------> TESTING EVENTS NOTIFICATION <--------------------------------------
-		//UpdateTransformEvent utEvent(0, 0, 0, 0, 0, "Player", EventDestination::SCENE); // Emmitter falseado luego ver si seria el id de la escena o game
-		//EventManager::GetInstance()->NotifyObservers(EventType::EVENT_UPDATE_TRANSFORM, utEvent);
-		// -----------------------------------------------------------------------------------------------------------
-	
+		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_S, sEvent);	
 	}
-	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
-
 		std::cout << "PRESSING KEY A" << std::endl;
-
 		AEvent * aEvent = new AEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_A, aEvent);
 	}
-	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
 	{
-
 		std::cout << "PRESSING KEY D" << std::endl;
-
 		DEvent * dEvent = new DEvent(0, "Input", EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_D, dEvent);
 	}
-
-	else if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_C))
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_C))
 	{
 		std::cout << "CHANGING SCENE" << std::endl;
-		ChangeScene("2");
+		QueueScene("0");
 	}
-
-	else if (InputManager::GetInstance().IsMouseButtonPressed(OIS::MB_Left))
+	if (InputManager::GetInstance().IsMouseButtonPressed(OIS::MB_Left))
 	{
 		std::cout << "MOUSE CLICKED" << std::endl;
 		// tell the gui
 		CEGUIUser::GetInstance()->OnMouseReleased(OIS::MB_Left);
 	}
-
 }
 
 

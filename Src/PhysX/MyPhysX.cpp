@@ -90,7 +90,9 @@ void MyPhysX::Shutdown()
 
 	_PxPhysics->release();	
 	_PxCooking->release();
-	_Pvd->release();
+//#if ENABLE_PVD
+	//_Pvd->release();
+//#endif
 	_PxFoundation->release();
 }
 
@@ -126,7 +128,7 @@ void MyPhysX::StepPhysics(float t)
 	_scene->fetchResults(true);
 	//... post simulation work(process physics events, etc) ...	
 
-	std::cout << "SIMULATING PHYSX..." << std::endl;
+	//std::cout << "SIMULATING PHYSX..." << std::endl;
 }
 
 physx::PxPhysics * MyPhysX::GetPhysics()

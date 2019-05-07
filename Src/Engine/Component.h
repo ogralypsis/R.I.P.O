@@ -16,6 +16,7 @@ public:
 	virtual void Update(float deltaTime) = 0;
 	virtual void OnEvent(int eventType, Event * e) = 0;
 	inline std::string GetId() { return _id; };
+	inline std::string GetOwnerEntId() { return _ownerEntity->GetId(); };
 	
 protected:
 

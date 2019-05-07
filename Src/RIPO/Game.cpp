@@ -79,8 +79,6 @@ bool Game::Init()
 	}
 	else {
 		CEGUIUser::GetInstance()->LoadScheme("AlfiskoSkin");
-		CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
-		CEGUIUser::GetInstance()->SetCursor("AlfiskoSkin");
 	}
 	
 	RegisterComponents();
@@ -93,6 +91,9 @@ bool Game::Init()
 
 void Game::Release()
 {
+	// Delete CeGUI
+	CEGUIUser::GetInstance()->Release();
+
 	// Release MyOgre
 	MyOgre::GetInstance().Shutdown();
 	// Delete MyOgre instance
@@ -102,9 +103,6 @@ void Game::Release()
 	MyPhysX::GetInstance().Shutdown();
 	// Delete MyPhysX instance
 	MyPhysX::GetInstance().ResetInstance();
-
-	// Delete CeGUI
-	CEGUIUser::GetInstance()->Release();
 }
 
 void Game::Loop()
@@ -241,6 +239,11 @@ void Game::ChangeScene(std::string name)
 
 	// clear the scene in order to create a new one
 	MyOgre::GetInstance().ClearScene();
+
+	// set up cegui scene
+	CEGUIUser::GetInstance()->SetUpScene();
+	CEGUIUser::GetInstance()->SetFont("DejaVuSans-10");
+	CEGUIUser::GetInstance()->SetCursor("AlfiskoSkin");
 
 	// create new scene
 	Scene* newScene = new Scene(name, _compFactory);

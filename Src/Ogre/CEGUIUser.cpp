@@ -28,13 +28,6 @@ bool CEGUIUser::Init(const std::string dir)
 			CEGUI::ScriptModule::setDefaultResourceGroup("Lua_Scripts");
 		}
 
-		// the context renders using our renderer
-		_context = &CEGUI::System::getSingleton().createGUIContext(_renderer->getDefaultRenderTarget());
-		// create the window
-		_window = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "window");
-		// set the window for that context
-		_context->setRootWindow(_window);
-
 		return true;
 	}
 	catch (CEGUI::Exception& e) {
@@ -43,21 +36,32 @@ bool CEGUIUser::Init(const std::string dir)
 	}
 }
 
+void CEGUIUser::SetUpScene()
+{
+	// the context renders using our renderer
+	_context = &CEGUI::System::getSingleton().createGUIContext(_renderer->getDefaultRenderTarget());
+	// create the window
+	_window = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "window");
+	// set the window for that context
+	_context->setRootWindow(_window);
+}
+
 void CEGUIUser::Destroy()
 {
 	// destroy our context
 	CEGUI::System::getSingleton().destroyGUIContext(*_context);
 	_context = nullptr;
+	// destroy window with all child windows
+	CEGUI::WindowManager::getSingleton().destroyWindow(_window);
+	_window = nullptr;
 }
 
 void CEGUIUser::Release()
 {
-	// destroy context
+	// destroy context and window
 	Destroy();
 	// destroy renderer
 	_renderer = nullptr;
-	// destroy window
-	_window = nullptr;
 }
 
 // render our GUI

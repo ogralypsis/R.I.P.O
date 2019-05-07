@@ -111,7 +111,7 @@ void Game::Loop()
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
 	{
 		_currentTime = _timer->getMilliseconds();
-		_deltaTime = (_currentTime - _timeSinceLastFrame) / 1000; // 1000 ¿?¿?¿?¿?
+		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100; // 1000 ¿?¿?¿?¿?
 
 		// do we need to change scene?
 		if (_change)

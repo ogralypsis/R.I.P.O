@@ -5,7 +5,6 @@
 #include <OISMouse.h>
 #include <OISKeyboard.h>
 #include <OISInputManager.h>
-#include <OgreFrameListener.h>
 #include <OgreRenderWindow.h>
 
 #include <vector>
@@ -25,7 +24,7 @@ struct mouseCoordinates
 
 };
 
-class InputManager : public OIS::KeyListener, public OIS::MouseListener, public Ogre::FrameListener
+class InputManager : public OIS::KeyListener, public OIS::MouseListener
 {
 public:
 	~InputManager();
@@ -44,13 +43,9 @@ public:
 
 	bool IsMouseButtonPressed(OIS::MouseButtonID);
 
-	void addKeyListener(OIS::KeyListener *keyListener, const std::string& name);
-
-	virtual bool frameStarted(const Ogre::FrameEvent& e);
-
 	mouseCoordinates GetMouseCoords();
 
-	float GetTimeSinceLastFrame();
+	bool GetMouseMove();
 
 private:
 	InputManager();
@@ -81,22 +76,10 @@ private:
 	bool mouseMoved(const OIS::MouseEvent &e);
 	bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
+	bool _mouseMove = false;
+
 	//mouse cursor coordinates
 	mouseCoordinates _mousePosition;
-
-	float _timeSinceLastFrame;
-
-	
-	std::map<std::string, OIS::KeyListener*> mKeyListeners;
-	std::map<std::string, OIS::MouseListener*> mMouseListeners;
-	
-	std::map<std::string, OIS::KeyListener*>::iterator itKeyListener;
-	std::map<std::string, OIS::MouseListener*>::iterator itMouseListener;
-
-
-	std::map<std::string, OIS::KeyListener*>::iterator itKeyListenerEnd;
-	std::map<std::string, OIS::MouseListener*>::iterator itMouseListenerEnd;
-
 };
 
 #endif

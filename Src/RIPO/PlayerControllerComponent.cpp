@@ -64,9 +64,14 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		_right = true;
 	}
 
-	else if ("MouseMoveEvent" == typeid(e).name()) 
+	else if (EventType::EVENT_MOVE_MOUSE == eventType)
 	{
-		CameraMovement();
+		//MouseMoveEvent * mMove = dynamic_cast<MouseMoveEvent*>(e);
+		
+		MouseMoveEvent* m = (MouseMoveEvent*)e;
+		_mouseX = m->_posX; 
+		_mouseY = m->_posY;
+		_moveCamera = true;		
 	}
 	
 }
@@ -78,6 +83,7 @@ void PlayerControllerComponent::Update(float deltaTime)
 	if (_back) BackMovement(deltaTime);
 	if (_right) RightMovement(deltaTime);
 	if (_left) LeftMovement(deltaTime);
+	if(_moveCamera) CameraMovement(deltaTime);
 }
 
 
@@ -135,9 +141,11 @@ void PlayerControllerComponent::RightMovement(float deltaTime)
 	_right = false;
 }
 
-void PlayerControllerComponent::CameraMovement()
+void PlayerControllerComponent::CameraMovement(float deltaTime)
 {
-	//TODO
+	CameraManager::GetInstance().FPSrotation(deltaTime, _mouseX, _mouseY);
+
+	_moveCamera = false;
 }
 
 void PlayerControllerComponent::ResetPosition()

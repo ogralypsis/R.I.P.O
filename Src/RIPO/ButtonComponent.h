@@ -13,7 +13,6 @@ public:
 	~ButtonComponent();
 
 	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
-
 	bool onGUIEvent(const CEGUI::EventArgs & arg);
 
 	void virtual OnEvent(int eventType, Event  * e);

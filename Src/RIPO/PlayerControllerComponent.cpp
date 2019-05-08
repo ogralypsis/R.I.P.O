@@ -3,10 +3,11 @@
 // singleton
 #include <EntityManager.h>
 #include <EventManager.h>
+#include <CameraManager.h>
 
 // events from ripo
 #include "RIPOEvent.h"
-#include "../Ogre/CameraManager.h"
+
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 

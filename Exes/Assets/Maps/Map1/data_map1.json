@@ -102,8 +102,8 @@
             },
             {
               "_name": "rotation",
-              "_type": 1,
-              "_arg": "0"
+              "_type": 2,
+              "_arg": "1.5708"
             }
           ],
           "_numEvents": 1,
@@ -318,8 +318,8 @@
             },
             {
               "_name": "rotation",
-              "_type": 1,
-              "_arg": "90"
+              "_type": 2,
+              "_arg": "1.5708"
             }
           ],
           "_numEvents": 1,

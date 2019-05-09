@@ -40,7 +40,7 @@ struct JEvent : Event
 // Key W has been pressed -> Player's FORWARD MOVEMENT 
 struct WEvent : Event
 {
-	WEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_W, destination), _key(k) {}
+	WEvent(int k, Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_W, destination), _key(k),_dir(dir) {}
 
 	int _key; // this is for trying with parameters
 
@@ -51,7 +51,7 @@ struct WEvent : Event
 // Key A has been pressed -> Player's LEFT MOVEMENT 
 struct AEvent : Event
 {
-	AEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_A, destination), _key(k) {}
+	AEvent(int k,Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_A, destination), _key(k),_dir(dir) {}
 
 	int _key; // this is for trying with parameters
 	
@@ -62,7 +62,7 @@ struct AEvent : Event
 // Key s has been pressed -> Player's BACK MOVEMENT 
 struct SEvent : Event
 {
-	SEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_S, destination), _key(k) {}
+	SEvent(int k, Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_S, destination), _key(k), _dir(dir) {}
 
 	int _key; // this is for trying with parameters
 
@@ -73,7 +73,7 @@ struct SEvent : Event
 // Key D has been pressed -> Player's RIGHT MOVEMENT
 struct DEvent : Event
 {
-	DEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_D, destination), _key(k) {}
+	DEvent(int k, Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_D, destination), _key(k) ,_dir(dir) {}
 
 	int _key; // this is for trying with parameters
 
@@ -127,7 +127,7 @@ struct UpdateTransformEvent : Event
 
 struct PhysicsMoveEvent : Event
 {
-	PhysicsMoveEvent(Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_PHYSICS_MOVE, destination) {}
+	PhysicsMoveEvent(Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_PHYSICS_MOVE, destination),_dir(dir) {}
 
 	Dir _dir;
 };

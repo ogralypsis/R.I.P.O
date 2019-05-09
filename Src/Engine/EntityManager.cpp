@@ -73,8 +73,21 @@ void EntityManager::CreateEntity(std::string name, std::vector<Component*> compo
 void EntityManager::Update(float deltaTime)
 {
 	// update each entity of the scene
-	for (int i = 0; i < _entities.size(); i++)
-		_entities.at(i)->Update(deltaTime);
+	for (int i = 0; i < _entities.size(); i++) {
+
+	
+			_entities.at(i)->Update(deltaTime);
+	}
+}
+
+void EntityManager::UpdatePhysics(float deltaTime)
+{
+	for (int i = 0; i < _entities.size(); i++) {
+
+		if(_entities.at(i)->HasComponent("RigidBody"))
+			_entities.at(i)->UpdatePhysics(deltaTime);
+	}
+
 }
 
 void EntityManager::GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)

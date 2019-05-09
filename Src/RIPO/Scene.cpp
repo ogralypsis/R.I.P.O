@@ -49,6 +49,8 @@ Scene::~Scene()
 
 void Scene::Update(float t)
 {
+	EntityManager::getInstance()->UpdatePhysics(t);//Update Physics Entities
+
 	// The first scene, the menu, doesn't have physics
 	if (_id != "0") {
 		// Makes one step in physics simulation
@@ -57,6 +59,7 @@ void Scene::Update(float t)
 
 	// Update entities...
 	EntityManager::getInstance()->Update(t);
+
 }
 
 void Scene::AddSceneObservers()

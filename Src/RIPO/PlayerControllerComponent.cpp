@@ -74,6 +74,7 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 
 	PhysicsMoveEvent * physicsMoveEvent = new PhysicsMoveEvent(_dir, _ownerEntity->GetId(), EventDestination::ENTITY);
 	EventManager::GetInstance()->NotifyObservers(physicsMoveEvent->GetType(), physicsMoveEvent);
+	//NotifyObservers(EventType::EVENT_W, wEvent);
 	
 }
 

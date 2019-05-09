@@ -113,7 +113,7 @@ void Game::Loop()
 	while (!MyOgre::GetInstance().CheckWindowStatus() && !_exit) 
 	{
 		_currentTime = _timer->getMilliseconds();
-		_deltaTime = (_currentTime - _timeSinceLastFrame) / 1000; // 1000 ¿?¿?¿?¿?
+		_deltaTime = (_currentTime - _timeSinceLastFrame) / 100; // 1000 ¿?¿?¿?¿?
 
 		// do we need to change scene?
 		if (_change)
@@ -164,29 +164,29 @@ void Game::HandleInput()
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W)) 
 	{
 		std::cout << "PRESSING KEY W" << std::endl;
-		WEvent * wEvent = new WEvent(0, _states.top()->GetId(), EventDestination::SCENE);
-		wEvent->_dir = { 0, 0, -1 };
+		WEvent * wEvent = new WEvent(0, { 0, 0, -1 },_states.top()->GetId(), EventDestination::SCENE);
+		//wEvent->_dir = { 0, 0, -1 };
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_W, wEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
 		std::cout << "PRESSING KEY S" << std::endl;
-		SEvent * sEvent = new SEvent(0, _states.top()->GetId(), EventDestination::SCENE);
-		sEvent->_dir = { 0, 0, 1 };
+		SEvent * sEvent = new SEvent(0, { 0, 0, 1 }, _states.top()->GetId(), EventDestination::SCENE);
+		//sEvent->_dir = { 0, 0, 1 };
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_S, sEvent);	
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
 		std::cout << "PRESSING KEY A" << std::endl;
-		AEvent * aEvent = new AEvent(0, _states.top()->GetId(), EventDestination::SCENE);
-		aEvent->_dir = { -1, 0, 0 };
+		AEvent * aEvent = new AEvent(0, { 1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);
+		//aEvent->_dir = { -1, 0, 0 };
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_A, aEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
 	{
 		std::cout << "PRESSING KEY D" << std::endl;
-		DEvent * dEvent = new DEvent(0, _states.top()->GetId(), EventDestination::SCENE);
-		dEvent->_dir = { 1, 0, 0 };
+		DEvent * dEvent = new DEvent(0, { -1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);
+		//dEvent->_dir = { 1, 0, 0 };
 		EventManager::GetInstance()->NotifyObservers(EventType::EVENT_D, dEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_C))

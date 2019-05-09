@@ -34,7 +34,7 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	 _tam3 = arguments["tam3"].f;
 
 	//_velocity = arguments["velocity"].f;
-	_velocity = 1.0f;
+	_velocity = 2.0f;
 
 	_material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
 
@@ -93,10 +93,8 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 		/*_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
 		_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
 		_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;*/
-	
+
 	}
-
-
 		// SI LLEGA MENSAJE DE QUE TIENE QUE MOVERSE SE APLICA UNA VELOCIDAD (_actor->setLinerVelocity())
 		// Y DESPUES MANDAR EL MENSAJE DE EVENT_UPDATE_TRANSFORM QUE DEBERIA LLEGAR AL RENDER Y AL TRANSFORM
 		// JUSTO AL REVES CON EL TRANSFORM PORQUE EL QUE ACTUALIZA LAS POSICIONES TIENE QUE SER EL RIGIDBODY 
@@ -108,9 +106,11 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 
 void RigidBodyComponent::Update(float deltaTime)
 {
-	if (_mustMove == true) { 
+	if (_mustMove == true) {
 		// HAY QUE MOVER CON LA VELOCIDAD DE PHYSX
-		_actor->setLinearVelocity(_dir * _velocity);
+		_actor->setLinearVelocity(_dir * _velocity*deltaTime);
+		//_actor->addForce(_dir * _velocity*deltaTime);
+		
 
 		physx::PxTransform  transform = _actor->getGlobalPose();
 

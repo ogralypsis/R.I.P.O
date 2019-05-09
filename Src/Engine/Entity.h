@@ -31,6 +31,9 @@ public:
 	///</summary>
 	void Update(float deltaTime);
 
+
+	void UpdatePhysics(float deltaTime);
+
 	///<summary>
 	/// Get the entity id
 	///</summary>
@@ -48,6 +51,7 @@ public:
 	Component* GetComponent(std::string id);
 
 
+	bool HasComponent(std::string id);
 
 protected:
 

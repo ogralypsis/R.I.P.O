@@ -32,6 +32,11 @@ public:
 	///<sumary>
 	void FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY);
 
+	///<sumary>
+	///To be called from a PlayerController, attaches the camera node to a node
+	///<sumary>
+	void AttachPlayer(Ogre::SceneNode* playerNode);
+
 private:
 
 	CameraManager();

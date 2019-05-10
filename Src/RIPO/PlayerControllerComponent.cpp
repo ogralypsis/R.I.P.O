@@ -29,6 +29,10 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_orPosY = _posY;
 	_posZ = _transform->GetPosZ();
 	_orPosZ = _posZ;
+
+	//RenderComponent* render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
+
+	//CameraManager::GetInstance().AttachPlayer(render->GetNode());
 }
 
 void PlayerControllerComponent::OnEvent(int eventType, Event * e)

@@ -13,9 +13,9 @@ MyOgre::MyOgre()
 	_root = nullptr;
 	_window = nullptr;
 	_sceneMgr = nullptr;
-	//_mainCamera = nullptr;
+	
 	_light = nullptr;
-	//_viewPort = nullptr;
+
 	_resourcesConfigLoc = "";
 	_pluginsConfigLoc = "";
 
@@ -81,11 +81,6 @@ bool MyOgre::SetUp()
 
 	SetUpScene();
 
-	//add the input
-	_root->addFrameListener(&InputManager::GetInstance());
-
-	_root->addFrameListener(&CameraManager::GetInstance());
-
 	return (LocateResources() && LoadResources());
 		
 }
@@ -106,6 +101,8 @@ void MyOgre::Shutdown()
 	}
 
 	Ogre::ResourceGroupManager::getSingleton().shutdownAll();
+
+
 
 	if (_root != nullptr)
 	{
@@ -247,7 +244,7 @@ void MyOgre::ClearScene()
 
 void MyOgre::SetUpScene()
 {
-	CameraManager::GetInstance().CreateFPSCamera(_window, _sceneMgr);
+	CameraManager::GetInstance().CreateCamera(_window, _sceneMgr);
 
 	CreateLight(_sceneMgr);
 

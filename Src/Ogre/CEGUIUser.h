@@ -14,6 +14,7 @@ public:
 	void ResetInstance();
 
 	bool Init(const std::string dir);
+	void SetUpScene();
 	void Destroy();
 	void Release();
 

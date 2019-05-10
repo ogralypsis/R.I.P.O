@@ -24,7 +24,7 @@ private:
 	void BackMovement(float deltaTime);
 	void RightMovement(float deltaTime);
 
-	void CameraMovement();
+	void CameraMovement(float deltaTime);
 
 	void ResetPosition();
 
@@ -46,6 +46,11 @@ private:
 	bool _right = false;
 	bool _left = false;
 	bool _death = false;
+	bool _moveCamera = false;
+
+	//Mouse coords
+	Ogre::Real _mouseX;
+	Ogre::Real _mouseY;
 
 	//Entity* _player = nullptr;
 	TransformComponent* _transform = nullptr;

@@ -2,14 +2,9 @@
 
 #include "Game.h"
 
-ExitButtonComponent::ExitButtonComponent()
-{
-}
+ExitButtonComponent::ExitButtonComponent() {}
 
-
-ExitButtonComponent::~ExitButtonComponent()
-{
-}
+ExitButtonComponent::~ExitButtonComponent() {}
 
 void ExitButtonComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
@@ -43,10 +38,6 @@ bool ExitButtonComponent::onGUIEvent(const CEGUI::EventArgs & arg)
 	return false;
 }
 
-void ExitButtonComponent::OnEvent(int eventType, Event * e)
-{
-}
+void ExitButtonComponent::OnEvent(int eventType, Event * e) {}
 
-void ExitButtonComponent::Update(float deltaTime)
-{
-}
+void ExitButtonComponent::Update(float deltaTime) {}

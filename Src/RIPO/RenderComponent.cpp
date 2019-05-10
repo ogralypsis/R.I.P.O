@@ -33,7 +33,7 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	int _scaleY = arguments["scaleY"].i;
 	int _scaleZ = arguments["scaleZ"].i;
 
-	int _rotation = arguments["rotation"].i;
+	float _rotation = arguments["rotation"].f;
 
 	if (_transform != nullptr) {
 		_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_transform->GetPosX(),_transform->GetPosZ(), _transform->GetPosY()),

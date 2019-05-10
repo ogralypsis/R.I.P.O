@@ -36,16 +36,11 @@ void ButtonComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 bool ButtonComponent::onGUIEvent(const CEGUI::EventArgs & arg) 
 {
 	// event "change scene"
-	printf("%s \n", "I'VE BEEN CLIIiIIIIIIIIICKED");
 	Game::GetInstance().QueueScene(_nextScene); // button will take player to game
 
 	return true;
 }
 
-void ButtonComponent::OnEvent(int eventType, Event * e)
-{
-}
+void ButtonComponent::OnEvent(int eventType, Event * e) {}
 
-void ButtonComponent::Update(float deltaTime)
-{
-}
+void ButtonComponent::Update(float deltaTime) {}

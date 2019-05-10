@@ -79,6 +79,11 @@ private:
 	/// </summary>
 	void MessagePump();
 
+	/// <summary>
+	/// Captures input and updates CEGUI
+	/// </summary>
+	void UpdateInput();
+
 
 	Factory<Component> _compFactory;
 
@@ -90,15 +95,7 @@ private:
 	// Boolean to determine the end of the game (exit the main loop)
 	bool _exit;
 
-	// World step time simulation (60 frames per second).
-	const float _FPS_CAP = 1.0f / 60.0f;	
-
 	// Game loop variables
-	/*time_t _currentTime;
-	time_t _newTime;
-	float _frameTime;
-	float _accumulator;*/
-
 	Ogre::Timer* _timer; 
 	float _currentTime; 
 	float _deltaTime;

@@ -75,7 +75,6 @@ void InputManager::ResizeWindow(Ogre::RenderWindow* rw)
 	const OIS::MouseState & _mouseState = _mouse->getMouseState();
 
 	//check if this works 
-	//_mouseState.width = _renderWindow->getWidth();
 	_mouseState.width = width;
 	_mouseState.height = height;
 }
@@ -100,6 +99,7 @@ InputManager::~InputManager()
 //
 void InputManager::CaptureInput()
 {
+	_mouseMove = false;
 	if (_mouse)
 		_mouse->capture();
 	if (_keyboard)
@@ -125,29 +125,6 @@ bool InputManager::IsKeyDown(OIS::KeyCode key)
 	return _keyboardKeys[key];
 }
 
-void InputManager::addKeyListener(OIS::KeyListener *keyListener, const std::string& name) {
-	if (_keyboard) {
-		// Check for duplicate items
-		itKeyListener = mKeyListeners.find(name);
-		if (itKeyListener == mKeyListeners.end()) {
-			mKeyListeners[name] = keyListener;
-		}
-		else {
-			// Duplicate Item
-		}
-	}
-}
-
-bool InputManager::frameStarted(const Ogre::FrameEvent & e)
-{
-	// input
-	CaptureInput();
-
-	// time
-	_timeSinceLastFrame = (float)e.timeSinceLastFrame;
-
-	return true;
-}
 
 ///MOUSE
 
@@ -174,6 +151,9 @@ bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 	_mousePosition.mouseX = e.state.X.rel;
 	_mousePosition.mouseY = e.state.Y.rel;
 	_mousePosition.mouseZ = e.state.Z.rel;
+
+	_mouseMove = true;
+
 	return true;
 }
 
@@ -182,9 +162,9 @@ mouseCoordinates InputManager::GetMouseCoords()
 	return _mousePosition;
 }
 
-float InputManager::GetTimeSinceLastFrame()
+bool InputManager::GetMouseMove()
 {
-	return _timeSinceLastFrame;
+	return _mouseMove;
 }
 
 

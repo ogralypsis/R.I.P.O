@@ -5,40 +5,49 @@
 #include <OgreSceneNode.h>
 #include <Ogre.h>
 #include <OgreRenderWindow.h>
-#include <OgreFrameListener.h>
 #include "InputManager.h"
 
-class CameraManager : public Ogre::FrameListener
+class CameraManager 
 {
 public:
 	~CameraManager();
 
-	void CreateFPSCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
+	void CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr);
 
 	static CameraManager& GetInstance();
 
 	static void ResetInstance();
-
+	
+	///<sumary>
+	///Movement methods to be called from a PlayerController
+	///Moves a SceneNode different to _camNode
+	///<sumary>
 	void MoveForward(Ogre::Real time);
 	void MoveBack(Ogre::Real time);
 	void MoveRight(Ogre::Real time);
 	void MoveLeft(Ogre::Real time);
 
-	void FPSrotation(Ogre::Real time);
-
-	//virtual bool frameStarted(const Ogre::FrameEvent& e);
+	///<sumary>
+	///To be called from a PlayerController, rotates the camara SceneNode
+	///<sumary>
+	void FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY);
 
 private:
+
 	CameraManager();
 
 	static CameraManager* _instance;
 
+	//TESTING: AUXILIAR NODE -> TO BE CHANGED
 	Ogre::SceneNode* _player = nullptr;
 
+	//attributes for FPSrotation
 	Ogre::Real _rotX;
 	Ogre::Real _rotY;
 	Ogre::Real _rotSpeed = 5;
 	Ogre::Real _maxPitch = 30;
+
+	Ogre::Real _speed = 5.0;
 
 	Ogre::Camera* _mainCamera = nullptr;
 	Ogre::SceneNode* _camNode = nullptr;
@@ -46,11 +55,7 @@ private:
 	Ogre::SceneNode* _camPitchNode = nullptr;
 	Ogre::Camera* _camera = nullptr;
 	Ogre::Viewport * _viewPort = nullptr;
-
-	mouseCoordinates newMouseCoords;
-
-
-	Ogre::Real _speed = 5.0;
+	
 
 };
 

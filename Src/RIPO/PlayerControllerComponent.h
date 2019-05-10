@@ -4,6 +4,7 @@
 #include <Component.h>
 #include "TransformComponent.h"
 #include "HealthComponent.h"
+#include "RenderComponent.h"
 
 class PlayerControllerComponent : public Component
 {

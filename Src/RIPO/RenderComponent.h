@@ -15,10 +15,13 @@ public:
 	void virtual OnEvent(int eventType, Event * e);
 	void virtual Update(float deltaTime);
 
+	Ogre::SceneNode* GetNode();
+
 private:
 
 	TransformComponent * _transform = nullptr;
-	Ogre::Entity * _entityOgre;
+
+	Ogre::SceneNode* _entityNode = nullptr;
 
 	bool _mustMove;
 

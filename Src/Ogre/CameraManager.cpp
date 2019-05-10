@@ -2,6 +2,13 @@
 #include <iostream>
 CameraManager* CameraManager::_instance = nullptr;
 
+void CameraManager::AttachPlayer(Ogre::SceneNode * playerNode)
+{
+
+	playerNode->addChild(_camNode);
+	_player = playerNode;
+}
+
 CameraManager::CameraManager()
 {
 }

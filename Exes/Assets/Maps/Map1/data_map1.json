@@ -36,7 +36,7 @@
             {
               "_name": "rotX",
               "_type": 2,
-              "_arg": "0"
+              "_arg": "1.5708"
             },
             {
               "_name": "rotY",
@@ -153,8 +153,64 @@
     },
     {
       "_entityID": "Map",
-      "_numComponents": 1,
+      "_numComponents": 2,
       "_components": [
+
+      {
+          "_type": "TransformComponent",
+          "_numArguments": 9,
+          "_arguments": [
+            {
+              "_name": "posX",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "posY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "posZ",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotX",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotZ",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "scaleX",
+              "_type": 2,
+              "_arg": "7"
+            },
+            {
+              "_name": "scaleY",
+              "_type": 2,
+              "_arg": "7"
+            },
+            {
+              "_name": "scaleZ",
+              "_type": 2,
+              "_arg": "7"
+            }
+          ],
+          "_numEvents": 1,
+          "_events": [
+            "PhysicsMoveEvent"
+          ]
+        },
         {
           "_type": "RenderComponent",
           "_numArguments": 8,
@@ -233,7 +289,7 @@
             {
               "_name": "rotX",
               "_type": 2,
-              "_arg": "0"
+              "_arg": "1.5708"
             },
             {
               "_name": "rotY",
@@ -264,25 +320,6 @@
           "_numEvents": 1,
           "_events": [
             "PhysicsMoveEvent"
-          ]
-        },
-        {
-          "_type": "PlayerControllerComponent",
-          "_numArguments": 1,
-          "_arguments": [
-            {
-              "_name": "vel",
-              "_type": 2,
-              "_arg": "5"
-            }
-          ],
-          "_numEvents": 5,
-          "_events": [
-            "WEvent",
-            "SEvent",
-            "AEvent",
-            "DEvent",
-            "MouseMoveEvent"
           ]
         },
         {
@@ -333,6 +370,25 @@
           "_numEvents": 1,
           "_events": [
             "UpdateTransformEvent"
+          ]
+        },
+        {
+          "_type": "PlayerControllerComponent",
+          "_numArguments": 1,
+          "_arguments": [
+            {
+              "_name": "vel",
+              "_type": 2,
+              "_arg": "5"
+            }
+          ],
+          "_numEvents": 5,
+          "_events": [
+            "WEvent",
+            "SEvent",
+            "AEvent",
+            "DEvent",
+            "MouseMoveEvent"
           ]
         },
         {

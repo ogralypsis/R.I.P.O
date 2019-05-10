@@ -20,17 +20,17 @@ void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity
 
 	_mustMove = false;
 
-	SetPosition(arguments["posX"].f,
-		arguments["posY"].f,
-		arguments["posZ"].f);
+	SetPosition(arguments["posX"]._f,
+		arguments["posY"]._f,
+		arguments["posZ"]._f);
 
-	SetRotation(arguments["rotX"].f,
-		arguments["rotY"].f,
-		arguments["rotZ"].f);
+	SetRotation(arguments["rotX"]._f,
+		arguments["rotY"]._f,
+		arguments["rotZ"]._f);
 
-	SetScale(arguments["scaleX"].f,
-		arguments["scaleY"].f,
-		arguments["scaleZ"].f);
+	SetScale(arguments["scaleX"]._f,
+		arguments["scaleY"]._f,
+		arguments["scaleZ"]._f);
 
 }
 

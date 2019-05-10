@@ -1,21 +1,21 @@
 #ifndef _H_ARGUMENTS_H_
 #define _H_ARGUMENTS_H_
-#include "json.hpp"
 
+///<summary>
+/// USE THIS STRUCT TO PASS ARGUMENTS OF ANY TYPE TO YOUR COMPONENTS
+///</summary>
 
-struct Arguments {
-
+struct Arguments
+{
 	Arguments() {};
-	Arguments(int _i) : i(_i) {};
-	Arguments(float _f) : f(_f) {};
-	Arguments(double _d) : d(_d) {};
-	Arguments(std::string _s) : str(_s) {};
+	Arguments(int i) : _i(i) {};
+	Arguments(float f) : _f(f) {};
+	Arguments(double d) : _d(d) {};
+	Arguments(std::string s) : _str(s) {};
 
-	
-	std::string str;
-	int i;
-	float f;
-	double d;
-
+	std::string _str;
+	int _i;
+	float _f;
+	double _d;
 };
 #endif

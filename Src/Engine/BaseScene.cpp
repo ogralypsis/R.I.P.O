@@ -1,14 +1,5 @@
 #include "BaseScene.h"
 
+BaseScene::BaseScene(std::string id, Factory<Component> compFactory) : _id(id) {}
 
-
-
-BaseScene::BaseScene(std::string ID, Factory<Component> compFactory)
-{
-	_id = ID;
-}
-
-BaseScene::~BaseScene()
-{
-}
-
+BaseScene::~BaseScene() {}

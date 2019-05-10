@@ -1,10 +1,7 @@
 #ifndef _H_EVENTS_H_
 #define _H_EVENTS_H_
 
-#include <typeinfo>
-
-
-typedef enum EventDestination {
+enum EventDestination {
 	// Event only meant to reach the components of the entity in which the event was created
 	ENTITY,
 	// Event meant to reach every other entity in the scene and the scene itself, but not the entity in which it is created

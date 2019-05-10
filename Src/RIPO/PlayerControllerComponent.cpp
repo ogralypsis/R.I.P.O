@@ -19,7 +19,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_ownerEntity = e;
 	_id = "PlayerController";
 
-	_velocity = arguments["vel"].f;
+	_velocity = arguments["vel"]._f;
 
 	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform")); 
 	

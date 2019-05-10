@@ -11,18 +11,18 @@ void ExitButtonComponent::Init(std::map<std::string, Arguments> arguments, Entit
 	_ownerEntity = e;
 
 	// type and name
-	std::string type = arguments["type"].str;
-	std::string name = arguments["name"].str;
-	std::string text = arguments["text"].str;
+	std::string type = arguments["type"]._str;
+	std::string name = arguments["name"]._str;
+	std::string text = arguments["text"]._str;
 
 	// arguments for position of button
-	float destRectPercX = arguments["destRectPercX"].f;
-	float destRectPercY = arguments["destRectPercY"].f;
-	float destRectPercZ = arguments["destRectPercZ"].f;
-	float destRectPercW = arguments["destRectPercW"].f;
+	float destRectPercX = arguments["destRectPercX"]._f;
+	float destRectPercY = arguments["destRectPercY"]._f;
+	float destRectPercZ = arguments["destRectPercZ"]._f;
+	float destRectPercW = arguments["destRectPercW"]._f;
 
 	// arguments for size of button
-	float destRectPix = arguments["destRectPix"].f;
+	float destRectPix = arguments["destRectPix"]._f;
 
 	// call function to create button
 	CEGUI::PushButton* _button = static_cast<CEGUI::PushButton*>(CEGUIUser::GetInstance()->CreateWidget(type,

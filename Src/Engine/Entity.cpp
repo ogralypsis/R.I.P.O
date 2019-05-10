@@ -22,7 +22,7 @@ void Entity::AddComponent(Component * c)
 
 void Entity::DeleteComponent(Component * c)
 {
-	int i = 0;
+	size_t i = 0;
 	bool found = false;
 	// search for the component c
 	while (!found && i < _components.size()) 

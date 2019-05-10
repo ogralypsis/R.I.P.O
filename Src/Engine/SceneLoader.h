@@ -1,10 +1,12 @@
 #ifndef H_SCENELOADER_H
 #define H_SCENELOADER_H
-
-#include "json.hpp"
-#include "factory.h"
+/*
+SINGLETON THAT LOADS THE SCENE SPECIFIED IN THE JSON THAT FILEREADER READS
+IT CREATES THE COMPONENTS, ENITITIES, EVENTS
+CALLED FROM THE SCENE
+*/
+#include "Factory.h"
 #include "Component.h"
-
 
 class SceneLoader
 {

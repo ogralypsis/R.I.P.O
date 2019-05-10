@@ -26,11 +26,11 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	_mustMove = false;
 
 	// 1: sphere, 2: box, 3: capsule, 4: plane
-	int geometry = arguments["geometry"].i;
+	int geometry = arguments["geometry"]._i;
 
-	float tam1 = arguments["tam1"].f;
-	float tam2 = arguments["tam2"].f;
-	float tam3 = arguments["tam3"].f;
+	float tam1 = arguments["tam1"]._f;
+	float tam2 = arguments["tam2"]._f;
+	float tam3 = arguments["tam3"]._f;
 
 	_material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
 

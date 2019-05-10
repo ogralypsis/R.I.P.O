@@ -23,7 +23,7 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	_mustMove = false;
 
-	std::string _mesh = arguments["mesh"].str;
+	std::string _mesh = arguments["mesh"]._str;
 
 	//int _positionX = arguments["positionX"].i;
 	//int _positionY = arguments["positionY"].i;

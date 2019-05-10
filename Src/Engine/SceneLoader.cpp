@@ -67,22 +67,22 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 				switch (_typeArgument)
 				{
 				case 1:
-					_argument.i = std::stoi(_stringArgument);
+					_argument._i = std::stoi(_stringArgument);
 					_argumentMap[_nameArgument] = Arguments(_argument);
 					break;
 
 				case 2:
-					_argument.f = std::stof(_stringArgument);
+					_argument._f = std::stof(_stringArgument);
 					_argumentMap[_nameArgument] = Arguments(_argument);
 					break;
 
 				case 3:
-					_argument.d = std::stod(_stringArgument);
+					_argument._d = std::stod(_stringArgument);
 					_argumentMap[_nameArgument] = Arguments(_argument);
 					break;
 
 				case 4:
-					_argument.str = _stringArgument;
+					_argument._str = _stringArgument;
 					_argumentMap[_nameArgument] = Arguments(_argument);
 					break;
 

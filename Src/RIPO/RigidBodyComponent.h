@@ -1,7 +1,8 @@
-#pragma once
+#ifndef RIGIDBODY_COMPONENT_H_
+#define RIGIDBODY_COMPONENT_H_
 #include <Component.h>
 #include <MyPhysX.h>
-#include "TransformComponent.h"
+#include "RenderComponent.h"
 
 class RigidBodyComponent :
 	public Component
@@ -38,5 +39,8 @@ private:
 	float _tam1;
 	float _tam2;
 	float _tam3;
-};
 
+
+	RenderComponent * _render;
+};
+#endif

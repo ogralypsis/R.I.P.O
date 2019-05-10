@@ -36,6 +36,8 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ),Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotationX), Ogre::Radian(_rotationY), Ogre::Radian(_rotationZ));
 	
+	// TODO: COGER LOS VERTICES DEL BOUNDING BOX DE OGRE, PASARSELOS AL RIGIDBODY Y CREAR UNA CUSTOM SHAPE CON ELLOS
+	//_entityOgre->getBoundingBox().getAllCorners();
 
 }
 
@@ -65,7 +67,7 @@ void RenderComponent::Update(float deltaTime)
 	}*/
 
 	if (_mustMove) {
-		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));	
 		_mustMove = false;
 
 		//std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
@@ -75,6 +77,12 @@ void RenderComponent::Update(float deltaTime)
 	}
 
 	
+}
+
+void RenderComponent::GetEntitySize()
+{
+	//_entityOgre->getParentSceneNode()->
+
 }
 
 /*Ogre::SceneNode * RenderComponent::GetNode()

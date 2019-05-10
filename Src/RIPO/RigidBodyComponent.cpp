@@ -31,8 +31,11 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	_tam2 = arguments["tam2"]._f;
 	_tam3 = arguments["tam3"]._f;
 
-	//_velocity = arguments["velocity"].f; // TODO: METER PARAMETRO VELOCITY EN EL JSON
-	_velocity = 100.0f;
+	_velocity = arguments["velocity"]._f; 
+
+	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
+
+	
 
 	_material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
 
@@ -40,7 +43,7 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 #ifdef _DEBUG
 		std::cout << "createMaterial failed!" << std::endl;
 #endif
-	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(0, 0, 0));//aqui iria la posicion de la entidad 
+	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(0, 0, 0));// TODO: aqui iria la posicion de la entidad 
 	_actor->setLinearDamping(0.75f);
 	_actor->setMass(10.0f);
 
@@ -64,12 +67,39 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 		break;
 		// 4: plane
 	case 4:
-		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxPlaneGeometry(), *_material, true); // TODO: mirar flags para colisiones...
+		_shape = MyPhysX::GetInstance().GetPhysics()->createShape(PxPlaneGeometry(), *_material, true); // TODO: mirar flags para colisiones...		
 		_actor->attachShape(*_shape);
 		break;
 	default:
 		break;
 	}
+
+	/*
+
+	CREAR CUSTOM SHAPE A TRAVES DEL VECTOR DE VERTICES PASADO DEL MESH DE OGRE
+
+	static const PxVec3 convexVerts[] = {PxVec3(0,1,0),PxVec3(1,0,0),PxVec3(-1,0,0),PxVec3(0,0,1),
+    PxVec3(0,0,-1)};
+Then construct a description of the convex data layout:
+
+PxConvexMeshDesc convexDesc;
+convexDesc.points.count     = 5;
+convexDesc.points.stride    = sizeof(PxVec3);
+convexDesc.points.data      = convexVerts;
+convexDesc.flags            = PxConvexFlag::eCOMPUTE_CONVEX;
+Now use the cooking library to construct a PxConvexMesh:
+
+PxDefaultMemoryOutputStream buf;
+PxConvexMeshCookingResult::Enum result;
+if(!cooking.cookConvexMesh(convexDesc, buf, &result))
+    return NULL;
+PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
+PxConvexMesh* convexMesh = physics->createConvexMesh(input);
+Finally, create a shape using a PxConvexMeshGeometry which instances the mesh:
+
+PxShape* aConvexShape = aConvexActor->createShape(PxConvexMeshGeometry(convexMesh), aMaterial);
+
+	*/
 
 	_actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
 

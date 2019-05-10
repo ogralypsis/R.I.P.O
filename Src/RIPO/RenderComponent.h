@@ -15,6 +15,7 @@ public:
 	void virtual OnEvent(int eventType, Event * e);
 	void virtual Update(float deltaTime);
 
+	void GetEntitySize();
 	//Ogre::SceneNode* GetNode();
 
 private:

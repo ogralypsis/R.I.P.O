@@ -138,9 +138,12 @@ Ogre::Entity* MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogr
 	Ogre::SceneNode* _newEntityNode = _sceneMgr->getRootSceneNode()->createChildSceneNode(position);
 
 	_newEntityNode->attachObject(_newEntity);
-
 	_newEntityNode->scale(vector);
 
+#ifdef _DEBUG
+	// Show bounding box for checking entities correct size
+	_newEntityNode->showBoundingBox(true);
+#endif
 	_newEntityNode->pitch(rotX);
 	_newEntityNode->yaw(rotY);
 	_newEntityNode->roll(rotZ);

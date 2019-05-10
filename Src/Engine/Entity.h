@@ -1,5 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
+///<summary>
+/// Container of components
+///</summary>
 
 #include <string>
 #include <vector>
@@ -9,10 +12,8 @@ class Component;
 class Entity
 {
 public:
-	Entity();
 	Entity(std::string id);
 	~Entity();
-
 
 	///<summary>
 	/// Add a component to the entity
@@ -57,17 +58,11 @@ public:
 	///<returns> True if has the specified component </returns>
 	bool HasComponent(std::string id);
 
-
-
 protected:
-
 	// Components the entity owns and give it its funcionality
 	std::vector<Component*> _components;
-
+	
 	// Unique identifier for each entity
 	std::string _id;
-
-	// Determine if the entity is active at the moment
-	//bool _active;
 };
 #endif

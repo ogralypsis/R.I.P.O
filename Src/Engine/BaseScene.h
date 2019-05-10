@@ -30,7 +30,7 @@ public:
 	///<summary>
 	/// Returns the identifier of the scene
 	///</summary>
-	inline std::string GetId() { return _id; };
+	std::string GetId();
 
 private:
 	///<summary>

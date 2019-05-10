@@ -40,12 +40,12 @@ public:
 	///<summary>
 	/// returns name of component
 	///</summary>
-	inline std::string GetId() { return _id; };
+	std::string GetId();
 
 	///<summary>
 	/// returns name of the entity to which the component belongs
 	///</summary>
-	inline std::string GetOwnerEntId() { return _ownerEntity->GetId(); };
+	std::string GetOwnerEntId();
 
 protected:
 	Entity * _ownerEntity;

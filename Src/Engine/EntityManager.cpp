@@ -1,5 +1,5 @@
 #include "EntityManager.h"
-#include <iostream>
+
 EntityManager * EntityManager::_instance = nullptr;
 EntityManager::EntityManager() {}
 
@@ -14,7 +14,6 @@ EntityManager::~EntityManager()
 	if (_instance == nullptr) {
 		_instance = new EntityManager();
 	}
-
 	return _instance;
 }
 
@@ -84,10 +83,9 @@ void EntityManager::UpdatePhysics(float deltaTime)
 		if (_entities.at(i)->HasComponent("RigidBody"))
 			_entities.at(i)->UpdatePhysics(deltaTime);
 	}
-
 }
 
-void EntityManager::GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
+void EntityManager::SetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
 {
 	_observersJSON = observers;
 }

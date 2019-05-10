@@ -1,10 +1,6 @@
 #include "Scene.h"
 
-// singletons
-/*#include <EntityManager.h>
-#include <EventManager.h>
-#include <FileReader.h>
-#include <SceneLoader.h>*/
+// singletons Ogre and physX
 #include <MyOgre.h>
 #include <MyPhysX.h>
 

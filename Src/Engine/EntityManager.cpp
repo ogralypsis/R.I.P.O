@@ -82,6 +82,29 @@ void EntityManager::GetJsonObservers(const std::map<std::string /*Event*/, std::
 	_observersJSON = observers;
 }
 
+Entity* EntityManager::GetEntityByName(std::string id)
+{
+	int i = 0;
+	bool found = false;
+	Entity* e = nullptr;
+	// search for the entity e with name stored in id
+	while (!found && i < _entities.size())
+	{
+		// when it's found,
+		if (_entities.at(i)->GetId() == id)
+		{
+			// get reference to entity
+			e = _entities.at(i);
+			// update flag
+			found = true;
+		}
+		else
+			// keep searching
+			i++;
+	}
+	return e;
+}
+
 std::map<std::string, std::vector<Component*>> EntityManager::GetObservers()
 {
 	return _observersJSON;

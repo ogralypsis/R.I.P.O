@@ -1,7 +1,7 @@
 #ifndef _H_RIPOEVENTS_H_
 #define _H_RIPOEVENTS_H_
 
-#include "../Engine/Events.h"
+#include <Events.h>
 
 // Define the differents events types
 
@@ -86,7 +86,6 @@ struct DeathEvent : Event
 
 };
 
-
 #pragma region PhysicsEvents
 
 // Physics transform has been updated
@@ -113,7 +112,6 @@ struct PhysicsMoveEvent : Event
 	float _posY;
 	float _posZ;
 };
-
 
 #pragma endregion
 

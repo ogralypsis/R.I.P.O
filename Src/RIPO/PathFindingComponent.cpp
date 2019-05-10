@@ -1,4 +1,9 @@
 #include "PathFindingComponent.h"
+#include <MyOgre.h>
+#include <EntityManager.h>
+#include <EventManager.h>
+#include "TransformComponent.h"
+#include "RIPOEvent.h"
 
 PathFindingComponent::PathFindingComponent() : Component() {}
 
@@ -7,20 +12,23 @@ PathFindingComponent::~PathFindingComponent() {}
 void PathFindingComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
-
 }
 
 void PathFindingComponent::OnEvent(int eventType, Event * e) {}
 
-void PathFindingComponent::Update(float deltaTime) {
+void PathFindingComponent::Update(float deltaTime) 
+{
+	// position of enemy and target
+	TransformComponent* playerPosition = static_cast<TransformComponent*>(EntityManager::getInstance()->GetEntityByName("Player")->GetComponent("Transform"));
+	TransformComponent* myPosition = static_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
+
+	// where does it have to move? and look?
+	Ogre::Vector3 initialOrientation(0, 0, 1);
+	Ogre::Vector3 finalOrientation(playerPosition->GetPosX() - myPosition->GetPosX(), playerPosition->GetPosY() - myPosition->GetPosY(), playerPosition->GetPosZ() - myPosition->GetPosZ());
+	Ogre::Quaternion newOrientation = initialOrientation.getRotationTo(finalOrientation); // new orientation of enemy
+	Ogre::Vector3 translateVector = newOrientation * Ogre::Vector3(0, 0, 0.1); // move towards player
 	
-	/*
-	CODIGO DE OTRO PROYECTO HECHO CON OGRE
-			Ogre::Vector3 angIni(0, 0, 1);
-			Ogre::Vector3 angFin(entidadHeroe->getPox() - entidad->getPox(), 0, entidadHeroe->getPoz() - entidad->getPoz());
-			node->setOrientation(angIni.getRotationTo(angFin));
-			node->translate(node->getOrientation() * Ogre::Vector3(0, 0, 0.1));
-			entidad->GetComponent(rb)->actualizarPos(node->getPosition().x, node->getPosition().y, node->getPosition().z);
-	HAY FORMAS MEJORES DE HACERLO? SEGURAMENTE
-	*/
+	PhysicsMoveEvent * transformEvent = new PhysicsMoveEvent(translateVector.x + myPosition->GetPosX(),
+		translateVector.y + myPosition->GetPosY(), translateVector.z + myPosition->GetPosZ(), _ownerEntity->GetId(), EventDestination::SCENE);
+	EventManager::GetInstance()->NotifyObservers(transformEvent->GetType(), transformEvent);
 }

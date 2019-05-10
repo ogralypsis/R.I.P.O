@@ -105,7 +105,6 @@ void TransformComponent::OnEvent(int eventType, Event * e)
 {
 	if (_ownerEntity->GetId() == e->GetEmmitter()) {
 		if (eventType == EventType::EVENT_PHYSICS_MOVE) {
-
 			_mustMove = true;
 			_auxPosX = static_cast<PhysicsMoveEvent*>(e)->_posX;
 			_auxPosY = static_cast<PhysicsMoveEvent*>(e)->_posY;

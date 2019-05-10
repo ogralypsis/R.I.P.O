@@ -3,7 +3,7 @@
 
 #include <Component.h>
 
-class PathFindingComponent : Component
+class PathFindingComponent : public Component
 {
 public:
 	PathFindingComponent();

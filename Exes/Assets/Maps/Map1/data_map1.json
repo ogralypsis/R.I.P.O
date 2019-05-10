@@ -3,9 +3,17 @@
   "_entities": [
     {
       "_entityID": "Enemy",
-      "_numComponents": 3,
+      "_numComponents": 4,
       "_components": [
-
+		{
+          "_type": "PathFindingComponent",
+          "_numArguments": 0,
+          "_arguments": [
+          ],
+          "_numEvents": 0,
+          "_events": [
+          ]
+        },
         {
           "_type": "TransformComponent",
           "_numArguments": 9,

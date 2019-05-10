@@ -23,6 +23,7 @@ public:
 	void MoveBack(Ogre::Real time);
 	void MoveRight(Ogre::Real time);
 	void MoveLeft(Ogre::Real time);
+	void CameraMove(Ogre::Vector3 pos);
 
 	void FPSrotation(Ogre::Real time);
 
@@ -55,4 +56,4 @@ private:
 };
 
 
-#endif // 
+#endif 

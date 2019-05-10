@@ -158,3 +158,8 @@ void CameraManager::MoveLeft(Ogre::Real time)
 
 }
 
+void CameraManager::CameraMove(Ogre::Vector3 pos)
+{
+	_player->setPosition(pos);
+}
+

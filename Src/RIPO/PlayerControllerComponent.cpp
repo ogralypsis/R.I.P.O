@@ -66,25 +66,29 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		_dir = static_cast<DEvent*>(e)->_dir;
 		_right = true;
 	}
-
-	else if ("MouseMoveEvent" == typeid(e).name()) 
+	else if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
 	{
-		CameraMovement();
+		_mustMove = true;
+		_posX = static_cast<UpdateTransformEvent*>(e)->_posX;
+		_posY = static_cast<UpdateTransformEvent*>(e)->_posY;
+		_posZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
 	}
+
+	
 
 	PhysicsMoveEvent * physicsMoveEvent = new PhysicsMoveEvent(_dir, _ownerEntity->GetId(), EventDestination::ENTITY);
 	EventManager::GetInstance()->NotifyObservers(physicsMoveEvent->GetType(), physicsMoveEvent);
-	//NotifyObservers(EventType::EVENT_W, wEvent);
 	
 }
 
 void PlayerControllerComponent::Update(float deltaTime)
 {
-
-	if (_forward) ForwardMovement(deltaTime);
+	if(_mustMove)
+		CameraMovement();
+	/*if (_forward) ForwardMovement(deltaTime);
 	if (_back) BackMovement(deltaTime);
 	if (_right) RightMovement(deltaTime);
-	if (_left) LeftMovement(deltaTime);
+	if (_left) LeftMovement(deltaTime);*/
 }
 
 
@@ -134,7 +138,8 @@ void PlayerControllerComponent::RightMovement(float deltaTime)
 
 void PlayerControllerComponent::CameraMovement()
 {
-	//TODO
+	CameraManager::GetInstance().CameraMove({_posX, _posZ + 10, _posY + 5});
+	_mustMove = false;
 }
 
 void PlayerControllerComponent::ResetPosition()

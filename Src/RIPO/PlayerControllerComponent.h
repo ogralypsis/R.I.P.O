@@ -48,6 +48,7 @@ private:
 	bool _right = false;
 	bool _left = false;
 	bool _death = false;
+	bool _mustMove;
 
 	Dir _dir;
 

@@ -161,25 +161,25 @@ void Game::HandleInput()
 	//Once input is captures, check input
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W))
 	{
-		std::cout << "PRESSING KEY W" << std::endl;
+		//std::cout << "PRESSING KEY W" << std::endl;
 		WEvent * wEvent = new WEvent(0, { 0, 0, -1 }, _states.top()->GetId(), EventDestination::SCENE);		
 		EventManager::GetInstance()->NotifyObservers(wEvent->GetType(), wEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_S))
 	{
-		std::cout << "PRESSING KEY S" << std::endl;
+		//std::cout << "PRESSING KEY S" << std::endl;
 		SEvent * sEvent = new SEvent(0, { 0, 0, 1 }, _states.top()->GetId(), EventDestination::SCENE);		
 		EventManager::GetInstance()->NotifyObservers(sEvent->GetType(), sEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
-		std::cout << "PRESSING KEY A" << std::endl;
+		//std::cout << "PRESSING KEY A" << std::endl;
 		AEvent * aEvent = new AEvent(0, { 1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);		
 		EventManager::GetInstance()->NotifyObservers(aEvent->GetType(), aEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
 	{
-		std::cout << "PRESSING KEY D" << std::endl;
+		//std::cout << "PRESSING KEY D" << std::endl;
 		DEvent * dEvent = new DEvent(0, { -1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);		
 		EventManager::GetInstance()->NotifyObservers(dEvent->GetType(), dEvent);
 	}

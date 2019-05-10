@@ -142,8 +142,8 @@ Ogre::Entity* MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogr
 	_newEntityNode->scale(vector);
 
 	_newEntityNode->pitch(rotX);
-	_newEntityNode->yaw(rotZ);
-	_newEntityNode->roll(rotY);
+	_newEntityNode->yaw(rotY);
+	_newEntityNode->roll(rotZ);
 
 	return _newEntity;
 

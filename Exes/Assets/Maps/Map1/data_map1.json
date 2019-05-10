@@ -71,7 +71,7 @@
         },
         {
           "_type": "RenderComponent",
-          "_numArguments": 8,
+          "_numArguments": 10,
           "_arguments": [
             {
               "_name": "mesh",
@@ -109,9 +109,19 @@
               "_arg": "1"
             },
             {
-              "_name": "rotation",
+              "_name": "rotationX",
               "_type": 2,
               "_arg": "1.5708"
+            },
+            {
+              "_name": "rotationY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotationZ",
+              "_type": 2,
+              "_arg": "0"
             }
           ],
           "_numEvents": 1,
@@ -155,7 +165,6 @@
       "_entityID": "Map",
       "_numComponents": 2,
       "_components": [
-
       {
           "_type": "TransformComponent",
           "_numArguments": 9,
@@ -178,7 +187,7 @@
             {
               "_name": "rotX",
               "_type": 2,
-              "_arg": "1.5708"
+              "_arg": "0"
             },
             {
               "_name": "rotY",
@@ -213,7 +222,7 @@
         },
         {
           "_type": "RenderComponent",
-          "_numArguments": 8,
+          "_numArguments": 10,
           "_arguments": [
             {
               "_name": "mesh",
@@ -223,12 +232,12 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "81"
             },
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "-100"
             },
             {
               "_name": "positionZ",
@@ -251,9 +260,19 @@
               "_arg": "7"
             },
             {
-              "_name": "rotation",
-              "_type": 1,
-              "_arg": "1.5708"
+              "_name": "rotationX",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotationY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotationZ",
+              "_type": 2,
+              "_arg": "0"
             }
           ],
           "_numEvents": 0,
@@ -289,7 +308,7 @@
             {
               "_name": "rotX",
               "_type": 2,
-              "_arg": "1.5708"
+              "_arg": "0"
             },
             {
               "_name": "rotY",
@@ -324,7 +343,7 @@
         },
         {
           "_type": "RenderComponent",
-          "_numArguments": 8,
+          "_numArguments": 10,
           "_arguments": [
             {
               "_name": "mesh",
@@ -334,12 +353,12 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "81"
             },
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "-90"
             },
             {
               "_name": "positionZ",
@@ -362,9 +381,19 @@
               "_arg": "1"
             },
             {
-              "_name": "rotation",
+              "_name": "rotationX",
               "_type": 2,
               "_arg": "1.5708"
+            },
+            {
+              "_name": "rotationY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotationZ",
+              "_type": 2,
+              "_arg": "0"
             }
           ],
           "_numEvents": 1,

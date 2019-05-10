@@ -6,6 +6,9 @@
 #include "HealthComponent.h"
 #include "RenderComponent.h"
 
+// events from ripo
+#include "RIPOEvent.h"
+
 class PlayerControllerComponent : public Component
 {
 public:
@@ -25,7 +28,9 @@ private:
 	void BackMovement(float deltaTime);
 	void RightMovement(float deltaTime);
 
-	void CameraMovement(float deltaTime);
+	void CameraMovement();
+	void CameraRotation(float deltaTime);
+
 
 	void ResetPosition();
 
@@ -36,18 +41,18 @@ private:
 	float _posY;
 	float _posZ;
 
+	Dir _dir;
+
 	//Original positions
 	float _orPosX;
 	float _orPosY;
 	float _orPosZ;
 
 	//Booleans to activate the different directions
-	bool _forward = false;
-	bool _back = false;
-	bool _right = false;
-	bool _left = false;
+	bool _input;
 	bool _death = false;
 	bool _moveCamera = false;
+	bool _mustMove;
 
 	//Mouse coords
 	Ogre::Real _mouseX;

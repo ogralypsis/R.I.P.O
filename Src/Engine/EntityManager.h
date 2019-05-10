@@ -19,6 +19,8 @@ public:
 
 	void Update(float deltaTime);
 
+	void UpdatePhysics(float deltaTime);
+
 	void GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers);
 	Entity* GetEntityByName(std::string id);
 	

@@ -86,7 +86,7 @@ void CameraManager::ResetInstance()
 	}
 }
 
-void CameraManager::MoveForward(Ogre::Real time)
+/*void CameraManager::MoveForward(Ogre::Real time)
 {
 
 	Ogre::Vector3 vt(0, 0, 0);
@@ -128,5 +128,10 @@ void CameraManager::MoveLeft(Ogre::Real time)
 
 	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
 
+}*/
+
+void CameraManager::CameraMove(Ogre::Vector3 pos)
+{
+	_player->setPosition(pos);
 }
 

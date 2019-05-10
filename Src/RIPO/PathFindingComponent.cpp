@@ -18,6 +18,10 @@ void PathFindingComponent::OnEvent(int eventType, Event * e) {}
 
 void PathFindingComponent::Update(float deltaTime) 
 {
+
+	// TODO: TENDRIA QUE HACERSE POR EVENTOS...LA POS DEL PLAYER LE LLEGA POR EVENTO QUE ENVIA EL PROPIO PLAYER
+
+	/*
 	// position of enemy and target
 	TransformComponent* playerPosition = static_cast<TransformComponent*>(EntityManager::getInstance()->GetEntityByName("Player")->GetComponent("Transform"));
 	TransformComponent* myPosition = static_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
@@ -30,5 +34,6 @@ void PathFindingComponent::Update(float deltaTime)
 	
 	PhysicsMoveEvent * transformEvent = new PhysicsMoveEvent(translateVector.x + myPosition->GetPosX(),
 		translateVector.y + myPosition->GetPosY(), translateVector.z + myPosition->GetPosZ(), _ownerEntity->GetId(), EventDestination::SCENE);
-	EventManager::GetInstance()->NotifyObservers(transformEvent->GetType(), transformEvent);
+	EventManager::GetInstance()->NotifyObservers(transformEvent->GetType(), transformEvent);*/
+	
 }

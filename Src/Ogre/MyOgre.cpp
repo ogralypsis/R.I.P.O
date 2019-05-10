@@ -133,6 +133,22 @@ void MyOgre::ResetInstance()
 	}	
 }
 
+Ogre::Entity* MyOgre::CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian rotX, Ogre::Radian rotY, Ogre::Radian rotZ) {
+	Ogre::Entity* _newEntity = _sceneMgr->createEntity(mesh);
+	Ogre::SceneNode* _newEntityNode = _sceneMgr->getRootSceneNode()->createChildSceneNode(position);
+
+	_newEntityNode->attachObject(_newEntity);
+
+	_newEntityNode->scale(vector);
+
+	_newEntityNode->pitch(rotX);
+	_newEntityNode->yaw(rotZ);
+	_newEntityNode->roll(rotY);
+
+	return _newEntity;
+
+}
+
 void MyOgre::CreateLight(Ogre::SceneManager * sceneMgr) {
 
 	sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);

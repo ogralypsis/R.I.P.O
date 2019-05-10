@@ -1,7 +1,7 @@
 #ifndef _H_RIPOEVENTS_H_
 #define _H_RIPOEVENTS_H_
 
-#include <Events.h>
+#include "../Engine/Events.h"
 
 // Define the differents events types
 
@@ -12,6 +12,12 @@ typedef enum EventType {
 	EVENT_DEATH,
 	EVENT_UPDATE_TRANSFORM, EVENT_PHYSICS_MOVE,
 	EVENT_CHANGE_SCENE
+};
+
+struct Dir {
+	int x;
+	int y;
+	int z;
 };
 
 // New Events specific for the game:
@@ -34,39 +40,53 @@ struct JEvent : Event
 // Key W has been pressed -> Player's FORWARD MOVEMENT 
 struct WEvent : Event
 {
-	WEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_W, destination) {}
+	WEvent(int k, Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_W, destination), _key(k), _dir(dir) {}
 
+	int _key; // this is for trying with parameters
+
+	// Direction to move the entity
+	Dir _dir;
 };
 
 // Key A has been pressed -> Player's LEFT MOVEMENT 
 struct AEvent : Event
 {
-	AEvent( std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_A, destination){}
+	AEvent(int k, Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_A, destination), _key(k), _dir(dir) {}
 
+	int _key; // this is for trying with parameters
+
+	// Direction to move the entity
+	Dir _dir;
 };
 
 // Key s has been pressed -> Player's BACK MOVEMENT 
 struct SEvent : Event
 {
-	SEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_S, destination) {}
+	SEvent(int k, Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_S, destination), _key(k), _dir(dir) {}
 
+	int _key; // this is for trying with parameters
+
+	// Direction to move the entity
+	Dir _dir;
 };
 
 // Key D has been pressed -> Player's RIGHT MOVEMENT
 struct DEvent : Event
 {
-	DEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_D, destination) {}
+	DEvent(int k, Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_D, destination), _key(k), _dir(dir) {}
 
+	int _key; // this is for trying with parameters
+
+			  // Direction to move the entity
+	Dir _dir;
 };
 
 // Left mouse's buttom has been pressed -> SHOT
 struct L_MouseEvent : Event
 {
-	L_MouseEvent(int x, int y, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_L_MOUSE, destination), _posX(x), _posY(y) {}
+	L_MouseEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_L_MOUSE, destination), _key(k) {}
 
-	int getposX() { return _posX; };
-	int _posX;
-	int _posY;
+	int _key; // this is for trying with parameters
 };
 
 // Mouse's movement-> CAMERA MOVEMENT (shooting pointer)
@@ -85,6 +105,7 @@ struct DeathEvent : Event
 	DeathEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_DEATH, destination) {};
 
 };
+
 
 #pragma region PhysicsEvents
 
@@ -106,12 +127,11 @@ struct UpdateTransformEvent : Event
 
 struct PhysicsMoveEvent : Event
 {
-	PhysicsMoveEvent(float x, float y, float z, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_PHYSICS_MOVE, destination), _posX(x), _posY(y), _posZ(z) {}
+	PhysicsMoveEvent(Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_PHYSICS_MOVE, destination), _dir(dir) {}
 
-	float _posX;
-	float _posY;
-	float _posZ;
+	Dir _dir;
 };
+
 
 #pragma endregion
 

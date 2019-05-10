@@ -66,7 +66,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "PhysicsMoveEvent"
+            "UpdateTransformEvent"
           ]
         },
         {
@@ -146,7 +146,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "UpdateTransformEvent"
+            "PhysicsMoveEvent"
           ]
         }
       ]
@@ -178,7 +178,7 @@
             {
               "_name": "rotX",
               "_type": 2,
-              "_arg": "0"
+              "_arg": "1.5708"
             },
             {
               "_name": "rotY",
@@ -206,9 +206,9 @@
               "_arg": "7"
             }
           ],
-          "_numEvents": 1,
+          "_numEvents": 0,
           "_events": [
-            "PhysicsMoveEvent"
+
           ]
         },
         {
@@ -253,7 +253,7 @@
             {
               "_name": "rotation",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "1.5708"
             }
           ],
           "_numEvents": 0,
@@ -319,7 +319,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "PhysicsMoveEvent"
+            "UpdateTransformEvent"
           ]
         },
         {
@@ -382,13 +382,14 @@
               "_arg": "5"
             }
           ],
-          "_numEvents": 5,
+          "_numEvents": 6,
           "_events": [
             "WEvent",
             "SEvent",
             "AEvent",
             "DEvent",
-            "MouseMoveEvent"
+            "MouseMoveEvent",
+            "UpdateTransformEvent"
           ]
         },
         {
@@ -419,7 +420,7 @@
           ],
           "_numEvents": 1,
           "_events": [
-            "UpdateTransformEvent"
+            "PhysicsMoveEvent"
           ]
         }
       ]

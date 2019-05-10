@@ -18,39 +18,28 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	_ownerEntity = e;
 	_id = "Render";
 
-
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
-
 	_mustMove = false;
 
 	std::string _mesh = arguments["mesh"]._str;
 
-	//int _positionX = arguments["positionX"].i;
-	//int _positionY = arguments["positionY"].i;
-	//int _positionZ = arguments["positionZ"].i;
+	int _positionX = arguments["positionX"]._i;
+	int _positionY = arguments["positionY"]._i;
+	int _positionZ = arguments["positionZ"]._i;
 
-	//int _scaleX = arguments["scaleX"].i;
-	//int _scaleY = arguments["scaleY"].i;
-	//int _scaleZ = arguments["scaleZ"].i;
+	int _scaleX = arguments["scaleX"]._i;
+	int _scaleY = arguments["scaleY"]._i;
+	int _scaleZ = arguments["scaleZ"]._i;
 
-	//float _rotation = arguments["rotation"].f;
+	float _rotation = arguments["rotation"]._f;
 
-	if (_transform != nullptr) {
-		_entityNode = MyOgre::GetInstance().CreateNode(_mesh, Ogre::Vector3(_transform->GetPosX(),_transform->GetPosZ(), _transform->GetPosY()),
-			Ogre::Vector3(_transform->GetScaleX() , _transform->GetScaleY(), _transform->GetScaleZ()), Ogre::Radian(_transform->GetRotX()) );
-	}
-
-	//else {
-	//	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ),
-	//		Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
-	//}
+	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ),Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation), Ogre::Radian(0), Ogre::Radian(0));
+	
 
 }
 
 void RenderComponent::OnEvent(int eventType, Event * e)
 {	
-		// Physics transform has been updated so update render properties in order to syncrhonize render and collider
-	//if (_ownerEntity->GetId() == e->GetEmmitter()) {
+		
 		if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
 		{
 			std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
@@ -59,24 +48,34 @@ void RenderComponent::OnEvent(int eventType, Event * e)
 			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
 			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
 		}
-	//}
+
 }
 
 void RenderComponent::Update(float deltaTime)
 {	
-	if (_mustMove) {
+	/*if (_mustMove) {
 		_entityNode->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));
 		_mustMove = false;
 
 		std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityNode->getParentSceneNode()->getPosition().z << std::endl;
 		std::cout << "POS Z RENDER : " + _ownerEntity->GetId() + " " << _entityNode->getParentSceneNode()->getPosition().y << std::endl;
 
+	}*/
+
+	if (_mustMove) {
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));
+		_mustMove = false;
+
+		std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
+		std::cout << "POS Z RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().y << std::endl;
+
 	}
+
 	
 }
 
-Ogre::SceneNode * RenderComponent::GetNode()
+/*Ogre::SceneNode * RenderComponent::GetNode()
 {
 	return _entityNode;
-}
+}*/
 	

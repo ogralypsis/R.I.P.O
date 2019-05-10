@@ -54,6 +54,12 @@ public:
 	/// Returns if the window is closed or not, true if is closed flase if not
 	/// </summary>
 	bool CheckWindowStatus();
+
+	///<summary>
+	/// Moves the camera to given position
+	///</summary>
+	///<param name="mesh">The component to be deleted</param>  //TODO: comentar parametros
+	Ogre::Entity* CreateEntity(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian rotX, Ogre::Radian rotY, Ogre::Radian rotZ);
 	
 	Ogre::SceneNode* CreateNode(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian);
 	

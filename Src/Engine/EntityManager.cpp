@@ -77,6 +77,16 @@ void EntityManager::Update(float deltaTime)
 		_entities.at(i)->Update(deltaTime);
 }
 
+void EntityManager::UpdatePhysics(float deltaTime)
+{
+	for (int i = 0; i < _entities.size(); i++) {
+
+		if (_entities.at(i)->HasComponent("RigidBody"))
+			_entities.at(i)->UpdatePhysics(deltaTime);
+	}
+
+}
+
 void EntityManager::GetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
 {
 	_observersJSON = observers;

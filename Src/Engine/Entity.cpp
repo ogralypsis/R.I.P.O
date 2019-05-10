@@ -61,11 +61,36 @@ Component* Entity::GetComponent(std::string id)
 	return nullptr;
 }
 
+bool Entity::HasComponent(std::string id)
+{
+	int i = 0;
+
+	while (i < _components.size())
+	{
+		if (_components[i]->GetId() == id)
+		{
+			return true;
+		}
+		i++;
+	}
+
+	return false;
+}
+
 void Entity::Update(float deltaTime)
 {
 	// update each component of the entity
 	for (int i = 0; i < _components.size(); i++)
 		_components.at(i)->Update(deltaTime);
+}
+
+void Entity::UpdatePhysics(float deltaTime)
+{
+	// update each component of the entity
+	for (int i = 0; i < _components.size(); i++) {
+		if (_components.at(i)->GetId() == "RigidBody")
+			_components.at(i)->Update(deltaTime);
+	}
 }
 
 std::string Entity::GetId()

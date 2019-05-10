@@ -32,6 +32,12 @@ public:
 	void Update(float deltaTime);
 
 	///<summary>
+	/// Calls the components' own Update() but only those who has RigidBodyComponent
+	/// because physics has to be updated before simulating scene physics and updating the rest components
+	///</summary>
+	void UpdatePhysics(float deltaTime);
+
+	///<summary>
 	/// Get the entity id
 	///</summary>
 	///<returns> String id of the entity </returns>
@@ -42,10 +48,14 @@ public:
 	///</summary>
 	///<param name="c">The component to be returned</param>  
 	///<returns> The specified component </returns>
-	/*template <class T>
-	T* GetComponent(T* c);*/
-
 	Component* GetComponent(std::string id);
+
+	///<summary>
+	/// Check if the entity has the specified component 
+	///</summary>
+	///<param name="c">The component to be found</param>  
+	///<returns> True if has the specified component </returns>
+	bool HasComponent(std::string id);
 
 
 

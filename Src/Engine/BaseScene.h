@@ -27,6 +27,11 @@ public:
 	///<param name="t">  time since last update </param>
 	virtual void Update(float t) = 0;
 
+	///<summary>
+	/// Returns the identifier of the scene
+	///</summary>
+	inline std::string GetId() { return _id; };
+
 private:
 	///<summary>
 	/// Add the listeners to the especific events of the game

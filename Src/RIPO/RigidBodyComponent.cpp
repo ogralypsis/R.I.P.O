@@ -9,7 +9,6 @@ RigidBodyComponent::RigidBodyComponent()
 	_shape = nullptr;
 	_actor = nullptr;
 	_material = nullptr;
-	_transform = nullptr;
 }
 
 
@@ -22,8 +21,6 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	_ownerEntity = e;
 	_id = "RigidBody";
 
-	//_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
-
 	_mustMove = false;
 
 	// 1: sphere, 2: box, 3: capsule, 4: plane
@@ -33,8 +30,8 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	 _tam2 = arguments["tam2"].f;
 	 _tam3 = arguments["tam3"].f;
 
-	//_velocity = arguments["velocity"].f;
-	_velocity = 2.0f;
+	//_velocity = arguments["velocity"].f; // TODO: METER PARAMETRO VELOCITY EN EL JSON
+	_velocity = 100.0f;
 
 	_material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
 
@@ -44,7 +41,9 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 #endif
 
 	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(0, 0, 0));//aqui iria la posicion de la entidad 
-
+	_actor->setLinearDamping(0.75f);
+	_actor->setMass(10.0f);
+	
 	switch (geometry)
 	{
 	// 1: sphere
@@ -90,11 +89,9 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 		_dir.x = static_cast<PhysicsMoveEvent*>(e)->_dir.x;
 		_dir.y = static_cast<PhysicsMoveEvent*>(e)->_dir.y;
 		_dir.z = static_cast<PhysicsMoveEvent*>(e)->_dir.z;
-		/*_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
-		_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
-		_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;*/
-
 	}
+
+		
 		// SI LLEGA MENSAJE DE QUE TIENE QUE MOVERSE SE APLICA UNA VELOCIDAD (_actor->setLinerVelocity())
 		// Y DESPUES MANDAR EL MENSAJE DE EVENT_UPDATE_TRANSFORM QUE DEBERIA LLEGAR AL RENDER Y AL TRANSFORM
 		// JUSTO AL REVES CON EL TRANSFORM PORQUE EL QUE ACTUALIZA LAS POSICIONES TIENE QUE SER EL RIGIDBODY 
@@ -106,26 +103,31 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 
 void RigidBodyComponent::Update(float deltaTime)
 {
-	if (_mustMove == true) {
-		// HAY QUE MOVER CON LA VELOCIDAD DE PHYSX
-		_actor->setLinearVelocity(_dir * _velocity*deltaTime);
-		//_actor->addForce(_dir * _velocity*deltaTime);
+
+
+	/*
+	If required, it is possible to immediately update the velocity of the body using body.setLinearVelocity(body.getLinearVelocity() + deltaLinearVelocity) 
+	and body.setAngularVelocity(body.getAngularVelocity() + deltaAngularVelocity)
+	*/
+
+	if (!_mustMove) {
 		
+		_dir = { 0,0,0 };
+	
+		_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
 
-		physx::PxTransform  transform = _actor->getGlobalPose();
+	}
+	else {
+		_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
+	}
 
-		UpdateTransformEvent * utEvent = new UpdateTransformEvent(transform.p.x, transform.p.y, transform.p.z, transform.q.getAngle(), _ownerEntity->GetId(), EventDestination::ENTITY);
+		_transform = _actor->getGlobalPose();
+
+		std::cout << "POS Z: " + _ownerEntity->GetId() + " " << _transform.p.z << std::endl;
+		std::cout << "POS Y: " + _ownerEntity->GetId() + " " << _transform.p.y << std::endl;
+
+		UpdateTransformEvent * utEvent = new UpdateTransformEvent(_transform.p.x, _transform.p.y, _transform.p.z, _transform.q.getAngle(), _ownerEntity->GetId(), EventDestination::ENTITY);
 		EventManager::GetInstance()->NotifyObservers(utEvent->GetType(), utEvent);
 
-		/*_actor->setGlobalPose(PxTransform(_auxPosX,
-			_auxPosY,
-			_auxPosZ/*,
-			PxQuat(_transform->GetRotX(), _transform->GetRotY(), _transform->GetRotZ(), 0.0f)));
-			*/
 		_mustMove = false;
-
-		std::cout << "POS Z: " + _ownerEntity->GetId() + " " << transform.p.z << std::endl;
-
-		std::cout << "POS Y: " + _ownerEntity->GetId() + " " << transform.p.y << std::endl;
-	}
 }

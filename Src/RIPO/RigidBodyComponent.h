@@ -1,7 +1,7 @@
 #pragma once
 #include <Component.h>
 #include <MyPhysX.h>
-#include "TransformComponent.h"
+
 
 class RigidBodyComponent :
 	public Component
@@ -22,7 +22,6 @@ private:
 	physx::PxRigidDynamic *_actor;
 	const physx::PxMaterial * _material;
 
-	TransformComponent * _transform;
 
 	// Determine if the rigidbody must be updated
 	bool _mustMove;
@@ -34,5 +33,7 @@ private:
 	float _tam1;
 	float _tam2;
 	float _tam3;
+
+	physx::PxTransform  _transform;
 };
 

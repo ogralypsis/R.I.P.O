@@ -15,9 +15,10 @@ typedef enum EventType {
 };
 
 struct Dir {
-	int x;
-	int y;
-	int z;
+
+	float x;
+	float y;
+	float z;
 };
 
 // New Events specific for the game:

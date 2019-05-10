@@ -19,7 +19,7 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	_id = "Render";
 
 
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
+	//_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
 
 	_mustMove = false;
 
@@ -35,14 +35,14 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	int _rotation = arguments["rotation"].i;
 
-	if (_transform != nullptr) {
+	/*if (_transform != nullptr) {
 		_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_transform->GetPosX(),_transform->GetPosZ(), _transform->GetPosY()),
 			Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
 	}
-	else {
+	else {*/
 		_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ),
 			Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotation));
-	}
+	//}
 
 }
 

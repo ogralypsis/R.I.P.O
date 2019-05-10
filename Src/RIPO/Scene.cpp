@@ -49,7 +49,8 @@ Scene::~Scene()
 
 void Scene::Update(float t)
 {
-	EntityManager::getInstance()->UpdatePhysics(t);//Update Physics Entities
+	//Update Physics Entities
+	EntityManager::getInstance()->UpdatePhysics(t);
 
 	// The first scene, the menu, doesn't have physics
 	if (_id != "0") {
@@ -57,9 +58,9 @@ void Scene::Update(float t)
 		MyPhysX::GetInstance().StepPhysics(t);
 	}
 
-	// Update entities...
+	// Update entities
 	EntityManager::getInstance()->Update(t);
-
+	
 }
 
 void Scene::AddSceneObservers()

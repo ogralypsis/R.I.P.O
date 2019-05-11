@@ -13,5 +13,11 @@ public:
 
 	void virtual OnEvent(int eventType, Event * e);
 	void virtual Update(float deltaTime);
+
+private:
+	// position of the player
+	float _playerX;
+	float _playerY;
+	float _playerZ;
 };
 #endif

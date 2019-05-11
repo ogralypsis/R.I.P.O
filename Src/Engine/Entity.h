@@ -36,7 +36,9 @@ public:
 	/// Calls the components' own Update() but only those who has RigidBodyComponent
 	/// because physics has to be updated before simulating scene physics and updating the rest components
 	///</summary>
-	void UpdatePhysics(float deltaTime);
+	///<param name="deltaTime"> time passed since function was last called </param>
+	///<param name="physicComponent"> name of the component the entity must have to call it's update </param>
+	void UpdatePhysics(float deltaTime, std::string physicComponent);
 
 	///<summary>
 	/// Get the entity id

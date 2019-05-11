@@ -40,6 +40,18 @@ public:
 	///<param name="observer"> components that has to be unsubscribed to event of type eventType </param>
 	void RemoveObserver(int eventType, Component* observer);
 
+	///<summary>
+	/// stores the listeners into the map of the singleton
+	///</summary>
+	///<param name="observers"> map of (event + component that listen to that event) </param>
+	void SetJsonObservers(const std::map<std::string, std::vector<Component*>> observers);
+
+	///<summary>
+	/// Returns the map of listeners (event + component that listen to that event)
+	///</summary>
+	std::map<std::string, std::vector<Component*>> GetObservers();
+
+
 private:
 	///<summary>
 	/// constructor is private so it can't be called (only called from GetInstance)
@@ -47,12 +59,23 @@ private:
 	EventManager();
 
 	///<summary>
+	/// Deletes all observers from the map
+	///</summary>
+	void ClearObservers();
+
+	///<summary>
 	/// instance of singleton
 	///</summary>
 	static EventManager* _instance;
+
 	///<summary>
 	/// map of listeners (event + component that listen to that event)
 	///</summary>
 	std::map<int, std::vector<Component*>> _observers;
+
+	///<summary>
+	/// map of listeners (event + component that listen to that event)
+	///</summary>
+	std::map<std::string, std::vector<Component*>> _observersJSON;
 };
 #endif

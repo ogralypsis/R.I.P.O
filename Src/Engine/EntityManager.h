@@ -15,7 +15,7 @@ public:
 	///<summary>
 	/// Gets the instance of the singleton so it there's only one manager
 	///</summary>
-	static EntityManager* getInstance();
+	static EntityManager* GetInstance();
 
 	///<summary>
 	/// Adds new entity to vector of entities in order to keep track of it
@@ -51,24 +51,16 @@ public:
 	/// Calls the physix updates of the entities that have a RigidBody component
 	///</summary>
 	///<param name="deltaTime"> time passed since function was last called </param>
-	void UpdatePhysics(float deltaTime);
-
-	///<summary>
-	/// stores the listeners into the map of the singleton
-	///</summary>
-	///<param name="observers"> map of (event + component that listen to that event) </param>
-	void SetJsonObservers(const std::map<std::string, std::vector<Component*>> observers);
+	///<param name="physicComponent"> name of the component the entity must have to call it's update </param>
+	void UpdatePhysics(float deltaTime, std::string physicComponent);
 
 	///<summary>
 	/// returns the reference of the entity that has that id
 	///</summary>
 	///<param name="id"> id of the entity that is being looking for </param>
 	Entity* GetEntityByName(std::string id);
-	
-	///<summary>
-	/// Returns the map of listeners (event + component that listen to that event)
-	///</summary>
-	std::map<std::string, std::vector<Component*>> GetObservers();
+
+
 
 private:
 	///<summary>
@@ -84,9 +76,5 @@ private:
 	/// vector of entities stored in the singleton
 	///</summary>
 	std::vector<Entity*> _entities;
-	///<summary>
-	/// map of listeners (event + component that listen to that event)
-	///</summary>
-	std::map<std::string, std::vector<Component*>> _observersJSON;
 };
 #endif

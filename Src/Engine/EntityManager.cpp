@@ -8,7 +8,7 @@ EntityManager::~EntityManager()
 	ClearEntities();
 }
 
- EntityManager * EntityManager::getInstance()
+ EntityManager * EntityManager::GetInstance()
 {
 	//If there is no instance, create it
 	if (_instance == nullptr) {
@@ -50,8 +50,10 @@ void EntityManager::DeleteEntity(Entity * e)
 void EntityManager::ClearEntities()
 {
 	// delete each pointer
-	for (std::vector<Entity *>::iterator it = _entities.begin(); it != _entities.end(); ++it)
+	for (std::vector<Entity *>::iterator it = _entities.begin(); it != _entities.end(); ++it) {
+		(*it) = nullptr;
 		delete (*it);
+	}
 	// clear the vector
 	_entities.clear();
 }
@@ -76,18 +78,13 @@ void EntityManager::Update(float deltaTime)
 		_entities.at(i)->Update(deltaTime);
 }
 
-void EntityManager::UpdatePhysics(float deltaTime)
+void EntityManager::UpdatePhysics(float deltaTime, std::string physicComponent)
 {
 	for (int i = 0; i < _entities.size(); i++) {
 
-		if (_entities.at(i)->HasComponent("RigidBody"))
-			_entities.at(i)->UpdatePhysics(deltaTime);
+		if (_entities.at(i)->HasComponent(physicComponent))
+			_entities.at(i)->UpdatePhysics(deltaTime, physicComponent);
 	}
-}
-
-void EntityManager::SetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
-{
-	_observersJSON = observers;
 }
 
 Entity* EntityManager::GetEntityByName(std::string id)
@@ -113,7 +110,3 @@ Entity* EntityManager::GetEntityByName(std::string id)
 	return e;
 }
 
-std::map<std::string, std::vector<Component*>> EntityManager::GetObservers()
-{
-	return _observersJSON;
-}

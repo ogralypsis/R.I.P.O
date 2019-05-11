@@ -77,16 +77,16 @@ bool Entity::HasComponent(std::string id)
 
 void Entity::Update(float deltaTime)
 {
-	// update each component of the entity
+	// Update each component of the entity
 	for (int i = 0; i < _components.size(); i++)
 		_components.at(i)->Update(deltaTime);
 }
 
-void Entity::UpdatePhysics(float deltaTime)
+void Entity::UpdatePhysics(float deltaTime, std::string physicComponent)
 {
-	// update each component of the entity
+	// Update the specified physic component
 	for (int i = 0; i < _components.size(); i++) {
-		if (_components.at(i)->GetId() == "RigidBody")
+		if (_components.at(i)->GetId() == physicComponent)
 			_components.at(i)->Update(deltaTime);
 	}
 }

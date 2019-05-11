@@ -10,8 +10,9 @@
           "_numArguments": 0,
           "_arguments": [
           ],
-          "_numEvents": 0,
+          "_numEvents": 1,
           "_events": [
+          	"UpdateTransformEvent"
           ]
         },
         {
@@ -21,12 +22,12 @@
             {
               "_name": "posX",
               "_type": 2,
-              "_arg": "50"
+              "_arg": "0"
             },
             {
               "_name": "posY",
               "_type": 2,
-              "_arg": "10"
+              "_arg": "5"
             },
             {
               "_name": "posZ",
@@ -41,7 +42,7 @@
             {
               "_name": "rotY",
               "_type": 2,
-              "_arg": "0"
+              "_arg": "5"
             },
             {
               "_name": "rotZ",
@@ -86,7 +87,7 @@
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "5"
             },
             {
               "_name": "positionZ",

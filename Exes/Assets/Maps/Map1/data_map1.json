@@ -87,12 +87,12 @@
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "5"
+              "_arg": "0"
             },
             {
               "_name": "positionZ",
               "_type": 1,
-              "_arg": "-80"
+              "_arg": "-150"
             },
             {
               "_name": "scaleX",

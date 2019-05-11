@@ -95,7 +95,7 @@ void EventManager::RemoveObserver(int eventType, Component * observer)
 	auto it = _observers.find(eventType);
 	if (it != _observers.end())
 	{
-		int i = 0;
+		size_t i = 0;
 		bool found = false;
 		// search for the observer
 		while (!found && i < it->second.size())

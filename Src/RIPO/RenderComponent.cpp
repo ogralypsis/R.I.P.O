@@ -44,7 +44,7 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 void RenderComponent::OnEvent(int eventType, Event * e)
 {	
 		
-		if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
+		if (eventType == EventType::EVENT_UPDATE_TRANSFORM && e->GetEmmitter() == _ownerEntity->GetId())
 		{
 			//std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
 			_mustMove = true;

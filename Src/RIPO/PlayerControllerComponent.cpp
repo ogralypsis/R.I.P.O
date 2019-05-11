@@ -82,7 +82,7 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		_moveCamera = true;		
 	}
 
-	else if (eventType == EventType::EVENT_UPDATE_TRANSFORM)
+	else if (eventType == EventType::EVENT_UPDATE_TRANSFORM && e->GetEmmitter() == _ownerEntity->GetId())
 	{
 		_mustMove = true;
 		_posX = static_cast<UpdateTransformEvent*>(e)->_posX;

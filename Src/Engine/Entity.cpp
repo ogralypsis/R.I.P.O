@@ -45,7 +45,7 @@ void Entity::DeleteComponent(Component * c)
 //searches for a component and returns it if found
 Component* Entity::GetComponent(std::string id)
 {	
-	int i = 0;
+	size_t i = 0;
 	
 	while (i < _components.size())
 	{		
@@ -61,7 +61,7 @@ Component* Entity::GetComponent(std::string id)
 
 bool Entity::HasComponent(std::string id)
 {
-	int i = 0;
+	size_t i = 0;
 
 	while (i < _components.size())
 	{
@@ -78,14 +78,14 @@ bool Entity::HasComponent(std::string id)
 void Entity::Update(float deltaTime)
 {
 	// Update each component of the entity
-	for (int i = 0; i < _components.size(); i++)
+	for (size_t i = 0; i < _components.size(); i++)
 		_components.at(i)->Update(deltaTime);
 }
 
 void Entity::UpdatePhysics(float deltaTime, std::string physicComponent)
 {
 	// Update the specified physic component
-	for (int i = 0; i < _components.size(); i++) {
+	for (size_t i = 0; i < _components.size(); i++) {
 		if (_components.at(i)->GetId() == physicComponent)
 			_components.at(i)->Update(deltaTime);
 	}

@@ -104,7 +104,7 @@ float TransformComponent::GetScaleZ()
 void TransformComponent::OnEvent(int eventType, Event * e)
 {
 
-	if (eventType == EventType::EVENT_UPDATE_TRANSFORM) {
+	if (eventType == EventType::EVENT_UPDATE_TRANSFORM && e->GetEmmitter() == _ownerEntity->GetId()) {
 
 		_mustMove = true;
 

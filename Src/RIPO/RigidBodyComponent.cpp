@@ -147,7 +147,7 @@ void RigidBodyComponent::Update(float deltaTime)
 	//std::cout << "POS Y: " + _ownerEntity->GetId() + " " << _transform.p.y << std::endl;
 	//std::cout << "POS Z: " + _ownerEntity->GetId() + " " << _transform.p.z << std::endl;
 
-	UpdateTransformEvent * utEvent = new UpdateTransformEvent(_transform.p.x, _transform.p.y, _transform.p.z, _transform.q.getAngle(), _ownerEntity->GetId(), EventDestination::ENTITY);
+	UpdateTransformEvent * utEvent = new UpdateTransformEvent(_transform.p.x, _transform.p.y, _transform.p.z, _transform.q.getAngle(), _ownerEntity->GetId(), EventDestination::SCENE);
 	EventManager::GetInstance()->NotifyObservers(utEvent->GetType(), utEvent);
 
 	_mustMove = false;

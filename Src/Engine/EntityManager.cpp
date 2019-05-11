@@ -25,7 +25,7 @@ void EntityManager::AddEntity(Entity * e)
 
 void EntityManager::DeleteEntity(Entity * e)
 {
-	int i = 0;
+	size_t i = 0;
 	bool found = false;
 	// search for the entity e
 	while (!found && i < _entities.size())
@@ -74,13 +74,13 @@ void EntityManager::CreateEntity(std::string name, std::vector<Component*> compo
 void EntityManager::Update(float deltaTime)
 {
 	// update each entity of the scene
-	for (int i = 0; i < _entities.size(); i++)
+	for (size_t i = 0; i < _entities.size(); i++)
 		_entities.at(i)->Update(deltaTime);
 }
 
 void EntityManager::UpdatePhysics(float deltaTime, std::string physicComponent)
 {
-	for (int i = 0; i < _entities.size(); i++) {
+	for (size_t i = 0; i < _entities.size(); i++) {
 
 		if (_entities.at(i)->HasComponent(physicComponent))
 			_entities.at(i)->UpdatePhysics(deltaTime, physicComponent);
@@ -89,7 +89,7 @@ void EntityManager::UpdatePhysics(float deltaTime, std::string physicComponent)
 
 Entity* EntityManager::GetEntityByName(std::string id)
 {
-	int i = 0;
+	size_t i = 0;
 	bool found = false;
 	Entity* e = nullptr;
 	// search for the entity e with name stored in id

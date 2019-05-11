@@ -1,5 +1,8 @@
 #include "CameraManager.h"
 #include <iostream>
+
+
+
 CameraManager* CameraManager::_instance = nullptr;
 
 void CameraManager::AttachPlayer(Ogre::SceneNode * playerNode)
@@ -66,7 +69,6 @@ void CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY
 	//check if max camera height has been reached
 	if (nextPitch > -_maxPitch && nextPitch < _maxPitch)
 		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed* time);
-
 }
 
 CameraManager & CameraManager::GetInstance()

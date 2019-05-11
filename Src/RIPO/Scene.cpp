@@ -94,6 +94,10 @@ void Scene::AddSceneObservers()
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_MOVE_MOUSE, it->second[i]);
 		}
+		else if (it->first == "RotationEvent") {
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_ROTATION, it->second[i]);
+		}
 		// Other events...
 
 		it++;

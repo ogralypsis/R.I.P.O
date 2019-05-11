@@ -11,7 +11,7 @@ typedef enum EventType {
 	EVENT_L_MOUSE, EVENT_MOVE_MOUSE,
 	EVENT_DEATH,
 	EVENT_UPDATE_TRANSFORM, EVENT_PHYSICS_MOVE,
-	EVENT_CHANGE_SCENE
+	EVENT_CHANGE_SCENE,EVENT_ROTATION
 };
 
 struct Dir {
@@ -19,6 +19,7 @@ struct Dir {
 	int y;
 	int z;
 };
+
 
 // New Events specific for the game:
 
@@ -96,7 +97,15 @@ struct MouseMoveEvent : Event
 
 	int _posX;
 	int _posY;
+};
 
+
+struct RotationEvent : Event
+{
+	RotationEvent(int x, int y, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_ROTATION, destination), _rotX(x), _rotY(y) {}
+
+	int _rotX;
+	int _rotY;
 };
 
 // PLAYER DEATH

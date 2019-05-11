@@ -402,9 +402,10 @@
               "_arg": "0"
             }
           ],
-          "_numEvents": 1,
+          "_numEvents": 2,
           "_events": [
-            "UpdateTransformEvent"
+            "UpdateTransformEvent",
+            "RotationEvent"
           ]
         },
         {
@@ -417,14 +418,15 @@
               "_arg": "5"
             }
           ],
-          "_numEvents": 6,
+          "_numEvents": 7,
           "_events": [
             "WEvent",
             "SEvent",
             "AEvent",
             "DEvent",
             "MouseMoveEvent",
-            "UpdateTransformEvent"
+            "UpdateTransformEvent",
+            "RotationEvent"
           ]
         },
         {
@@ -458,9 +460,10 @@
               "_arg": "100"
             }
           ],
-          "_numEvents": 1,
+          "_numEvents": 2,
           "_events": [
-            "PhysicsMoveEvent"
+            "PhysicsMoveEvent",
+            "RotationEvent"
           ]
         }
       ]

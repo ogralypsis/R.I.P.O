@@ -28,6 +28,7 @@ private:
 
 
 	bool _mustMove;
+	bool _mustRotate;
 
 	int _positionX;
 	int _positionY;
@@ -37,6 +38,9 @@ private:
 	float _auxPosY;
 	float _auxPosZ;
 
+
+	float _rotX;
+	float _rotY;
 
 };
 

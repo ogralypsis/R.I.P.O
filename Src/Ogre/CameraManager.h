@@ -7,6 +7,7 @@
 #include <OgreRenderWindow.h>
 #include "InputManager.h"
 
+
 class CameraManager 
 {
 public:
@@ -43,6 +44,11 @@ public:
 	///To be called from a PlayerController, attaches the camera node to a node
 	///<sumary>
 	void AttachPlayer(Ogre::SceneNode* playerNode);
+
+
+	float GetRotX() { return _rotX; }
+	float GetRotY() { return _rotY; }
+
 
 private:
 

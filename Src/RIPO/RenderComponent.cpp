@@ -22,9 +22,9 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	std::string _mesh = arguments["mesh"]._str;
 
-	int _positionX = arguments["positionX"]._i;
-	int _positionY = arguments["positionY"]._i;
-	int _positionZ = arguments["positionZ"]._i;
+	_positionX = arguments["positionX"]._i;
+	_positionY = arguments["positionY"]._i;
+	_positionZ = arguments["positionZ"]._i;
 
 	int _scaleX = arguments["scaleX"]._i;
 	int _scaleY = arguments["scaleY"]._i;
@@ -83,6 +83,12 @@ void RenderComponent::GetEntitySize()
 {
 	//_entityOgre->getParentSceneNode()->
 
+}
+
+std::vector<int> RenderComponent::GetPosition()
+{
+	std::vector<int> position = { _positionX, _positionY, _positionZ };
+	return position;
 }
 
 /*Ogre::SceneNode * RenderComponent::GetNode()

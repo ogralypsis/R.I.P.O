@@ -9,9 +9,8 @@
 
 Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, compFactory)
 {
-	
-	if (_id != "0") { // The first scene, the menu, doesn't have physics
-
+	// The first scene, the menu, doesn't have physics
+	if (_id != "0") { 
 		// Create PhysX scene for physics simulation
 		MyPhysX::GetInstance().CreateScene();
 	}
@@ -30,7 +29,7 @@ Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, com
 Scene::~Scene() 
 {
 	// empty scene from entities
-	EntityManager::getInstance()->ClearEntities();
+	EntityManager::GetInstance()->ClearEntities();
 
 	// The first scene, the menu, doesn't have physics
 	if (_id != "0") {
@@ -46,21 +45,20 @@ Scene::~Scene()
 void Scene::Update(float t)
 {
 	//Update Physics Entities
-	EntityManager::getInstance()->UpdatePhysics(t);
+	EntityManager::GetInstance()->UpdatePhysics(t, "RigidBody");
 
 	// The first scene, the menu, doesn't have physics
 	if (_id != "0") {
 		// Makes one step in physics simulation
 		MyPhysX::GetInstance().StepPhysics(t);
 	}
-
 	// Update entities...
-	EntityManager::getInstance()->Update(t);
+	EntityManager::GetInstance()->Update(t);
 }
 
 void Scene::AddSceneObservers()
 {
-	std::map<std::string /*Event*/, std::vector<Component*>> observers = EntityManager::getInstance()->GetObservers();
+	std::map<std::string /*Event*/, std::vector<Component*>> observers = EventManager::GetInstance()->GetObservers();
 	std::map<std::string, std::vector<Component*>>::const_iterator it = observers.cbegin();
 
 	while (it != observers.cend()) {

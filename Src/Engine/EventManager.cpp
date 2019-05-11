@@ -5,20 +5,50 @@ EventManager * EventManager::_instance = nullptr;
 
 EventManager::EventManager() {}
 
+
 EventManager::~EventManager()
 {
-	// TO DO
+	ClearObservers();
 }
 
 EventManager * EventManager::GetInstance()
 {
-	//If there is no instance... 
+	//If there is no instance
 	if (_instance == nullptr) {
 		_instance = new EventManager();
 	}
 
 	return _instance;
 }
+
+void EventManager::ClearObservers()
+{
+	// Iterate all the map
+	for (std::map<int, std::vector<Component*>>::iterator it = _observers.begin(); it != _observers.end(); ++it) {
+		// Iterate vector 
+		for (std::vector<Component *>::iterator it2 = (*it).second.begin(); it2 != (*it).second.end(); ++it2) {
+			(*it2) = nullptr;
+			delete (*it2);
+		}
+		(*it).second.clear();
+	}
+
+	_observers.clear();
+
+	// Iterate all the map
+	for (std::map<std::string, std::vector<Component*>>::iterator it3 = _observersJSON.begin(); it3 != _observersJSON.end(); ++it3) {
+		// Iterate vector 
+		for (std::vector<Component *>::iterator it4 = (*it3).second.begin(); it4 != (*it3).second.end(); ++it3) {
+			(*it4) = nullptr;
+			delete (*it4);
+		}
+		(*it3).second.clear();
+	}
+
+	_observersJSON.clear();
+}
+
+
 
 void EventManager::NotifyObservers(int eventType, Event * e)
 {	
@@ -84,3 +114,13 @@ void EventManager::RemoveObserver(int eventType, Component * observer)
 		}
 	}
 }
+void EventManager::SetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
+{
+	_observersJSON = observers;
+}
+
+std::map<std::string, std::vector<Component*>> EventManager::GetObservers()
+{
+	return _observersJSON;
+}
+

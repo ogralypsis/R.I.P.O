@@ -32,7 +32,7 @@ public:
 	///</summary>
 	std::string GetId();
 
-private:
+protected:
 	///<summary>
 	/// Add the listeners to the especific events of the game
 	///</summary>

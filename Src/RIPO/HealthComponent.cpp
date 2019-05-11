@@ -38,6 +38,6 @@ void HealthComponent::CheckHealth()
 {
 	if (_health <= 0) 
 	{
-		EntityManager::getInstance()->DeleteEntity(_ownerEntity);
+		EntityManager::GetInstance()->DeleteEntity(_ownerEntity);
 	}
 }

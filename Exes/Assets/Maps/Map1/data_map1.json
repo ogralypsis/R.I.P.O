@@ -81,7 +81,7 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "80"
             },
             {
               "_name": "positionY",
@@ -91,7 +91,7 @@
             {
               "_name": "positionZ",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "-80"
             },
             {
               "_name": "scaleX",
@@ -237,12 +237,12 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "81"
+              "_arg": "0"
             },
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "-100"
+              "_arg": "0"
             },
             {
               "_name": "positionZ",
@@ -363,12 +363,12 @@
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "-90"
+              "_arg": "0"
             },
             {
               "_name": "positionZ",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "-90"
             },
             {
               "_name": "scaleX",

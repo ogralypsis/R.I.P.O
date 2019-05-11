@@ -17,7 +17,8 @@ public:
 
 	void GetEntitySize();
 	//Ogre::SceneNode* GetNode();
-
+	std::vector<int> GetPosition();
+	
 private:
 
 	//TransformComponent * _transform = nullptr;
@@ -27,6 +28,10 @@ private:
 
 
 	bool _mustMove;
+
+	int _positionX;
+	int _positionY;
+	int _positionZ;
 
 	float _auxPosX;
 	float _auxPosY;

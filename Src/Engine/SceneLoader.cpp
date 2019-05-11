@@ -133,8 +133,8 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 		}
 
 		// Add entity to Manager
-		EntityManager::getInstance()->AddEntity(_newEntity);
+		EntityManager::GetInstance()->AddEntity(_newEntity);
 	}
 
-	EntityManager::getInstance()->SetJsonObservers(observers);
+	EventManager::GetInstance()->SetJsonObservers(observers);
 }

@@ -35,15 +35,13 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 
 	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
 
-	
-
 	_material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
 
 	if (!_material)
 #ifdef _DEBUG
 		std::cout << "createMaterial failed!" << std::endl;
 #endif
-	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(0, 0, 0));// TODO: aqui iria la posicion de la entidad 
+	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(_render->GetPosition()[0] , _render->GetPosition()[1], _render->GetPosition()[2]));// TODO: aqui iria la posicion de la entidad 
 	_actor->setLinearDamping(0.75f);
 	_actor->setMass(10.0f);
 

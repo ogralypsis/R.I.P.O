@@ -23,10 +23,6 @@ private:
 	physx::PxRigidDynamic *_actor;
 	const physx::PxMaterial * _material;
 
-	float _auxPosX;
-	float _auxPosY;
-	float _auxPosZ;
-
 	physx::PxTransform  _transform;
 
 	// Determine if the rigidbody must be updated

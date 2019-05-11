@@ -15,8 +15,8 @@ private:
 
 	physx::PxPvd *  _Pvd;
 	physx::PxPvdInstrumentationFlags _PvdFlags;
-	//physx::PxPvdTransport*				gTransport = NULL;
-
+	physx::PxPvdTransport*				gTransport = NULL;
+	physx::PxPvdSceneClient* pvdClient;
 
 	static MyPhysX * _instance;
 	

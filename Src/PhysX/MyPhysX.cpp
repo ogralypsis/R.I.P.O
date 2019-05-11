@@ -10,7 +10,8 @@ MyPhysX::MyPhysX() {
 	_PxCooking = nullptr;
 	_Pvd = nullptr;
 	_scene = nullptr;
-	_dispatcher = nullptr;	
+	_dispatcher = nullptr;
+	pvdClient = nullptr;
 }
 
 MyPhysX::~MyPhysX()
@@ -33,14 +34,13 @@ bool MyPhysX::Init()
 	}
 
 
-	//gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
-	/*
-	#if ENABLE_PVD
-	_Pvd = physx::PxCreatePvd(*gPxFoundation);
-	//_Pvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::eALL);
-	_Pvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::ePROFILE);
-	#endif
-	*/
+	gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
+	
+	//#if ENABLE_PVD
+	_Pvd = physx::PxCreatePvd(*_PxFoundation);
+	_Pvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::eALL);	
+	//#endif
+	
 	
 	_PxPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *_PxFoundation, physx::PxTolerancesScale(), false, _Pvd);
 	if (_PxPhysics == NULL) {
@@ -106,6 +106,13 @@ void MyPhysX::CreateScene()
 	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
 
 	_scene = _PxPhysics->createScene(sceneDesc);
+	 pvdClient = _scene->getScenePvdClient();
+	if (pvdClient) {
+		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
+		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
+		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
+	}
+
 
 }
 

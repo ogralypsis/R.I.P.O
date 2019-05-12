@@ -2,6 +2,9 @@
 #define _H_PATHFINDINGCOMPONENT_H_
 
 #include <Component.h>
+#include <MyOgre.h>
+#include "TransformComponent.h"
+#include "RIPOEvent.h"
 
 class PathFindingComponent : public Component
 {
@@ -19,5 +22,9 @@ private:
 	float _playerX;
 	float _playerY;
 	float _playerZ;
+
+	Ogre::Vector3 _actualTranslateVect;
+	Ogre::Quaternion _actualOrientation;
+	Dir _negativeDir;
 };
 #endif

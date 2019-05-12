@@ -125,6 +125,12 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 		_dir.y = static_cast<PhysicsMoveEvent*>(e)->_dir.y;
 		_dir.z = static_cast<PhysicsMoveEvent*>(e)->_dir.z;
 	}
+	if (eventType == EventType::EVENT_ROTATION) {//cambiar rotacion
+		
+		_rotX = static_cast<RotationEvent*>(e)->_rotX;
+		_rotY = static_cast<RotationEvent*>(e)->_rotY;
+	
+	}
 
 }
 void RigidBodyComponent::Update(float deltaTime)

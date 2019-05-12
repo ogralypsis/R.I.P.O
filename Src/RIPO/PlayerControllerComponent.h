@@ -41,6 +41,9 @@ private:
 	float _posY;
 	float _posZ;
 
+	float _rotX;
+	float _rotY;
+
 	Dir _dir;
 
 	//Original positions

@@ -80,6 +80,15 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		_mouseX = static_cast<MouseMoveEvent*>(e)->_posX;
 		_mouseY = static_cast<MouseMoveEvent*>(e)->_posY;
 		_moveCamera = true;		
+
+		_rotX=CameraManager::GetInstance().GetRotX();
+		_rotY = CameraManager::GetInstance().GetRotY();
+		
+		RotationEvent * RotationMovement = new RotationEvent(_rotX, _rotY, _ownerEntity->GetId(), EventDestination::ENTITY);
+		EventManager::GetInstance()->NotifyObservers(RotationMovement->GetType(), RotationMovement);
+
+		//Creo que falta añadir que sea observador el render del player?
+
 	}
 
 	else if (eventType == EventType::EVENT_UPDATE_TRANSFORM && e->GetEmmitter() == _ownerEntity->GetId())

@@ -30,6 +30,10 @@ private:
 
 	physx::PxVec3 _dir;
 
+	float _rotX;
+	float _rotY;
+
+
 	float _velocity;
 
 	float _tam1;

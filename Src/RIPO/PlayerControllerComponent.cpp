@@ -33,9 +33,9 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_posZ = _transform->GetPosZ();
 	_orPosZ = _posZ;
 
-	//RenderComponent* render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
+	RenderComponent* render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
 
-	//CameraManager::GetInstance().AttachPlayer(render->GetNode());
+	CameraManager::GetInstance().AttachPlayer(render->GetNode());
 }
 
 void PlayerControllerComponent::OnEvent(int eventType, Event * e)
@@ -81,12 +81,11 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		_mouseY = static_cast<MouseMoveEvent*>(e)->_posY;
 		_moveCamera = true;		
 
-		_rotX=CameraManager::GetInstance().GetRotX();
+		_rotX = CameraManager::GetInstance().GetRotX();
 		_rotY = CameraManager::GetInstance().GetRotY();
 		
 		RotationEvent * RotationMovement = new RotationEvent(_rotX, _rotY, _ownerEntity->GetId(), EventDestination::ENTITY);
 		EventManager::GetInstance()->NotifyObservers(RotationMovement->GetType(), RotationMovement);
-
 		//Creo que falta añadir que sea observador el render del player?
 
 	}
@@ -109,8 +108,8 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 
 void PlayerControllerComponent::Update(float deltaTime)
 {
-	if (_mustMove)
-		CameraMovement();
+	/*if (_mustMove)
+		CameraMovement();*/
 	if(_moveCamera) 
 		CameraRotation(deltaTime);
 }
@@ -137,11 +136,7 @@ void PlayerControllerComponent::RightMovement(float deltaTime)
 
 }
 
-void PlayerControllerComponent::CameraMovement()
-{
-	_mustMove = false;
-	CameraManager::GetInstance().CameraMove({ _posX, _posZ + 10, _posY + 5 });
-}
+
 
 void PlayerControllerComponent::CameraRotation(float deltaTime)
 {

@@ -7,8 +7,6 @@ CameraManager* CameraManager::_instance = nullptr;
 
 void CameraManager::AttachPlayer(Ogre::SceneNode * playerNode)
 {
-
-	playerNode->addChild(_camNode);
 	_player = playerNode;
 }
 
@@ -32,22 +30,27 @@ CameraManager::~CameraManager()
 
 void CameraManager::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager * sceneMgr)
 {
-	//TESTING creates a node for player
-	_player = sceneMgr->getRootSceneNode()->createChildSceneNode();
-	_player->setPosition(Ogre::Vector3(-80, 10, 5));
+	//if there is no player
+	if (_player == nullptr)
+	{
+		_camNode = sceneMgr->getRootSceneNode()->createChildSceneNode();
+		_camNode->setPosition(Ogre::Vector3(-80, 10, 5));
+	}
+	else //if there is a player, create camNode as the player's child
+	{
+		_camNode = _player->createChildSceneNode();
+		Ogre::Vector3 pos (_camNode->getPosition().x, _camNode->getPosition().y + 10, _camNode->getPosition().z + 20);
+		_camNode->setPosition(pos);
+	}
 
 	//add a camera
 	_camera = sceneMgr->createCamera("FPScam");
-	_camNode = _player->createChildSceneNode();
 
 	_camera->lookAt(Ogre::Vector3(0, 0, 0));
 	_camera->setNearClipDistance(5);
 	_camera->setFarClipDistance(10000);
 
 	_camNode->attachObject(_camera);
-
-	_player->pitch(Ogre::Radian(-1.573f));
-	_player->roll(Ogre::Radian(3.14f));
 
 	// add viewport
 	_viewPort = window->addViewport(_camera);
@@ -132,8 +135,5 @@ void CameraManager::MoveLeft(Ogre::Real time)
 
 }*/
 
-void CameraManager::CameraMove(Ogre::Vector3 pos)
-{
-	_player->setPosition(pos);
-}
+
 

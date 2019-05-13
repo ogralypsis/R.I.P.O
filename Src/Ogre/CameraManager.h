@@ -29,11 +29,6 @@ public:
 	void MoveRight(Ogre::Real time);
 	void MoveLeft(Ogre::Real time);*/
 
-	///<summary>
-	/// Moves the camera to given position
-	///</summary>
-	///<param name="pos">The component to be deleted</param>  
-	void CameraMove(Ogre::Vector3 pos);
 
 	///<sumary>
 	///To be called from a PlayerController, rotates the camara SceneNode

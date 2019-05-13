@@ -16,14 +16,16 @@ public:
 	void virtual Update(float deltaTime);
 
 	void GetEntitySize();
-	//Ogre::SceneNode* GetNode();
+
+	//returns the entities SceneNode
+	Ogre::SceneNode* GetNode();
+	
 	std::vector<int> GetPosition();
 	
 private:
 
 	//TransformComponent * _transform = nullptr;
 
-	//Ogre::SceneNode* _entityNode = nullptr;
 	Ogre::Entity * _entityOgre;
 
 

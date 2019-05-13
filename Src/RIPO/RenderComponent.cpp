@@ -53,25 +53,10 @@ void RenderComponent::OnEvent(int eventType, Event * e)
 			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
 			_auxPosZ = static_cast<UpdateTransformEvent*>(e)->_posZ;
 		}
-		if (eventType == EventType::EVENT_ROTATION) {//cambiar rotacion
-			_mustRotate = true;
-			_rotX = static_cast<RotationEvent*>(e)->_rotX;
-			_rotY = static_cast<RotationEvent*>(e)->_rotY;
-
-		}
-
 }
 
 void RenderComponent::Update(float deltaTime)
 {	
-	/*if (_mustMove) {
-		_entityNode->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));
-		_mustMove = false;
-
-		std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityNode->getParentSceneNode()->getPosition().z << std::endl;
-		std::cout << "POS Z RENDER : " + _ownerEntity->GetId() + " " << _entityNode->getParentSceneNode()->getPosition().y << std::endl;
-
-	}*/
 
 	if (_mustMove) {
 		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));	
@@ -80,16 +65,7 @@ void RenderComponent::Update(float deltaTime)
 		_mustMove = false;
 		//std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
 		//std::cout << "POS Z RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().y << std::endl;
-	}
-	if (_mustRotate) {
-	//	_entityOgre->getParentNode()->setOrientation(Ogre::Quaternion(_rotX, _rotY, 0, 0));
-
-		_mustRotate = false;
-	}
-		
-
-
-	
+	}	
 }
 
 void RenderComponent::GetEntitySize()
@@ -104,8 +80,8 @@ std::vector<int> RenderComponent::GetPosition()
 	return position;
 }
 
-/*Ogre::SceneNode * RenderComponent::GetNode()
+Ogre::SceneNode * RenderComponent::GetNode()
 {
-	return _entityNode;
-}*/
+	return _entityOgre->getParentSceneNode();
+}
 	

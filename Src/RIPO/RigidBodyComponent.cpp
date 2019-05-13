@@ -139,15 +139,16 @@ void RigidBodyComponent::Update(float deltaTime)
 	if (!_mustMove) {
 
 		_dir = { 0,0,0 };
-
-		_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
-
 	}
-	else {
-		_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
-	}
+
+	//_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
+
+	// Add locally a force in the actor local axes in the given direction
+	PxRigidBodyExt::addLocalForceAtLocalPos((*_actor), _dir * _velocity * deltaTime, _actor->getCMassLocalPose().p, physx::PxForceMode::eIMPULSE);
 
 	_transform = _actor->getGlobalPose();
+
+	
 
 	//std::cout << "POS X: " + _ownerEntity->GetId() + " " << _transform.p.x << std::endl;
 	//std::cout << "POS Y: " + _ownerEntity->GetId() + " " << _transform.p.y << std::endl;

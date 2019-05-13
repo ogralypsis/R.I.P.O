@@ -62,10 +62,7 @@ private:
 
 	Ogre::Real _speed = 5.0;
 
-	Ogre::Camera* _mainCamera = nullptr;
 	Ogre::SceneNode* _camNode = nullptr;
-	Ogre::SceneNode* _camYawNode = nullptr;
-	Ogre::SceneNode* _camPitchNode = nullptr;
 	Ogre::Camera* _camera = nullptr;
 	Ogre::Viewport * _viewPort = nullptr;
 	

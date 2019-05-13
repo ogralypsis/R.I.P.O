@@ -16,10 +16,10 @@ CameraManager::CameraManager()
 
 CameraManager::~CameraManager()
 {
-	if (_mainCamera )
+	if (_player != nullptr)
 	{
-		delete _mainCamera;
-		_mainCamera = nullptr;
+		delete _player;
+		_player = nullptr;
 	}
 	if (_camNode != nullptr)
 	{
@@ -39,8 +39,10 @@ void CameraManager::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager
 	else //if there is a player, create camNode as the player's child
 	{
 		_camNode = _player->createChildSceneNode();
-		Ogre::Vector3 pos (_camNode->getPosition().x, _camNode->getPosition().y + 10, _camNode->getPosition().z + 20);
-		_camNode->setPosition(pos);
+		//rotates camNode to face same direction as parent node
+		_camNode->yaw(Ogre::Degree(-180), Ogre::Node::TS_LOCAL);
+		Ogre::Vector3 pos (_camNode->getPosition().x, _camNode->getPosition().y+5, _camNode->getPosition().z - 20);
+		_camNode->setPosition(pos);	
 	}
 
 	//add a camera
@@ -67,7 +69,7 @@ void CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY
 
 	//X axis rotation on player
 	_rotX = -mouseY;
-	Ogre::Real nextPitch = _camNode->getOrientation().getPitch().valueDegrees() + _rotX;
+	Ogre::Real nextPitch = -_camNode->getOrientation().getPitch().valueDegrees() + _rotX;
 
 	//check if max camera height has been reached
 	if (nextPitch > -_maxPitch && nextPitch < _maxPitch)

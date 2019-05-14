@@ -44,6 +44,7 @@ private:
 	float _tam3;
 
 	physx::PxQuat _orientation;
+	physx::PxTransform p;
 
 	physx::PxQuat ModifyAngleAroundAxis(float angle, physx::PxVec3 axis);
 

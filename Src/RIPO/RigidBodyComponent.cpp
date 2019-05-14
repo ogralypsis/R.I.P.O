@@ -101,7 +101,7 @@ Finally, create a shape using a PxConvexMeshGeometry which instances the mesh:
 PxShape* aConvexShape = aConvexActor->createShape(PxConvexMeshGeometry(convexMesh), aMaterial);
 
 	*/
-
+	
 	_actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
 
 	//añadir mas flags pejemplo
@@ -112,8 +112,6 @@ PxShape* aConvexShape = aConvexActor->createShape(PxConvexMeshGeometry(convexMes
 
 
 	MyPhysX::GetInstance().GetScene()->addActor(*_actor);
-
-
 	
 
 	_shape->release();
@@ -140,9 +138,9 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 		Quat aux = static_cast<RotationEvent*>(e)->_quat;
 
 		_orientation.w = aux.w;
-		_orientation.x = aux.x;
+		_orientation.x = aux.z;
 		_orientation.y = aux.y;
-		_orientation.z = aux.z;
+		_orientation.z = -aux.x;
 
 		_mustRotate = true;
 		
@@ -157,6 +155,18 @@ void RigidBodyComponent::Update(float deltaTime)
 		_dir = { 0,0,0 };
 	}
 
+	_transform = _actor->getGlobalPose();
+
+	if (_mustRotate) {
+
+		//_transform.q = _orientation;
+		_transform.q = ModifyAngleAroundAxis((-1) * _orientation.getAngle(_transform.q), physx::PxVec3{ 0,1,0 });
+
+		_actor->setGlobalPose(_transform);
+
+		_mustRotate = false;
+
+	}
 
 	//_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
 
@@ -164,17 +174,6 @@ void RigidBodyComponent::Update(float deltaTime)
 	PxRigidBodyExt::addLocalForceAtLocalPos((*_actor), _dir * _velocity * deltaTime, _actor->getCMassLocalPose().p, physx::PxForceMode::eIMPULSE);
 
 	_transform = _actor->getGlobalPose();
-
-	/*if (_mustRotate) {
-
-		
-		_transform.q = _transform.q * ModifyAngleAroundAxis(_orientation.getAngle(), physx::PxVec3{ 0,1,0 });
-
-		_actor->setGlobalPose(_transform);
-
-		_mustRotate = false;
-		
-	}*/
 
 	//std::cout << "POS X: " + _ownerEntity->GetId() + " " << _transform.p.x << std::endl;
 	//std::cout << "POS Y: " + _ownerEntity->GetId() + " " << _transform.p.y << std::endl;

@@ -107,7 +107,7 @@ struct MouseMoveEvent : Event
 	int _posY;
 };
 
-
+// Event for telling the rigidbody to update it's orientation
 struct RotationEvent : Event
 {
 	RotationEvent(Quat q, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_ROTATION, destination), _quat(q) {}

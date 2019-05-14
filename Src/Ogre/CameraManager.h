@@ -40,6 +40,10 @@ public:
 	///<sumary>
 	void AttachPlayer(Ogre::SceneNode* playerNode);
 
+	///<sumary>
+	///Clears cameras from the scene
+	///<sumary>
+	void ClearScene();
 
 private:
 

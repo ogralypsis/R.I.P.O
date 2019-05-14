@@ -10,21 +10,32 @@ void CameraManager::AttachPlayer(Ogre::SceneNode * playerNode)
 	_player = playerNode;
 }
 
+
 CameraManager::CameraManager()
 {
 }
 
 CameraManager::~CameraManager()
 {
-	if (_player != nullptr)
+	if (_player != nullptr) 
 	{
-		delete _player;
 		_player = nullptr;
+		delete _player;
 	}
 	if (_camNode != nullptr)
 	{
-		delete _camNode;
 		_camNode = nullptr;
+		delete _camNode;
+	}
+	if (_camera != nullptr)
+	{
+		_camera = nullptr;
+		delete _camera;
+	}
+	if (_viewPort != nullptr)
+	{
+		_viewPort = nullptr;
+		delete _viewPort;
 	}
 }
 

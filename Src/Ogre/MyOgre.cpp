@@ -259,6 +259,9 @@ void MyOgre::ClearScene()
 
 	// clear viewport for name conflicts
 	_window->removeAllViewports();
+
+	//Destroy pointers saved in CameraManager
+	CameraManager::GetInstance().~CameraManager();
 }
 
 void MyOgre::SetUpScene()

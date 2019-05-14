@@ -5,7 +5,6 @@ EventManager * EventManager::_instance = nullptr;
 
 EventManager::EventManager() {}
 
-
 EventManager::~EventManager()
 {
 	ClearObservers();
@@ -60,8 +59,8 @@ void EventManager::NotifyObservers(int eventType, Event * e)
 		// Notify all the observers that listen to that event
 		for (auto i : it->second)
 		{
-			// MiRAR SI DESTINO ES ENTIDAD 
-			// COGER EL EMISOR DEL MENSAJE Y COMPROBARLO CON LA ENTIDAD PROPIETARIA DEL COMPONENTE
+			// check if destiny is entity
+			// take emmiter and check if it's the entity owner of component
 			if (e->GetDestination() == EventDestination::ENTITY) {
 				if(i->GetOwnerEntId() == e->GetEmmitter())
 					i->OnEvent(eventType, e);
@@ -69,7 +68,6 @@ void EventManager::NotifyObservers(int eventType, Event * e)
 			else if(e->GetDestination() == EventDestination::SCENE)
 
 				i->OnEvent(eventType, e);
-
 		}
 	}
 }
@@ -114,7 +112,7 @@ void EventManager::RemoveObserver(int eventType, Component * observer)
 		}
 	}
 }
-void EventManager::SetJsonObservers(const std::map<std::string /*Event*/, std::vector<Component*>> observers)
+void EventManager::SetJsonObservers(const std::map<std::string, std::vector<Component*>> observers)
 {
 	_observersJSON = observers;
 }
@@ -123,4 +121,3 @@ std::map<std::string, std::vector<Component*>> EventManager::GetObservers()
 {
 	return _observersJSON;
 }
-

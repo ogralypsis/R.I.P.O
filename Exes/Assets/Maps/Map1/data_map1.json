@@ -87,7 +87,7 @@
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "5"
             },
             {
               "_name": "positionZ",
@@ -157,7 +157,7 @@
             {
               "_name": "velocity",
               "_type": 2,
-              "_arg": "100"
+              "_arg": "2"
             }
           ],
           "_numEvents": 1,
@@ -364,7 +364,7 @@
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "15"
+              "_arg": "5"
             },
             {
               "_name": "positionZ",

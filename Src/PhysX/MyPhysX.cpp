@@ -34,9 +34,8 @@ bool MyPhysX::Init()
 	}
 
 
-	gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
-	
 	//#if ENABLE_PVD
+	gTransport = physx::PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);	
 	_Pvd = physx::PxCreatePvd(*_PxFoundation);
 	_Pvd->connect(*gTransport, physx::PxPvdInstrumentationFlag::eALL);	
 	//#endif
@@ -90,9 +89,9 @@ void MyPhysX::Shutdown()
 
 	_PxPhysics->release();	
 	_PxCooking->release();
-//#if ENABLE_PVD
-	//_Pvd->release();
-//#endif
+#if ENABLE_PVD
+	_Pvd->release();
+#endif
 	_PxFoundation->release();
 }
 
@@ -106,13 +105,15 @@ void MyPhysX::CreateScene()
 	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
 
 	_scene = _PxPhysics->createScene(sceneDesc);
+
+//#if ENABLE_PVD
 	 pvdClient = _scene->getScenePvdClient();
 	if (pvdClient) {
 		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
 		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
 		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
 	}
-
+//#endif
 
 }
 

@@ -1,18 +1,16 @@
 #include "FileReader.h"
+#include <fstream>
 
 FileReader* FileReader::_instance = nullptr;
 
-FileReader::FileReader()
-{
-}
+FileReader::FileReader() {}
 
+FileReader::~FileReader() {}
 
-FileReader::~FileReader()
+FileReader* FileReader::GetInstance()
 {
-}
-
-FileReader* FileReader::getInstance()
-{
+	// creates instance if it has not yet been created
+	// returns it
 	if (_instance == nullptr) {
 		_instance = new FileReader();
 	}
@@ -20,13 +18,18 @@ FileReader* FileReader::getInstance()
 	return _instance;
 }
 
-json FileReader::readFile(std::string fileName)
+json FileReader::ReadFile(std::string fileName)
 {
+	json file;
+
+	// opens json file and reads
 	std::fstream i(fileName);
 
-	i >> _file;
+	i >> file;
 
+	// closes file
 	i.close();
 
-	return _file;
+	// returns file read
+	return file;
 }

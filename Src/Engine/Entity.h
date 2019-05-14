@@ -61,10 +61,14 @@ public:
 	bool HasComponent(std::string id);
 
 protected:
-	// Components the entity owns and give it its funcionality
+	///<summary>
+	/// Components the entity owns and give it its funcionality
+	///</summary>
 	std::vector<Component*> _components;
 	
-	// Unique identifier for each entity
+	///<summary>
+	/// Unique identifier for each entity
+	///</summary>
 	std::string _id;
 };
 #endif

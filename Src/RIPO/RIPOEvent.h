@@ -1,11 +1,11 @@
 #ifndef _H_RIPOEVENTS_H_
 #define _H_RIPOEVENTS_H_
 
-#include "../Engine/Events.h"
+#include <Events.h>
 
 // Define the differents events types
 
-typedef enum EventType {
+enum EventType {
 
 	EVENT_J, EVENT_W, EVENT_A, EVENT_S, EVENT_D,
 	EVENT_L_MOUSE, EVENT_MOVE_MOUSE,

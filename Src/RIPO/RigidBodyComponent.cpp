@@ -23,6 +23,9 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	_id = "RigidBody";
 
 	_mustMove = false;
+	_mustRotate = false;
+
+	_orientation =  physx::PxQuat();
 
 	// 1: sphere, 2: box, 3: capsule, 4: plane
 	int geometry = arguments["geometry"]._i;
@@ -100,14 +103,18 @@ PxShape* aConvexShape = aConvexActor->createShape(PxConvexMeshGeometry(convexMes
 	*/
 
 	_actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+
 	//añadir mas flags pejemplo
-	_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_X, true);
+	/*_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_X, true);
 	_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y, true);
-	_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z, true);
+	_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z, true);*/
 
 
 
 	MyPhysX::GetInstance().GetScene()->addActor(*_actor);
+
+
+	
 
 	_shape->release();
 
@@ -127,9 +134,18 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 	}
 	if (eventType == EventType::EVENT_ROTATION) {//cambiar rotacion
 		
-		_rotX = static_cast<RotationEvent*>(e)->_rotX;
-		_rotY = static_cast<RotationEvent*>(e)->_rotY;
-	
+		//_rotX = static_cast<RotationEvent*>(e)->_rotX;
+		//_rotY = static_cast<RotationEvent*>(e)->_rotY;
+
+		Quat aux = static_cast<RotationEvent*>(e)->_quat;
+
+		_orientation.w = aux.w;
+		_orientation.x = aux.x;
+		_orientation.y = aux.y;
+		_orientation.z = aux.z;
+
+		_mustRotate = true;
+		
 	}
 
 }
@@ -141,6 +157,7 @@ void RigidBodyComponent::Update(float deltaTime)
 		_dir = { 0,0,0 };
 	}
 
+
 	//_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
 
 	// Add locally a force in the actor local axes in the given direction
@@ -148,7 +165,16 @@ void RigidBodyComponent::Update(float deltaTime)
 
 	_transform = _actor->getGlobalPose();
 
-	
+	/*if (_mustRotate) {
+
+		
+		_transform.q = _transform.q * ModifyAngleAroundAxis(_orientation.getAngle(), physx::PxVec3{ 0,1,0 });
+
+		_actor->setGlobalPose(_transform);
+
+		_mustRotate = false;
+		
+	}*/
 
 	//std::cout << "POS X: " + _ownerEntity->GetId() + " " << _transform.p.x << std::endl;
 	//std::cout << "POS Y: " + _ownerEntity->GetId() + " " << _transform.p.y << std::endl;
@@ -158,6 +184,18 @@ void RigidBodyComponent::Update(float deltaTime)
 	EventManager::GetInstance()->NotifyObservers(utEvent->GetType(), utEvent);
 
 	_mustMove = false;
+}
+
+physx::PxQuat RigidBodyComponent::ModifyAngleAroundAxis(float angle, physx::PxVec3 axis)
+{
+	//To determine the quaternion for a rotation of Î± degrees/radians around an axis defined by a vector (x, y, z):
+	physx::PxQuat q = physx::PxQuat();
+	q.w = (float)cos((double)(0.5 * angle));
+	q.x = axis.x * sin((double)(0.5 * angle));
+	q.y = axis.y * sin((double)(0.5 * angle));
+	q.z = axis.z * sin((double)(0.5 * angle));
+
+	return q;
 }
 
 

@@ -33,16 +33,12 @@ public:
 	///<sumary>
 	///To be called from a PlayerController, rotates the camara SceneNode
 	///<sumary>
-	void FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY);
+	Ogre::Quaternion FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY);
 
 	///<sumary>
 	///To be called from a PlayerController, attaches the camera node to a node
 	///<sumary>
 	void AttachPlayer(Ogre::SceneNode* playerNode);
-
-
-	float GetRotX() { return _rotX; }
-	float GetRotY() { return _rotY; }
 
 
 private:
@@ -66,7 +62,6 @@ private:
 	Ogre::Camera* _camera = nullptr;
 	Ogre::Viewport * _viewPort = nullptr;
 	
-
 };
 
 

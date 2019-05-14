@@ -61,7 +61,7 @@ void CameraManager::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager
 
 
 
-void CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY)
+Ogre::Quaternion CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY)
 {
 	//Y axis rotation on player
 	_rotY = -mouseX;
@@ -74,6 +74,10 @@ void CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre::Real mouseY
 	//check if max camera height has been reached
 	if (nextPitch > -_maxPitch && nextPitch < _maxPitch)
 		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed* time);
+
+
+	return _player->getOrientation();
+	
 }
 
 CameraManager & CameraManager::GetInstance()
@@ -92,50 +96,6 @@ void CameraManager::ResetInstance()
 		_instance = nullptr;
 	}
 }
-
-/*void CameraManager::MoveForward(Ogre::Real time)
-{
-
-	Ogre::Vector3 vt(0, 0, 0);
-
-	vt += Ogre::Vector3(0, 0, -1);
-
-	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
-
-}
-
-void CameraManager::MoveBack(Ogre::Real time)
-{
-
-	Ogre::Vector3 vt(0, 0, 0);
-
-	vt += Ogre::Vector3(0, 0, 1);
-
-	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
-
-}
-
-void CameraManager::MoveRight(Ogre::Real time)
-{
-
-	Ogre::Vector3 vt(0, 0, 0);
-
-	vt += Ogre::Vector3(1, 0, 0);
-
-	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
-
-}
-
-void CameraManager::MoveLeft(Ogre::Real time)
-{
-
-	Ogre::Vector3 vt(0, 0, 0);
-
-	vt += Ogre::Vector3(-1, 0, 0);
-
-	_player->translate(vt * time * _speed, Ogre::Node::TS_LOCAL);
-
-}*/
 
 
 

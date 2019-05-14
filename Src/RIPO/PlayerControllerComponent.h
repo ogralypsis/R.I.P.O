@@ -23,11 +23,6 @@ public:
 
 private:
 
-	void ForwardMovement(float deltaTime);
-	void LeftMovement(float deltaTime);
-	void BackMovement(float deltaTime);
-	void RightMovement(float deltaTime);
-
 	void CameraRotation(float deltaTime);
 
 
@@ -60,7 +55,8 @@ private:
 	Ogre::Real _mouseX;
 	Ogre::Real _mouseY;
 
-	TransformComponent* _transform = nullptr;
+	TransformComponent* _transform;
+	RenderComponent* _render;
 	
 };
 

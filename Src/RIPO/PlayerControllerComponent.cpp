@@ -11,7 +11,17 @@
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
 
-PlayerControllerComponent::~PlayerControllerComponent(){}
+PlayerControllerComponent::~PlayerControllerComponent(){
+
+	if (_transform) {
+		_transform = nullptr;
+		delete _transform;
+	}
+	if (_render) {
+		_render = nullptr;
+		delete _render;
+	}
+}
 
 void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
@@ -24,6 +34,9 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_input = false;
 	_mustMove = false;
 
+	_transform = nullptr;
+	_render = nullptr;
+
 	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform")); 
 	
 	_posX = _transform->GetPosX();
@@ -33,9 +46,9 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_posZ = _transform->GetPosZ();
 	_orPosZ = _posZ;
 
-	RenderComponent* render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
+	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
 
-	CameraManager::GetInstance().AttachPlayer(render->GetNode());
+	CameraManager::GetInstance().AttachPlayer(_render->GetNode());
 }
 
 void PlayerControllerComponent::OnEvent(int eventType, Event * e)
@@ -81,12 +94,10 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		_mouseY = static_cast<MouseMoveEvent*>(e)->_posY;
 		_moveCamera = true;		
 
-		_rotX = CameraManager::GetInstance().GetRotX();
-		_rotY = CameraManager::GetInstance().GetRotY();
+		/*_rotX = CameraManager::GetInstance().GetRotX();
+		_rotY = CameraManager::GetInstance().GetRotY();*/
 		
-		RotationEvent * RotationMovement = new RotationEvent(_rotX, _rotY, _ownerEntity->GetId(), EventDestination::ENTITY);
-		EventManager::GetInstance()->NotifyObservers(RotationMovement->GetType(), RotationMovement);
-		//Creo que falta añadir que sea observador el render del player?
+		
 
 	}
 
@@ -108,39 +119,27 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 
 void PlayerControllerComponent::Update(float deltaTime)
 {
-	/*if (_mustMove)
-		CameraMovement();*/
 	if(_moveCamera) 
 		CameraRotation(deltaTime);
 }
 
 
-void PlayerControllerComponent::ForwardMovement(float deltaTime)
-{
-
-
-}
-
-void PlayerControllerComponent::LeftMovement(float deltaTime)
-{
-
-}
-
-void PlayerControllerComponent::BackMovement(float deltaTime)
-{
-
-}
-
-void PlayerControllerComponent::RightMovement(float deltaTime)
-{
-
-}
-
 
 
 void PlayerControllerComponent::CameraRotation(float deltaTime)
 {
-	CameraManager::GetInstance().FPSrotation(deltaTime, _mouseX, _mouseY);
+			
+	Ogre::Quaternion q =  CameraManager::GetInstance().FPSrotation(deltaTime, _mouseX, _mouseY);
+
+	Quat newQuat;
+	newQuat.w = float(q.w);
+	newQuat.x = float(q.x);
+	newQuat.y = float(q.y);
+	newQuat.z = float(q.z);
+
+	RotationEvent * RotationMovement = new RotationEvent(newQuat, _ownerEntity->GetId(), EventDestination::ENTITY);
+	EventManager::GetInstance()->NotifyObservers(RotationMovement->GetType(), RotationMovement);
+
 	_moveCamera = false;
 
 }

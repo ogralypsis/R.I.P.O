@@ -25,8 +25,11 @@ private:
 
 	physx::PxTransform  _transform;
 
+	RenderComponent * _render;
+
 	// Determine if the rigidbody must be updated
 	bool _mustMove;
+	bool _mustRotate;
 
 	physx::PxVec3 _dir;
 
@@ -40,7 +43,10 @@ private:
 	float _tam2;
 	float _tam3;
 
+	physx::PxQuat _orientation;
 
-	RenderComponent * _render;
+	physx::PxQuat ModifyAngleAroundAxis(float angle, physx::PxVec3 axis);
+
+
 };
 #endif

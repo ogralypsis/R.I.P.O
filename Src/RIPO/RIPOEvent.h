@@ -20,6 +20,14 @@ struct Dir {
 	int z;
 };
 
+struct Quat {
+
+	float w;
+	float x;
+	float y;
+	float z;
+};
+
 
 // New Events specific for the game:
 
@@ -102,10 +110,9 @@ struct MouseMoveEvent : Event
 
 struct RotationEvent : Event
 {
-	RotationEvent(int x, int y, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_ROTATION, destination), _rotX(x), _rotY(y) {}
+	RotationEvent(Quat q, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_ROTATION, destination), _quat(q) {}
 
-	int _rotX;
-	int _rotY;
+	Quat _quat;
 };
 
 // PLAYER DEATH

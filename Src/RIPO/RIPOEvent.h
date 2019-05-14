@@ -11,7 +11,7 @@ enum EventType {
 	EVENT_L_MOUSE, EVENT_MOVE_MOUSE,
 	EVENT_DEATH,
 	EVENT_UPDATE_TRANSFORM, EVENT_PHYSICS_MOVE,
-	EVENT_CHANGE_SCENE,EVENT_ROTATION
+	EVENT_CHANGE_SCENE,EVENT_ROTATION, EVENT_SHOOT
 };
 
 struct Dir {
@@ -148,6 +148,10 @@ struct PhysicsMoveEvent : Event
 	Dir _dir;
 };
 
+struct ShootEvent : Event
+{
+	ShootEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_SHOOT, destination) {};
+};
 
 #pragma endregion
 

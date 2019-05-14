@@ -20,6 +20,7 @@
 #include "ButtonComponent.h"
 #include "ExitButtonComponent.h"
 #include "PathFindingComponent.h"
+#include "BulletComponent.h"
 
 // other tools
 #include <Windows.h>
@@ -296,4 +297,5 @@ void Game::RegisterComponents()
 	_compFactory.Register("ButtonComponent", new DerivedCreator<ButtonComponent, Component>());
 	_compFactory.Register("ExitButtonComponent", new DerivedCreator<ExitButtonComponent, Component>());
 	_compFactory.Register("PathFindingComponent", new DerivedCreator<PathFindingComponent, Component>());
+	_compFactory.Register("BulletComponent", new DerivedCreator<BulletComponent, Component>());
 }

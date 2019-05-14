@@ -30,6 +30,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\RIPO\BulletComponent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\ButtonComponent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\ExitButtonComponent.cpp" />
     <ClCompile Include="..\..\Src\RIPO\Game.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="..\..\Src\RIPO\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\RIPO\BulletComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\ButtonComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\ExitButtonComponent.h" />
     <ClInclude Include="..\..\Src\RIPO\Game.h" />

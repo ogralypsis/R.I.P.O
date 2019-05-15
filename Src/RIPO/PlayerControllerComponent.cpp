@@ -103,6 +103,11 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType)
 	{
 		std::cout << "GONNA SHOOT" << std::endl;
+
+		Entity* e = Game::GetInstance().CurrentScene()->GetPrefab("Bullet");
+
+
+
 		ShootEvent * shootEvent = new ShootEvent(_ownerEntity->GetId(), EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
 	}

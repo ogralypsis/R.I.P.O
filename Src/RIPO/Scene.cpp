@@ -56,6 +56,14 @@ void Scene::Update(float t)
 	EntityManager::GetInstance()->Update(t);
 }
 
+Entity* Scene::GetPrefab(std::string id)
+{
+	if (_prefabs.count(id) != 0)
+		return _prefabs[id];
+	else
+		return nullptr;
+}
+
 void Scene::AddSceneObservers()
 {
 	std::map<std::string /*Event*/, std::vector<Component*>> observers = EventManager::GetInstance()->GetObservers();

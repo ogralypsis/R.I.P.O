@@ -11,9 +11,13 @@ public:
 
 	virtual void Update(float t);
 
+	Entity* GetPrefab(std::string id);
+
 private:
 
 	virtual void AddSceneObservers();
+
+	std::map<std::string, Entity*> _prefabs;
 
 };
 #endif

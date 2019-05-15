@@ -46,6 +46,11 @@ public:
 	/// </summary>
 	void ChangeScene(std::string name);
 
+	/// <summary>
+	/// Returns current scene
+	/// </summary>
+	Scene* CurrentScene();
+
 	void QueueScene(std::string scene);
 
 	void ExitGame();

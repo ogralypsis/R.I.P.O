@@ -17,13 +17,15 @@ Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, com
 
 	json entities = FileReader::GetInstance()->ReadFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
 
-	SceneLoader::GetInstance()->LoadFromJson(entities, compFactory);
+	_prefabs = SceneLoader::GetInstance()->LoadFromJson(entities, compFactory);
 
 	//SetUp ogre scene
 	MyOgre::GetInstance().SetUpScene();
 
 	// add events to scene
 	AddSceneObservers();
+
+	_factory = compFactory;
 }
 
 Scene::~Scene() 
@@ -54,6 +56,52 @@ void Scene::Update(float t)
 	}
 	// Update entities...
 	EntityManager::GetInstance()->Update(t);
+}
+
+Entity* Scene::GetPrefab(std::string id)
+{
+	// if the entity is not registered it won't create a new entity
+	if (_prefabs.count(id) != 0)
+		return CreateEntity(id);
+	else
+		return nullptr;
+}
+
+
+Entity* Scene::CreateEntity(std::string id)
+{
+	// create new entity
+
+	Entity* newEnt = new Entity(id);
+	std::map<std::string, std::map<std::string, Arguments>>::const_iterator it = _prefabs[id].components.cbegin();
+
+	while (it != _prefabs[id].components.cend())
+	{
+		//create the new component
+		Component* c = _factory.Create(it->first);
+
+		//add arguments and intialise component
+		c->Init(it->second, newEnt);
+
+		//add component to entity
+		newEnt->AddComponent(c);
+
+		int numEvents = _prefabs[id].events[it->first].size();
+
+		//add events
+		for (int i = 0; i < numEvents; i++)
+		{
+			std::string event = _prefabs[id].events[it->first][i];
+			int eventType = GetEventType(event);
+			EventManager::GetInstance()->AddObserver(eventType, c);
+		}
+
+		it++;
+	}
+
+	EntityManager::GetInstance()->AddEntity(newEnt);
+
+	return newEnt;
 }
 
 void Scene::AddSceneObservers()
@@ -116,4 +164,20 @@ void Scene::AddSceneObservers()
 
 		it++;
 	}
+}
+
+int Scene::GetEventType(std::string nameEvent)
+{
+	if (nameEvent == "UpdateTransformEvent")return EventType::EVENT_UPDATE_TRANSFORM;
+	else if (nameEvent == "PhysicsMoveEvent")return EventType::EVENT_PHYSICS_MOVE;
+	else if (nameEvent == "RotationEvent")return EventType::EVENT_ROTATION;
+	else if (nameEvent == "L_MouseEvent")return EventType::EVENT_LEFT_MOUSECLICK;
+	else if (nameEvent == "MouseMoveEvent")return EventType::EVENT_MOVE_MOUSE;
+	else if (nameEvent == "DeathEvent")return EventType::EVENT_DEATH;
+	else if (nameEvent == "WEvent")return EventType::EVENT_W;
+	else if (nameEvent == "AEvent")return EventType::EVENT_A;
+	else if (nameEvent == "SEvent")return EventType::EVENT_S;
+	else if (nameEvent == "DEvent")return EventType::EVENT_D;
+	else if (nameEvent == "JEvent") return EventType::EVENT_J;
+	else return EventType::EVENT_SHOOT;
 }

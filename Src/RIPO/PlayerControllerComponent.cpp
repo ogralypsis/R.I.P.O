@@ -106,6 +106,10 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType)
 	{
 		std::cout << "GONNA SHOOT" << std::endl;
+		
+		//shoots bullet
+		BulletInstantiate();
+
 		ShootEvent * shootEvent = new ShootEvent(_ownerEntity->GetId(), EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
 	}
@@ -160,5 +164,15 @@ void PlayerControllerComponent::ResetPosition()
 	_posZ = _orPosZ;
 
 	_transform->SetPosition(_posX, _posY, _posZ);
+}
+
+void PlayerControllerComponent::BulletInstantiate()
+{
+	//instantiates bullet
+	Entity* newEnt = Game::GetInstance().CurrentScene()->GetPrefab("Bullet");
+
+	RenderComponent* newEntRender = dynamic_cast<RenderComponent*>(newEnt->GetComponent("Render"));
+	newEntRender->GetNode()->_setDerivedPosition(_render->GetNode()->getPosition());
+
 }
 

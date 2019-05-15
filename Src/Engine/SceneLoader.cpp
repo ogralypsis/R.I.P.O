@@ -19,8 +19,11 @@ SceneLoader * SceneLoader::GetInstance()
 	return _instance;
 }
 
-void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFactory)
+std::map<std::string, typeOfEntity> SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFactory)
 {
+	// stores the entities that will be instantiated in-game
+	std::map<std::string, typeOfEntity> prefabs;
+
 	// take the number of entities from JSON
 	int numEntities = json["_numEntities"];
 
@@ -29,12 +32,25 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 
 	for (int i = 0; i < numEntities; i++)
 	{
+		bool inPrefabs = true; // to check if the entity must be registered
+
 		// for each entity, take the name
 		std::string name = json["_entities"][i]["_entityID"];
 		Entity * newEntity = new Entity(name);
 
+		
+		
 		// for each entity, take number of its components
 		int numComponents = json["_entities"][i]["_numComponents"];
+		
+		// if the current type of entity has not been registered
+		if (prefabs.count(name) == 0)
+		{
+			inPrefabs = false; //type of entity nor registered
+			typeOfEntity newType; 
+			newType.type = name; 
+			prefabs.emplace(name, newType);
+		}
 
 		for (int j = 0; j < numComponents; j++)
 		{
@@ -89,6 +105,8 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 					break;
 				}
 			}
+
+
 			// create component
 			Component* newComponent = compFactory.Create(nameComponent);
 
@@ -98,9 +116,19 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 			// add component to entity
 			newEntity->AddComponent(newComponent);
 
+			
 			// for each component, how many events it has
 			int numEvents = json["_entities"][i]["_components"][j]["_numEvents"];
-
+			
+			// if the entity must be registered, register components
+			if (!inPrefabs)
+			{
+				prefabs[name].components.emplace(nameComponent, argumentMap); //component and its arguments
+				std::vector<std::string> allEvents; //events from the component
+				allEvents.resize(numEvents);
+				prefabs[name].events.emplace(nameComponent, allEvents);
+			}
+			
 			for (int b = 0; b < numEvents; b++) {
 
 				std::string nameEvent = json["_entities"][i]["_components"][j]["_events"][b];
@@ -117,13 +145,20 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 					myVector.emplace_back(newComponent);
 					observers.insert(std::pair < std::string, std::vector<Component*>>(nameEvent, myVector));
 				}
+
+				//if the entity must be registered, save the events to the component
+				if (!inPrefabs)
+					prefabs[name].events[nameComponent].emplace_back(nameEvent);
 			}
 		}
-
+		
 		// Add entity to Manager
 		EntityManager::GetInstance()->AddEntity(newEntity);
+		
 	}
 
 	// passes the listeners to the event manager
 	EventManager::GetInstance()->SetJsonObservers(observers);
+
+	return prefabs;
 }

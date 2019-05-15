@@ -13,3 +13,8 @@ std::string Component::GetOwnerEntId()
 {
 	return _ownerEntity->GetId();
 }
+
+std::map<std::string, Arguments> Component::GetArguments()
+{
+	return _originalArguments;
+}

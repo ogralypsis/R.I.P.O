@@ -9,10 +9,18 @@
 #include "Factory.h"
 #include "Component.h"
 
+struct typeOfEntity
+{
+	std::string type; //id of entity
+	std::map<std::string, std::map<std::string, Arguments>> components; //components and arguments
+	std::map<std::string, std::vector<std::string>> events; //events of each component
+};
+
 class SceneLoader
 {
 public:
 	~SceneLoader();
+	
 
 	///<summary>
 	/// creates the instance or returns one already created. necessary for the singleton pattern
@@ -24,7 +32,9 @@ public:
 	///</summary>
 	///<param name="json">the file that has been read. contains all the info of objects to be created</param>
 	///<param name="compFactory">contains a map of the components abailable with their constructors. necessary for the factory pattern</param>
-	void LoadFromJson(nlohmann::json json, Factory<Component>compFactory);
+	std::map<std::string, typeOfEntity> LoadFromJson(nlohmann::json json, Factory<Component>compFactory);
+
+	
 
 private:
 	///<summary>

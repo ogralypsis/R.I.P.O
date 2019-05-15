@@ -12,6 +12,7 @@ void BulletComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	_ownerEntity = e;
 	_id = "Bullet";
 
+	_originalArguments = arguments;
 	
 	_speed = arguments["speed"]._f;
 
@@ -38,3 +39,4 @@ void BulletComponent::Update(float deltaTime)
 BulletComponent::~BulletComponent()
 {
 }
+

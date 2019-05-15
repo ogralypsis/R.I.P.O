@@ -108,13 +108,19 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType)
 	{
 		
-		std::cout << "GONNA SHOOT" << std::endl;
-		
-		//shoots bullet
-		BulletInstantiate();
+		if (!_clickFlag)
+		{
+			std::cout << "GONNA SHOOT" << std::endl;
 
-		ShootEvent * shootEvent = new ShootEvent(_ownerEntity->GetId(), EventDestination::SCENE);
-		EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
+			//shoots bullet
+			BulletInstantiate();
+
+			ShootEvent * shootEvent = new ShootEvent(_ownerEntity->GetId(), EventDestination::SCENE);
+			EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
+
+			_clickFlag = true;
+			_clickFlagTimer = 0;
+		}
 	}
 
 	else if (eventType == EventType::EVENT_UPDATE_TRANSFORM && e->GetEmmitter() == _ownerEntity->GetId())
@@ -137,6 +143,14 @@ void PlayerControllerComponent::Update(float deltaTime)
 {
 	if(_moveCamera) 
 		CameraRotation(deltaTime);
+
+
+	if (_clickFlag)
+	{
+		_clickFlagTimer += deltaTime;
+		if (_clickFlagTimer > 5)
+			_clickFlag = false;
+	}
 }
 
 

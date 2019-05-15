@@ -42,6 +42,10 @@ private:
 
 	std::string _mesh = "";
 
+	//variables to control shooting frequency
+	bool _clickFlag = false;
+	float _clickFlagTimer;
+
 	Dir _dir;
 
 	//Original positions

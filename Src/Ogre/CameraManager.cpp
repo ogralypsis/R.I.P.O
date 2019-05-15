@@ -82,9 +82,9 @@ Ogre::Quaternion CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre:
 	_rotX = -mouseY;
 	Ogre::Real nextPitch = -_camNode->getOrientation().getPitch().valueDegrees() + _rotX;
 
-	/*//check if max camera height has been reached
+	//check if max camera height has been reached
 	if (nextPitch > -_maxPitch && nextPitch < _maxPitch)
-		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed * time);*/
+		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed * time);
 
 	Ogre::Matrix3 m = Ogre::Matrix3();
 	_player->getOrientation().ToRotationMatrix(m);

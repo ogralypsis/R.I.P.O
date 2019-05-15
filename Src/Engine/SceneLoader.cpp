@@ -24,8 +24,6 @@ std::map<std::string, typeOfEntity> SceneLoader::LoadFromJson(nlohmann::json jso
 	// stores the entities that will be instantiated in-game
 	std::map<std::string, typeOfEntity> prefabs;
 
-	
-
 	// take the number of entities from JSON
 	int numEntities = json["_numEntities"];
 
@@ -153,18 +151,9 @@ std::map<std::string, typeOfEntity> SceneLoader::LoadFromJson(nlohmann::json jso
 					prefabs[name].events[nameComponent].emplace_back(nameEvent);
 			}
 		}
-
-		if (name == "Bullet")
-		{
-			//if(prefabs.count(name) == 0)
-			//Entity& e = dynamic_cast<Entity&>(*newEntity);
-			prefabs.emplace(name, newEntity);
-			/*EntityManager::GetInstance()->AddEntity(newEntity);
-			EntityManager::GetInstance()->DeleteEntity(newEntity);*/
-		}
 		
-			// Add entity to Manager
-			EntityManager::GetInstance()->AddEntity(newEntity);
+		// Add entity to Manager
+		EntityManager::GetInstance()->AddEntity(newEntity);
 		
 	}
 

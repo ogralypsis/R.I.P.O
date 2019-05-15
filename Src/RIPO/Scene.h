@@ -19,6 +19,8 @@ private:
 	Factory<Component> _factory;
 
 	std::map<std::string, typeOfEntity> _prefabs;
+	
+	int GetEventType(std::string nameEvent);
 
 	Entity* CreateEntity(std::string id);
 };

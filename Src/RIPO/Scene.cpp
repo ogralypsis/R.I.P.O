@@ -60,32 +60,62 @@ void Scene::Update(float t)
 
 Entity* Scene::GetPrefab(std::string id)
 {
-	if (_prefabs.count(id) != 0)
+	/*if (_prefabs.count(id) != 0)
 		return _prefabs[id];
-	else
+	else*/
 		return nullptr;
+}
+
+int Scene::GetEventType(std::string nameEvent)
+{
+	if (nameEvent == "JEvent") return EventType::EVENT_J;
+	else if (nameEvent == "WEvent")return EventType::EVENT_W;
+	else if (nameEvent == "AEvent")return EventType::EVENT_A;
+	else if (nameEvent == "SEvent")return EventType::EVENT_S;
+	else if (nameEvent == "DEvent")return EventType::EVENT_D;
+	else if (nameEvent == "L_MouseEvent")return EventType::EVENT_LEFT_MOUSECLICK;
+	else if (nameEvent == "MouseMoveEvent")return EventType::EVENT_MOVE_MOUSE;
+	else if (nameEvent == "DeathEvent")return EventType::EVENT_DEATH;
+	else if (nameEvent == "UpdateTransformEvent")return EventType::EVENT_UPDATE_TRANSFORM;
+	else if (nameEvent == "PhysicsMoveEvent")return EventType::EVENT_PHYSICS_MOVE;
+	else if (nameEvent == "RotationEvent")return EventType::EVENT_ROTATION;
+	else return EventType::EVENT_SHOOT;
 }
 
 Entity* Scene::CreateEntity(std::string id)
 {
+	
+	// if the entity is not registered it won't create a new entity
+	if (_prefabs.count(id) == 0)
+		return nullptr;
+
 	// create new entity
 	Entity* newEnt = new Entity(id);
-	
-	std::vector<Component*> components = _prefabs[id]->GetAllComponents();
+	std::map<std::string, std::map<std::string, Arguments>>::const_iterator it = _prefabs[id].components.cbegin();
 
-	for (int i = 0; i < components.size(); i++)
+	while (it != _prefabs[id].components.cend())
 	{
-		// create component
-		Component* c = _factory.Create(components[i]->GetId());
+		//create the new component
+		Component* c = _factory.Create(it->first);
 
-		// add arguments to components
-		c->Init(components[i]->GetArguments(), newEnt);
+		//add arguments and intialise component
+		c->Init(it->second, newEnt);
 
-		//add component to 
+		//add component to entity
 		newEnt->AddComponent(c);
-	}
 
-	
+		int numEvents = _prefabs[id].events[it->first].size();
+
+		//add events
+		for (int i = 0; i < numEvents; i++)
+		{
+			std::string event = _prefabs[id].events[it->first][i];
+			int eventType = GetEventType(event);
+			EventManager::GetInstance()->AddObserver(eventType, c);
+		}
+
+		it++;
+	}
 
 	EntityManager::GetInstance()->AddEntity(newEnt);
 

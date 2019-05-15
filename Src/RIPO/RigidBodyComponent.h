@@ -24,6 +24,7 @@ private:
 	const physx::PxMaterial * _material;
 
 	physx::PxTransform  _transform;
+	physx::PxQuat _orientation;
 
 	RenderComponent * _render;
 
@@ -39,12 +40,14 @@ private:
 
 	float _velocity;
 
+	int _geometry;
+
 	float _tam1;
 	float _tam2;
 	float _tam3;
 
-	physx::PxQuat _orientation;
-	physx::PxTransform p;
+
+
 
 	physx::PxQuat ModifyAngleAroundAxis(float angle, physx::PxVec3 axis);
 

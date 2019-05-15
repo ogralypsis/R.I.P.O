@@ -2,6 +2,7 @@
 #define _H_RIPOEVENTS_H_
 
 #include <Events.h>
+#include "Utils.h"
 
 // Define the differents events types
 
@@ -14,19 +15,6 @@ enum EventType {
 	EVENT_CHANGE_SCENE,EVENT_ROTATION, EVENT_SHOOT
 };
 
-struct Dir {
-	int x;
-	int y;
-	int z;
-};
-
-struct Quat {
-
-	float w;
-	float x;
-	float y;
-	float z;
-};
 
 
 // New Events specific for the game:

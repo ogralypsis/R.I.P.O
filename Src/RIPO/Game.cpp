@@ -244,10 +244,15 @@ void Game::Render()
 
 	// render gui
 	CEGUIUser::GetInstance()->Draw();
+
+	std::cout << "RENDEEEEEEEEEEEEEEEEEEEEEEEER--------------------------->" << std::endl;
 }
 
 void Game::ChangeScene(std::string name)
 {
+
+	std::cout << "CHANGE SCENEEEEEE" << std::endl;
+
 	// if the stack is not empty (i.e., already has an scene)
 	if (!_states.empty()) 
 	{

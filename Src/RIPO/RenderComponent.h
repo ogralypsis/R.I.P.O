@@ -3,8 +3,9 @@
 
 #include <Component.h>
 #include "TransformComponent.h"
-// events from RIPO
-#include "RIPOEvent.h"
+
+
+#include "Utils.h"
 
 class RenderComponent :
 	public Component
@@ -22,13 +23,13 @@ public:
 	//returns the entities SceneNode
 	Ogre::SceneNode* GetNode();
 	
-	std::vector<int> GetPosition();
+	Pos GetPosition();
 
 	Quat GetOrientation();
 	
 private:
 
-	//TransformComponent * _transform = nullptr;
+	
 
 	Ogre::Entity * _entityOgre;
 
@@ -36,18 +37,13 @@ private:
 	bool _mustMove;
 	bool _mustRotate;
 
-	int _positionX;
-	int _positionY;
-	int _positionZ;
+	float _positionX;
+	float _positionY;
+	float _positionZ;
 
 	float _auxPosX;
 	float _auxPosY;
 	float _auxPosZ;
-
-
-	float _rotX;
-	float _rotY;
-
 };
 
 #endif RENDER_COMPONENT_H

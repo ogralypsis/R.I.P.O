@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include <iostream>
 
 // singletons Ogre and physX
 #include <MyOgre.h>
@@ -19,11 +20,15 @@ Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, com
 
 	SceneLoader::GetInstance()->LoadFromJson(entities, compFactory);
 
+	std::cout << "LOADING SCENEEEEEEEEEEEEEEEEEEEEE--------------------------->" << std::endl;
+
 	//SetUp ogre scene
 	MyOgre::GetInstance().SetUpScene();
 
 	// add events to scene
 	AddSceneObservers();
+
+	std::cout << "OBSERVEEEEEEEEEEEEEEEEERS--------------------------->" << std::endl;
 }
 
 Scene::~Scene() 

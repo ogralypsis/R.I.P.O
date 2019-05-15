@@ -140,11 +140,7 @@ void PlayerControllerComponent::CameraRotation(float deltaTime)
 			
 	Ogre::Quaternion q =  CameraManager::GetInstance().FPSrotation(deltaTime, _mouseX, _mouseY);
 
-	Quat newQuat;
-	newQuat.w = float(q.w);
-	newQuat.x = float(q.x);
-	newQuat.y = float(q.y);
-	newQuat.z = float(q.z);
+	Quat newQuat(float(q.w), float(q.x), float(q.y), float(q.z));
 
 	RotationEvent * RotationMovement = new RotationEvent(newQuat, _ownerEntity->GetId(), EventDestination::ENTITY);
 	EventManager::GetInstance()->NotifyObservers(RotationMovement->GetType(), RotationMovement);

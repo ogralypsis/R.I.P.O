@@ -3,8 +3,8 @@
 // singleton
 #include <MyOgre.h>
 
-/*// events from RIPO
-#include "RIPOEvent.h"*/
+// events from RIPO
+#include "RIPOEvent.h"
 
 // other tools
 #include <iostream>
@@ -24,9 +24,9 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	std::string _mesh = arguments["mesh"]._str;
 
-	_positionX = arguments["positionX"]._i;
-	_positionY = arguments["positionY"]._i;
-	_positionZ = arguments["positionZ"]._i;
+	_positionX = arguments["positionX"]._f;
+	_positionY = arguments["positionY"]._f;
+	_positionZ = arguments["positionZ"]._f;
 
 	float _scaleX = arguments["scaleX"]._f;
 	float _scaleY = arguments["scaleY"]._f;
@@ -38,6 +38,10 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionZ, _positionY),Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotationX), Ogre::Radian(_rotationY), Ogre::Radian(_rotationZ));
 	
+
+	 _auxPosX = 0.0f;
+	 _auxPosY = 0.0f;
+	 _auxPosZ = 0.0f;
 	// TODO: COGER LOS VERTICES DEL BOUNDING BOX DE OGRE, PASARSELOS AL RIGIDBODY Y CREAR UNA CUSTOM SHAPE CON ELLOS
 	//_entityOgre->getBoundingBox().getAllCorners();
 
@@ -48,7 +52,7 @@ void RenderComponent::OnEvent(int eventType, Event * e)
 		
 		if (eventType == EventType::EVENT_UPDATE_TRANSFORM && e->GetEmmitter() == _ownerEntity->GetId())
 		{
-			//std::cout << "EVENTO UPDATE TRANSFORM RECIBIDO" << std::endl;
+		
 			_mustMove = true;
 			_auxPosX = static_cast<UpdateTransformEvent*>(e)->_posX;
 			_auxPosY = static_cast<UpdateTransformEvent*>(e)->_posY;
@@ -72,9 +76,9 @@ void RenderComponent::GetEntitySize()
 
 }
 
-std::vector<int> RenderComponent::GetPosition()
+Pos RenderComponent::GetPosition()
 {
-	std::vector<int> position = { _positionX, _positionY, _positionZ };
+	Pos position(_positionX, _positionY, _positionZ);
 	return position;
 }
 
@@ -83,11 +87,7 @@ Quat RenderComponent::GetOrientation()
 
 	Ogre::Matrix3 m = Ogre::Matrix3();
 	Ogre::Quaternion qAux = _entityOgre->getParentSceneNode()->getOrientation();
-	Quat q;
-	q.w = qAux.w;
-	q.x = qAux.x;
-	q.y = qAux.y;
-	q.z = qAux.z;
+	Quat q(qAux.w, qAux.x, qAux.y, qAux.z);
 
 	return q;
 }

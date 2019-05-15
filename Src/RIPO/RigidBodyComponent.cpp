@@ -2,6 +2,7 @@
 #include <iostream>
 #include "RIPOEvent.h"
 #include <EventManager.h>
+#include "Utils.h"
 
 using namespace physx;
 RigidBodyComponent::RigidBodyComponent()
@@ -25,10 +26,8 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	_mustMove = false;
 	_mustRotate = false;
 
-	_orientation =  physx::PxQuat();
-
 	// 1: sphere, 2: box, 3: capsule, 4: plane
-	int geometry = arguments["geometry"]._i;
+	_geometry = arguments["geometry"]._i;
 
 	_tam1 = arguments["tam1"]._f;
 	_tam2 = arguments["tam2"]._f;
@@ -44,11 +43,19 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 #ifdef _DEBUG
 		std::cout << "createMaterial failed!" << std::endl;
 #endif
-	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(_render->GetPosition()[0] , _render->GetPosition()[2], _render->GetPosition()[1]));// TODO: aqui iria la posicion de la entidad 
+
+	
+
+	Quat aux = _render->GetOrientation();
+	//_orientation = physx::PxQuat(aux._x, aux._y, aux._z, aux._w);	
+	
+	Pos pos = _render->GetPosition();
+	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(pos._x, pos._z, pos._y, _orientation));
+	
 	_actor->setLinearDamping(0.75f);
 	_actor->setMass(10.0f);
 
-	switch (geometry)
+	switch (_geometry)
 	{
 		// 1: sphere
 	case 1:
@@ -76,18 +83,12 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	}
 
 
-	Quat aux = _render->GetOrientation();
 
-	_orientation.w = aux.w;
-	_orientation.x = aux.x;
-	_orientation.y = aux.y;
-	_orientation.z = aux.z;
-
-	_transform = _actor->getGlobalPose();
+	/*_transform = _actor->getGlobalPose();
 
 	_transform.q = _orientation;
 
-	_actor->setGlobalPose(_transform);
+	_actor->setGlobalPose(_transform);*/
 
 
 	/*
@@ -149,10 +150,10 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 
 		Quat aux = static_cast<RotationEvent*>(e)->_quat;
 
-		_orientation.w = aux.w;
-		_orientation.x = aux.x;
-		_orientation.y = aux.y;
-		_orientation.z = aux.z;
+		_orientation.w = aux._w;
+		_orientation.x = aux._x;
+		_orientation.y = aux._y;
+		_orientation.z = aux._z;
 
 		_mustRotate = true;
 		

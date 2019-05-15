@@ -56,6 +56,7 @@
     <ClInclude Include="..\..\Src\RIPO\RIPOEvent.h" />
     <ClInclude Include="..\..\Src\RIPO\Scene.h" />
     <ClInclude Include="..\..\Src\RIPO\TransformComponent.h" />
+    <ClInclude Include="..\..\Src\RIPO\Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

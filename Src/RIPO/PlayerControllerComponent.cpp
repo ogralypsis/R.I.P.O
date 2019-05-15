@@ -51,7 +51,8 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_orPosZ = _posZ;
 
 	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
-
+	//_render->GetNode()->setVisible(false);
+	
 	CameraManager::GetInstance().AttachPlayer(_render->GetNode());
 }
 
@@ -105,6 +106,7 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 	}
 	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType)
 	{
+		
 		std::cout << "GONNA SHOOT" << std::endl;
 		
 		//shoots bullet

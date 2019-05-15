@@ -284,6 +284,11 @@ void Game::ChangeScene(std::string name)
 	_change = false;
 }
 
+Scene * Game::CurrentScene()
+{
+	return _states.top();
+}
+
 void Game::QueueScene(std::string scene)
 {
 	_change = true;

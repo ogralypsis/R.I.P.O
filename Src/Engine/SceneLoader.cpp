@@ -19,8 +19,11 @@ SceneLoader * SceneLoader::GetInstance()
 	return _instance;
 }
 
-void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFactory)
+std::map<std::string, Entity*> SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFactory)
 {
+	// stores the entities that will be instantiated in-game
+	std::map<std::string, Entity*> prefabs;
+
 	// take the number of entities from JSON
 	int numEntities = json["_numEntities"];
 
@@ -35,6 +38,8 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 
 		// for each entity, take number of its components
 		int numComponents = json["_entities"][i]["_numComponents"];
+		
+
 
 		for (int j = 0; j < numComponents; j++)
 		{
@@ -89,6 +94,8 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 					break;
 				}
 			}
+
+
 			// create component
 			Component* newComponent = compFactory.Create(nameComponent);
 
@@ -120,10 +127,21 @@ void SceneLoader::LoadFromJson(nlohmann::json json, Factory<Component> compFacto
 			}
 		}
 
-		// Add entity to Manager
-		EntityManager::GetInstance()->AddEntity(newEntity);
+		if (name == "Bullet")
+		{
+			//Entity& e = dynamic_cast<Entity&>(*newEntity);
+			prefabs.emplace(name, newEntity);
+			/*EntityManager::GetInstance()->AddEntity(newEntity);
+			EntityManager::GetInstance()->DeleteEntity(newEntity);*/
+		}
+		
+			// Add entity to Manager
+			EntityManager::GetInstance()->AddEntity(newEntity);
+		
 	}
 
 	// passes the listeners to the event manager
 	EventManager::GetInstance()->SetJsonObservers(observers);
+
+	return prefabs;
 }

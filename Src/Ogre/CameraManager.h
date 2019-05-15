@@ -45,8 +45,9 @@ private:
 
 	static CameraManager* _instance;
 
-	//TESTING: AUXILIAR NODE -> TO BE CHANGED
+	//Player node in case camera is attached to a player for the FPS camera functions
 	Ogre::SceneNode* _player = nullptr;
+
 
 	//attributes for FPSrotation
 	Ogre::Real _rotX;

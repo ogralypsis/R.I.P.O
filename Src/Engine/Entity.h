@@ -60,11 +60,6 @@ public:
 	///<returns> True if has the specified component </returns>
 	bool HasComponent(std::string id);
 
-	///<summary>
-	/// Returns all the components from an Entity
-	///</summary>
-	std::vector<Component*> GetAllComponents();
-
 protected:
 	///<summary>
 	/// Components the entity owns and give it its funcionality

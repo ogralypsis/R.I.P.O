@@ -75,11 +75,6 @@ bool Entity::HasComponent(std::string id)
 	return false;
 }
 
-std::vector<Component*> Entity::GetAllComponents()
-{
-	return _components;
-}
-
 void Entity::Update(float deltaTime)
 {
 	// Update each component of the entity

@@ -107,6 +107,7 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 	}
 	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType)
 	{
+		
 		std::cout << "GONNA SHOOT" << std::endl;
 		
 		//shoots bullet

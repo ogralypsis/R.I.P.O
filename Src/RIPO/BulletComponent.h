@@ -19,7 +19,6 @@ public:
 private: 
 	float _speed; 
 	RenderComponent* _render = nullptr;
-	std::map<std::string, Arguments> originalArguments;
 };
 
 #endif // !_H_BULLECOMPONENT_H_

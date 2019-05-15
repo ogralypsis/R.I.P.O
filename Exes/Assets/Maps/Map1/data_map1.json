@@ -426,8 +426,13 @@
         },
         {
           "_type": "PlayerControllerComponent",
-          "_numArguments": 1,
+          "_numArguments": 2,
           "_arguments": [
+            {
+              "_name": "mesh",
+              "_type": 4,
+              "_arg": "gun.mesh"
+            },
             {
               "_name": "vel",
               "_type": 2,

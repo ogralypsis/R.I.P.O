@@ -33,6 +33,8 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_ownerEntity = e;
 	_id = "PlayerController";
 
+	_mesh = arguments["mesh"]._str;
+
 	_velocity = arguments["vel"]._f;
 
 	_input = false;
@@ -52,7 +54,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 
 	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
 
-	CameraManager::GetInstance().AttachPlayer(_render->GetNode());
+	CameraManager::GetInstance().AttachPlayer(_mesh, _render->GetNode());
 }
 
 void PlayerControllerComponent::OnEvent(int eventType, Event * e)

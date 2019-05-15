@@ -36,7 +36,7 @@ public:
 	///<sumary>
 	///To be called from a PlayerController, attaches the camera node to a node
 	///<sumary>
-	void AttachPlayer(Ogre::SceneNode* playerNode);
+	void AttachPlayer(std::string mesh, Ogre::SceneNode* playerNode);
 
 
 private:
@@ -59,6 +59,10 @@ private:
 	Ogre::SceneNode* _camNode = nullptr;
 	Ogre::Camera* _camera = nullptr;
 	Ogre::Viewport * _viewPort = nullptr;
+
+	//gun mesh to attach to the player node
+	std::string _gunMesh;
+	Ogre::SceneNode* _gunNode = nullptr;
 	
 };
 

@@ -40,6 +40,8 @@ private:
 	float _rotX;
 	float _rotY;
 
+	std::string _mesh = "";
+
 	Dir _dir;
 
 	//Original positions

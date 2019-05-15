@@ -1,5 +1,5 @@
 {
-   "_numEntities":4,
+   "_numEntities":5,
   "_entities": [
     {
       "_entityID": "Enemy",
@@ -445,6 +445,111 @@
             "RotationEvent",
             "L_MouseEvent",
             "DeathEvent"
+          ]
+        },
+        {
+
+          "_type": "RigidBodyComponent",
+          "_numArguments": 5,
+          "_arguments": [
+            {
+              "_name": "geometry",
+              "_type": 1,
+              "_arg": "2"
+            },
+            {
+              "_name": "tam1",
+              "_type": 2,
+              "_arg": "2"
+            },
+            {
+              "_name": "tam2",
+              "_type": 2,
+              "_arg": "2"
+            },
+            {
+              "_name": "tam3",
+              "_type": 2,
+              "_arg": "2"
+            },
+            {
+              "_name": "velocity",
+              "_type": 2,
+              "_arg": "100"
+            }
+          ],
+          "_numEvents": 2,
+          "_events": [
+            "PhysicsMoveEvent",
+            "RotationEvent"
+          ]
+        }
+      ]
+    },
+
+    {
+      "_entityID": "Gun",
+      "_numComponents": 2,
+      "_components": [
+        {
+          "_type": "RenderComponent",
+          "_numArguments": 10,
+          "_arguments": [
+            {
+              "_name": "mesh",
+              "_type": 4,
+              "_arg": "gun.mesh"
+            },
+            {
+              "_name": "positionX",
+              "_type": 1,
+              "_arg": "81"
+            },
+            {
+              "_name": "positionY",
+              "_type": 1,
+              "_arg": "5"
+            },
+            {
+              "_name": "positionZ",
+              "_type": 1,
+              "_arg": "-90"
+            },
+            {
+              "_name": "scaleX",
+              "_type": 2,
+              "_arg": "2"
+            },
+            {
+              "_name": "scaleY",
+              "_type": 2,
+              "_arg": "2"
+            },
+            {
+              "_name": "scaleZ",
+              "_type": 2,
+              "_arg": "2"
+            },
+            {
+              "_name": "rotationX",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotationY",
+              "_type": 2,
+              "_arg": "0"
+            },
+            {
+              "_name": "rotationZ",
+              "_type": 2,
+              "_arg": "0"
+            }
+          ],
+          "_numEvents": 2,
+          "_events": [
+            "UpdateTransformEvent",
+            "RotationEvent"
           ]
         },
         {

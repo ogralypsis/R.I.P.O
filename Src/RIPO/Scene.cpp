@@ -60,36 +60,18 @@ void Scene::Update(float t)
 
 Entity* Scene::GetPrefab(std::string id)
 {
-	/*if (_prefabs.count(id) != 0)
-		return _prefabs[id];
-	else*/
+	// if the entity is not registered it won't create a new entity
+	if (_prefabs.count(id) != 0)
+		return CreateEntity(id);
+	else
 		return nullptr;
 }
 
-int Scene::GetEventType(std::string nameEvent)
-{
-	if (nameEvent == "JEvent") return EventType::EVENT_J;
-	else if (nameEvent == "WEvent")return EventType::EVENT_W;
-	else if (nameEvent == "AEvent")return EventType::EVENT_A;
-	else if (nameEvent == "SEvent")return EventType::EVENT_S;
-	else if (nameEvent == "DEvent")return EventType::EVENT_D;
-	else if (nameEvent == "L_MouseEvent")return EventType::EVENT_LEFT_MOUSECLICK;
-	else if (nameEvent == "MouseMoveEvent")return EventType::EVENT_MOVE_MOUSE;
-	else if (nameEvent == "DeathEvent")return EventType::EVENT_DEATH;
-	else if (nameEvent == "UpdateTransformEvent")return EventType::EVENT_UPDATE_TRANSFORM;
-	else if (nameEvent == "PhysicsMoveEvent")return EventType::EVENT_PHYSICS_MOVE;
-	else if (nameEvent == "RotationEvent")return EventType::EVENT_ROTATION;
-	else return EventType::EVENT_SHOOT;
-}
 
 Entity* Scene::CreateEntity(std::string id)
 {
-	
-	// if the entity is not registered it won't create a new entity
-	if (_prefabs.count(id) == 0)
-		return nullptr;
-
 	// create new entity
+
 	Entity* newEnt = new Entity(id);
 	std::map<std::string, std::map<std::string, Arguments>>::const_iterator it = _prefabs[id].components.cbegin();
 
@@ -182,4 +164,20 @@ void Scene::AddSceneObservers()
 
 		it++;
 	}
+}
+
+int Scene::GetEventType(std::string nameEvent)
+{
+	if (nameEvent == "UpdateTransformEvent")return EventType::EVENT_UPDATE_TRANSFORM;
+	else if (nameEvent == "PhysicsMoveEvent")return EventType::EVENT_PHYSICS_MOVE;
+	else if (nameEvent == "RotationEvent")return EventType::EVENT_ROTATION;
+	else if (nameEvent == "L_MouseEvent")return EventType::EVENT_LEFT_MOUSECLICK;
+	else if (nameEvent == "MouseMoveEvent")return EventType::EVENT_MOVE_MOUSE;
+	else if (nameEvent == "DeathEvent")return EventType::EVENT_DEATH;
+	else if (nameEvent == "WEvent")return EventType::EVENT_W;
+	else if (nameEvent == "AEvent")return EventType::EVENT_A;
+	else if (nameEvent == "SEvent")return EventType::EVENT_S;
+	else if (nameEvent == "DEvent")return EventType::EVENT_D;
+	else if (nameEvent == "JEvent") return EventType::EVENT_J;
+	else return EventType::EVENT_SHOOT;
 }

@@ -15,7 +15,6 @@ public:
 	PlayerControllerComponent();
 	~PlayerControllerComponent();
 
-	//template<class TransformComponent>
 	void virtual Init(std::map<std::string, Arguments> arguments, Entity* e);
 	void virtual OnEvent(int eventType, Event * e);
 	void virtual Update(float deltaTime);
@@ -23,11 +22,14 @@ public:
 
 private:
 
+	// Updates the rotation in camera
 	void CameraRotation(float deltaTime);
 
-
+	//Sets player in initial position
 	void ResetPosition();
 
+	//Instantiates a bullet entity for the player to shoot
+	void BulletInstantiate();
 
 	//Internal variables
 	float _velocity;

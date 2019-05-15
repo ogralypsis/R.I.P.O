@@ -1,6 +1,6 @@
 #include "CameraManager.h"
 #include <iostream>
-
+#include "Euler.h"
 
 
 CameraManager* CameraManager::_instance = nullptr;
@@ -82,12 +82,25 @@ Ogre::Quaternion CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre:
 	_rotX = -mouseY;
 	Ogre::Real nextPitch = -_camNode->getOrientation().getPitch().valueDegrees() + _rotX;
 
-	//check if max camera height has been reached
+	/*//check if max camera height has been reached
 	if (nextPitch > -_maxPitch && nextPitch < _maxPitch)
-		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed* time);
+		_camNode->pitch(Ogre::Degree(_rotX) * _rotSpeed * time);*/
+
+	Ogre::Matrix3 m = Ogre::Matrix3();
+	_player->getOrientation().ToRotationMatrix(m);
 
 
-	return _player->getOrientation();
+	Ogre::Radian y = Ogre::Radian();
+	Ogre::Radian x = Ogre::Radian();
+	Ogre::Radian z = Ogre::Radian();
+
+	m.ToEulerAnglesYXZ(y, x, z);
+
+	Ogre::Euler e(y, x, z);
+
+	Ogre::Quaternion q = e;
+	
+	return q;
 	
 }
 

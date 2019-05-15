@@ -44,7 +44,7 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 #ifdef _DEBUG
 		std::cout << "createMaterial failed!" << std::endl;
 #endif
-	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(_render->GetPosition()[0] , _render->GetPosition()[1], _render->GetPosition()[2]));// TODO: aqui iria la posicion de la entidad 
+	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(_render->GetPosition()[0] , _render->GetPosition()[2], _render->GetPosition()[1]));// TODO: aqui iria la posicion de la entidad 
 	_actor->setLinearDamping(0.75f);
 	_actor->setMass(10.0f);
 
@@ -74,6 +74,21 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 	default:
 		break;
 	}
+
+
+	Quat aux = _render->GetOrientation();
+
+	_orientation.w = aux.w;
+	_orientation.x = aux.x;
+	_orientation.y = aux.y;
+	_orientation.z = aux.z;
+
+	_transform = _actor->getGlobalPose();
+
+	_transform.q = _orientation;
+
+	_actor->setGlobalPose(_transform);
+
 
 	/*
 
@@ -130,17 +145,14 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 		_dir.y = static_cast<PhysicsMoveEvent*>(e)->_dir.y;
 		_dir.z = static_cast<PhysicsMoveEvent*>(e)->_dir.z;
 	}
-	if (eventType == EventType::EVENT_ROTATION) {//cambiar rotacion
-		
-		//_rotX = static_cast<RotationEvent*>(e)->_rotX;
-		//_rotY = static_cast<RotationEvent*>(e)->_rotY;
+	if (eventType == EventType::EVENT_ROTATION) {
 
 		Quat aux = static_cast<RotationEvent*>(e)->_quat;
 
 		_orientation.w = aux.w;
-		_orientation.x = aux.z;
+		_orientation.x = aux.x;
 		_orientation.y = aux.y;
-		_orientation.z = -aux.x;
+		_orientation.z = aux.z;
 
 		_mustRotate = true;
 		
@@ -159,8 +171,7 @@ void RigidBodyComponent::Update(float deltaTime)
 
 	if (_mustRotate) {
 
-		//_transform.q = _orientation;
-		_transform.q = ModifyAngleAroundAxis((-1) * _orientation.getAngle(_transform.q), physx::PxVec3{ 0,1,0 });
+		_transform.q = _orientation;
 
 		_actor->setGlobalPose(_transform);
 
@@ -168,16 +179,10 @@ void RigidBodyComponent::Update(float deltaTime)
 
 	}
 
-	//_actor->addForce(_dir * _velocity * deltaTime, physx::PxForceMode::eIMPULSE);
-
 	// Add locally a force in the actor local axes in the given direction
 	PxRigidBodyExt::addLocalForceAtLocalPos((*_actor), _dir * _velocity * deltaTime, _actor->getCMassLocalPose().p, physx::PxForceMode::eIMPULSE);
 
 	_transform = _actor->getGlobalPose();
-
-	//std::cout << "POS X: " + _ownerEntity->GetId() + " " << _transform.p.x << std::endl;
-	//std::cout << "POS Y: " + _ownerEntity->GetId() + " " << _transform.p.y << std::endl;
-	//std::cout << "POS Z: " + _ownerEntity->GetId() + " " << _transform.p.z << std::endl;
 
 	UpdateTransformEvent * utEvent = new UpdateTransformEvent(_transform.p.x, _transform.p.y, _transform.p.z, _transform.q.getAngle(), _ownerEntity->GetId(), EventDestination::SCENE);
 	EventManager::GetInstance()->NotifyObservers(utEvent->GetType(), utEvent);
@@ -189,10 +194,10 @@ physx::PxQuat RigidBodyComponent::ModifyAngleAroundAxis(float angle, physx::PxVe
 {
 	//To determine the quaternion for a rotation of α degrees/radians around an axis defined by a vector (x, y, z):
 	physx::PxQuat q = physx::PxQuat();
-	q.w = (float)cos((double)(0.5 * angle));
-	q.x = axis.x * sin((double)(0.5 * angle));
-	q.y = axis.y * sin((double)(0.5 * angle));
-	q.z = axis.z * sin((double)(0.5 * angle));
+	q.w = (float)cos((0.5 * angle));
+	q.x = axis.x * (float)sin((0.5 * angle));
+	q.y = axis.y * (float)sin((0.5 * angle));
+	q.z = axis.z * (float)sin((0.5 * angle));
 
 	return q;
 }

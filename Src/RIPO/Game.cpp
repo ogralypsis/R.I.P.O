@@ -175,13 +175,13 @@ void Game::HandleInput()
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_A))
 	{
 		//std::cout << "PRESSING KEY A" << std::endl;
-		AEvent * aEvent = new AEvent(0, { -1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);		
+		AEvent * aEvent = new AEvent(0, { 1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);		
 		EventManager::GetInstance()->NotifyObservers(aEvent->GetType(), aEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_D))
 	{
 		//std::cout << "PRESSING KEY D" << std::endl;
-		DEvent * dEvent = new DEvent(0, { 1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);		
+		DEvent * dEvent = new DEvent(0, { -1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);		
 		EventManager::GetInstance()->NotifyObservers(dEvent->GetType(), dEvent);
 	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_J))

@@ -28,6 +28,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\Ogre\CameraManager.h" />
     <ClInclude Include="..\..\Src\Ogre\CEGUIUser.h" />
+    <ClInclude Include="..\..\Src\Ogre\Euler.h" />
     <ClInclude Include="..\..\Src\Ogre\InputManager.h" />
     <ClInclude Include="..\..\Src\Ogre\MyOgre.h" />
     <ClInclude Include="..\..\Src\Ogre\Transform.h" />

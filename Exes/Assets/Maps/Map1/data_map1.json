@@ -92,7 +92,7 @@
             {
               "_name": "positionZ",
               "_type": 1,
-              "_arg": "-150"
+              "_arg": "20"
             },
             {
               "_name": "scaleX",

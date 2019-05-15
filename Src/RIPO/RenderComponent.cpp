@@ -3,11 +3,12 @@
 // singleton
 #include <MyOgre.h>
 
-// events from RIPO
-#include "RIPOEvent.h"
+/*// events from RIPO
+#include "RIPOEvent.h"*/
 
 // other tools
 #include <iostream>
+
 
 RenderComponent::RenderComponent() : Component () {}
 
@@ -35,7 +36,7 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	float _rotationY = arguments["rotationY"]._f;
 	float _rotationZ = arguments["rotationZ"]._f;
 
-	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionY, _positionZ),Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotationX), Ogre::Radian(_rotationY), Ogre::Radian(_rotationZ));
+	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionZ, _positionY),Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotationX), Ogre::Radian(_rotationY), Ogre::Radian(_rotationZ));
 	
 	// TODO: COGER LOS VERTICES DEL BOUNDING BOX DE OGRE, PASARSELOS AL RIGIDBODY Y CREAR UNA CUSTOM SHAPE CON ELLOS
 	//_entityOgre->getBoundingBox().getAllCorners();
@@ -59,12 +60,9 @@ void RenderComponent::Update(float deltaTime)
 {	
 
 	if (_mustMove) {
-		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosZ, _auxPosY));	
-		
-		
-		_mustMove = false;
-		//std::cout << "POS Y RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().z << std::endl;
-		//std::cout << "POS Z RENDER : " + _ownerEntity->GetId() + " " << _entityOgre->getParentSceneNode()->getPosition().y << std::endl;
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosY, _auxPosZ));	
+	
+		_mustMove = false;	
 	}	
 }
 
@@ -78,6 +76,20 @@ std::vector<int> RenderComponent::GetPosition()
 {
 	std::vector<int> position = { _positionX, _positionY, _positionZ };
 	return position;
+}
+
+Quat RenderComponent::GetOrientation()
+{
+
+	Ogre::Matrix3 m = Ogre::Matrix3();
+	Ogre::Quaternion qAux = _entityOgre->getParentSceneNode()->getOrientation();
+	Quat q;
+	q.w = qAux.w;
+	q.x = qAux.x;
+	q.y = qAux.y;
+	q.z = qAux.z;
+
+	return q;
 }
 
 Ogre::SceneNode * RenderComponent::GetNode()

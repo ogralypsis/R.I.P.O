@@ -3,6 +3,8 @@
 
 #include <Component.h>
 #include "TransformComponent.h"
+// events from RIPO
+#include "RIPOEvent.h"
 
 class RenderComponent :
 	public Component
@@ -21,6 +23,8 @@ public:
 	Ogre::SceneNode* GetNode();
 	
 	std::vector<int> GetPosition();
+
+	Quat GetOrientation();
 	
 private:
 

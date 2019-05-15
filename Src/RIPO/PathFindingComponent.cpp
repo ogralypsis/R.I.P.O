@@ -35,14 +35,14 @@ void PathFindingComponent::Update(float deltaTime)
 
 	// where does it have to move? and look?
 	Ogre::Vector3 initialOrientation(0, 0, 0);
-	Ogre::Vector3 finalOrientation(_playerX - myPosition->GetPosX(), _playerY - myPosition->GetPosY(), _playerZ - myPosition->GetPosZ());
+	Ogre::Vector3 finalOrientation(_playerX - myPosition->GetPosX(), _playerZ - myPosition->GetPosZ(), _playerY - myPosition->GetPosY());
 	Ogre::Quaternion newOrientation = initialOrientation.getRotationTo(finalOrientation); // new orientation of enemy
 	Ogre::Vector3 translateVector = finalOrientation * Ogre::Vector3(0.1, 0, 0.1); // move towards player (by setting y to 0, it won't use that axis)
 
 	Dir newDir;
 	newDir.x = translateVector.x;
 	newDir.y = translateVector.y;
-	newDir.z = translateVector.z;
+	newDir.z = -translateVector.z;
 
 	// notify of change
 	PhysicsMoveEvent * transformEvent = new PhysicsMoveEvent(newDir, _ownerEntity->GetId(), EventDestination::ENTITY);

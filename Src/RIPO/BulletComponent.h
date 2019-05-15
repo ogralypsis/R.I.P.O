@@ -2,6 +2,8 @@
 #define _H_BULLECOMPONENT_H_
 
 #include <Component.h>
+#include "RenderComponent.h"
+
 
 class BulletComponent : public Component
 {
@@ -16,7 +18,7 @@ public:
 
 private: 
 	float _speed; 
-	
+	RenderComponent* _render = nullptr;
 };
 
 #endif // !_H_BULLECOMPONENT_H_

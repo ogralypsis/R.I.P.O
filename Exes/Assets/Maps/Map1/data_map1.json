@@ -1,5 +1,5 @@
 {
-   "_numEntities":3,
+   "_numEntities":4,
   "_entities": [
     {
       "_entityID": "Enemy",
@@ -419,7 +419,7 @@
               "_arg": "5"
             }
           ],
-          "_numEvents": 7,
+          "_numEvents": 8,
           "_events": [
             "WEvent",
             "SEvent",
@@ -427,7 +427,8 @@
             "DEvent",
             "MouseMoveEvent",
             "UpdateTransformEvent",
-            "RotationEvent"
+            "RotationEvent",
+            "L_MouseEvent"
           ]
         },
         {
@@ -485,12 +486,12 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "85"
             },
             {
               "_name": "positionY",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "5"
             },
             {
               "_name": "positionZ",
@@ -499,18 +500,18 @@
             },
             {
               "_name": "scaleX",
-              "_type": 1,
-              "_arg": "1"
+              "_type": 2,
+              "_arg": "0.5"
             },
             {
               "_name": "scaleY",
-              "_type": 1,
-              "_arg": "1"
+              "_type": 2,
+              "_arg": "0.5"
             },
             {
               "_name": "scaleZ",
-              "_type": 1,
-              "_arg": "1"
+              "_type": 2,
+              "_arg": "0.5"
             },
             {
               "_name": "rotationX",
@@ -536,9 +537,12 @@
         },
         {
           "_type": "BulletComponent",
-          "_numArguments": 0,
+          "_numArguments": 1,
           "_arguments": [
             {
+              "_name": "speed",
+              "_type": 2,
+              "_arg": "20"
             }
           ],
           "_numEvents": 1,
@@ -554,7 +558,7 @@
             {
               "_name": "geometry",
               "_type": 1,
-              "_arg": "2"
+              "_arg": "3"
             },
             {
               "_name": "tam1",

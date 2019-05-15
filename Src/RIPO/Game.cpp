@@ -192,6 +192,9 @@ void Game::HandleInput()
 	if (InputManager::GetInstance().IsMouseButtonPressed(OIS::MB_Left))
 	{
 		std::cout << "MOUSE CLICKED" << std::endl;
+		L_MouseEvent * lEvent = new L_MouseEvent(_states.top()->GetId(), EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(lEvent->GetType(), lEvent);
+
 		// tell the gui
 		CEGUIUser::GetInstance()->OnMouseReleased(OIS::MB_Left);
 	}

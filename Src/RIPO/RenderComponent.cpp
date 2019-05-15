@@ -27,9 +27,9 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	_positionY = arguments["positionY"]._i;
 	_positionZ = arguments["positionZ"]._i;
 
-	int _scaleX = arguments["scaleX"]._i;
-	int _scaleY = arguments["scaleY"]._i;
-	int _scaleZ = arguments["scaleZ"]._i;
+	float _scaleX = arguments["scaleX"]._f;
+	float _scaleY = arguments["scaleY"]._f;
+	float _scaleZ = arguments["scaleZ"]._f;
 
 	float _rotationX = arguments["rotationX"]._f;
 	float _rotationY = arguments["rotationY"]._f;

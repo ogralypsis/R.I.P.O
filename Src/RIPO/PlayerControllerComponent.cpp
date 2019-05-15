@@ -5,6 +5,8 @@
 #include <EventManager.h>
 #include <CameraManager.h>
 
+#include <iostream>
+
 // events from ripo
 #include "RIPOEvent.h"
 
@@ -96,9 +98,12 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 
 		/*_rotX = CameraManager::GetInstance().GetRotX();
 		_rotY = CameraManager::GetInstance().GetRotY();*/
-		
-		
-
+	}
+	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType)
+	{
+		std::cout << "GONNA SHOOT" << std::endl;
+		ShootEvent * shootEvent = new ShootEvent(_ownerEntity->GetId(), EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
 	}
 
 	else if (eventType == EventType::EVENT_UPDATE_TRANSFORM && e->GetEmmitter() == _ownerEntity->GetId())

@@ -8,7 +8,7 @@
 enum EventType {
 
 	EVENT_J, EVENT_W, EVENT_A, EVENT_S, EVENT_D,
-	EVENT_L_MOUSE, EVENT_MOVE_MOUSE,
+	EVENT_LEFT_MOUSECLICK, EVENT_MOVE_MOUSE,
 	EVENT_DEATH,
 	EVENT_UPDATE_TRANSFORM, EVENT_PHYSICS_MOVE,
 	EVENT_CHANGE_SCENE,EVENT_ROTATION, EVENT_SHOOT
@@ -93,9 +93,7 @@ struct DEvent : Event
 // Left mouse's buttom has been pressed -> SHOT
 struct L_MouseEvent : Event
 {
-	L_MouseEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_L_MOUSE, destination), _key(k) {}
-
-	int _key; // this is for trying with parameters
+	L_MouseEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_LEFT_MOUSECLICK, destination){}
 };
 
 // Mouse's movement-> CAMERA MOVEMENT (shooting pointer)

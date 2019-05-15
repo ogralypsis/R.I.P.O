@@ -98,6 +98,16 @@ void Scene::AddSceneObservers()
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_ROTATION, it->second[i]);
 		}
+		else if (it->first == "ShootEvent")
+		{
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_SHOOT, it->second[i]);
+		}
+		else if (it->first == "L_MouseEvent")
+		{
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_LEFT_MOUSECLICK, it->second[i]);
+		}
 		// Other events...
 
 		it++;

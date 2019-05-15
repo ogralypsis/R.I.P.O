@@ -129,6 +129,7 @@ std::map<std::string, Entity*> SceneLoader::LoadFromJson(nlohmann::json json, Fa
 
 		if (name == "Bullet")
 		{
+			//if(prefabs.count(name) == 0)
 			//Entity& e = dynamic_cast<Entity&>(*newEntity);
 			prefabs.emplace(name, newEntity);
 			/*EntityManager::GetInstance()->AddEntity(newEntity);

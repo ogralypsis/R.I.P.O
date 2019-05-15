@@ -24,6 +24,8 @@ Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, com
 
 	// add events to scene
 	AddSceneObservers();
+
+	_factory = compFactory;
 }
 
 Scene::~Scene() 
@@ -62,6 +64,32 @@ Entity* Scene::GetPrefab(std::string id)
 		return _prefabs[id];
 	else
 		return nullptr;
+}
+
+Entity* Scene::CreateEntity(std::string id)
+{
+	// create new entity
+	Entity* newEnt = new Entity(id);
+	
+	std::vector<Component*> components = _prefabs[id]->GetAllComponents();
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		// create component
+		Component* c = _factory.Create(components[i]->GetId());
+
+		// add arguments to components
+		c->Init(components[i]->GetArguments(), newEnt);
+
+		//add component to 
+		newEnt->AddComponent(c);
+	}
+
+	
+
+	EntityManager::GetInstance()->AddEntity(newEnt);
+
+	return newEnt;
 }
 
 void Scene::AddSceneObservers()

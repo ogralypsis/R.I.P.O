@@ -47,8 +47,14 @@ public:
 	///</summary>
 	std::string GetOwnerEntId();
 
+	///<summary>
+	/// returns original arguments read from JSON
+	///</summary>
+	virtual std::map<std::string, Arguments> GetArguments();
+
 protected:
 	Entity * _ownerEntity;
 	std::string _id;
+	std::map<std::string, Arguments> _originalArguments;
 };
 #endif

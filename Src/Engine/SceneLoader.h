@@ -26,6 +26,12 @@ public:
 	///<param name="compFactory">contains a map of the components abailable with their constructors. necessary for the factory pattern</param>
 	std::map<std::string, Entity*> LoadFromJson(nlohmann::json json, Factory<Component>compFactory);
 
+	struct typeOfEntity
+	{
+		std::string type;
+		std::map<std::string, Arguments> components; 
+	};
+
 private:
 	///<summary>
 	/// keep the constructor private for the singleton pattern

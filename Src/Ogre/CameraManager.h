@@ -26,10 +26,6 @@ public:
 	///Movement methods to be called from a PlayerController
 	///Moves a SceneNode different to _camNode
 	///<sumary>
-	/*void MoveForward(Ogre::Real time);
-	void MoveBack(Ogre::Real time);
-	void MoveRight(Ogre::Real time);
-	void MoveLeft(Ogre::Real time);*/
 
 
 	///<sumary>

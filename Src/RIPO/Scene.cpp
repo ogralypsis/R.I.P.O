@@ -17,7 +17,7 @@ Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, com
 
 	json entities = FileReader::GetInstance()->ReadFile("Assets/Maps/Map" + ID + "/" + "data_map" + ID + ".json");
 
-	SceneLoader::GetInstance()->LoadFromJson(entities, compFactory);
+	_prefabs = SceneLoader::GetInstance()->LoadFromJson(entities, compFactory);
 
 	//SetUp ogre scene
 	MyOgre::GetInstance().SetUpScene();

@@ -18,7 +18,7 @@ private:
 	virtual void AddSceneObservers();
 	Factory<Component> _factory;
 
-	std::map<std::string, Entity*> _prefabs;
+	std::map<std::string, typeOfEntity> _prefabs;
 
 	Entity* CreateEntity(std::string id);
 };

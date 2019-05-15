@@ -70,6 +70,10 @@ void Scene::AddSceneObservers()
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_J, it->second[i]);
 		}
+		else if (it->first == "DeathEvent") {
+			for (int i = 0; i < it->second.size(); i++)
+				EventManager::GetInstance()->AddObserver(EventType::EVENT_DEATH, it->second[i]);
+		}
 		else if (it->first == "SEvent") {
 			for (int i = 0; i < it->second.size(); i++)
 				EventManager::GetInstance()->AddObserver(EventType::EVENT_S, it->second[i]);

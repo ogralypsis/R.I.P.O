@@ -291,7 +291,7 @@
  
     {
       "_entityID": "Player",
-      "_numComponents": 4,
+      "_numComponents": 5,
       "_components": [
         {
           "_type": "TransformComponent",
@@ -410,6 +410,21 @@
           ]
         },
         {
+          "_type": "HealthComponent",
+          "_numArguments": 1,
+          "_arguments": [
+          	{
+          	  "_name": "health",
+              "_type": 1,
+              "_arg": "5"
+          	}
+          ],
+          "_numEvents": 1,
+          "_events": [
+            "JEvent"
+          ]
+        },
+        {
           "_type": "PlayerControllerComponent",
           "_numArguments": 1,
           "_arguments": [
@@ -419,7 +434,7 @@
               "_arg": "5"
             }
           ],
-          "_numEvents": 8,
+          "_numEvents": 9,
           "_events": [
             "WEvent",
             "SEvent",
@@ -428,7 +443,8 @@
             "MouseMoveEvent",
             "UpdateTransformEvent",
             "RotationEvent",
-            "L_MouseEvent"
+            "L_MouseEvent",
+            "DeathEvent"
           ]
         },
         {

@@ -38,12 +38,10 @@ struct ChangeSceneEvent : Event
 	int _key; // number of scene
 };
 
-// Key J has been pressed
+// Key J has been pressed -> for testing and simulation
 struct JEvent : Event
 {
-	JEvent(int k, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_J, destination), _key(k) {}
-
-	int _key; // this is for trying with parameters
+	JEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_J, destination) {}
 };
 
 // Key W has been pressed -> Player's FORWARD MOVEMENT 

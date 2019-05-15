@@ -1,11 +1,10 @@
 #include "HealthComponent.h"
 
 // singleston
-#include <EntityManager.h>
+#include <EventManager.h>
 
 // events from ripo
 #include "RIPOEvent.h"
-
 
 HealthComponent::HealthComponent() : Component () { }
 
@@ -14,18 +13,21 @@ HealthComponent::~HealthComponent() {}
 void HealthComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
+
+	_health = arguments["health"]._i;
 }
 
 void HealthComponent::OnEvent(int eventType, Event * e)
 {
-	if ("JEvent" == typeid(e).name())
+	if (eventType == EventType::EVENT_J)
 	{
 		DecreaseHealth();
 	}
 }
 
-void HealthComponent::Update(float deltaTime)
+void HealthComponent::Update(float deltaTime) 
 {
+	// TO DO: RESTORE SOME HEALTH WITH TIME
 }
 
 void HealthComponent::DecreaseHealth()
@@ -38,6 +40,7 @@ void HealthComponent::CheckHealth()
 {
 	if (_health <= 0) 
 	{
-		EntityManager::GetInstance()->DeleteEntity(_ownerEntity);
+		DeathEvent * deathEvent = new DeathEvent(_ownerEntity->GetId(), EventDestination::ENTITY);
+		EventManager::GetInstance()->NotifyObservers(deathEvent->GetType(), deathEvent);
 	}
 }

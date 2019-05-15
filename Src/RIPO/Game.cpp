@@ -184,6 +184,11 @@ void Game::HandleInput()
 		DEvent * dEvent = new DEvent(0, { 1, 0, 0 }, _states.top()->GetId(), EventDestination::SCENE);		
 		EventManager::GetInstance()->NotifyObservers(dEvent->GetType(), dEvent);
 	}
+	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_J))
+	{
+		JEvent * jEvent = new JEvent(_states.top()->GetId(), EventDestination::SCENE);
+		EventManager::GetInstance()->NotifyObservers(jEvent->GetType(), jEvent);
+	}
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_C))
 	{
 		std::cout << "CHANGING SCENE" << std::endl;

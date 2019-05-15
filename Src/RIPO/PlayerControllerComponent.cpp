@@ -9,6 +9,7 @@
 
 // events from ripo
 #include "RIPOEvent.h"
+#include "Game.h"
 
 //Constructors
 PlayerControllerComponent::PlayerControllerComponent() : Component() { }
@@ -55,11 +56,11 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 
 void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 {
-
+	
 	if (EventType::EVENT_DEATH == eventType) 
 	{
-		ResetPosition();
-		_death = true;
+		// upon the death of the player, the game changes back to the main menu
+		Game::GetInstance().QueueScene("0");
 	}
 
 	else if (EventType::EVENT_W == eventType)

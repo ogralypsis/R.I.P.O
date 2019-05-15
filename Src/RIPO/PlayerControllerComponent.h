@@ -47,7 +47,6 @@ private:
 
 	//Booleans to activate the different directions
 	bool _input;
-	bool _death = false;
 	bool _moveCamera = false;
 	bool _mustMove;
 

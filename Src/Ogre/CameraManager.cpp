@@ -58,10 +58,16 @@ void CameraManager::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager
 
 		//Create the gun entity to attach its node to de camNode
 		Ogre::Entity* _gunEntity = sceneMgr->createEntity(_gunMesh);
-		_gunNode = _player->createChildSceneNode();
-		Ogre::Vector3 _gunPos(_gunNode->getPosition().x + 10, _gunNode->getPosition().y + 10, _gunNode->getPosition().z + 40);
+		Ogre::SceneNode* _gunNode = _camNode->createChildSceneNode();
+		_gunNode->attachObject(_gunEntity);
+
+		Ogre::Vector3 _gunPos(_gunNode->getPosition().x + 6, _gunNode->getPosition().y, _gunNode->getPosition().z - 20);
 		_gunNode->setPosition(_gunPos);
-		_gunNode->setScale(Ogre::Vector3 (1, 1, 1));
+		_gunNode->setScale(Ogre::Vector3 (3, 3, 3));
+		_gunNode->roll(Ogre::Degree(90), Ogre::Node::TS_LOCAL);
+		_gunNode->yaw(Ogre::Degree(80), Ogre::Node::TS_LOCAL);
+		_gunNode->roll(Ogre::Degree(25), Ogre::Node::TS_LOCAL);
+		
 
 	}
 
@@ -108,9 +114,6 @@ Ogre::Quaternion CameraManager::FPSrotation(float time, Ogre::Real mouseX, Ogre:
 	Ogre::Euler e(y, x, z);
 
 	Ogre::Quaternion q = e;
-
-	//Debuging gun position
-	std::cout << "Pos x: " << _gunNode->getPosition().x << " Pos y: " << _gunNode->getPosition().y << " pos z: " << _gunNode->getPosition().z << std::endl;
 	
 	return q;
 	

@@ -33,7 +33,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_ownerEntity = e;
 	_id = "PlayerController";
 
-	_mesh = arguments["mesh"]._str;
+	std::string _mesh = arguments["mesh"]._str;
 
 	_velocity = arguments["vel"]._f;
 

@@ -63,7 +63,6 @@ private:
 
 	//gun mesh to attach to the player node
 	std::string _gunMesh;
-	Ogre::SceneNode* _gunNode = nullptr;
 	
 };
 

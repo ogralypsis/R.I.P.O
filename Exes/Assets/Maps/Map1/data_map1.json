@@ -427,17 +427,12 @@
         },
         {
           "_type": "PlayerControllerComponent",
-          "_numArguments": 2,
+          "_numArguments": 1,
           "_arguments": [
             {
               "_name": "mesh",
               "_type": 4,
               "_arg": "gun.mesh"
-            },
-            {
-              "_name": "vel",
-              "_type": 2,
-              "_arg": "5"
             }
           ],
           "_numEvents": 9,
@@ -502,7 +497,7 @@
             {
               "_name": "mesh",
               "_type": 4,
-              "_arg": "Sinbad.mesh"
+              "_arg": "bullet.mesh"
             },
             {
               "_name": "positionX",
@@ -522,17 +517,17 @@
             {
               "_name": "scaleX",
               "_type": 2,
-              "_arg": "0.5"
+              "_arg": "3"
             },
             {
               "_name": "scaleY",
               "_type": 2,
-              "_arg": "0.5"
+              "_arg": "3"
             },
             {
               "_name": "scaleZ",
               "_type": 2,
-              "_arg": "0.5"
+              "_arg": "3"
             },
             {
               "_name": "rotationX",

@@ -30,13 +30,16 @@ void BulletComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 void BulletComponent::OnEvent(int eventType, Event * e)
 {
+
 	//event shoot -> instantiate bullet
 	if (EventType::EVENT_SHOOT == eventType && !_setDir)
 	{
+
 		std::cout << "SHOOT" << std::endl;
 		_dir = static_cast<ShootEvent*>(e)->_dir;
 		_setDir = true;
 		_updatePhysX = true;
+
 	}
 }
 

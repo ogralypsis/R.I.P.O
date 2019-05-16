@@ -29,16 +29,17 @@ PlayerControllerComponent::~PlayerControllerComponent(){
 
 void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
-
-	_ownerEntity = e;
+	//Sets its id and its arguments
 	_id = "PlayerController";
-
+	_ownerEntity = e;
 	std::string _mesh = arguments["mesh"]._str;
 
-	_velocity = arguments["vel"]._f;
-
+	//Initialize its booleans to false (they will be true when differents events arrived)
 	_input = false;
+	_moveCamera = false;
 	_mustMove = false;
+	_clickFlag = false;
+	_shoot = false;
 
 	_transform = nullptr;
 	_render = nullptr;
@@ -110,16 +111,7 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		
 		if (!_clickFlag)
 		{
-			_clickFlag = true;
-			
-			std::cout << "GONNA SHOOT" << std::endl;
-
-			//shoots bullet
-			Entity* bullet = BulletInstantiate();
-
-			ShootEvent * shootEvent = new ShootEvent(_dir, bullet->GetId(), EventDestination::ENTITY);
-			EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
-
+			_shoot = true;
 			_clickFlagTimer = 0;
 		}
 	}
@@ -151,6 +143,12 @@ void PlayerControllerComponent::Update(float deltaTime)
 		_clickFlagTimer += deltaTime;
 		if (_clickFlagTimer > 5)
 			_clickFlag = false;
+	}
+
+	if (_shoot)
+	{
+		Shoot();
+		_shoot = false;
 	}
 }
 
@@ -194,5 +192,21 @@ Entity* PlayerControllerComponent::BulletInstantiate()
 
 	return newEnt;
 
+}
+
+void PlayerControllerComponent::Shoot()
+{
+	std::cout << "GONNA SHOOT" << std::endl;
+
+	//shoots bullet
+	Entity* bullet = BulletInstantiate();
+
+	if (bullet != nullptr)
+	{
+		_clickFlag = true;
+
+		ShootEvent * shootEvent = new ShootEvent(_dir, bullet->GetId(), EventDestination::ENTITY);
+		EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
+	}
 }
 

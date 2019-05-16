@@ -123,8 +123,9 @@ PxShape* aConvexShape = aConvexActor->createShape(PxConvexMeshGeometry(convexMes
 	_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_X, true);
 	_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y, true);
 	_actor->setRigidDynamicLockFlag(PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z, true);
+	
 
-
+	
 
 	MyPhysX::GetInstance().GetScene()->addActor(*_actor);
 	
@@ -201,5 +202,8 @@ physx::PxQuat RigidBodyComponent::ModifyAngleAroundAxis(float angle, physx::PxVe
 
 	return q;
 }
+
+
+
 
 

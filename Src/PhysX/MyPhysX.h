@@ -2,11 +2,12 @@
 #define MYPHYSX_H
 
 #include <PxPhysicsAPI.h>
+#include "callbacks.h"
 
 class MyPhysX
 {
 private:
-
+	
 	physx::PxPhysics * _PxPhysics;
 	physx::PxFoundation * _PxFoundation;
 	physx::PxCooking * _PxCooking;
@@ -22,7 +23,7 @@ private:
 	
 	physx::PxScene * _scene;
 	physx::PxDefaultCpuDispatcher * _dispatcher;
-
+	ContactReportCallback gContactReportCallback;
 public:
 
 	MyPhysX();

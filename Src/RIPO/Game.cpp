@@ -133,6 +133,8 @@ void Game::Loop()
 		// CURRENT SCENE UPDATE
 		_states.top()->Update(_deltaTime);
 			
+
+		
 		Render();
 
 

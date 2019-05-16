@@ -1,7 +1,10 @@
 #include "MyPhysX.h"
 #include <iostream>
 
+
+
 MyPhysX * MyPhysX::_instance = nullptr;
+
 
 MyPhysX::MyPhysX() {
 
@@ -81,7 +84,12 @@ void MyPhysX::ResetInstance()
 		MyPhysX::_instance = nullptr;
 	}
 }
-
+void onCollision(physx::PxActor* actor1, physx::PxActor* actor2) {
+	PX_UNUSED(actor1);
+	PX_UNUSED(actor2);
+	std::string p=actor1->getName();
+	std::cout << "algocolisionaXD" << std::endl;
+};
 
 void MyPhysX::Shutdown()
 {
@@ -103,6 +111,12 @@ void MyPhysX::CreateScene()
 	_dispatcher = physx::PxDefaultCpuDispatcherCreate(0);
 	sceneDesc.cpuDispatcher = _dispatcher;
 	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
+
+
+	sceneDesc.filterShader = contactReportFilterShader;
+	//
+	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
+	sceneDesc.simulationEventCallback = &gContactReportCallback;
 
 	_scene = _PxPhysics->createScene(sceneDesc);
 

@@ -28,6 +28,9 @@ private:
 	//Sets player in initial position
 	void ResetPosition();
 
+	//Shoots an instantiated bullet
+	void Shoot();
+
 	//Instantiates a bullet entity for the player to shoot
 	Entity* BulletInstantiate();
 
@@ -43,8 +46,10 @@ private:
 	std::string _mesh = "";
 
 	//variables to control shooting frequency
-	bool _clickFlag = false;
+	bool _clickFlag;
 	float _clickFlagTimer;
+
+	bool _shoot;
 
 	Dir _dir;
 

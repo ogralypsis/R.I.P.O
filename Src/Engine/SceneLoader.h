@@ -15,6 +15,7 @@
 struct typeOfEntity
 {
 	std::string type; //id of entity
+	int cont; //counts the amount of entities of a type to assign the correct id
 	std::map<std::string, std::map<std::string, Arguments>> components; //components and arguments
 	std::map<std::string, std::vector<std::string>> events; //events of each component
 };

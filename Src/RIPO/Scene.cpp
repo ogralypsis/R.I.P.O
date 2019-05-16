@@ -77,8 +77,13 @@ Entity* Scene::GetPrefab(std::string id)
 Entity* Scene::CreateEntity(std::string id)
 {
 	// create new entity
+	std::string _id = id;
+	
+	_prefabs[id].cont++; //new type of entity
+	_id += std::to_string(_prefabs[id].cont); //correct id
 
-	Entity* newEnt = new Entity(id);
+	Entity* newEnt = new Entity(_id);
+
 	std::map<std::string, std::map<std::string, Arguments>>::const_iterator it = _prefabs[id].components.cbegin();
 
 	while (it != _prefabs[id].components.cend())

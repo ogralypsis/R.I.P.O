@@ -3,6 +3,7 @@
 #include "EntityManager.h"
 #include "EventManager.h"
 
+
 SceneLoader * SceneLoader::_instance = nullptr;
 
 SceneLoader::SceneLoader() {}
@@ -36,6 +37,20 @@ std::map<std::string, typeOfEntity> SceneLoader::LoadFromJson(nlohmann::json jso
 
 		// for each entity, take the name
 		std::string name = json["_entities"][i]["_entityID"];
+		if (prefabs.count(name) == 0)
+		{
+			inPrefabs = false; //type of entity not registered
+			typeOfEntity newType;
+			newType.type = name;
+			newType.cont = 0;
+			prefabs.emplace(name, newType);
+		}
+		else
+		{
+			prefabs[name].cont++;
+			name += std::to_string(prefabs[name].cont);
+		}
+
 		Entity * newEntity = new Entity(name);
 
 		

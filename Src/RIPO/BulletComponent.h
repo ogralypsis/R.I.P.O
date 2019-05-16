@@ -21,7 +21,7 @@ private:
 
 	bool _updatePhysX;
 
-	bool _setDir; 
+	bool _setDir;
 
 	// bullet direction
 	Dir _dir;

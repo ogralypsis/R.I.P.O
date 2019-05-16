@@ -161,7 +161,7 @@ void Game::HandleInput()
 {
 	//capture Input
 	UpdateInput();
-	
+
 	//Once input is captures, check input
 	if (InputManager::GetInstance().IsKeyDown(OIS::KeyCode::KC_W))
 	{
@@ -199,6 +199,7 @@ void Game::HandleInput()
 	}
 	if (InputManager::GetInstance().IsMouseButtonPressed(OIS::MB_Left))
 	{
+	
 		std::cout << "MOUSE CLICKED" << std::endl;
 		L_MouseEvent * lEvent = new L_MouseEvent(_states.top()->GetId(), EventDestination::SCENE);
 		EventManager::GetInstance()->NotifyObservers(lEvent->GetType(), lEvent);

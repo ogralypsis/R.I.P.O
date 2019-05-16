@@ -43,6 +43,9 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_transform = nullptr;
 	_render = nullptr;
 
+	_clickFlag = false;
+	_shoot = false;
+
 	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("TransformComponent")); 
 	
 	_posX = _transform->GetPosX();
@@ -105,22 +108,15 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		/*_rotX = CameraManager::GetInstance().GetRotX();
 		_rotY = CameraManager::GetInstance().GetRotY();*/
 	}
-	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType)
+	else if (EventType::EVENT_LEFT_MOUSECLICK == eventType && !_clickFlag)
 	{
-		
+		_shoot = true;
 		if (!_clickFlag)
-		{
-			_clickFlag = true;
+		{	
 			
-			std::cout << "GONNA SHOOT" << std::endl;
 
-			//shoots bullet
-			Entity* bullet = BulletInstantiate();
-
-			ShootEvent * shootEvent = new ShootEvent(_dir, bullet->GetId(), EventDestination::ENTITY);
-			EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
-
-			_clickFlagTimer = 0;
+				_clickFlagTimer = 0;
+			
 		}
 	}
 
@@ -152,10 +148,30 @@ void PlayerControllerComponent::Update(float deltaTime)
 		if (_clickFlagTimer > 5)
 			_clickFlag = false;
 	}
+
+	if (_shoot)
+	{
+		Shoot();
+		_shoot = false;
+	}
 }
 
 
+void PlayerControllerComponent::Shoot()
+{
+	std::cout << "GONNA SHOOT" << std::endl;
 
+	//shoots bullet
+	Entity* bullet = BulletInstantiate();
+
+	if (bullet != nullptr)
+	{
+		_clickFlag = true;
+
+		ShootEvent * shootEvent = new ShootEvent(_dir, bullet->GetId(), EventDestination::ENTITY);
+		EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
+	}
+}
 
 void PlayerControllerComponent::CameraRotation(float deltaTime)
 {

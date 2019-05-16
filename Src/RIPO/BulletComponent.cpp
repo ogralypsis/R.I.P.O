@@ -18,6 +18,8 @@ void BulletComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	_lifeTime = 10;
 
+	_setDir = false;
+
 	_updatePhysX = false;
 
 	_setDir = false;
@@ -31,7 +33,7 @@ void BulletComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 void BulletComponent::OnEvent(int eventType, Event * e)
 {
 	//event shoot -> instantiate bullet
-	if (EventType::EVENT_SHOOT == eventType && !_setDir)
+	if (EventType::EVENT_SHOOT == eventType && e->GetEmmitter() == _ownerEntity->GetId())
 	{
 		std::cout << "SHOOT" << std::endl;
 		_dir = static_cast<ShootEvent*>(e)->_dir;

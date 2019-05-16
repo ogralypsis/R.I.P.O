@@ -188,7 +188,19 @@ Entity* PlayerControllerComponent::BulletInstantiate()
 	Entity* newEnt = Game::GetInstance().CurrentScene()->GetPrefab("Bullet");
 
 	RenderComponent* newEntRender = dynamic_cast<RenderComponent*>(newEnt->GetComponent("RenderComponent"));
-	newEntRender->GetNode()->_setDerivedPosition(_render->GetNode()->getPosition());
+	Ogre::Vector3 _bulletPos = _render->GetNode()->getPosition() + CameraManager::GetInstance().GetGunPos();
+	//newEntRender->GetNode()->translate(_bulletPos);
+
+	Dir newDir;
+	newDir.x = _bulletPos.x;
+	newDir.y = _bulletPos.y;
+	newDir.z = _bulletPos.z;
+
+	// notify of change
+	PhysicsMoveEvent * transformEvent = new PhysicsMoveEvent(newDir, newEnt->GetId(), EventDestination::ENTITY);
+	EventManager::GetInstance()->NotifyObservers(transformEvent->GetType(), transformEvent);
+
+	//std::cout << _bulletPos << std::endl;
 
 	return newEnt;
 

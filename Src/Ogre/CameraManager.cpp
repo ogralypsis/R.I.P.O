@@ -11,6 +11,11 @@ void CameraManager::AttachPlayer(std::string mesh, Ogre::SceneNode * playerNode)
 	_gunMesh = mesh;
 }
 
+Ogre::Vector3 CameraManager::GetGunPos()
+{
+	return _gunPos;
+}
+
 
 CameraManager::CameraManager()
 {
@@ -61,7 +66,7 @@ void CameraManager::CreateCamera(Ogre::RenderWindow * window, Ogre::SceneManager
 		Ogre::SceneNode* _gunNode = _camNode->createChildSceneNode();
 		_gunNode->attachObject(_gunEntity);
 
-		Ogre::Vector3 _gunPos(_gunNode->getPosition().x + 6, _gunNode->getPosition().y, _gunNode->getPosition().z - 20);
+		_gunPos = Ogre::Vector3(_gunNode->getPosition().x + 6, _gunNode->getPosition().y, _gunNode->getPosition().z - 20);
 		_gunNode->setPosition(_gunPos);
 		_gunNode->setScale(Ogre::Vector3 (3, 3, 3));
 		_gunNode->roll(Ogre::Degree(90), Ogre::Node::TS_LOCAL);

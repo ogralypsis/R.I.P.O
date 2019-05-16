@@ -38,6 +38,11 @@ public:
 	///<sumary>
 	void AttachPlayer(std::string mesh, Ogre::SceneNode* playerNode);
 
+	///<sumary>
+	///To be called from a PlayerController, getter of the gun position
+	///<sumary>
+	Ogre::Vector3 GetGunPos();
+
 
 private:
 
@@ -61,8 +66,9 @@ private:
 	Ogre::Camera* _camera = nullptr;
 	Ogre::Viewport * _viewPort = nullptr;
 
-	//gun mesh to attach to the player node
+	//gun mesh to attach to the player node and its position
 	std::string _gunMesh;
+	Ogre::Vector3 _gunPos;
 	
 };
 

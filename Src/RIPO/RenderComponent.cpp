@@ -60,7 +60,10 @@ void RenderComponent::Update(float deltaTime)
 {	
 
 	if (_mustMove) {
-		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosY, _auxPosZ));	
+		_entityOgre->getParentSceneNode()->setPosition(Ogre::Vector3(_auxPosX, _auxPosY, _auxPosZ));
+		_positionX = _auxPosX;
+		_positionY = _auxPosY;
+		_positionZ = _auxPosZ;
 	
 		_mustMove = false;	
 	}	

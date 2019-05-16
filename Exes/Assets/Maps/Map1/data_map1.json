@@ -21,17 +21,17 @@
           "_arguments": [
             {
               "_name": "posX",
-              "_type": 2,
+              "_type": 1,
               "_arg": "0"
             },
             {
               "_name": "posY",
-              "_type": 2,
+              "_type": 1,
               "_arg": "5"
             },
             {
               "_name": "posZ",
-              "_type": 2,
+              "_type": 1,
               "_arg": "0"
             },
             {
@@ -82,7 +82,7 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "80"
+              "_arg": "77"
             },
             {
               "_name": "positionY",
@@ -92,7 +92,7 @@
             {
               "_name": "positionZ",
               "_type": 1,
-              "_arg": "20"
+              "_arg": "240"
             },
             {
               "_name": "scaleX",
@@ -239,7 +239,7 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "0"
+              "_arg": "-50"
             },
             {
               "_name": "positionY",
@@ -300,17 +300,17 @@
           "_arguments": [
             {
               "_name": "posX",
-              "_type": 2,
-              "_arg": "-80"
+              "_type": 1,
+              "_arg": "77"
             },
             {
               "_name": "posY",
-              "_type": 2,
-              "_arg": "5"
+              "_type": 1,
+              "_arg": "10"
             },
             {
               "_name": "posZ",
-              "_type": 2,
+              "_type": 1,
               "_arg": "0"
             },
             {
@@ -361,7 +361,7 @@
             {
               "_name": "positionX",
               "_type": 1,
-              "_arg": "81"
+              "_arg": "77"
             },
             {
               "_name": "positionY",
@@ -371,7 +371,7 @@
             {
               "_name": "positionZ",
               "_type": 1,
-              "_arg": "-90"
+              "_arg": "0"
             },
             {
               "_name": "scaleX",
@@ -427,17 +427,12 @@
         },
         {
           "_type": "PlayerControllerComponent",
-          "_numArguments": 2,
+          "_numArguments": 1,
           "_arguments": [
             {
               "_name": "mesh",
               "_type": 4,
               "_arg": "gun.mesh"
-            },
-            {
-              "_name": "vel",
-              "_type": 2,
-              "_arg": "5"
             }
           ],
           "_numEvents": 9,
@@ -502,7 +497,7 @@
             {
               "_name": "mesh",
               "_type": 4,
-              "_arg": "Sinbad.mesh"
+              "_arg": "bullet.mesh"
             },
             {
               "_name": "positionX",
@@ -522,17 +517,17 @@
             {
               "_name": "scaleX",
               "_type": 2,
-              "_arg": "0.5"
+              "_arg": "3"
             },
             {
               "_name": "scaleY",
               "_type": 2,
-              "_arg": "0.5"
+              "_arg": "3"
             },
             {
               "_name": "scaleZ",
               "_type": 2,
-              "_arg": "0.5"
+              "_arg": "3"
             },
             {
               "_name": "rotationX",

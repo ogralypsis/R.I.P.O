@@ -29,10 +29,12 @@ private:
 	void ResetPosition();
 
 	//Instantiates a bullet entity for the player to shoot
-	void BulletInstantiate();
+	Entity* BulletInstantiate();
+
+	//Create the shootEvent
+	void Shoot();
 
 	//Internal variables
-	float _velocity;
 	float _posX;
 	float _posY;
 	float _posZ;
@@ -43,7 +45,8 @@ private:
 	std::string _mesh = "";
 
 	//variables to control shooting frequency
-	bool _clickFlag = false;
+	bool _clickFlag;
+	bool _shoot;
 	float _clickFlagTimer;
 
 	Dir _dir;
@@ -55,7 +58,7 @@ private:
 
 	//Booleans to activate the different directions
 	bool _input;
-	bool _moveCamera = false;
+	bool _moveCamera;
 	bool _mustMove;
 
 	//Mouse coords

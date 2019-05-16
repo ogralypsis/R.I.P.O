@@ -48,6 +48,10 @@ private:
 
 	physx::PxQuat ModifyAngleAroundAxis(float angle, physx::PxVec3 axis);
 
+	float x;
+	float y;
+	float z;
+
 
 };
 #endif

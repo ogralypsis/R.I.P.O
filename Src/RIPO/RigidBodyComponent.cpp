@@ -44,7 +44,12 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 #ifdef _DEBUG
 		std::cout << "createMaterial failed!" << std::endl;
 #endif
-	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(_render->GetPosition()[0] , _render->GetPosition()[2], _render->GetPosition()[1]));// TODO: aqui iria la posicion de la entidad 
+
+	 x = (float)_render->GetPosition()[0];
+	 y = (float)_render->GetPosition()[2];
+	 z = (float)_render->GetPosition()[1];
+
+	_actor = MyPhysX::GetInstance().GetPhysics()->createRigidDynamic(PxTransform(x , y, z));// TODO: aqui iria la posicion de la entidad 
 	_actor->setLinearDamping(0.75f);
 	_actor->setMass(10.0f);
 

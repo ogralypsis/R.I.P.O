@@ -41,11 +41,6 @@ private:
 	float _auxPosX;
 	float _auxPosY;
 	float _auxPosZ;
-
-
-	float _rotX;
-	float _rotY;
-
 };
 
 #endif RENDER_COMPONENT_H

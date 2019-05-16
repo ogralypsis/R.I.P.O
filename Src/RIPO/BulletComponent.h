@@ -19,6 +19,13 @@ public:
 private: 
 	float _speed; 
 
+	bool _updatePhysX;
+
+	bool _setDir; 
+
+	// bullet direction
+	Dir _dir;
+
 	//time before destruction
 	float _lifeTime; 
 

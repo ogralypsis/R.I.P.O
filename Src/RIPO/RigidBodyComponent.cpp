@@ -140,10 +140,12 @@ void RigidBodyComponent::OnEvent(int eventType, Event * e)
 {
 
 	if (eventType == EventType::EVENT_PHYSICS_MOVE) {
+
 		_mustMove = true;
 		_dir.x = static_cast<PhysicsMoveEvent*>(e)->_dir.x;
 		_dir.y = static_cast<PhysicsMoveEvent*>(e)->_dir.y;
 		_dir.z = static_cast<PhysicsMoveEvent*>(e)->_dir.z;
+
 	}
 	if (eventType == EventType::EVENT_ROTATION) {
 

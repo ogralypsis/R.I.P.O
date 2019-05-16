@@ -36,22 +36,24 @@ void PathFindingComponent::Update(float deltaTime)
 	// where does it have to move? and look?
 	Ogre::Vector3 finalPosition(_playerX - myPosition->GetPosX(), _playerY - myPosition->GetPosY(), _playerZ - myPosition->GetPosZ());
 	Ogre::Vector3 translateVector = finalPosition * Ogre::Vector3(0.1, 0.1, 0.1); // move towards player (by setting y to 0, it won't use that axis)
+	// finalPosition.normalise();
 
 	/*
 	// to where does it look at?
 	Ogre::Vector3 initialPosition(myPosition->GetPosX(), myPosition->GetPosY(), myPosition->GetPosZ());
+	initialPosition.normalise();
 	Ogre::Quaternion newOrientation = initialPosition.getRotationTo(finalPosition); // new orientation of enemy
 
 	Quat newQuat;
 	newQuat.w = float(newOrientation.w);
-	newQuat.x = float(newOrientation.x);
-	newQuat.y = float(newOrientation.y);
-	newQuat.z = float(newOrientation.z);
+	newQuat.x = float(myPosition->GetRotX() + newOrientation.x);
+	newQuat.y = float(myPosition->GetRotY() + newOrientation.y);
+	newQuat.z = float(myPosition->GetRotZ() + newOrientation.z);
 	
 	// notify of change
 	RotationEvent * RotationMovement = new RotationEvent(newQuat, _ownerEntity->GetId(), EventDestination::ENTITY);
-	//EventManager::GetInstance()->NotifyObservers(RotationMovement->GetType(), RotationMovement);
-	*/
+	EventManager::GetInstance()->NotifyObservers(RotationMovement->GetType(), RotationMovement);*/
+	
 
 	Dir newDir;
 	newDir.x = translateVector.x;

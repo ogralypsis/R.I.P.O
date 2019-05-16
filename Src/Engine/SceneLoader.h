@@ -9,6 +9,9 @@
 #include "Factory.h"
 #include "Component.h"
 
+///</summary>
+/// stores all information of a entity to register it as a type of entity
+///</summary>
 struct typeOfEntity
 {
 	std::string type; //id of entity

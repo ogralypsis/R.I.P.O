@@ -13,7 +13,7 @@ HealthComponent::~HealthComponent() {}
 void HealthComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
-
+	_id = "HealthComponent";
 	_health = arguments["health"]._i;
 }
 

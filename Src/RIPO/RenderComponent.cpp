@@ -17,7 +17,7 @@ RenderComponent::~RenderComponent() {}
 void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * e) 
 {
 	_ownerEntity = e;
-	_id = "Render";
+	_id = "RenderComponent";
 
 	_mustMove = false;
 	_mustRotate = false;

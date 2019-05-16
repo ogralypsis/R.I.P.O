@@ -454,7 +454,6 @@
           ]
         },
         {
-
           "_type": "RigidBodyComponent",
           "_numArguments": 5,
           "_arguments": [
@@ -558,29 +557,13 @@
           ]
         },
         {
-          "_type": "BulletComponent",
-          "_numArguments": 1,
-          "_arguments": [
-            {
-              "_name": "speed",
-              "_type": 2,
-              "_arg": "20"
-            }
-          ],
-          "_numEvents": 1,
-          "_events": [
-            "ShootEvent"
-          ]
-        },
-        {
-
           "_type": "RigidBodyComponent",
           "_numArguments": 5,
           "_arguments": [
             {
               "_name": "geometry",
               "_type": 1,
-              "_arg": "3"
+              "_arg": "2"
             },
             {
               "_name": "tam1",
@@ -607,6 +590,21 @@
           "_events": [
             "PhysicsMoveEvent",
             "RotationEvent"
+          ]
+        },
+        {
+          "_type": "BulletComponent",
+          "_numArguments": 1,
+          "_arguments": [
+            {
+              "_name": "speed",
+              "_type": 2,
+              "_arg": "20"
+            }
+          ],
+          "_numEvents": 1,
+          "_events": [
+            "ShootEvent"
           ]
         }
       ]

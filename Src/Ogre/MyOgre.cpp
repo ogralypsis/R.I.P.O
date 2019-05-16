@@ -249,6 +249,13 @@ Ogre::SceneNode* MyOgre::CreateNode(std::string mesh, Ogre::Vector3 position, Og
 	
 }
 
+// deletes children in node and its SceneNode
+void MyOgre::DestroyNode(Ogre::SceneNode * node)
+{
+	node->removeAndDestroyAllChildren();
+	_sceneMgr->destroySceneNode(node);
+}
+
 void MyOgre::ClearScene()
 {
 	// empty the scene from all the entities
@@ -260,7 +267,7 @@ void MyOgre::ClearScene()
 	// clear viewport for name conflicts
 	_window->removeAllViewports();
 
-	//Destroy pointers saved in CameraManager
+	//Destroy pointers saved in CameraManager to avoid errors
 	CameraManager::GetInstance().~CameraManager();
 }
 

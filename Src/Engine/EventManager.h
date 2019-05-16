@@ -41,6 +41,11 @@ public:
 	void RemoveObserver(int eventType, Component* observer);
 
 	///<summary>
+	/// Deletes all observers from the map
+	///</summary>
+	void ClearObservers();
+
+	///<summary>
 	/// stores the listeners into the map of the singleton
 	///</summary>
 	///<param name="observers"> map of (event + component that listen to that event) </param>
@@ -57,11 +62,6 @@ private:
 	/// constructor is private so it can't be called (only called from GetInstance)
 	///</summary>
 	EventManager();
-
-	///<summary>
-	/// Deletes all observers from the map
-	///</summary>
-	void ClearObservers();
 
 	///<summary>
 	/// instance of singleton

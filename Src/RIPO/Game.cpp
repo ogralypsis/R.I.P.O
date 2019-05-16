@@ -93,6 +93,9 @@ bool Game::Init()
 
 void Game::Release()
 {
+	// Destroy scene
+	ReleaseScene();
+
 	// Delete CeGUI
 	CEGUIUser::GetInstance()->Release();
 
@@ -248,21 +251,8 @@ void Game::Render()
 
 void Game::ChangeScene(std::string name)
 {
-	// if the stack is not empty (i.e., already has an scene)
-	if (!_states.empty()) 
-	{
-		// delete the current GUI
-		CEGUIUser::GetInstance()->Destroy();
-
-		// save the scene in a temp variable
-		Scene* aux = _states.top();
-
-		// delete that scene from the stack
-		_states.pop();
-
-		// delete pointer to the scene
-		delete aux;
-	}
+	// clear the stack of scenes and delete current scene
+	ReleaseScene();
 
 	// clear the scene in order to create a new one
 	MyOgre::GetInstance().ClearScene();
@@ -298,6 +288,25 @@ void Game::QueueScene(std::string scene)
 void Game::ExitGame()
 {
 	_exit = true;
+}
+
+void Game::ReleaseScene()
+{
+	// if the stack is not empty (i.e., already has an scene)
+	if (!_states.empty())
+	{
+		// delete the current GUI
+		CEGUIUser::GetInstance()->Destroy();
+
+		// save the scene in a temp variable
+		Scene* aux = _states.top();
+
+		// delete that scene from the stack
+		_states.pop();
+
+		// delete pointer to the scene
+		delete aux;
+	}
 }
 
 void Game::RegisterComponents()

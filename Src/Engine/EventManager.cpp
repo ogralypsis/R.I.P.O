@@ -35,18 +35,17 @@ void EventManager::ClearObservers()
 	_observers.clear();
 
 	// Iterate all the map
-	for (std::map<std::string, std::vector<Component*>>::iterator it3 = _observersJSON.begin(); it3 != _observersJSON.end(); ++it3) {
-		// Iterate vector 
-		for (std::vector<Component *>::iterator it4 = (*it3).second.begin(); it4 != (*it3).second.end(); ++it3) {
-			(*it4) = nullptr;
-			delete (*it4);
+	for (std::map<std::string, std::vector<Component*>>::iterator Jsonit = _observersJSON.begin(); Jsonit != _observersJSON.end(); ++Jsonit) {
+		// Iterate vector
+		for (std::vector<Component *>::iterator it3 = (*Jsonit).second.begin(); it3 != (*Jsonit).second.end(); ++it3) {
+			(*it3) = nullptr;
+			delete (*it3);
 		}
-		(*it3).second.clear();
+		(*Jsonit).second.clear();
 	}
 
 	_observersJSON.clear();
 }
-
 
 
 void EventManager::NotifyObservers(int eventType, Event * e)

@@ -55,6 +55,8 @@ public:
 
 	void ExitGame();
 
+	void ReleaseScene();
+
 private:
 
 	/// <summary>

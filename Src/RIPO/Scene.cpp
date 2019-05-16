@@ -33,6 +33,9 @@ Scene::~Scene()
 	// empty scene from entities
 	EntityManager::GetInstance()->ClearEntities();
 
+	// empty events 
+	EventManager::GetInstance()->ClearObservers();
+
 	// The first scene, the menu, doesn't have physics
 	if (_id != "0") {
 		// empty PhysX scene
@@ -42,6 +45,7 @@ Scene::~Scene()
 	// empty OGRE scene
 	MyOgre::GetInstance().ClearScene();
 
+	_prefabs.clear();
 }
 
 void Scene::Update(float t)

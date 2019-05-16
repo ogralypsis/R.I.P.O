@@ -28,7 +28,8 @@ public:
 	static SceneLoader* GetInstance();
 
 	///<summary>
-	/// created the enitities, components and events from the json file that receives
+	/// created the enitities, components and events from the json file that receives.
+	/// Returns a dictionary with the possible entities with their components and events
 	///</summary>
 	///<param name="json">the file that has been read. contains all the info of objects to be created</param>
 	///<param name="compFactory">contains a map of the components abailable with their constructors. necessary for the factory pattern</param>

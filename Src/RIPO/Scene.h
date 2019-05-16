@@ -6,7 +6,7 @@
 class Scene : public BaseScene
 {
 public:
-	Scene(std::string ID, Factory<Component> compFactory);
+	Scene(std::string id, Factory<Component> compFactory);
 	~Scene();
 
 	virtual void Update(float t);

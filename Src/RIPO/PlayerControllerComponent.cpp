@@ -110,15 +110,16 @@ void PlayerControllerComponent::OnEvent(int eventType, Event * e)
 		
 		if (!_clickFlag)
 		{
+			_clickFlag = true;
+			
 			std::cout << "GONNA SHOOT" << std::endl;
 
 			//shoots bullet
-			BulletInstantiate();
+			Entity* bullet = BulletInstantiate();
 
-			ShootEvent * shootEvent = new ShootEvent(_ownerEntity->GetId(), EventDestination::SCENE);
+			ShootEvent * shootEvent = new ShootEvent(_dir, bullet->GetId(), EventDestination::ENTITY);
 			EventManager::GetInstance()->NotifyObservers(shootEvent->GetType(), shootEvent);
 
-			_clickFlag = true;
 			_clickFlagTimer = 0;
 		}
 	}
@@ -183,13 +184,15 @@ void PlayerControllerComponent::ResetPosition()
 	_transform->SetPosition(_posX, _posY, _posZ);
 }
 
-void PlayerControllerComponent::BulletInstantiate()
+Entity* PlayerControllerComponent::BulletInstantiate()
 {
 	//instantiates bullet
 	Entity* newEnt = Game::GetInstance().CurrentScene()->GetPrefab("Bullet");
 
 	RenderComponent* newEntRender = dynamic_cast<RenderComponent*>(newEnt->GetComponent("RenderComponent"));
 	newEntRender->GetNode()->_setDerivedPosition(_render->GetNode()->getPosition());
+
+	return newEnt;
 
 }
 

@@ -146,7 +146,10 @@ struct PhysicsMoveEvent : Event
 
 struct ShootEvent : Event
 {
-	ShootEvent(std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_SHOOT, destination) {};
+	ShootEvent(Dir dir, std::string emmiter, EventDestination destination) : Event(emmiter, EventType::EVENT_SHOOT, destination), _dir(dir) {};
+	
+	// Direction to move the entity
+	Dir _dir;
 };
 
 #pragma endregion

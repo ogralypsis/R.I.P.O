@@ -18,6 +18,10 @@ void BulletComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 
 	_lifeTime = 10;
 
+	_updatePhysX = false;
+
+	_dir.x = 0; _dir.y = 0; _dir.z = 0;
+
 	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("RenderComponent"));
 	//_render->GetNode()->setVisible(false);
 }
@@ -28,6 +32,8 @@ void BulletComponent::OnEvent(int eventType, Event * e)
 	if (EventType::EVENT_SHOOT == eventType)
 	{
 		std::cout << "SHOOT" << std::endl;
+		_dir = static_cast<ShootEvent*>(e)->_dir;
+		_updatePhysX = true;
 	}
 }
 
@@ -35,8 +41,16 @@ void BulletComponent::Update(float deltaTime)
 {
 	_lifeTime += deltaTime;
 
-	if (_lifeTime > 20)
+	if (_updatePhysX)
+	{
+		PhysicsMoveEvent * physicsMoveEvent = new PhysicsMoveEvent(_dir, _ownerEntity->GetId(), EventDestination::ENTITY);
+		EventManager::GetInstance()->NotifyObservers(physicsMoveEvent->GetType(), physicsMoveEvent);
+	}
+
+	if (_lifeTime > 30)
+	{
 		Destroy();
+	}
 }
 
 

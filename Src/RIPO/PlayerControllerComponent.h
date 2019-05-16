@@ -29,7 +29,7 @@ private:
 	void ResetPosition();
 
 	//Instantiates a bullet entity for the player to shoot
-	void BulletInstantiate();
+	Entity* BulletInstantiate();
 
 	//Internal variables
 	float _velocity;

@@ -63,6 +63,13 @@ public:
 	
 	Ogre::SceneNode* CreateNode(std::string mesh, Ogre::Vector3 position, Ogre::Vector3 vector, Ogre::Radian radian);
 	
+	
+	///<summary>
+	/// Destroys a ScenNode and its children
+	///</summary>
+	///<param name="node">The node to be deleted</param>  
+	void DestroyNode(Ogre::SceneNode* node);
+
 	void ClearScene();
 
 	void SetUpScene();

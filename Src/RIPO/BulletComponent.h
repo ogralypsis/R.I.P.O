@@ -18,6 +18,13 @@ public:
 
 private: 
 	float _speed; 
+
+	//time before destruction
+	float _lifeTime; 
+
+	//Destroys the entity
+	void Destroy();
+
 	RenderComponent* _render = nullptr;
 };
 

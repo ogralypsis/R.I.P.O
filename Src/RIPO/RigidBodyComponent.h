@@ -4,7 +4,7 @@
 #include <MyPhysX.h>
 #include "RenderComponent.h"
 
-class RigidBodyComponent :
+class RigidBodyComponent : 
 	public Component
 {
 public:

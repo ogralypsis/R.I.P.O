@@ -20,7 +20,7 @@ RigidBodyComponent::~RigidBodyComponent()
 void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
-	_id = "RigidBody";
+	_id = "RigidBodyComponent";
 
 	_mustMove = false;
 	_mustRotate = false;
@@ -36,7 +36,7 @@ void RigidBodyComponent::Init(std::map<std::string, Arguments> arguments, Entity
 
 	_velocity = arguments["velocity"]._f; 
 
-	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
+	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("RenderComponent"));
 
 	_material = MyPhysX::GetInstance().GetPhysics()->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,// restitution
 

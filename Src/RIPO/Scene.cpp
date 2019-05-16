@@ -7,6 +7,8 @@
 // events from RIPO
 #include "RIPOEvent.h"
 
+#include "RenderComponent.h"
+
 Scene::Scene(std::string ID, Factory<Component> compFactory) : BaseScene(ID, compFactory)
 {
 	// The first scene, the menu, doesn't have physics
@@ -103,9 +105,50 @@ Entity* Scene::CreateEntity(std::string id)
 		it++;
 	}
 
+	//add the new entity
 	EntityManager::GetInstance()->AddEntity(newEnt);
 
 	return newEnt;
+}
+
+void Scene::DestroyEntity(Entity*e)
+{
+	//Removes observers from the entity
+	RemoveObservers(e);
+
+	//if the entity has a RenderComponent, the ScenNode must be destroyed
+	if (e->HasComponent("RenderComponent"))
+	{
+		RenderComponent* render = dynamic_cast<RenderComponent*>(e->GetComponent("RenderComponent"));
+		MyOgre::GetInstance().DestroyNode(render->GetNode());
+	}
+
+	//deletes the entity
+	EntityManager::GetInstance()->DeleteEntity(e);
+}
+ 
+void Scene::RemoveObservers(Entity* e)
+{
+	std::string id = e->GetId();
+	std::map<std::string, std::map<std::string, Arguments>>::const_iterator it = _prefabs[id].components.cbegin();
+
+	//removes the observers from each component of the type od entity
+	while (it != _prefabs[id].components.cend())
+	{
+		//Gets the component to remove its observers
+		Component* c = e->GetComponent(it->first);
+
+		int numEvents = _prefabs[id].events[it->first].size();
+
+		//removes event observers
+		for (int i = 0; i < numEvents; i++)
+		{
+			std::string event = _prefabs[id].events[it->first][i];
+			int eventType = GetEventType(event);
+			EventManager::GetInstance()->RemoveObserver(eventType, c);
+		}		
+		it++;
+	}
 }
 
 void Scene::AddSceneObservers()

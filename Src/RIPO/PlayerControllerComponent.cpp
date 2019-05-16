@@ -43,7 +43,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_transform = nullptr;
 	_render = nullptr;
 
-	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform")); 
+	_transform = dynamic_cast<TransformComponent*>(_ownerEntity->GetComponent("TransformComponent")); 
 	
 	_posX = _transform->GetPosX();
 	_orPosX = _posX;
@@ -52,7 +52,7 @@ void PlayerControllerComponent::Init(std::map<std::string, Arguments> arguments,
 	_posZ = _transform->GetPosZ();
 	_orPosZ = _posZ;
 
-	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("Render"));
+	_render = dynamic_cast<RenderComponent*>(_ownerEntity->GetComponent("RenderComponent"));
 
 	CameraManager::GetInstance().AttachPlayer(_mesh, _render->GetNode());
 }
@@ -188,7 +188,7 @@ void PlayerControllerComponent::BulletInstantiate()
 	//instantiates bullet
 	Entity* newEnt = Game::GetInstance().CurrentScene()->GetPrefab("Bullet");
 
-	RenderComponent* newEntRender = dynamic_cast<RenderComponent*>(newEnt->GetComponent("Render"));
+	RenderComponent* newEntRender = dynamic_cast<RenderComponent*>(newEnt->GetComponent("RenderComponent"));
 	newEntRender->GetNode()->_setDerivedPosition(_render->GetNode()->getPosition());
 
 }

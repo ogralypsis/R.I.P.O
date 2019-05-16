@@ -16,7 +16,7 @@ TransformComponent::~TransformComponent()
 void TransformComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
-	_id = "Transform";
+	_id = "TransformComponent";
 
 	_mustMove = false;
 

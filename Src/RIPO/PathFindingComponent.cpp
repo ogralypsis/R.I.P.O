@@ -13,7 +13,7 @@ PathFindingComponent::~PathFindingComponent() {}
 void PathFindingComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
-
+	_id = "PathfindingComponent";
 	_playerX = _playerY = _playerZ = 0;
 }
 
@@ -31,7 +31,7 @@ void PathFindingComponent::OnEvent(int eventType, Event * e)
 void PathFindingComponent::Update(float deltaTime) 
 {
 	// position of enemy and target
-	TransformComponent* myPosition = static_cast<TransformComponent*>(_ownerEntity->GetComponent("Transform"));
+	TransformComponent* myPosition = static_cast<TransformComponent*>(_ownerEntity->GetComponent("TransformComponent"));
 
 	// where does it have to move? and look?
 	Ogre::Vector3 initialOrientation(0, 0, 0);

@@ -9,6 +9,7 @@ ExitButtonComponent::~ExitButtonComponent() {}
 void ExitButtonComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
+	_id = "ExitButtonComponent";
 
 	// type and name
 	std::string type = arguments["type"]._str;

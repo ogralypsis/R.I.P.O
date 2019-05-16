@@ -9,6 +9,7 @@ ButtonComponent::~ButtonComponent() {}
 void ButtonComponent::Init(std::map<std::string, Arguments> arguments, Entity * e)
 {
 	_ownerEntity = e;
+	_id = "ButtonComponent";
 
 	// type and name
 	std::string type = arguments["type"]._str;

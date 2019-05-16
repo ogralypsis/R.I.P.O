@@ -28,15 +28,15 @@ void RenderComponent::Init(std::map<std::string, Arguments> arguments, Entity * 
 	_positionY = arguments["positionY"]._i;
 	_positionZ = arguments["positionZ"]._i;
 
-	float _scaleX = arguments["scaleX"]._f;
-	float _scaleY = arguments["scaleY"]._f;
-	float _scaleZ = arguments["scaleZ"]._f;
+	float _scaleX = arguments["scaleX"]._i;
+	float _scaleY = arguments["scaleY"]._i;
+	float _scaleZ = arguments["scaleZ"]._i;
 
 	float _rotationX = arguments["rotationX"]._f;
 	float _rotationY = arguments["rotationY"]._f;
 	float _rotationZ = arguments["rotationZ"]._f;
 
-	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(_positionX, _positionZ, _positionY),Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotationX), Ogre::Radian(_rotationY), Ogre::Radian(_rotationZ));
+	_entityOgre = MyOgre::GetInstance().CreateEntity(_mesh, Ogre::Vector3(float(_positionX), float(_positionZ), float(_positionY)),Ogre::Vector3(_scaleX, _scaleY, _scaleZ), Ogre::Radian(_rotationX), Ogre::Radian(_rotationY), Ogre::Radian(_rotationZ));
 	
 	// TODO: COGER LOS VERTICES DEL BOUNDING BOX DE OGRE, PASARSELOS AL RIGIDBODY Y CREAR UNA CUSTOM SHAPE CON ELLOS
 	//_entityOgre->getBoundingBox().getAllCorners();

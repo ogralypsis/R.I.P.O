@@ -160,9 +160,10 @@
               "_arg": "2"
             }
           ],
-          "_numEvents": 1,
+          "_numEvents": 2,
           "_events": [
-            "PhysicsMoveEvent"
+            "PhysicsMoveEvent",
+            "RotationEvent"
           ]
         }
       ]

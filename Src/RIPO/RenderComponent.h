@@ -28,8 +28,6 @@ public:
 	
 private:
 
-	//TransformComponent * _transform = nullptr;
-
 	Ogre::Entity * _entityOgre;
 
 
